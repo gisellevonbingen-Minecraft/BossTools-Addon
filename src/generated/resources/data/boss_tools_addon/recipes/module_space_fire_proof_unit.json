@@ -1,0 +1,25 @@
+{
+   "type":"minecraft:crafting_shaped",
+   "result":{
+      "item":"mekanism:module_space_fire_proof_unit"
+   },
+   "pattern":[
+      "I#I",
+      "IAI",
+      "PPP"
+   ],
+   "key":{
+      "I":{
+         "tag":"forge:alloys/elite"
+      },
+      "A":{
+         "item":"mekanism:module_base"
+      },
+      "#":{
+         "item":"boss_tools_addon:space_fire_proof_plate"
+      },
+      "P":{
+         "tag":"forge:pellets/polonium"
+      }
+   }
+}

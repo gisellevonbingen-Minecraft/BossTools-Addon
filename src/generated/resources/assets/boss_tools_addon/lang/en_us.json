@@ -1,0 +1,17 @@
+{
+
+  "itemGroup.boss_tools_addon_tab_main": "Space-BossTools: Addon",
+  
+  "item.boss_tools_addon.space_breath_gear": "Space Breath Gear",
+  "item.boss_tools_addon.space_fire_proof_plate": "Space Fire Proof Plate",
+  "item.boss_tools_addon.venus_acid_proof_plate": "Venus Acid Proof Plate",
+
+  "module.boss_tools_addon.space_breathing_unit": "Space Breathing Unit",
+  "description.boss_tools_addon.space_breathing_unit": "Consume oxygen and energy, can breath in Space-BossTools dimensions\nWill also fill this module with oxygen when necessary",
+  "module.boss_tools_addon.space_fire_proof_unit": "Space Fire Proof Unit",
+  "description.boss_tools_addon.space_fire_proof_unit": "Consume energy, don't damage from fire in Space-BossTools dimensions",
+  "module.boss_tools_addon.venus_acid_proof_unit": "Venus Acid Proof Unit",
+  "description.boss_tools_addon.venus_acid_proof_unit": "Consume energy, don't damage from venus acid rain",
+  
+  "_eof": "eof"
+}

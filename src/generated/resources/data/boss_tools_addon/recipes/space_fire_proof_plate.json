@@ -1,0 +1,19 @@
+{
+   "type":"minecraft:crafting_shaped",
+   "result":{
+      "item":"boss_tools_addon:space_fire_proof_plate"
+   },
+   "pattern":[
+      "121",
+      "212",
+      "121"
+   ],
+   "key":{
+      "1":{
+         "item":"boss_tools:compressed_steel"
+      },
+      "2":{
+         "item":"boss_tools:compressed_silicon"
+      }
+   }
+}

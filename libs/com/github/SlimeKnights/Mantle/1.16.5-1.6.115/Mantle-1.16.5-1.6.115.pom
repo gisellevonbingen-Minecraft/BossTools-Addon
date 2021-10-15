@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.github.SlimeKnights</groupId>
+  <artifactId>Mantle</artifactId>
+  <version>1.16.5-1.6.115</version>
+  <name>SlimeKnights/Mantle</name>
+  <description>Public shared library for Forge mods</description>
+  <url>https://github.com/SlimeKnights/Mantle</url>
+  <inceptionYear>2013</inceptionYear>
+  <developers>
+    <developer>
+      <id>SlimeKnights</id>
+      <name></name>
+      <email></email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git://github.com/SlimeKnights/Mantle.git</connection>
+    <developerConnection>scm:git://github.com/SlimeKnights/Mantle.git</developerConnection>
+    <url>git://github.com/SlimeKnights/Mantle.git</url>
+  </scm>
+</project>

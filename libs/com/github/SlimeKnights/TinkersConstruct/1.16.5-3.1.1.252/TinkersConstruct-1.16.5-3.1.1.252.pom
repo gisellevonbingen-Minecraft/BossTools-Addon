@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.github.SlimeKnights</groupId>
+  <artifactId>TinkersConstruct</artifactId>
+  <version>1.16.5-3.1.1.252</version>
+  <name>SlimeKnights/TinkersConstruct</name>
+  <description>Tinker a little, build a little, tinker a little more...</description>
+  <url>https://github.com/SlimeKnights/TinkersConstruct</url>
+  <inceptionYear>2013</inceptionYear>
+  <developers>
+    <developer>
+      <id>SlimeKnights</id>
+      <name></name>
+      <email></email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git://github.com/SlimeKnights/TinkersConstruct.git</connection>
+    <developerConnection>scm:git://github.com/SlimeKnights/TinkersConstruct.git</developerConnection>
+    <url>git://github.com/SlimeKnights/TinkersConstruct.git</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>com.github.SlimeKnights</groupId>
+      <artifactId>Mantle</artifactId>
+      <version>1.16.5-1.6.115</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

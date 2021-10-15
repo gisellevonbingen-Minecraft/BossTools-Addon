@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.mrscauthd</groupId>
+  <artifactId>space-bosstools</artifactId>
+  <version>1.16.5-5.4</version>
+  <name>mrscauthd/space-bosstools</name>
+  <description></description>
+  <url></url>
+  <inceptionYear>2013</inceptionYear>
+  <developers>
+    <developer>
+      <id>net.mrscauthd</id>
+      <name></name>
+      <email></email>
+    </developer>
+  </developers>
+  <scm>
+  </scm>
+</project>
