@@ -1,6 +1,8 @@
 package giselle.bosstools_addon.compat.mekanism;
 
 import giselle.bosstools_addon.compat.CompatibleMod;
+import giselle.bosstools_addon.compat.mekanism.gear.AddonModules;
+import giselle.bosstools_addon.compat.mekanism.gear.mekasuit.MekaSuitGasSpecHelper;
 import mekanism.common.capabilities.chemical.item.RateLimitMultiTankGasHandler.GasTankSpec;
 import mekanism.common.content.gear.Modules;
 import mekanism.common.item.gear.ItemMekaSuitArmor;

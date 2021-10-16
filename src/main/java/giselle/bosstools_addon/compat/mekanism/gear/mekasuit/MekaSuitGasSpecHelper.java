@@ -1,4 +1,4 @@
-package giselle.bosstools_addon.compat.mekanism;
+package giselle.bosstools_addon.compat.mekanism.gear.mekasuit;
 
 import java.util.HashMap;
 import java.util.Map;

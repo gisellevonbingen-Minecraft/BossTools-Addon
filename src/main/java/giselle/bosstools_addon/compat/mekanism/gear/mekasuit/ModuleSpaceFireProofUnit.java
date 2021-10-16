@@ -1,4 +1,4 @@
-package giselle.bosstools_addon.compat.mekanism.module;
+package giselle.bosstools_addon.compat.mekanism.gear.mekasuit;
 
 import mekanism.api.math.FloatingLong;
 import mekanism.common.content.gear.Modules.ModuleData;
@@ -7,10 +7,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 
-public class ModuleVenusAcidProofUnit extends ModuleMekaSuit implements IProofModule
+public class ModuleSpaceFireProofUnit extends ModuleMekaSuit implements IProofModule
 {
-	public static final String PROOF_SOURCE_NAME = "venus.acid";
-
 	private FloatingLong usingEnergy;
 
 	@Override
@@ -24,7 +22,7 @@ public class ModuleVenusAcidProofUnit extends ModuleMekaSuit implements IProofMo
 	@Override
 	public boolean testDamage(DamageSource source)
 	{
-		return source != null && PROOF_SOURCE_NAME.equals(source.getMsgId());
+		return source != null && source.isFire();
 	}
 
 	@Override

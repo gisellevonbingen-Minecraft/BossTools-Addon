@@ -1,4 +1,4 @@
-package giselle.bosstools_addon.compat.mekanism.module;
+package giselle.bosstools_addon.compat.mekanism.gear.mekasuit;
 
 import java.util.List;
 

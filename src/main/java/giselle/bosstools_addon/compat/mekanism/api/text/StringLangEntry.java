@@ -1,4 +1,4 @@
-package giselle.bosstools_addon.compat.mekanism;
+package giselle.bosstools_addon.compat.mekanism.api.text;
 
 import giselle.bosstools_addon.BossToolsAddon;
 import mekanism.api.text.ILangEntry;

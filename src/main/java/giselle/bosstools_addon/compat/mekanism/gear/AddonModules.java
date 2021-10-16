@@ -1,8 +1,9 @@
-package giselle.bosstools_addon.compat.mekanism;
+package giselle.bosstools_addon.compat.mekanism.gear;
 
-import giselle.bosstools_addon.compat.mekanism.module.ModuleSpaceFireProofUnit;
-import giselle.bosstools_addon.compat.mekanism.module.ModuleSpaceBreathingUnit;
-import giselle.bosstools_addon.compat.mekanism.module.ModuleVenusAcidProofUnit;
+import giselle.bosstools_addon.compat.mekanism.api.text.StringLangEntry;
+import giselle.bosstools_addon.compat.mekanism.gear.mekasuit.ModuleSpaceBreathingUnit;
+import giselle.bosstools_addon.compat.mekanism.gear.mekasuit.ModuleSpaceFireProofUnit;
+import giselle.bosstools_addon.compat.mekanism.gear.mekasuit.ModuleVenusAcidProofUnit;
 import mekanism.common.content.gear.Modules.ModuleData;
 import net.minecraft.item.Rarity;
 

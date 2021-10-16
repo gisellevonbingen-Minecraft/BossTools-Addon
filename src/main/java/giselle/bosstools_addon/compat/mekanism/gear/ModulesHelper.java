@@ -1,4 +1,4 @@
-package giselle.bosstools_addon.compat.mekanism;
+package giselle.bosstools_addon.compat.mekanism.gear;
 
 import java.lang.reflect.Method;
 import java.util.function.Supplier;
