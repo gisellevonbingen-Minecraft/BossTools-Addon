@@ -1,6 +1,8 @@
 package giselle.bosstools_addon.compat.mekanism.gear.mekasuit;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -10,6 +12,7 @@ import mekanism.api.chemical.gas.GasStack;
 import mekanism.api.chemical.gas.IGasHandler;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.capabilities.Capabilities;
+import mekanism.common.config.MekanismConfig;
 import mekanism.common.content.gear.HUDElement;
 import mekanism.common.content.gear.Modules.ModuleData;
 import mekanism.common.content.gear.mekasuit.ModuleMekaSuit;
@@ -19,9 +22,15 @@ import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.StorageUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 
 public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 {
@@ -46,6 +55,12 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 	{
 		super.tickServer(player);
 
+		this.produceOxygen(player);
+		this.useOxygen(player);
+	}
+
+	private void useOxygen(PlayerEntity player)
+	{
 		CompoundNBT compound = player.getPersistentData();
 
 		if (compound.getBoolean(OXYGEN_NBT_KEY) == false)
@@ -57,7 +72,36 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 			}
 
 		}
+	}
 
+	private void produceOxygen(PlayerEntity player)
+	{
+		int maxProduceRate = 4;
+		int productionRate = 0;
+		double maskHeight = player.getEyeHeight() - 0.15D;
+		BlockPos headPos = new BlockPos(player.getBbWidth(), maskHeight, player.getBbHeight());
+		FluidState fluidstate = player.level.getFluidState(headPos);
+
+		if (fluidstate.is(FluidTags.WATER) && maskHeight <= (headPos.getY() + fluidstate.getHeight(player.level, headPos)))
+		{
+			productionRate = maxProduceRate;
+		}
+		else if (player.isInWaterOrRain())
+		{
+			productionRate = maxProduceRate / 2;
+		}
+
+		if (productionRate > 0)
+		{
+			ItemStack chestStack = this.getContainer();
+			IGasHandler chestCapability = chestStack.getCapability(Capabilities.GAS_HANDLER_CAPABILITY).orElse(null);
+
+			if (chestCapability != null)
+			{
+				chestCapability.insertChemical(MekanismGases.OXYGEN.getStack(productionRate), Action.EXECUTE);
+			}
+
+		}
 	}
 
 	public boolean useResources(LivingEntity entity)
