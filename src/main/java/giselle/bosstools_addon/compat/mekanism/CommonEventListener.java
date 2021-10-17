@@ -1,7 +1,7 @@
 package giselle.bosstools_addon.compat.mekanism;
 
 import giselle.bosstools_addon.common.world.BossToolsWorlds;
-import giselle.bosstools_addon.compat.mekanism.gear.AddonModules;
+import giselle.bosstools_addon.compat.mekanism.gear.AddonMekanismModules;
 import giselle.bosstools_addon.compat.mekanism.gear.mekasuit.IProofModule;
 import mekanism.common.content.gear.Modules;
 import mekanism.common.content.gear.Modules.ModuleData;
@@ -28,12 +28,12 @@ public class CommonEventListener
 
 		if (key == BossToolsWorlds.VENUS)
 		{
-			this.proofAttack(e, AddonModules.VENUS_ACID_PROOF_UNIT);
+			this.proofAttack(e, AddonMekanismModules.VENUS_ACID_PROOF_UNIT);
 		}
 
 		if (key == BossToolsWorlds.VENUS || key == BossToolsWorlds.MERCURY)
 		{
-			this.proofAttack(e, AddonModules.SPACE_FIRE_PROOF_UNIT);
+			this.proofAttack(e, AddonMekanismModules.SPACE_FIRE_PROOF_UNIT);
 		}
 
 	}

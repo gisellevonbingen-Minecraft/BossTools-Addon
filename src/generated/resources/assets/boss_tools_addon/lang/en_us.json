@@ -2,6 +2,8 @@
 
   "itemGroup.boss_tools_addon_tab_main": "Space-BossTools: Addon",
   
+  "block.boss_tools_addon.oxygen_accepter": "Oxygen Accepter",
+  
   "item.boss_tools_addon.space_breath_gear": "Space Breath Gear",
   "item.boss_tools_addon.space_fire_proof_plate": "Space Fire Proof Plate",
   "item.boss_tools_addon.venus_acid_proof_plate": "Venus Acid Proof Plate",

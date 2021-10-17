@@ -14,11 +14,11 @@ public class ModulesHelper
 
 	public static <M extends mekanism.common.content.gear.Module> ModuleData<M> register(String name, ILangEntry langEntry, ILangEntry description, Supplier<M> moduleSupplier)
 	{
-		return regiser(name, langEntry, description, moduleSupplier, 1);
+		return register(name, langEntry, description, moduleSupplier, 1);
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <M extends mekanism.common.content.gear.Module> ModuleData<M> regiser(String name, ILangEntry langEntry, ILangEntry description, Supplier<M> moduleSupplier, final int maxStackSize)
+	public static <M extends mekanism.common.content.gear.Module> ModuleData<M> register(String name, ILangEntry langEntry, ILangEntry description, Supplier<M> moduleSupplier, int maxStackSize)
 	{
 		try
 		{

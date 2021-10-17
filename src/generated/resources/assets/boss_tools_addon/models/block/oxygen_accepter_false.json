@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "down": "boss_tools:blocks/steel_block",
+    "up": "boss_tools:blocks/steel_block",
+    "north": "boss_tools_addon:block/oxygen_accepter_false",
+    "east": "boss_tools_addon:block/oxygen_accepter_false",
+    "south": "boss_tools_addon:block/oxygen_accepter_false",
+    "west": "boss_tools_addon:block/oxygen_accepter_false",
+    "particle": "boss_tools_addon:block/oxygen_accepter_false"
+  }
+}

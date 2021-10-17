@@ -1,7 +1,7 @@
 package giselle.bosstools_addon.compat.mekanism;
 
 import giselle.bosstools_addon.compat.CompatibleMod;
-import giselle.bosstools_addon.compat.mekanism.gear.AddonModules;
+import giselle.bosstools_addon.compat.mekanism.gear.AddonMekanismModules;
 import giselle.bosstools_addon.compat.mekanism.gear.mekasuit.MekaSuitGasSpecHelper;
 import mekanism.common.capabilities.chemical.item.RateLimitMultiTankGasHandler.GasTankSpec;
 import mekanism.common.content.gear.Modules;
@@ -33,7 +33,7 @@ public class MekanismCompat extends CompatibleMod
 	@Override
 	protected void onLoad()
 	{
-		AddonModules.registerAll();
+		AddonMekanismModules.registerAll();
 
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		fml_bus.addGenericListener(Item.class, this::addEntries);
@@ -46,11 +46,11 @@ public class MekanismCompat extends CompatibleMod
 	{
 		ItemMekaSuitArmor helmet = MekanismItems.MEKASUIT_HELMET.get();
 		MekaSuitGasSpecHelper.addSpec(helmet, new GasTankSpec(() -> 256, () -> 48000, (gas, type) -> true, (gas, type) -> true, gas -> gas == MekanismGases.OXYGEN.get()));
-		Modules.setSupported(helmet, AddonModules.SPACE_BREATHING_UNIT);
+		Modules.setSupported(helmet, AddonMekanismModules.SPACE_BREATHING_UNIT);
 
 		ItemMekaSuitArmor bodyArmor = MekanismItems.MEKASUIT_BODYARMOR.get();
-		Modules.setSupported(bodyArmor, AddonModules.VENUS_ACID_PROOF_UNIT);
-		Modules.setSupported(bodyArmor, AddonModules.SPACE_FIRE_PROOF_UNIT);
+		Modules.setSupported(bodyArmor, AddonMekanismModules.VENUS_ACID_PROOF_UNIT);
+		Modules.setSupported(bodyArmor, AddonMekanismModules.SPACE_FIRE_PROOF_UNIT);
 	}
 
 }
