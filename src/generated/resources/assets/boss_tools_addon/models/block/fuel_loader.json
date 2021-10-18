@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "down": "boss_tools:blocks/steel_block",
+    "up": "boss_tools:blocks/steel_block",
+    "north": "boss_tools_addon:block/fuel_loader",
+    "east": "boss_tools_addon:block/fuel_loader",
+    "south": "boss_tools_addon:block/fuel_loader",
+    "west": "boss_tools_addon:block/fuel_loader",
+    "particle": "boss_tools_addon:block/fuel_loader"
+  }
+}

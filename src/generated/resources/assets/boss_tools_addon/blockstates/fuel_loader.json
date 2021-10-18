@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "boss_tools_addon:block/fuel_loader"
+    }
+  }
+}

@@ -3,6 +3,7 @@
   "itemGroup.boss_tools_addon_tab_main": "Space-BossTools: Addon",
   
   "block.boss_tools_addon.oxygen_accepter": "Oxygen Accepter",
+  "block.boss_tools_addon.fuel_loader": "Fuel Loader",
   
   "item.boss_tools_addon.desh_nugget": "Desh Nugget",
   "item.boss_tools_addon.silicon_nugget": "Silicon Nugget",
@@ -26,6 +27,10 @@
   "description.boss_tools_addon.space_fire_proof_unit": "Consume energy, don't damage from fire in Space-BossTools dimensions",
   "module.boss_tools_addon.venus_acid_proof_unit": "Venus Acid Proof Unit",
   "description.boss_tools_addon.venus_acid_proof_unit": "Consume energy, don't damage from venus acid rain",
+  
+  "container.boss_tools_addon.fuel_loader": "Fuel Loader",
+  
+  "jei.info.oxygen_accepter": "Extract oxygen from near blocks\n(e.g. Mekanism Oxygen Gas)\nAnd provide oxygen to near machines\n(Oxygen Loader, Oxygen Bubble Generator)",
   
   "_eof": "eof"
 }

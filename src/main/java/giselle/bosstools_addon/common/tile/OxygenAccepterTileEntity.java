@@ -63,6 +63,20 @@ public class OxygenAccepterTileEntity extends TileEntity implements ITickableTil
 	@Override
 	public void tick()
 	{
+		boolean worked = this.giveFuelAround();
+		BlockState blockState = this.getBlockState();
+
+		if (blockState.hasProperty(OxygenAccepterBlock.POWERED))
+		{
+			World level = this.getLevel();
+			BlockPos blockPos = this.getBlockPos();
+			level.setBlockAndUpdate(blockPos, blockState.setValue(OxygenAccepterBlock.POWERED, worked));
+		}
+
+	}
+
+	public boolean giveFuelAround()
+	{
 		World level = this.getLevel();
 		BlockPos blockPos = this.getBlockPos();
 		boolean worked = false;
@@ -79,12 +93,7 @@ public class OxygenAccepterTileEntity extends TileEntity implements ITickableTil
 
 		}
 
-		BlockState blockState = this.getBlockState();
-
-		if (blockState.hasProperty(OxygenAccepterBlock.POWERED))
-		{
-			level.setBlockAndUpdate(blockPos, blockState.setValue(OxygenAccepterBlock.POWERED, worked));
-		}
+		return worked;
 	}
 
 	public OxygenMachineAdapter createAdapter(TileEntity blockEntity)
@@ -93,12 +102,12 @@ public class OxygenAccepterTileEntity extends TileEntity implements ITickableTil
 
 		if (blockEntity instanceof OxygenMachineBlock.CustomTileEntity)
 		{
-			adapter = new OxygenLoaderAdapter((OxygenMachineBlock.CustomTileEntity) blockEntity);
+			adapter = new OxygenMachineAdapterLoader((OxygenMachineBlock.CustomTileEntity) blockEntity);
 
 		}
 		else if (blockEntity instanceof OxygenGeneratorBlock.CustomTileEntity)
 		{
-			adapter = new OxygenGeneratorAdapter((OxygenGeneratorBlock.CustomTileEntity) blockEntity);
+			adapter = new OxygenMachineAdapterGenerator((OxygenGeneratorBlock.CustomTileEntity) blockEntity);
 		}
 
 		return adapter;

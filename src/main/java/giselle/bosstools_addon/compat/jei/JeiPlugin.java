@@ -1,14 +1,18 @@
 package giselle.bosstools_addon.compat.jei;
 
 import giselle.bosstools_addon.BossToolsAddon;
+import giselle.bosstools_addon.common.block.AddonBlocks;
 import giselle.bosstools_addon.util.ReflectionUtil;
 import mezz.jei.api.IModPlugin;
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.mrscauthd.boss_tools.JeiPlugin.BlastingFurnaceJeiCategory;
 import net.mrscauthd.boss_tools.JeiPlugin.CompressorJeiCategory;
 import net.mrscauthd.boss_tools.JeiPlugin.GeneratorJeiCategory;
@@ -67,13 +71,13 @@ public class JeiPlugin implements IModPlugin
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registration)
 	{
-
+		
 	}
 
 	@Override
 	public void registerRecipes(IRecipeRegistration registration)
 	{
-
+		registration.addIngredientInfo(new ItemStack(AddonBlocks.OXYGEN_ACCEPTER.get()), VanillaTypes.ITEM, new TranslationTextComponent("jei.info.oxygen_accepter"));
 	}
 
 }
