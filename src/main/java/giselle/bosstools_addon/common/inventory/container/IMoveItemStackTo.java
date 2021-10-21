@@ -1,4 +1,4 @@
-package giselle.bosstools_addon.common.tile;
+package giselle.bosstools_addon.common.inventory.container;
 
 import net.minecraft.item.ItemStack;
 

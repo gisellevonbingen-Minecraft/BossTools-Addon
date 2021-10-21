@@ -1,8 +1,6 @@
 package giselle.bosstools_addon.compat.mekanism.gear.mekasuit;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -12,7 +10,6 @@ import mekanism.api.chemical.gas.GasStack;
 import mekanism.api.chemical.gas.IGasHandler;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.capabilities.Capabilities;
-import mekanism.common.config.MekanismConfig;
 import mekanism.common.content.gear.HUDElement;
 import mekanism.common.content.gear.Modules.ModuleData;
 import mekanism.common.content.gear.mekasuit.ModuleMekaSuit;
@@ -22,14 +19,11 @@ import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.StorageUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 
 public class ModuleSpaceBreathingUnit extends ModuleMekaSuit

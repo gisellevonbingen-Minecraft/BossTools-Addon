@@ -1,17 +1,17 @@
-package giselle.bosstools_addon.common.tile;
+package giselle.bosstools_addon.common.adapter;
 
-import net.mrscauthd.boss_tools.block.OxygenGeneratorBlock;
-import net.mrscauthd.boss_tools.block.OxygenGeneratorBlock.CustomTileEntity;
+import net.mrscauthd.boss_tools.block.OxygenMachineBlock;
+import net.mrscauthd.boss_tools.block.OxygenMachineBlock.CustomTileEntity;
 
-public class OxygenMachineAdapterGenerator extends OxygenMachineAdapter
+public class OxygenMachineAdapterLoader extends OxygenMachineAdapter
 {
 	public static final String KEY_FUEL = "fuel";
 	public static final String KEY_MAXFUEL = "maxFuel";
-	public static final double FALLBACK_MAXFUEL = 400.0D;
+	public static final double FALLBACK_MAXFUEL = 200.0D;
 
-	private OxygenGeneratorBlock.CustomTileEntity tile;
+	private OxygenMachineBlock.CustomTileEntity tile;
 
-	public OxygenMachineAdapterGenerator(OxygenGeneratorBlock.CustomTileEntity tile)
+	public OxygenMachineAdapterLoader(OxygenMachineBlock.CustomTileEntity tile)
 	{
 		this.tile = tile;
 	}

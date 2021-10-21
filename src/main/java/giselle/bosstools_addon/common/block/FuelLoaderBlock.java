@@ -3,16 +3,19 @@ package giselle.bosstools_addon.common.block;
 import java.util.Collections;
 import java.util.List;
 
+import giselle.bosstools_addon.common.inventory.ItemHandlerHelper2;
 import giselle.bosstools_addon.common.tile.FuelLoaderTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -25,12 +28,36 @@ public class FuelLoaderBlock extends Block
 		super(properties);
 	}
 
+	@SuppressWarnings("deprecation")
+	public void onRemove(BlockState state, World level, BlockPos pos, BlockState newState, boolean isMoving)
+	{
+		if (state.getBlock() != newState.getBlock())
+		{
+			TileEntity tileEntity = level.getBlockEntity(pos);
+
+			if (tileEntity instanceof FuelLoaderTileEntity)
+			{
+				NonNullList<ItemStack> stacks = ItemHandlerHelper2.getStacks(((FuelLoaderTileEntity) tileEntity).getItemHandler());
+				InventoryHelper.dropContents(level, pos, stacks);
+			}
+
+		}
+
+		super.onRemove(state, level, pos, newState, isMoving);
+	}
+
 	public ActionResultType use(BlockState state, World level, BlockPos pos, PlayerEntity entity, Hand hand, BlockRayTraceResult raytrace)
 	{
 		if (entity instanceof ServerPlayerEntity)
 		{
-			FuelLoaderTileEntity blockEntity = (FuelLoaderTileEntity) level.getBlockEntity(pos);
-			blockEntity.openGui((ServerPlayerEntity) entity);
+			TileEntity tileEntity = level.getBlockEntity(pos);
+
+			if (tileEntity instanceof FuelLoaderTileEntity)
+			{
+				FuelLoaderTileEntity fuelLoader = (FuelLoaderTileEntity) level.getBlockEntity(pos);
+				fuelLoader.openGui((ServerPlayerEntity) entity);
+			}
+
 			return ActionResultType.CONSUME;
 		}
 		else

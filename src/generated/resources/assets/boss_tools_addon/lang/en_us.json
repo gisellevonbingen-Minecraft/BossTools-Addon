@@ -31,6 +31,7 @@
   "container.boss_tools_addon.fuel_loader": "Fuel Loader",
   
   "jei.info.oxygen_accepter": "Extract oxygen from near blocks\n(e.g. Mekanism Oxygen Gas)\nAnd provide oxygen to near machines\n(Oxygen Loader, Oxygen Bubble Generator)",
+  "jei.info.fuel_loader": "Give 'Fuel Bucket' or 'Barrel of Fuel' to Rover, Rockets within %1$s Blocks\nAnd take empty bucket or barrel",
   
   "_eof": "eof"
 }

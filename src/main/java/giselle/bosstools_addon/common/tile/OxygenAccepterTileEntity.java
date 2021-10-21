@@ -1,5 +1,8 @@
 package giselle.bosstools_addon.common.tile;
 
+import giselle.bosstools_addon.common.adapter.OxygenMachineAdapter;
+import giselle.bosstools_addon.common.adapter.OxygenMachineAdapterGenerator;
+import giselle.bosstools_addon.common.adapter.OxygenMachineAdapterLoader;
 import giselle.bosstools_addon.common.block.OxygenAccepterBlock;
 import giselle.bosstools_addon.compat.CompatibleManager;
 import giselle.bosstools_addon.compat.mekanism.GasHelper;

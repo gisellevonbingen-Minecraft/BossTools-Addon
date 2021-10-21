@@ -1,4 +1,4 @@
-package giselle.bosstools_addon.common.tile;
+package giselle.bosstools_addon.common.adapter;
 
 import net.minecraft.tileentity.TileEntity;
 

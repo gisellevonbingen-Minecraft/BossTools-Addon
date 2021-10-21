@@ -1,4 +1,4 @@
-package giselle.bosstools_addon.common.tile;
+package giselle.bosstools_addon.common.adapter;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -9,7 +9,7 @@ public abstract class FuelEntityAdapter
 
 	public abstract boolean canInsertFuel();
 
-	public abstract Item getFuelItem();
+	public abstract Item getFuelFullItem();
 
 	public abstract Entity getEntity();
 }

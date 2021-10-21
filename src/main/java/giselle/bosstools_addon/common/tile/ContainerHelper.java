@@ -3,6 +3,7 @@ package giselle.bosstools_addon.common.tile;
 import java.util.List;
 import java.util.function.Function;
 
+import giselle.bosstools_addon.common.inventory.container.IMoveItemStackTo;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;

@@ -1,6 +1,7 @@
 package giselle.bosstools_addon.common.fluid;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,6 +106,24 @@ public class FluidUtil2
 	}
 
 	/**
+	 * test insert fluid to items
+	 * 
+	 * @param itemStack
+	 * @param fluid
+	 * @return
+	 */
+	public static boolean canFill(Item item, Fluid fluid)
+	{
+		if (item == Items.BUCKET)
+		{
+			return fluid.getBucket() != Items.AIR;
+		}
+
+		FluidContainerRegistration registration = findFluidContainer(item, fluid, FluidContainerRegistration::testEmpty);
+		return registration != null;
+	}
+
+	/**
 	 * test insert fluid to itemstack
 	 * 
 	 * @param itemStack
@@ -118,20 +137,36 @@ public class FluidUtil2
 			return false;
 		}
 
-		Item item = itemStack.getItem();
-		if (item == Items.BUCKET)
-		{
-			return fluid.getBucket() != Items.AIR;
-		}
-
-		FluidContainerRegistration registration = findFluidContainer(item, fluid, FluidContainerRegistration::testEmpty);
-		if (registration != null)
+		if (canFill(itemStack.getItem(), fluid) == true)
 		{
 			return true;
 		}
 
 		IFluidHandlerItem handlerInItemStack = getItemStackFluidHandler(itemStack);
 		if (handlerInItemStack != null && handlerInItemStack.fill(new FluidStack(fluid, 1), FluidAction.SIMULATE) > 0)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * test drain fluid from item
+	 * 
+	 * @param item
+	 * @param fluid
+	 * @return
+	 */
+	public static boolean canDrain(Item item, Fluid fluid)
+	{
+		if (item == fluid.getBucket())
+		{
+			return true;
+		}
+
+		FluidContainerRegistration registration = findFluidContainer(item, fluid, FluidContainerRegistration::testFull);
+		if (registration != null)
 		{
 			return true;
 		}
@@ -153,14 +188,7 @@ public class FluidUtil2
 			return false;
 		}
 
-		Item item = itemStack.getItem();
-		if (item == fluid.getBucket())
-		{
-			return true;
-		}
-
-		FluidContainerRegistration registration = findFluidContainer(item, fluid, FluidContainerRegistration::testFull);
-		if (registration != null)
+		if (canDrain(itemStack.getItem(), fluid) == true)
 		{
 			return true;
 		}
@@ -174,6 +202,28 @@ public class FluidUtil2
 		return false;
 	}
 
+	public static int getMaxCapacity(Item item)
+	{
+		if (item == Items.BUCKET)
+		{
+			return BUCKET_SIZE;
+		}
+
+		FluidContainerRegistration testEmpty = findFluidContainer(item, null, FluidContainerRegistration::testEmpty);
+		if (testEmpty != null)
+		{
+			return testEmpty.getCapacity();
+		}
+
+		FluidContainerRegistration testFull = findFluidContainer(item, null, FluidContainerRegistration::testFull);
+		if (testFull != null)
+		{
+			return testFull.getCapacity();
+		}
+
+		return 0;
+	}
+
 	public static int getMaxCapacity(ItemStack itemStack)
 	{
 		if (itemStack.isEmpty() == true)
@@ -181,20 +231,13 @@ public class FluidUtil2
 			return 0;
 		}
 
-		Item item = itemStack.getItem();
-		if (item == Items.BUCKET)
+		int capacity = getMaxCapacity(itemStack.getItem());
+		if (capacity > 0)
 		{
-			return BUCKET_SIZE;
-		}
-
-		FluidContainerRegistration registration = findFluidContainer(item, null, FluidContainerRegistration::testEmpty);
-		if (registration != null)
-		{
-			return registration.getCapacity();
+			return capacity;
 		}
 
 		IFluidHandlerItem handlerInItemStack = getItemStackFluidHandler(itemStack);
-
 		if (handlerInItemStack != null)
 		{
 			return getMaxCapacity(handlerInItemStack);
@@ -275,44 +318,43 @@ public class FluidUtil2
 
 	public static List<FluidStack> getFluidStacks(ItemStack itemStack)
 	{
-		List<FluidStack> fluidStacks = new ArrayList<>();
-
 		if (itemStack.isEmpty() == true)
 		{
-			return fluidStacks;
+			return new ArrayList<>();
 		}
 
 		Item item = itemStack.getItem();
 
 		if (item == Items.BUCKET)
 		{
-			fluidStacks.add(new FluidStack(Fluids.EMPTY, 0));
+			return Collections.singletonList(new FluidStack(Fluids.EMPTY, 0));
 		}
 		else
 		{
-			IFluidHandlerItem handlerInItemStack = getItemStackFluidHandler(itemStack);
-			if (handlerInItemStack != null)
+			Fluid fluid = findFluidInItem(item);
+			if (fluid != null)
 			{
-				for (int i = 0; i < handlerInItemStack.getTanks(); i++)
-				{
-					fluidStacks.add(handlerInItemStack.getFluidInTank(i));
-				}
-
+				int maxCapacity = getMaxCapacity(itemStack);
+				return Collections.singletonList(new FluidStack(fluid, maxCapacity));
 			}
 			else
 			{
-				Fluid fluid = findFluidInItem(item);
-				if (fluid != null)
+				List<FluidStack> fluidStacks = new ArrayList<>();
+				IFluidHandlerItem handlerInItemStack = getItemStackFluidHandler(itemStack);
+				if (handlerInItemStack != null)
 				{
-					int maxCapacity = getMaxCapacity(itemStack);
-					fluidStacks.add(new FluidStack(fluid, maxCapacity));
+					for (int i = 0; i < handlerInItemStack.getTanks(); i++)
+					{
+						fluidStacks.add(handlerInItemStack.getFluidInTank(i));
+					}
+
 				}
 
+				return fluidStacks;
 			}
 
 		}
 
-		return fluidStacks;
 	}
 
 	public static boolean fillSink(IItemHandlerModifiable itemHandler, int sinkItemSlot, IFluidHandler source, int transfer)
@@ -333,10 +375,11 @@ public class FluidUtil2
 
 	public static boolean fillSinkItem(IItemHandlerModifiable itemHandler, int sinkItemSlot, IFluidHandler source, ItemStack itemStack)
 	{
-		int capacity = getMaxCapacity(itemStack);
+		FluidStack test = source.drain(1, FluidAction.SIMULATE);
 
-		if (capacity > 0)
+		if (canFill(itemStack, test.getFluid()) == true)
 		{
+			int capacity = getMaxCapacity(itemStack);
 			FluidStack fluidStack = source.drain(capacity, FluidAction.SIMULATE);
 
 			if (fluidStack.getAmount() == capacity)
@@ -378,17 +421,17 @@ public class FluidUtil2
 
 	public static boolean drainSourceItem(IItemHandlerModifiable itemHandler, int itemSlot, IFluidHandler sink, ItemStack sourceItemStack)
 	{
-		Fluid sourceFluid = FluidUtil2.findFluidInItem(sourceItemStack.getItem());
+		Fluid sourceFluid = findFluidInItem(sourceItemStack.getItem());
 
 		if (sourceFluid != null)
 		{
-			int capacity = FluidUtil2.getMaxCapacity(sourceItemStack);
+			int capacity = getMaxCapacity(sourceItemStack);
 			FluidStack fluidStack = new FluidStack(sourceFluid, capacity);
 
 			if (sink.fill(fluidStack, FluidAction.SIMULATE) == capacity)
 			{
 				sink.fill(fluidStack, FluidAction.EXECUTE);
-				itemHandler.setStackInSlot(itemSlot, FluidUtil2.makeEmpty(sourceItemStack, fluidStack.getFluid()));
+				itemHandler.setStackInSlot(itemSlot, makeEmpty(sourceItemStack, fluidStack.getFluid()));
 				return true;
 			}
 

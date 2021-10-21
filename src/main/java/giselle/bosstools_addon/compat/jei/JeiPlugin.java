@@ -11,6 +11,7 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.mrscauthd.boss_tools.JeiPlugin.BlastingFurnaceJeiCategory;
@@ -71,13 +72,19 @@ public class JeiPlugin implements IModPlugin
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registration)
 	{
-		
+
 	}
 
 	@Override
 	public void registerRecipes(IRecipeRegistration registration)
 	{
-		registration.addIngredientInfo(new ItemStack(AddonBlocks.OXYGEN_ACCEPTER.get()), VanillaTypes.ITEM, new TranslationTextComponent("jei.info.oxygen_accepter"));
+		this.addIngredientInfo(registration, AddonBlocks.OXYGEN_ACCEPTER.get());
+		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get());
+	}
+
+	public void addIngredientInfo(IRecipeRegistration registration, IItemProvider itemProvider)
+	{
+		registration.addIngredientInfo(new ItemStack(itemProvider), VanillaTypes.ITEM, new TranslationTextComponent("jei.info." + itemProvider.asItem().getRegistryName().getPath()));
 	}
 
 }
