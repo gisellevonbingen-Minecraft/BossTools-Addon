@@ -1,7 +1,7 @@
 {
    "type":"minecraft:crafting_shaped",
    "result":{
-      "item":"mekanism:module_venus_acid_proof_unit"
+      "item":"boss_tools_addon:module_venus_acid_proof_unit"
    },
    "pattern":[
       "I#I",

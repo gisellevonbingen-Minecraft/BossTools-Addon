@@ -4,11 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import giselle.bosstools_addon.common.adapter.FuelEntityAdapter;
-import giselle.bosstools_addon.common.adapter.FuelEntityAdapterRocket1;
-import giselle.bosstools_addon.common.adapter.FuelEntityAdapterRocket2;
-import giselle.bosstools_addon.common.adapter.FuelEntityAdapterRocket3;
-import giselle.bosstools_addon.common.adapter.FuelEntityAdapterRover;
+import giselle.bosstools_addon.common.adapter.FuelAdapter;
+import giselle.bosstools_addon.common.adapter.FuelAdapterCreateEntityEvent;
 import giselle.bosstools_addon.common.fluid.FluidUtil2;
 import giselle.bosstools_addon.common.inventory.ItemHandlerHelper2;
 import giselle.bosstools_addon.common.inventory.container.FuelLoaderContainer;
@@ -48,10 +45,6 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.CombinedInvWrapper;
 import net.mrscauthd.boss_tools.block.FuelBlock;
-import net.mrscauthd.boss_tools.entity.RocketEntity;
-import net.mrscauthd.boss_tools.entity.RocketTier2Entity;
-import net.mrscauthd.boss_tools.entity.RocketTier3Entity;
-import net.mrscauthd.boss_tools.entity.RoverEntity;
 
 public class FuelLoaderTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider
 {
@@ -309,7 +302,7 @@ public class FuelLoaderTileEntity extends TileEntity implements ITickableTileEnt
 
 		for (Entity entity : entities)
 		{
-			FuelEntityAdapter adapter = this.createAdapter(entity);
+			FuelAdapter<? extends Entity> adapter = new FuelAdapterCreateEntityEvent(entity).resolve();
 
 			if (this.exchangeFuelItem(adapter) == true)
 			{
@@ -326,38 +319,14 @@ public class FuelLoaderTileEntity extends TileEntity implements ITickableTileEnt
 		return 2.0D;
 	}
 
-	public FuelEntityAdapter createAdapter(Entity entity)
-	{
-		FuelEntityAdapter adapter = null;
-
-		if (entity instanceof RoverEntity.CustomEntity)
-		{
-			adapter = new FuelEntityAdapterRover((RoverEntity.CustomEntity) entity);
-		}
-		else if (entity instanceof RocketEntity.CustomEntity)
-		{
-			adapter = new FuelEntityAdapterRocket1((RocketEntity.CustomEntity) entity);
-		}
-		else if (entity instanceof RocketTier2Entity.CustomEntity)
-		{
-			adapter = new FuelEntityAdapterRocket2((RocketTier2Entity.CustomEntity) entity);
-		}
-		else if (entity instanceof RocketTier3Entity.CustomEntity)
-		{
-			adapter = new FuelEntityAdapterRocket3((RocketTier3Entity.CustomEntity) entity);
-		}
-
-		return adapter;
-	}
-
-	public boolean exchangeFuelItem(FuelEntityAdapter adapter)
+	public boolean exchangeFuelItem(FuelAdapter<? extends Entity> adapter)
 	{
 		if (adapter == null)
 		{
 			return false;
 		}
 
-		IItemHandler _itemHandler = adapter.getEntity().getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null);
+		IItemHandler _itemHandler = adapter.getTarget().getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null);
 
 		if (_itemHandler instanceof IItemHandlerModifiable)
 		{
@@ -375,7 +344,7 @@ public class FuelLoaderTileEntity extends TileEntity implements ITickableTileEnt
 		return false;
 	}
 
-	public void giveFullitem(FuelEntityAdapter adapter, IItemHandlerModifiable itemHandler, int fuelSlot)
+	public void giveFullitem(FuelAdapter<? extends Entity> adapter, IItemHandlerModifiable itemHandler, int fuelSlot)
 	{
 		ItemStack stackInSlot = itemHandler.getStackInSlot(fuelSlot);
 
@@ -401,7 +370,7 @@ public class FuelLoaderTileEntity extends TileEntity implements ITickableTileEnt
 
 	}
 
-	public void takeEmptyItem(FuelEntityAdapter adapter, IItemHandlerModifiable itemHandler, int fuelSlot)
+	public void takeEmptyItem(FuelAdapter<? extends Entity> adapter, IItemHandlerModifiable itemHandler, int fuelSlot)
 	{
 		ItemStack stackInSlot = itemHandler.getStackInSlot(fuelSlot);
 

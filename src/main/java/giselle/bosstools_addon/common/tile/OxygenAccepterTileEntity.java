@@ -1,8 +1,7 @@
 package giselle.bosstools_addon.common.tile;
 
 import giselle.bosstools_addon.common.adapter.OxygenMachineAdapter;
-import giselle.bosstools_addon.common.adapter.OxygenMachineAdapterGenerator;
-import giselle.bosstools_addon.common.adapter.OxygenMachineAdapterLoader;
+import giselle.bosstools_addon.common.adapter.OxygenMachineAdapterCreateTileEvent;
 import giselle.bosstools_addon.common.block.OxygenAccepterBlock;
 import giselle.bosstools_addon.compat.CompatibleManager;
 import giselle.bosstools_addon.compat.mekanism.GasHelper;
@@ -14,8 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.mrscauthd.boss_tools.block.OxygenGeneratorBlock;
-import net.mrscauthd.boss_tools.block.OxygenMachineBlock;
 
 public class OxygenAccepterTileEntity extends TileEntity implements ITickableTileEntity
 {
@@ -87,7 +84,7 @@ public class OxygenAccepterTileEntity extends TileEntity implements ITickableTil
 		for (Direction direction : Direction.values())
 		{
 			TileEntity blockEntity = level.getBlockEntity(blockPos.offset(direction.getNormal()));
-			OxygenMachineAdapter oxygenAdapter = this.createAdapter(blockEntity);
+			OxygenMachineAdapter<? extends TileEntity> oxygenAdapter = new OxygenMachineAdapterCreateTileEvent(blockEntity).resolve();
 
 			if (this.giveFuel(oxygenAdapter) == true)
 			{
@@ -99,24 +96,7 @@ public class OxygenAccepterTileEntity extends TileEntity implements ITickableTil
 		return worked;
 	}
 
-	public OxygenMachineAdapter createAdapter(TileEntity blockEntity)
-	{
-		OxygenMachineAdapter adapter = null;
-
-		if (blockEntity instanceof OxygenMachineBlock.CustomTileEntity)
-		{
-			adapter = new OxygenMachineAdapterLoader((OxygenMachineBlock.CustomTileEntity) blockEntity);
-
-		}
-		else if (blockEntity instanceof OxygenGeneratorBlock.CustomTileEntity)
-		{
-			adapter = new OxygenMachineAdapterGenerator((OxygenGeneratorBlock.CustomTileEntity) blockEntity);
-		}
-
-		return adapter;
-	}
-
-	public boolean giveFuel(OxygenMachineAdapter adapter)
+	public boolean giveFuel(OxygenMachineAdapter<? extends TileEntity> adapter)
 	{
 		if (adapter == null)
 		{

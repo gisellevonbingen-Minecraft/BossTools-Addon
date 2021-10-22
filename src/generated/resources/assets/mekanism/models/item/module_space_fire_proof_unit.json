@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "mekanism:items/module_space_fire_proof_unit"
-  }
-}

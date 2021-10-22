@@ -1,9 +1,12 @@
 package giselle.bosstools_addon.common.adapter;
 
-import net.minecraft.tileentity.TileEntity;
-
-public abstract class OxygenMachineAdapter
+public abstract class OxygenMachineAdapter<T> extends AbstractAdapter<T>
 {
+	public OxygenMachineAdapter(T target)
+	{
+		super(target);
+	}
+
 	public abstract double getFuel();
 
 	public abstract void setFuel(double fuel);
@@ -18,6 +21,4 @@ public abstract class OxygenMachineAdapter
 	public abstract void setMaxFuel(double maxFuel);
 
 	public abstract double getFallbackMaxFuel();
-
-	public abstract TileEntity getTile();
 }

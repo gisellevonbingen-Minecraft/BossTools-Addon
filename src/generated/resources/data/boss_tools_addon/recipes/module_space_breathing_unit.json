@@ -1,7 +1,7 @@
 {
    "type":"minecraft:crafting_shaped",
    "result":{
-      "item":"mekanism:module_space_breathing_unit"
+      "item":"boss_tools_addon:module_space_breathing_unit"
    },
    "pattern":[
       "I#I",

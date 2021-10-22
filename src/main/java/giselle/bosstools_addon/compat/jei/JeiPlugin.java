@@ -1,6 +1,11 @@
 package giselle.bosstools_addon.compat.jei;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import giselle.bosstools_addon.BossToolsAddon;
+import giselle.bosstools_addon.common.adapter.OxygenStorageAdapter;
+import giselle.bosstools_addon.common.adapter.OxygenStorageAdapterItemStackCreateEvent;
 import giselle.bosstools_addon.common.block.AddonBlocks;
 import giselle.bosstools_addon.util.ReflectionUtil;
 import mezz.jei.api.IModPlugin;
@@ -10,7 +15,10 @@ import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -18,7 +26,9 @@ import net.mrscauthd.boss_tools.JeiPlugin.BlastingFurnaceJeiCategory;
 import net.mrscauthd.boss_tools.JeiPlugin.CompressorJeiCategory;
 import net.mrscauthd.boss_tools.JeiPlugin.GeneratorJeiCategory;
 import net.mrscauthd.boss_tools.JeiPlugin.OxygenGeneratorJeiCategory;
+import net.mrscauthd.boss_tools.JeiPlugin.OxygenGeneratorJeiCategory.OxygenGeneratorRecipeWrapper;
 import net.mrscauthd.boss_tools.JeiPlugin.OxygenMachineJeiCategory;
+import net.mrscauthd.boss_tools.JeiPlugin.OxygenMachineJeiCategory.OxygenMachineRecipeWrapper;
 import net.mrscauthd.boss_tools.JeiPlugin.WorkbenchJeiCategory;
 import net.mrscauthd.boss_tools.gui.BlastFurnaceGUIGuiWindow;
 import net.mrscauthd.boss_tools.gui.CompressorGuiGuiWindow;
@@ -26,6 +36,8 @@ import net.mrscauthd.boss_tools.gui.GeneratorGUIGuiWindow;
 import net.mrscauthd.boss_tools.gui.NasaWorkbenchGuiWindow;
 import net.mrscauthd.boss_tools.gui.OxygenBulletGeneratorGUIGuiWindow;
 import net.mrscauthd.boss_tools.gui.OxygenLoaderGuiGuiWindow;
+import net.mrscauthd.boss_tools.item.NetheriteSpaceArmorItem;
+import net.mrscauthd.boss_tools.item.SpaceArmorItem;
 
 @mezz.jei.api.JeiPlugin
 public class JeiPlugin implements IModPlugin
@@ -55,6 +67,89 @@ public class JeiPlugin implements IModPlugin
 		registration.addRecipeClickArea(OxygenBulletGeneratorGUIGuiWindow.class, 76, 30, 14, 12, this.getCategoryUid(OxygenGeneratorJeiCategory.class));
 	}
 
+	@Override
+	public void registerCategories(IRecipeCategoryRegistration registration)
+	{
+
+	}
+
+	@Override
+	public void registerRecipes(IRecipeRegistration registration)
+	{
+		registration.addRecipes(this.generateOxygenMachineRecipes(), this.getCategoryUid(OxygenMachineJeiCategory.class));
+		registration.addRecipes(this.generateOxygenGeneratorRecipes(), this.getCategoryUid(OxygenGeneratorJeiCategory.class));
+		this.addIngredientInfo(registration, AddonBlocks.OXYGEN_ACCEPTER.get());
+		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get());
+	}
+
+	public List<OxygenGeneratorRecipeWrapper> generateOxygenGeneratorRecipes()
+	{
+		List<OxygenGeneratorRecipeWrapper> recipes = new ArrayList<>();
+
+		for (Item item : ItemTags.LEAVES.getValues())
+		{
+			if (item == Items.OAK_LEAVES)
+			{
+				continue;
+			}
+
+			ArrayList<ItemStack> inputs = new ArrayList<>();
+			inputs.add(new ItemStack(item));
+			recipes.add(new OxygenGeneratorRecipeWrapper(inputs));
+		}
+
+		return recipes;
+	}
+
+	public List<OxygenMachineRecipeWrapper> generateOxygenMachineRecipes()
+	{
+		List<Item> spacesuits = new ArrayList<>();
+		spacesuits.add(SpaceArmorItem.body);
+		spacesuits.add(NetheriteSpaceArmorItem.body);
+
+		List<OxygenMachineRecipeWrapper> recipes = new ArrayList<>();
+
+		for (Item item : spacesuits)
+		{
+			ItemStack itemStack = new ItemStack(item);
+			OxygenStorageAdapter<? extends ItemStack> adapter = new OxygenStorageAdapterItemStackCreateEvent(itemStack).resolve();
+
+			if (adapter != null)
+			{
+				adapter.setStoredOxygen(adapter.getOxygenCapacity());
+			}
+
+			recipes.addAll(this.generateOxygenMachineRecipes(itemStack));
+		}
+
+		return recipes;
+	}
+
+	public List<OxygenMachineRecipeWrapper> generateOxygenMachineRecipes(ItemStack spacesuit)
+	{
+		List<OxygenMachineRecipeWrapper> recipes = new ArrayList<>();
+
+		for (Item item : ItemTags.LEAVES.getValues())
+		{
+			if (item == Items.OAK_LEAVES)
+			{
+				continue;
+			}
+
+			ArrayList<ItemStack> inputs = new ArrayList<>();
+			inputs.add(spacesuit);
+			inputs.add(new ItemStack(item));
+			recipes.add(new OxygenMachineRecipeWrapper(inputs));
+		}
+
+		return recipes;
+	}
+
+	public void addIngredientInfo(IRecipeRegistration registration, IItemProvider itemProvider)
+	{
+		registration.addIngredientInfo(new ItemStack(itemProvider), VanillaTypes.ITEM, new TranslationTextComponent("jei.info." + itemProvider.asItem().getRegistryName().getPath()));
+	}
+
 	public ResourceLocation getCategoryUid(Class<?> klass)
 	{
 		try
@@ -67,24 +162,6 @@ public class JeiPlugin implements IModPlugin
 			return null;
 		}
 
-	}
-
-	@Override
-	public void registerCategories(IRecipeCategoryRegistration registration)
-	{
-
-	}
-
-	@Override
-	public void registerRecipes(IRecipeRegistration registration)
-	{
-		this.addIngredientInfo(registration, AddonBlocks.OXYGEN_ACCEPTER.get());
-		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get());
-	}
-
-	public void addIngredientInfo(IRecipeRegistration registration, IItemProvider itemProvider)
-	{
-		registration.addIngredientInfo(new ItemStack(itemProvider), VanillaTypes.ITEM, new TranslationTextComponent("jei.info." + itemProvider.asItem().getRegistryName().getPath()));
 	}
 
 }

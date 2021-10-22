@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "boss_tools_addon:item/module_space_breathing_unit"
+  }
+}

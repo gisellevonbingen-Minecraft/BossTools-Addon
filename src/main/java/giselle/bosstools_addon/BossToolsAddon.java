@@ -14,6 +14,7 @@ import giselle.bosstools_addon.compat.CompatibleManager;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -40,6 +41,8 @@ public class BossToolsAddon
 		fml_bus.addGenericListener(Item.class, this::addEntries);
 
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
+
+		MinecraftForge.EVENT_BUS.register(new EventListener());
 
 		CompatibleManager.loadAll();
 	}
