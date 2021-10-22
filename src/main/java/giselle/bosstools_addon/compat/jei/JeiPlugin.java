@@ -7,6 +7,7 @@ import giselle.bosstools_addon.BossToolsAddon;
 import giselle.bosstools_addon.common.adapter.OxygenStorageAdapter;
 import giselle.bosstools_addon.common.adapter.OxygenStorageAdapterItemStackCreateEvent;
 import giselle.bosstools_addon.common.block.AddonBlocks;
+import giselle.bosstools_addon.config.AddonConfigs;
 import giselle.bosstools_addon.util.ReflectionUtil;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -44,6 +45,11 @@ public class JeiPlugin implements IModPlugin
 {
 	public static IJeiHelpers jeiHelper;
 
+	public JeiPlugin()
+	{
+
+	}
+
 	@Override
 	public ResourceLocation getPluginUid()
 	{
@@ -76,8 +82,16 @@ public class JeiPlugin implements IModPlugin
 	@Override
 	public void registerRecipes(IRecipeRegistration registration)
 	{
-		registration.addRecipes(this.generateOxygenMachineRecipes(), this.getCategoryUid(OxygenMachineJeiCategory.class));
-		registration.addRecipes(this.generateOxygenGeneratorRecipes(), this.getCategoryUid(OxygenGeneratorJeiCategory.class));
+		if (AddonConfigs.Common.hideOxygenLoaderRecipes.get() == false)
+		{
+			registration.addRecipes(this.generateOxygenMachineRecipes(), this.getCategoryUid(OxygenMachineJeiCategory.class));
+		}
+
+		if (AddonConfigs.Common.hideOxygenGeneratorRecipes.get() == false)
+		{
+			registration.addRecipes(this.generateOxygenGeneratorRecipes(), this.getCategoryUid(OxygenGeneratorJeiCategory.class));
+		}
+
 		this.addIngredientInfo(registration, AddonBlocks.OXYGEN_ACCEPTER.get());
 		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get());
 	}

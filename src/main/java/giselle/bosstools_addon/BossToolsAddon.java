@@ -11,6 +11,7 @@ import giselle.bosstools_addon.common.inventory.container.AddonContainers;
 import giselle.bosstools_addon.common.item.AddonItems;
 import giselle.bosstools_addon.common.tile.AddonTiles;
 import giselle.bosstools_addon.compat.CompatibleManager;
+import giselle.bosstools_addon.config.AddonConfigs;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,7 +19,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.mrscauthd.boss_tools.block.FuelBlock;
 import net.mrscauthd.boss_tools.item.BucketBigItem;
@@ -33,6 +36,8 @@ public class BossToolsAddon
 
 	public BossToolsAddon()
 	{
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AddonConfigs.CommonSpec);
+
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);

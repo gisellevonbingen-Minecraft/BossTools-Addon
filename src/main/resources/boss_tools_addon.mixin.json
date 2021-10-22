@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "giselle.bosstools_addon.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  	JeiPlugin
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "bosstools_addon.mixin-refmap.json"
+}
