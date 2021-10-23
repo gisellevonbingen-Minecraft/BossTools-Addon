@@ -12,7 +12,7 @@ public class AddonTabs
 		@Override
 		public ItemStack makeIcon()
 		{
-			return new ItemStack(AddonItems.SPACE_BREATH_GEAR.get());
+			return new ItemStack(AddonItems.OXYGEN_ACCEPTER.get());
 		}
 
 	};

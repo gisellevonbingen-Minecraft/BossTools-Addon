@@ -32,7 +32,7 @@ Just Description
 [[dependencies.boss_tools_addon]]
     modId="boss_tools"
     mandatory=true
-    versionRange="[5.4,5.5)"
+    versionRange="[5.4]"
     ordering="AFTER"
     side="BOTH"
     

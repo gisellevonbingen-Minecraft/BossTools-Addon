@@ -16,7 +16,7 @@
          "item":"mekanism:module_base"
       },
       "#":{
-         "item":"boss_tools_addon:venus_acid_proof_plate"
+         "item":"boss_tools:compressed_silicon"
       },
       "P":{
          "tag":"forge:pellets/polonium"

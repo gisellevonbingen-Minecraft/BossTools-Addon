@@ -18,10 +18,6 @@ public class AddonItems
 	public static final RegistryObject<Item> DESH_NUGGET = ITEMS.register("desh_nugget", () -> new Item(getMainItemProperties()));
 	public static final RegistryObject<Item> SILICON_NUGGET = ITEMS.register("silicon_nugget", () -> new Item(getMainItemProperties()));
 
-	public static final RegistryObject<Item> SPACE_FIRE_PROOF_PLATE = ITEMS.register("space_fire_proof_plate", () -> new Item(getMainItemProperties()));
-	public static final RegistryObject<Item> SPACE_BREATH_GEAR = ITEMS.register("space_breath_gear", () -> new Item(getMainItemProperties()));
-	public static final RegistryObject<Item> VENUS_ACID_PROOF_PLATE = ITEMS.register("venus_acid_proof_plate", () -> new Item(getMainItemProperties()));
-
 	public static Item.Properties getMainItemProperties()
 	{
 		return new Item.Properties().tab(AddonTabs.tab_main);

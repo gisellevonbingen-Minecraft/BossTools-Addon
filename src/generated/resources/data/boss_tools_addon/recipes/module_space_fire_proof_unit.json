@@ -16,7 +16,7 @@
          "item":"mekanism:module_base"
       },
       "#":{
-         "item":"boss_tools_addon:space_fire_proof_plate"
+         "item":"boss_tools:compressed_desh"
       },
       "P":{
          "tag":"forge:pellets/polonium"

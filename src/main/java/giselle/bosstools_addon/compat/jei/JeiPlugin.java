@@ -93,7 +93,7 @@ public class JeiPlugin implements IModPlugin
 		}
 
 		this.addIngredientInfo(registration, AddonBlocks.OXYGEN_ACCEPTER.get());
-		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get());
+		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get(), AddonConfigs.Common.machines.fuelloader_range.get());
 	}
 
 	public List<OxygenGeneratorRecipeWrapper> generateOxygenGeneratorRecipes()
