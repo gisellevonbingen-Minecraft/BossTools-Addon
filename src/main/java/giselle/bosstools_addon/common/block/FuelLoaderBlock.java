@@ -20,12 +20,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 public class FuelLoaderBlock extends Block
 {
 	public FuelLoaderBlock(Properties properties)
 	{
-		super(properties);
+		super(properties.strength(3.0F).harvestTool(ToolType.PICKAXE));
 	}
 
 	@SuppressWarnings("deprecation")

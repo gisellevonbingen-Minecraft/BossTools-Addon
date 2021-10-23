@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 public class OxygenAccepterBlock extends Block
 {
@@ -26,7 +27,7 @@ public class OxygenAccepterBlock extends Block
 
 	public OxygenAccepterBlock(Properties properties)
 	{
-		super(properties);
+		super(properties.strength(3.0F).harvestTool(ToolType.PICKAXE));
 		this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false));
 	}
 

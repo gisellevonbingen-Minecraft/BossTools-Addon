@@ -5,6 +5,7 @@ import giselle.bosstools_addon.common.adapter.OxygenMachineAdapterCreateTileEven
 import giselle.bosstools_addon.common.block.OxygenAccepterBlock;
 import giselle.bosstools_addon.compat.CompatibleManager;
 import giselle.bosstools_addon.compat.mekanism.GasHelper;
+import giselle.bosstools_addon.config.AddonConfigs;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -44,7 +45,7 @@ public class OxygenAccepterTileEntity extends TileEntity implements ITickableTil
 
 		if (amount > 0 && CompatibleManager.MEKANISM.isLoaded() == true)
 		{
-			long gasPerFuel = 8;
+			long gasPerFuel = AddonConfigs.Common.machines.oxygenaccepter_mekanismGasOxygenUsage.get();
 			long testExtract = amount * gasPerFuel;
 			long testExtracted = GasHelper.extractGasAround(level, blockPos, GasHelper.getOxygenStack(testExtract), false);
 			long realExtrating = (testExtracted / gasPerFuel) * gasPerFuel;

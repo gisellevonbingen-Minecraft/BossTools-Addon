@@ -23,9 +23,8 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.IForgeRegistry;
 import net.mrscauthd.boss_tools.block.FuelBlock;
-import net.mrscauthd.boss_tools.item.BucketBigItem;
-import net.mrscauthd.boss_tools.item.FuelBucketBigItem;
 
 @Mod(BossToolsAddon.MODID)
 public class BossToolsAddon
@@ -54,7 +53,9 @@ public class BossToolsAddon
 
 	private void addEntries(RegistryEvent.Register<Item> event)
 	{
-		FluidUtil2.registerFluidContainer(new FluidContainerRegistration(BucketBigItem.block, FuelBucketBigItem.block, FuelBlock.still, 3000));
+		IForgeRegistry<Item> registry = event.getRegistry();
+
+		FluidUtil2.registerFluidContainer(new FluidContainerRegistration(registry.getValue(prl("barrel")), registry.getValue(prl("barrel_of_fuel")), FuelBlock.still, 3000));
 	}
 
 	public static ResourceLocation rl(String path)

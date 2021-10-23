@@ -1,5 +1,6 @@
 package giselle.bosstools_addon.compat.mekanism.gear.mekasuit;
 
+import giselle.bosstools_addon.config.AddonConfigs;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.content.gear.Modules.ModuleData;
 import mekanism.common.content.gear.mekasuit.ModuleMekaSuit;
@@ -18,7 +19,7 @@ public class ModuleVenusAcidProofUnit extends ModuleMekaSuit implements IProofMo
 	{
 		super.init(data, container);
 
-		this.usingEnergy = FloatingLong.create(10);
+		this.usingEnergy = FloatingLong.create(AddonConfigs.Common.mekanism.moduleVenusAcidProof_usingEnergy.get());
 	}
 
 	@Override

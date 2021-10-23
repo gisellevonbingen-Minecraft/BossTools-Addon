@@ -3,6 +3,7 @@ package giselle.bosstools_addon.compat.mekanism;
 import giselle.bosstools_addon.compat.CompatibleMod;
 import giselle.bosstools_addon.compat.mekanism.gear.AddonMekanismModules;
 import giselle.bosstools_addon.compat.mekanism.gear.mekasuit.MekaSuitGasSpecHelper;
+import giselle.bosstools_addon.config.AddonConfigs;
 import mekanism.common.capabilities.chemical.item.RateLimitMultiTankGasHandler.GasTankSpec;
 import mekanism.common.content.gear.Modules;
 import mekanism.common.item.gear.ItemMekaSuitArmor;
@@ -47,7 +48,7 @@ public class MekanismCompat extends CompatibleMod
 	private void addEntries(RegistryEvent.Register<Item> event)
 	{
 		ItemMekaSuitArmor helmet = MekanismItems.MEKASUIT_HELMET.get();
-		MekaSuitGasSpecHelper.addSpec(helmet, new GasTankSpec(() -> 256, () -> 48000, (gas, type) -> true, (gas, type) -> true, gas -> gas == MekanismGases.OXYGEN.get()));
+		MekaSuitGasSpecHelper.addSpec(helmet, GasTankSpec.createFillOnly(AddonConfigs.Common.mekanism.mekaSuitHelmet_OxygenTransfer::get, AddonConfigs.Common.mekanism.mekaSuitHelmet_OxygenCapacity::get, g -> g == MekanismGases.OXYGEN.get()));
 		Modules.setSupported(helmet, AddonMekanismModules.SPACE_BREATHING_UNIT);
 
 		ItemMekaSuitArmor bodyArmor = MekanismItems.MEKASUIT_BODYARMOR.get();

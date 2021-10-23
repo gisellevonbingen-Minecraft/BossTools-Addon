@@ -82,12 +82,12 @@ public class JeiPlugin implements IModPlugin
 	@Override
 	public void registerRecipes(IRecipeRegistration registration)
 	{
-		if (AddonConfigs.Common.hideOxygenLoaderRecipes.get() == false)
+		if (AddonConfigs.Common.recipes.hideOxygenLoaderRecipes.get() == false)
 		{
 			registration.addRecipes(this.generateOxygenMachineRecipes(), this.getCategoryUid(OxygenMachineJeiCategory.class));
 		}
 
-		if (AddonConfigs.Common.hideOxygenGeneratorRecipes.get() == false)
+		if (AddonConfigs.Common.recipes.hideOxygenGeneratorRecipes.get() == false)
 		{
 			registration.addRecipes(this.generateOxygenGeneratorRecipes(), this.getCategoryUid(OxygenGeneratorJeiCategory.class));
 		}
@@ -159,9 +159,9 @@ public class JeiPlugin implements IModPlugin
 		return recipes;
 	}
 
-	public void addIngredientInfo(IRecipeRegistration registration, IItemProvider itemProvider)
+	public void addIngredientInfo(IRecipeRegistration registration, IItemProvider itemProvider, Object... objects)
 	{
-		registration.addIngredientInfo(new ItemStack(itemProvider), VanillaTypes.ITEM, new TranslationTextComponent("jei.info." + itemProvider.asItem().getRegistryName().getPath()));
+		registration.addIngredientInfo(new ItemStack(itemProvider), VanillaTypes.ITEM, new TranslationTextComponent("jei.info." + itemProvider.asItem().getRegistryName().getPath(), objects));
 	}
 
 	public ResourceLocation getCategoryUid(Class<?> klass)

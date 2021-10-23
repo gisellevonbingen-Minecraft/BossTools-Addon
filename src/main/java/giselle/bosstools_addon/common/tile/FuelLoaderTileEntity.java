@@ -9,6 +9,7 @@ import giselle.bosstools_addon.common.adapter.FuelAdapterCreateEntityEvent;
 import giselle.bosstools_addon.common.fluid.FluidUtil2;
 import giselle.bosstools_addon.common.inventory.ItemHandlerHelper2;
 import giselle.bosstools_addon.common.inventory.container.FuelLoaderContainer;
+import giselle.bosstools_addon.config.AddonConfigs;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -61,7 +62,7 @@ public class FuelLoaderTileEntity extends TileEntity implements ITickableTileEnt
 	{
 		super(AddonTiles.FUEL_LOADER.get());
 
-		this.fluidTank = new FluidTank(8000, fs -> FluidUtil2.isEquivalentTo(fs, this.getFluid()))
+		this.fluidTank = new FluidTank(AddonConfigs.Common.machines.fuelloader_capacity.get(), fs -> FluidUtil2.isEquivalentTo(fs, this.getFluid()))
 		{
 			@Override
 			protected void onContentsChanged()
@@ -69,6 +70,21 @@ public class FuelLoaderTileEntity extends TileEntity implements ITickableTileEnt
 				super.onContentsChanged();
 				onContentChanged();
 			}
+
+			@Override
+			public FluidStack drain(int maxDrain, FluidAction action)
+			{
+				return super.drain(Math.max(getTransferPerTick(), maxDrain), action);
+			}
+
+			@Override
+			public int fill(FluidStack resource, FluidAction action)
+			{
+				FluidStack copy = resource.copy();
+				copy.setAmount(Math.max(getTransferPerTick(), copy.getAmount()));
+				return super.fill(copy, action);
+			}
+
 		};
 		this.fluidInventory = new ItemStackHandler(2)
 		{
@@ -171,6 +187,7 @@ public class FuelLoaderTileEntity extends TileEntity implements ITickableTileEnt
 			};
 
 		};
+
 	}
 
 	@Nullable
@@ -289,14 +306,14 @@ public class FuelLoaderTileEntity extends TileEntity implements ITickableTileEnt
 
 	public int getTransferPerTick()
 	{
-		return 256;
+		return AddonConfigs.Common.machines.fuelloader_transfer.get();
 	}
 
 	public boolean exchangeFuelItemAround()
 	{
 		World level = this.getLevel();
-		double workingLength = this.getWorkingLength();
-		AxisAlignedBB workingArea = new AxisAlignedBB(this.getBlockPos()).inflate(workingLength, 0.0D, workingLength);
+		double workingRange = this.getWorkingRange();
+		AxisAlignedBB workingArea = new AxisAlignedBB(this.getBlockPos()).inflate(workingRange, 0.0D, workingRange);
 		List<Entity> entities = level.getEntities(null, workingArea);
 		boolean worked = false;
 
@@ -314,9 +331,9 @@ public class FuelLoaderTileEntity extends TileEntity implements ITickableTileEnt
 		return worked;
 	}
 
-	public double getWorkingLength()
+	public double getWorkingRange()
 	{
-		return 2.0D;
+		return AddonConfigs.Common.machines.fuelloader_range.get();
 	}
 
 	public boolean exchangeFuelItem(FuelAdapter<? extends Entity> adapter)

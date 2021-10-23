@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import giselle.bosstools_addon.config.AddonConfigs;
 import mekanism.api.Action;
 import mekanism.api.chemical.gas.Gas;
 import mekanism.api.chemical.gas.GasStack;
@@ -32,6 +33,7 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 	public static final String OXYGEN_NBT_KEY = "Oxygen_Bullet_Generator";
 	public static final String TIMER_NBT_KEY = "timer_oxygen";
 
+	private long maxProduceRate = 0;
 	private long usingOxygen = 0;
 	private FloatingLong usingEnergy = null;
 
@@ -40,8 +42,9 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 	{
 		super.init(data, container);
 
-		this.usingOxygen = 1;
-		this.usingEnergy = FloatingLong.create(10);
+		this.maxProduceRate = AddonConfigs.Common.mekanism.moduleSpaceBreathing_maxProduceRate.get();
+		this.usingOxygen = AddonConfigs.Common.mekanism.moduleSpaceBreathing_usingOxygen.get();
+		this.usingEnergy = FloatingLong.create(AddonConfigs.Common.mekanism.moduleSpaceBreathing_usingEnergy.get());
 	}
 
 	@Override
@@ -70,20 +73,7 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 
 	private void produceOxygen(PlayerEntity player)
 	{
-		int maxProduceRate = 4;
-		int productionRate = 0;
-		double maskHeight = player.getEyeHeight() - 0.15D;
-		BlockPos headPos = new BlockPos(player.getBbWidth(), maskHeight, player.getBbHeight());
-		FluidState fluidstate = player.level.getFluidState(headPos);
-
-		if (fluidstate.is(FluidTags.WATER) && maskHeight <= (headPos.getY() + fluidstate.getHeight(player.level, headPos)))
-		{
-			productionRate = maxProduceRate;
-		}
-		else if (player.isInWaterOrRain())
-		{
-			productionRate = maxProduceRate / 2;
-		}
+		long productionRate = getProduceRate(player);
 
 		if (productionRate > 0)
 		{
@@ -96,6 +86,25 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 			}
 
 		}
+
+	}
+
+	public long getProduceRate(PlayerEntity player)
+	{
+		double maskHeight = player.getEyeHeight() - 0.15D;
+		BlockPos headPos = new BlockPos(player.getBbWidth(), maskHeight, player.getBbHeight());
+		FluidState fluidstate = player.level.getFluidState(headPos);
+
+		if (fluidstate.is(FluidTags.WATER) && maskHeight <= (headPos.getY() + fluidstate.getHeight(player.level, headPos)))
+		{
+			return this.getMaxProduceRate();
+		}
+		else if (player.isInWaterOrRain())
+		{
+			return this.getMaxProduceRate() / 2;
+		}
+
+		return 0L;
 	}
 
 	public boolean useResources(LivingEntity entity)
@@ -162,6 +171,11 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 		}
 
 		return 0;
+	}
+
+	public long getMaxProduceRate()
+	{
+		return this.maxProduceRate;
 	}
 
 	public long getUsingOxygen()
