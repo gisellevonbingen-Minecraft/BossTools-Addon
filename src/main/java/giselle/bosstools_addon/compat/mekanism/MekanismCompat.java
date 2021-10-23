@@ -54,6 +54,9 @@ public class MekanismCompat extends CompatibleMod
 		ItemMekaSuitArmor bodyArmor = MekanismItems.MEKASUIT_BODYARMOR.get();
 		Modules.setSupported(bodyArmor, AddonMekanismModules.VENUS_ACID_PROOF_UNIT);
 		Modules.setSupported(bodyArmor, AddonMekanismModules.SPACE_FIRE_PROOF_UNIT);
+
+		ItemMekaSuitArmor boots = MekanismItems.MEKASUIT_BOOTS.get();
+		Modules.setSupported(boots, AddonMekanismModules.GRAVITY_NORMALIZING_UNIT);
 	}
 
 }

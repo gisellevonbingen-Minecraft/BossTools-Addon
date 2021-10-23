@@ -1,11 +1,14 @@
 package giselle.bosstools_addon.compat.mekanism;
 
+import giselle.bosstools_addon.FallGravityProcedureEvent;
 import giselle.bosstools_addon.common.world.BossToolsWorlds;
 import giselle.bosstools_addon.compat.mekanism.gear.AddonMekanismModules;
 import giselle.bosstools_addon.compat.mekanism.gear.mekasuit.IProofModule;
+import giselle.bosstools_addon.compat.mekanism.gear.mekasuit.ModuleVenusAcidProofUnit;
 import mekanism.common.content.gear.Modules;
 import mekanism.common.content.gear.Modules.ModuleData;
 import mekanism.common.content.gear.mekasuit.ModuleMekaSuit;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.RegistryKey;
@@ -21,7 +24,26 @@ public class CommonEventListener
 	}
 
 	@SubscribeEvent
-	public void onLivingAttackEvent(LivingAttackEvent e)
+	public void onFallGravityProcedure(FallGravityProcedureEvent e)
+	{
+		Entity entity = e.getEntity();
+
+		if (e.isCanceled() == true)
+		{
+			return;
+		}
+
+		ModuleVenusAcidProofUnit module = this.findEnabledModule(entity, AddonMekanismModules.GRAVITY_NORMALIZING_UNIT);
+
+		if (module != null)
+		{
+			e.setCanceled(true);
+		}
+
+	}
+
+	@SubscribeEvent
+	public void onLivingAttack(LivingAttackEvent e)
 	{
 		LivingEntity entity = e.getEntityLiving();
 		RegistryKey<World> key = entity.level.dimension();
@@ -38,6 +60,22 @@ public class CommonEventListener
 
 	}
 
+	private <T extends ModuleMekaSuit> T findEnabledModule(Entity entity, ModuleData<T> type)
+	{
+		for (ItemStack itemStack : entity.getArmorSlots())
+		{
+			T module = Modules.load(itemStack, type);
+
+			if (module != null && module.isEnabled() == true)
+			{
+				return module;
+			}
+
+		}
+
+		return null;
+	}
+
 	private <T extends ModuleMekaSuit & IProofModule> void proofAttack(LivingAttackEvent e, ModuleData<T> type)
 	{
 		if (e.isCanceled() == true)
@@ -46,19 +84,13 @@ public class CommonEventListener
 		}
 
 		LivingEntity entity = e.getEntityLiving();
+		T module = this.findEnabledModule(entity, type);
 
-		for (ItemStack itemStack : entity.getArmorSlots())
+		if (module != null && module.testDamage(e.getSource()) == true)
 		{
-			T module = Modules.load(itemStack, type);
-
-			if (module != null && module.isEnabled() == true && module.testDamage(e.getSource()) == true)
+			if (module.useProofResources(entity) == true)
 			{
-				if (module.useProofResources(entity) == true)
-				{
-					e.setCanceled(true);
-					break;
-				}
-
+				e.setCanceled(true);
 			}
 
 		}
