@@ -8,9 +8,6 @@
   "item.boss_tools_addon.desh_nugget": "Desh Nugget",
   "item.boss_tools_addon.silicon_nugget": "Silicon Nugget",
   "item.boss_tools_addon.steel_nugget": "Steel Nugget",
-  "item.boss_tools_addon.space_breath_gear": "Space Breath Gear",
-  "item.boss_tools_addon.space_fire_proof_plate": "Space Fire Proof Plate",
-  "item.boss_tools_addon.venus_acid_proof_plate": "Venus Acid Proof Plate",
 
   "block.boss_tools_addon.molten_desh_fluid": "Molten Desh",
   "fluid.boss_tools_addon.molten_desh": "Molten Desh",
@@ -30,6 +27,8 @@
   "module.boss_tools_addon.gravity_normalizing_unit": "Gravity Normalizing Unit",
   "description.boss_tools_addon.gravity_normalizing_unit": "Normalize gravity like in overworld",
  
+  "item.boss_tools_addon.press_compressing_die": "Compressing Die",
+  
   "container.boss_tools_addon.fuel_loader": "Fuel Loader",
   
   "jei.info.oxygen_accepter": "Extract oxygen from near blocks\n(e.g. Mekanism Oxygen Gas)\nAnd provide oxygen to near machines\n(Oxygen Loader, Oxygen Bubble Generator)",

@@ -1,0 +1,14 @@
+{
+   "type":"mekanism:crushing",
+   "input":[
+      {
+         "ingredient":{
+            "item":"boss_tools:venus_sandstone"
+         }
+      }
+   ],
+   "output":{
+      "item":"boss_tools:venus_sand",
+      "count":2
+   }
+}

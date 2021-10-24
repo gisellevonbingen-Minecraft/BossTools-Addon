@@ -1,0 +1,17 @@
+{
+  "type": "thermal:press",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/silicon"
+    },
+    {
+      "item": "boss_tools_addon:press_compressing_die"
+    }
+  ],
+  "result": [
+    {
+      "item": "boss_tools:compressed_silicon"
+    }
+  ],
+  "energy": 2400
+}
