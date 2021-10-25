@@ -1,5 +1,11 @@
 {
    "type":"minecraft:crafting_shaped",
+   "conditions":[
+      {
+         "type":"forge:item_exists",
+         "item":"boss_tools_giselle_addon:module_space_breathing_unit"
+      }
+   ],
    "result":{
       "item":"boss_tools_giselle_addon:module_space_breathing_unit"
    },

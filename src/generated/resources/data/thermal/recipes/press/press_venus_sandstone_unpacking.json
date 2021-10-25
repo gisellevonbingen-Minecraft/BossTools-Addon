@@ -15,5 +15,11 @@
       "count": 4
     }
   ],
-  "energy": 400
+  "energy": 400,
+   "conditions":[
+      {
+         "type":"forge:mod_loaded",
+         "modid":"thermal_expansion"
+      }
+   ]
 }

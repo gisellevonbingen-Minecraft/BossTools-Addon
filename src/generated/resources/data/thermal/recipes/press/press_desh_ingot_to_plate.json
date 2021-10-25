@@ -7,5 +7,11 @@
     {
       "item": "boss_tools:desh_plate"
     }
-  ]
+  ],
+   "conditions":[
+      {
+         "type":"forge:mod_loaded",
+         "modid":"thermal_expansion"
+      }
+   ]
 }

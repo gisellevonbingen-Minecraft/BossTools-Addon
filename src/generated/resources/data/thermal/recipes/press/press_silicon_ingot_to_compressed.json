@@ -13,5 +13,11 @@
       "item": "boss_tools:compressed_silicon"
     }
   ],
-  "energy": 2400
+  "energy": 2400,
+   "conditions":[
+      {
+         "type":"forge:mod_loaded",
+         "modid":"thermal_expansion"
+      }
+   ]
 }

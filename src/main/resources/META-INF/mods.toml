@@ -4,7 +4,7 @@ license="All rights reserved"
 [[mods]]
 modId="boss_tools_giselle_addon"
 version="${file.jarVersion}"
-displayName="Space-BossTools: Addon"
+displayName="Space-BossTools: Giselle Addon"
 logoFile="examplemod.png"
 credits="gisellevonbingen"
 authors="gisellevonbingen"

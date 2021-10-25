@@ -1,6 +1,9 @@
 {
-  "replace": false,
-  "values": [
-    "boss_tools_giselle_addon:press_compressing_die"
-  ]
+   "replace":false,
+   "values":[
+      {
+         "id":"boss_tools_giselle_addon:press_compressing_die",
+         "required":false
+      }
+   ]
 }

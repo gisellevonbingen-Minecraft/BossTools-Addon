@@ -14,7 +14,7 @@ apply plugin: 'maven-publish'
 
 version = '1.0'
 group = 'gisellevonbingen.boss_tools_giselle_addon'
-archivesBaseName = 'boss_tools_giselle_addon'
+archivesBaseName = 'Space-BossTools_Giselle_Addon-1.16.5'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
