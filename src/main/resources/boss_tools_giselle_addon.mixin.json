@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "boss_tools_giselle_addon.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  	"JeiPlugin",
+  	"FallGravityProcedure"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "boss_tools_giselle_addon.mixin-refmap.json"
+}

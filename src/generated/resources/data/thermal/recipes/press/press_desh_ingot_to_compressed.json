@@ -1,0 +1,17 @@
+{
+  "type": "thermal:press",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/desh"
+    },
+    {
+      "item": "boss_tools_giselle_addon:press_compressing_die"
+    }
+  ],
+  "result": [
+    {
+      "item": "boss_tools:compressed_desh"
+    }
+  ],
+  "energy": 2400
+}

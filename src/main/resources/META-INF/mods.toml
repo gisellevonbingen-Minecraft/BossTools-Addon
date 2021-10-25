@@ -2,7 +2,7 @@ modLoader="javafml"
 loaderVersion="[36,)"
 license="All rights reserved"
 [[mods]]
-modId="boss_tools_addon"
+modId="boss_tools_giselle_addon"
 version="${file.jarVersion}"
 displayName="Space-BossTools: Addon"
 logoFile="examplemod.png"
@@ -11,25 +11,25 @@ authors="gisellevonbingen"
 description='''
 Just Description
 '''
-[[dependencies.boss_tools_addon]]
+[[dependencies.boss_tools_giselle_addon]]
     modId="forge"
     mandatory=true
     versionRange="[36,)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.boss_tools_addon]]
+[[dependencies.boss_tools_giselle_addon]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.16.5,1.17)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.boss_tools_addon]]
+[[dependencies.boss_tools_giselle_addon]]
     modId="obfuscate"
     mandatory=true
     versionRange="[0.5.0,)"
     ordering="AFTER"
     side="BOTH"
-[[dependencies.boss_tools_addon]]
+[[dependencies.boss_tools_giselle_addon]]
     modId="boss_tools"
     mandatory=true
     versionRange="[5.4]"

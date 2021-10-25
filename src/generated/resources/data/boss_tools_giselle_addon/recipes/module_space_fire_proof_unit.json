@@ -1,0 +1,25 @@
+{
+   "type":"minecraft:crafting_shaped",
+   "result":{
+      "item":"boss_tools_giselle_addon:module_space_fire_proof_unit"
+   },
+   "pattern":[
+      "I#I",
+      "IAI",
+      "PPP"
+   ],
+   "key":{
+      "I":{
+         "tag":"forge:alloys/elite"
+      },
+      "A":{
+         "item":"mekanism:module_base"
+      },
+      "#":{
+         "item":"boss_tools:compressed_desh"
+      },
+      "P":{
+         "tag":"forge:pellets/polonium"
+      }
+   }
+}

@@ -13,8 +13,8 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '1.0'
-group = 'gisellevonbingen.boss_tools_addon'
-archivesBaseName = 'boss_tools_addon'
+group = 'gisellevonbingen.boss_tools_giselle_addon'
+archivesBaseName = 'boss_tools_giselle_addon'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
@@ -28,10 +28,10 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            arg "-mixin.config=boss_tools_addon.mixin.json"
+            arg "-mixin.config=boss_tools_giselle_addon.mixin.json"
 
             mods {
-                boss_tools_addon {
+                boss_tools_giselle_addon {
                     source sourceSets.main
                 }
             }
@@ -42,10 +42,10 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            arg "-mixin.config=boss_tools_addon.mixin.json"
+            arg "-mixin.config=boss_tools_giselle_addon.mixin.json"
 
             mods {
-                boss_tools_addon {
+                boss_tools_giselle_addon {
                     source sourceSets.main
                 }
             }
@@ -56,10 +56,10 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            args '--mod', 'boss_tools_addon', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'boss_tools_giselle_addon', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                boss_tools_addon {
+                boss_tools_giselle_addon {
                     source sourceSets.main
                 }
             }
@@ -127,14 +127,14 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "boss_tools_addon",
+            "Specification-Title": "boss_tools_giselle_addon",
             "Specification-Vendor": "gisellevonbingen",
             "Specification-Version": "1",
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"gisellevonbingen",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-            "MixinConfigs" : "boss_tools_addon.mixin.json"
+            "MixinConfigs" : "boss_tools_giselle_addon.mixin.json"
         ])
     }
 }
