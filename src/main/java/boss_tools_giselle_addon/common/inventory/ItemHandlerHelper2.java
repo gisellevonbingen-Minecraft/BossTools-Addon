@@ -46,7 +46,7 @@ public class ItemHandlerHelper2
 
 	public static NonNullList<ItemStack> take(IItemHandlerModifiable handler, int amount, int startIndex, int endIndex, boolean simulate)
 	{
-		int length = endIndex - startIndex + 1;
+		int length = endIndex - startIndex;
 		NonNullList<ItemStack> list = NonNullList.withSize(length, ItemStack.EMPTY);
 
 		for (int i = 0; i < length; i++)

@@ -38,7 +38,7 @@ public class ElectricBlastFurnaceRecipeTransferInfo implements IRecipeTransferIn
 	public List<Slot> getInventorySlots(ElectricBlastFurnaceContainer container)
 	{
 		List<Slot> slots = new ArrayList<>();
-		int inventorySlotStart = container.getItemHandlerSize();
+		int inventorySlotStart = container.getHandlerEndIndex();
 		int inventorySlotEnd = container.slots.size();
 
 		for (int i = inventorySlotStart; i < inventorySlotEnd; i++)
@@ -47,6 +47,12 @@ public class ElectricBlastFurnaceRecipeTransferInfo implements IRecipeTransferIn
 		}
 
 		return slots;
+	}
+	
+	@Override
+	public boolean requireCompleteSets()
+	{
+		return false;
 	}
 
 }

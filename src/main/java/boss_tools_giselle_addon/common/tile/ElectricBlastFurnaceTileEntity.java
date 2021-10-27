@@ -67,7 +67,7 @@ public class ElectricBlastFurnaceTileEntity extends TileEntity implements ITicka
 			@Override
 			public ItemStack insertItem(int slot, ItemStack stack, boolean simulate)
 			{
-				if (stack.getItem() == SteahlItem.block)
+				if (stack.getItem() == Items.IRON_INGOT)
 				{
 					return super.insertItem(slot, stack, simulate);
 				}
@@ -209,13 +209,19 @@ public class ElectricBlastFurnaceTileEntity extends TileEntity implements ITicka
 		this.energyStorage.deserializeNBT(compound.getCompound("energyStorage"));
 		this.inputInventory.deserializeNBT(compound.getCompound("inputInventory"));
 		this.outputInventory.deserializeNBT(compound.getCompound("outputInventory"));
+
+		this.setMaxTimer(compound.getInt("maxTimer"));
+		this.setTimer(compound.getInt("timer"));
 	}
 
 	protected void saveMetadata(CompoundNBT compound)
 	{
-		compound.put("fluidTank", this.energyStorage.serializeNBT());
+		compound.put("energyStorage", this.energyStorage.serializeNBT());
 		compound.put("inputInventory", this.inputInventory.serializeNBT());
 		compound.put("outputInventory", this.outputInventory.serializeNBT());
+
+		compound.putInt("maxTimer", this.getMaxTimer());
+		compound.putInt("timer", this.getTimer());
 	}
 
 	@Override
@@ -236,8 +242,12 @@ public class ElectricBlastFurnaceTileEntity extends TileEntity implements ITicka
 	@Override
 	public void tick()
 	{
-		this.cook();
-		this.refreshBlockActivatedChanged();
+		if (this.getLevel().isClientSide() == false)
+		{
+			this.cook();
+			this.refreshBlockActivatedChanged();
+		}
+
 	}
 
 	protected void refreshBlockActivatedChanged()
@@ -301,9 +311,9 @@ public class ElectricBlastFurnaceTileEntity extends TileEntity implements ITicka
 	{
 		IEnergyStorage energyStorage = this.getEnergyStorage();
 
-		if (energyStorage.receiveEnergy(power, true) == power)
+		if (energyStorage.extractEnergy(power, true) == power)
 		{
-			energyStorage.receiveEnergy(power, false);
+			energyStorage.extractEnergy(power, false);
 			return true;
 		}
 		else
@@ -326,7 +336,7 @@ public class ElectricBlastFurnaceTileEntity extends TileEntity implements ITicka
 		{
 			this.itemStackCacher.set(inputs);
 
-			if (inputs.size() == 0 && inputs.get(0).getItem() == Items.IRON_INGOT)
+			if (inputs.get(0).getItem() == Items.IRON_INGOT)
 			{
 				this.cachedRecipe = new ItemStack(SteahlItem.block);
 			}

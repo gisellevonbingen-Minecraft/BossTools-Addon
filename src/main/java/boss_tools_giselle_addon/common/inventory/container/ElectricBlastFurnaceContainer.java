@@ -18,7 +18,8 @@ public class ElectricBlastFurnaceContainer extends Container
 	private ElectricBlastFurnaceTileEntity tileEntity;
 	private List<Slot> inputSlots;
 	private List<Slot> outputSlots;
-	private int itemHandlerSize;
+	private int inputEndIndex;
+	private int handlerEndIndex;
 
 	public ElectricBlastFurnaceContainer(int windowId, PlayerInventory inv, ElectricBlastFurnaceTileEntity tileEntity)
 	{
@@ -41,6 +42,7 @@ public class ElectricBlastFurnaceContainer extends Container
 			}));
 		}
 
+		this.inputEndIndex = this.slots.size();
 		this.outputSlots = new ArrayList<>();
 		for (int i = 0; i < outputInventory.getSlots(); i++)
 		{
@@ -49,12 +51,12 @@ public class ElectricBlastFurnaceContainer extends Container
 				@Override
 				public boolean mayPlace(ItemStack itemStack)
 				{
-					return !ItemStack.matches(outputInventory.insertItem(this.getSlotIndex(), itemStack, true), itemStack);
+					return false;
 				}
 			}));
 		}
 
-		this.itemHandlerSize = this.slots.size();
+		this.handlerEndIndex = this.slots.size();
 		ContainerHelper.addInventorySlots(this, inv, 8, 86, 144, this::addSlot);
 	}
 
@@ -72,7 +74,40 @@ public class ElectricBlastFurnaceContainer extends Container
 	@Override
 	public ItemStack quickMoveStack(PlayerEntity player, int slotNumber)
 	{
-		return ContainerHelper.quickMoveStack(this, player, slotNumber, 0, this.itemHandlerSize, this::moveItemStackTo);
+		ItemStack itemStack = ItemStack.EMPTY;
+		List<Slot> inventorySlots = this.slots;
+		Slot slot = inventorySlots.get(slotNumber);
+
+		if (slot != null && slot.hasItem())
+		{
+			ItemStack slotStack = slot.getItem();
+			itemStack = slotStack.copy();
+
+			if (slotNumber < this.handlerEndIndex)
+			{
+				if (!this.moveItemStackTo(slotStack, this.handlerEndIndex, inventorySlots.size(), true))
+				{
+					return ItemStack.EMPTY;
+				}
+
+			}
+			else if (!this.moveItemStackTo(slotStack, 0, this.inputEndIndex, false))
+			{
+				return ItemStack.EMPTY;
+			}
+
+			if (slotStack.isEmpty())
+			{
+				slot.set(ItemStack.EMPTY);
+			}
+			else
+			{
+				slot.setChanged();
+			}
+
+		}
+
+		return itemStack;
 	}
 
 	public List<Slot> getInputSlots()
@@ -84,10 +119,15 @@ public class ElectricBlastFurnaceContainer extends Container
 	{
 		return new ArrayList<>(this.outputSlots);
 	}
-	
-	public int getItemHandlerSize()
+
+	public int getInputEndIndex()
 	{
-		return this.itemHandlerSize;
+		return this.inputEndIndex;
+	}
+
+	public int getHandlerEndIndex()
+	{
+		return this.handlerEndIndex;
 	}
 
 }

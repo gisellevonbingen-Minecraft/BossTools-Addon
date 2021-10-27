@@ -291,8 +291,12 @@ public class FuelLoaderTileEntity extends TileEntity implements ITickableTileEnt
 	@Override
 	public void tick()
 	{
-		this.processTank();
-		this.exchangeFuelItemAround();
+		if (this.getLevel().isClientSide() == false)
+		{
+			this.processTank();
+			this.exchangeFuelItemAround();
+		}
+
 	}
 
 	public void processTank()
