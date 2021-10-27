@@ -16,7 +16,7 @@ public class FuelLoaderContainer extends Container
 {
 	private FuelLoaderTileEntity tileEntity;
 	private int internalSlotFluidSink;
-	private int inventorySize;
+	private int itemHandlerSize;
 
 	public FuelLoaderContainer(int windowId, PlayerInventory inv, FuelLoaderTileEntity tileEntity)
 	{
@@ -69,7 +69,7 @@ public class FuelLoaderContainer extends Container
 			});
 		}
 
-		this.inventorySize = this.slots.size();
+		this.itemHandlerSize = this.slots.size();
 		ContainerHelper.addInventorySlots(this, inv, 8, 100, this::addSlot);
 	}
 
@@ -85,9 +85,9 @@ public class FuelLoaderContainer extends Container
 			ItemStack slotStack = slot.getItem();
 			itemStack = slotStack.copy();
 
-			if (0 <= slotNumber && slotNumber < this.inventorySize)
+			if (0 <= slotNumber && slotNumber < this.itemHandlerSize)
 			{
-				if (!this.moveItemStackTo(slotStack, this.inventorySize, inventorySlots.size(), true))
+				if (!this.moveItemStackTo(slotStack, this.itemHandlerSize, inventorySlots.size(), true))
 				{
 					return ItemStack.EMPTY;
 				}
@@ -98,7 +98,7 @@ public class FuelLoaderContainer extends Container
 				boolean moved = false;
 				int internalSlotFluidSink = this.internalSlotFluidSink;
 
-				for (int i = 0; i < this.inventorySize; i++)
+				for (int i = 0; i < this.itemHandlerSize; i++)
 				{
 					if (slotStack.isEmpty())
 					{
@@ -152,6 +152,11 @@ public class FuelLoaderContainer extends Container
 	public FuelLoaderTileEntity getTileEntity()
 	{
 		return this.tileEntity;
+	}
+	
+	public int getItemHandlerSize()
+	{
+		return this.itemHandlerSize;
 	}
 
 }

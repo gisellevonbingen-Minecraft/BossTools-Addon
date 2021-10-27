@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.client.gui.ElectricBlastFurnaceScreen;
 import boss_tools_giselle_addon.common.adapter.OxygenStorageAdapter;
 import boss_tools_giselle_addon.common.adapter.OxygenStorageAdapterItemStackCreateEvent;
 import boss_tools_giselle_addon.common.block.AddonBlocks;
@@ -11,9 +12,8 @@ import boss_tools_giselle_addon.config.AddonConfigs;
 import boss_tools_giselle_addon.util.ReflectionUtil;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.minecraft.item.Item;
@@ -43,7 +43,12 @@ import net.mrscauthd.boss_tools.item.SpaceArmorItem;
 @mezz.jei.api.JeiPlugin
 public class JeiPlugin implements IModPlugin
 {
-	public static IJeiHelpers jeiHelper;
+	public static final ResourceLocation CATEGORY_NASAWORKBENCH = getCategoryUid(WorkbenchJeiCategory.class);
+	public static final ResourceLocation CATEGORY_COALGENERATOR = getCategoryUid(GeneratorJeiCategory.class);
+	public static final ResourceLocation CATEGORY_BLASTFURNACE = getCategoryUid(BlastingFurnaceJeiCategory.class);
+	public static final ResourceLocation CATEGORY_COMPRESSOR = getCategoryUid(CompressorJeiCategory.class);
+	public static final ResourceLocation CATEGORY_OXYGENLOADER = getCategoryUid(OxygenMachineJeiCategory.class);
+	public static final ResourceLocation CATEGORY_OXYGENGENERATOR = getCategoryUid(OxygenGeneratorJeiCategory.class);
 
 	public JeiPlugin()
 	{
@@ -59,24 +64,26 @@ public class JeiPlugin implements IModPlugin
 	@Override
 	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration)
 	{
+		registration.addRecipeTransferHandler(new ElectricBlastFurnaceRecipeTransferInfo());
+	}
 
+	@Override
+	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration)
+	{
+		registration.addRecipeCatalyst(new ItemStack(AddonBlocks.ELECTRIC_BLAST_FURNACE.get()), CATEGORY_BLASTFURNACE);
 	}
 
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration)
 	{
-		registration.addRecipeClickArea(NasaWorkbenchGuiWindow.class, 108, 49, 14, 14, this.getCategoryUid(WorkbenchJeiCategory.class));
-		registration.addRecipeClickArea(GeneratorGUIGuiWindow.class, 78, 52, 13, 13, this.getCategoryUid(GeneratorJeiCategory.class));
-		registration.addRecipeClickArea(BlastFurnaceGUIGuiWindow.class, 73, 38, 22, 15, this.getCategoryUid(BlastingFurnaceJeiCategory.class));
-		registration.addRecipeClickArea(CompressorGuiGuiWindow.class, 61, 39, 22, 15, this.getCategoryUid(CompressorJeiCategory.class));
-		registration.addRecipeClickArea(OxygenLoaderGuiGuiWindow.class, 76, 42, 14, 12, this.getCategoryUid(OxygenMachineJeiCategory.class));
-		registration.addRecipeClickArea(OxygenBulletGeneratorGUIGuiWindow.class, 76, 30, 14, 12, this.getCategoryUid(OxygenGeneratorJeiCategory.class));
-	}
+		registration.addRecipeClickArea(NasaWorkbenchGuiWindow.class, 108, 49, 14, 14, CATEGORY_NASAWORKBENCH);
+		registration.addRecipeClickArea(GeneratorGUIGuiWindow.class, 78, 52, 13, 13, CATEGORY_COALGENERATOR);
+		registration.addRecipeClickArea(BlastFurnaceGUIGuiWindow.class, 73, 38, 22, 15, CATEGORY_BLASTFURNACE);
+		registration.addRecipeClickArea(CompressorGuiGuiWindow.class, 61, 39, 22, 15, CATEGORY_COMPRESSOR);
+		registration.addRecipeClickArea(OxygenLoaderGuiGuiWindow.class, 76, 42, 14, 12, CATEGORY_OXYGENLOADER);
+		registration.addRecipeClickArea(OxygenBulletGeneratorGUIGuiWindow.class, 76, 30, 14, 12, CATEGORY_OXYGENGENERATOR);
 
-	@Override
-	public void registerCategories(IRecipeCategoryRegistration registration)
-	{
-
+		registration.addGuiContainerHandler(ElectricBlastFurnaceScreen.class, new ElectricBlastFurnaceGuiContainerHandler());
 	}
 
 	@Override
@@ -84,12 +91,12 @@ public class JeiPlugin implements IModPlugin
 	{
 		if (AddonConfigs.Common.recipes.hideOxygenLoaderRecipes.get() == false)
 		{
-			registration.addRecipes(this.generateOxygenMachineRecipes(), this.getCategoryUid(OxygenMachineJeiCategory.class));
+			registration.addRecipes(this.generateOxygenMachineRecipes(), CATEGORY_OXYGENLOADER);
 		}
 
 		if (AddonConfigs.Common.recipes.hideOxygenGeneratorRecipes.get() == false)
 		{
-			registration.addRecipes(this.generateOxygenGeneratorRecipes(), this.getCategoryUid(OxygenGeneratorJeiCategory.class));
+			registration.addRecipes(this.generateOxygenGeneratorRecipes(), CATEGORY_OXYGENGENERATOR);
 		}
 
 		this.addIngredientInfo(registration, AddonBlocks.OXYGEN_ACCEPTER.get());
@@ -164,7 +171,7 @@ public class JeiPlugin implements IModPlugin
 		registration.addIngredientInfo(new ItemStack(itemProvider), VanillaTypes.ITEM, new TranslationTextComponent("jei.info." + itemProvider.asItem().getRegistryName().getPath(), objects));
 	}
 
-	public ResourceLocation getCategoryUid(Class<?> klass)
+	public static ResourceLocation getCategoryUid(Class<?> klass)
 	{
 		try
 		{

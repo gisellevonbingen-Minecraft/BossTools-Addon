@@ -24,13 +24,11 @@ public class MekanismCompat extends CompatibleMod
 	@Override
 	protected void onLoad()
 	{
-		CommonEventListener eventListener = new CommonEventListener();
-		
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		AddonMekanismItems.ITEMS.register(fml_bus);
-		fml_bus.register(eventListener);
+		fml_bus.register(new FMLEventListener());
 
-		MinecraftForge.EVENT_BUS.register(eventListener);
+		MinecraftForge.EVENT_BUS.register(new CommonEventListener());
 	}
 
 }

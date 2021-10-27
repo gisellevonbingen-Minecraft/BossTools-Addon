@@ -31,6 +31,13 @@ public class OxygenAccepterBlock extends Block
 		this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false));
 	}
 
+	@Override
+	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
+	{
+		super.createBlockStateDefinition(builder);
+		builder.add(POWERED);
+	}
+
 	public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_)
 	{
 		if (p_225533_2_.isClientSide)
@@ -42,13 +49,6 @@ public class OxygenAccepterBlock extends Block
 			return ActionResultType.CONSUME;
 		}
 
-	}
-
-	@Override
-	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
-	{
-		super.createBlockStateDefinition(builder);
-		builder.add(POWERED);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import boss_tools_giselle_addon.BossToolsAddon;
 import boss_tools_giselle_addon.common.inventory.container.FuelLoaderContainer;
+import boss_tools_giselle_addon.common.tile.FuelLoaderTileEntity;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -17,6 +18,8 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 public class FuelLoaderScreen extends ContainerScreen<FuelLoaderContainer>
 {
 	public static final ResourceLocation TEXTURE = BossToolsAddon.rl("textures/gui/container/fuel_loader.png");
+	public static final int TANK_LEFT = 21;
+	public static final int TANK_TOP = 129;
 
 	public FuelLoaderScreen(FuelLoaderContainer container, PlayerInventory inv, ITextComponent text)
 	{
@@ -33,12 +36,13 @@ public class FuelLoaderScreen extends ContainerScreen<FuelLoaderContainer>
 
 		this.renderTooltip(matrixStack, mouseX, mouseY);
 
-		IFluidHandler fluidTank = this.menu.getTileEntity().getFluidTank();
+		FuelLoaderTileEntity tileEntity = this.menu.getTileEntity();
+		IFluidHandler fluidTank = tileEntity.getFluidTank();
 		int tank = 0;
 		FluidStack fluidInTank = fluidTank.getFluidInTank(tank);
 
-		int tankLeft = this.leftPos + 129;
-		int tankTop = this.topPos + 21;
+		int tankLeft = this.leftPos + TANK_TOP;
+		int tankTop = this.topPos + TANK_LEFT;
 
 		if (GuiHelper.getFluidTankBounds(tankLeft, tankTop).contains(mouseX, mouseY))
 		{

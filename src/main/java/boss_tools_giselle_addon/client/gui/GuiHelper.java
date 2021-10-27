@@ -18,15 +18,47 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
 public class GuiHelper
 {
+	public static final ResourceLocation ARROW_PATH = BossToolsAddon.rl("textures/gui/container/animated_arrow_full.png");
+	public static final int ARROW_WIDTH = 24;
+	public static final int ARROW_HEIGHT = 17;
+	public static final ResourceLocation ENERGY_PATH = BossToolsAddon.rl("textures/gui/container/energy_full.png");
+	public static final int ENERGY_WIDTH = 24;
+	public static final int ENERGY_HEIGHT = 48;
 	public static final ResourceLocation FLUID_TANK_PATH = BossToolsAddon.rl("textures/gui/container/fluid_tank_fore.png");
 	public static final int FLUID_TANK_WIDTH = 18;
 	public static final int FLUID_TANK_HEIGHT = 60;
+
+	public static void drawArrow(MatrixStack matrixStack, int left, int top, double ratio)
+	{
+		GuiHelper.drawHorizontal(matrixStack, left, top, ARROW_WIDTH, ARROW_HEIGHT, ARROW_PATH, ratio);
+	}
+
+	public static Rectangle2d getArrowBounds(int left, int top)
+	{
+		return new Rectangle2d(left, top, ARROW_WIDTH, ARROW_HEIGHT);
+	}
+
+	public static void drawEnergy(MatrixStack matrixStack, int left, int top, IEnergyStorage energyStorage)
+	{
+		drawEnergy(matrixStack, left, top, (double) energyStorage.getEnergyStored() / (double) energyStorage.getMaxEnergyStored());
+	}
+
+	public static void drawEnergy(MatrixStack matrixStack, int left, int top, double ratio)
+	{
+		drawVertical(matrixStack, left, top, ENERGY_WIDTH, ENERGY_HEIGHT, ENERGY_PATH, ratio);
+	}
+
+	public static Rectangle2d getEnergyBounds(int left, int top)
+	{
+		return new Rectangle2d(left, top, ENERGY_WIDTH, ENERGY_HEIGHT);
+	}
 
 	public static void drawFluidTank(MatrixStack matrixStack, int left, int top, IFluidTank tank)
 	{

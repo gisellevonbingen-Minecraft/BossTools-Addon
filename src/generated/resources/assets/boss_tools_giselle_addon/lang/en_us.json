@@ -4,6 +4,7 @@
   
   "block.boss_tools_giselle_addon.oxygen_accepter": "Oxygen Accepter",
   "block.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
+  "block.boss_tools_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
   
   "item.boss_tools_giselle_addon.desh_nugget": "Desh Nugget",
   "item.boss_tools_giselle_addon.silicon_nugget": "Silicon Nugget",
@@ -30,6 +31,7 @@
   "item.boss_tools_giselle_addon.press_compressing_die": "Compressing Die",
   
   "container.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
+  "container.boss_tools_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
   
   "jei.info.oxygen_accepter": "Extract oxygen from near blocks\n(e.g. Mekanism Oxygen Gas)\nAnd provide oxygen to near machines\n(Oxygen Loader, Oxygen Bubble Generator)",
   "jei.info.fuel_loader": "Give 'Fuel Bucket' or 'Barrel of Fuel' to Rover, Rockets within %1$s Blocks\nAnd take empty bucket or barrel",

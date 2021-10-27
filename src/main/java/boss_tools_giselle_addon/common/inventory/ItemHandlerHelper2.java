@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 
 public class ItemHandlerHelper2
 {
@@ -33,6 +34,25 @@ public class ItemHandlerHelper2
 		{
 			ItemStack stack = handler.getStackInSlot(i);
 			list.set(i, stack);
+		}
+
+		return list;
+	}
+
+	public static NonNullList<ItemStack> take(IItemHandlerModifiable handler, int amount, boolean simulate)
+	{
+		return take(handler, amount, 0, handler.getSlots(), simulate);
+	}
+
+	public static NonNullList<ItemStack> take(IItemHandlerModifiable handler, int amount, int startIndex, int endIndex, boolean simulate)
+	{
+		int length = endIndex - startIndex + 1;
+		NonNullList<ItemStack> list = NonNullList.withSize(length, ItemStack.EMPTY);
+
+		for (int i = 0; i < length; i++)
+		{
+			ItemStack item = handler.extractItem(startIndex + i, amount, simulate);
+			list.set(i, item);
 		}
 
 		return list;
