@@ -16,14 +16,12 @@ public class FMLEventListener
 {
 	public FMLEventListener()
 	{
-
+		MekanismItems.MODULE_BASE.getInternalRegistryName();
 	}
 
 	@SubscribeEvent
 	public void onRegistryRegister(RegistryEvent.Register<Item> event)
 	{
-		MekanismItems.MODULE_BASE.get();
-
 		AddonMekanismModules.registerAll();
 
 		ItemMekaSuitArmor helmet = MekanismItems.MEKASUIT_HELMET.get();

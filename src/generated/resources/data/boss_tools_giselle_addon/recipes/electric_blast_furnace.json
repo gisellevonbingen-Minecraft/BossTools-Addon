@@ -13,7 +13,7 @@
          "tag":"forge:ingots/steel"
       },
       "F":{
-         "tag":"boss_tools:blast_furnace"
+         "item":"boss_tools:blast_furnace"
       },
       "R":{
          "item": "minecraft:redstone"
