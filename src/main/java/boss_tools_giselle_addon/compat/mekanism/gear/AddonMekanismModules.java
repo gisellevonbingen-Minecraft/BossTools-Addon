@@ -44,11 +44,6 @@ public class AddonMekanismModules
 		return module;
 	}
 
-	public static void registerAll()
-	{
-
-	}
-
 	private AddonMekanismModules()
 	{
 

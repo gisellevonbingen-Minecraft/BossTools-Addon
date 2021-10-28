@@ -14,6 +14,8 @@ public class AddonMekanismItems
 
 	static
 	{
+		MekanismItems.MODULE_BASE.getInternalRegistryName();
+		
 		for (ModuleData<?> module : AddonMekanismModules.getModules())
 		{
 			MekanismItems.MODULES.put(module, ITEMS.register("module_" + module.getName(), properties -> new ItemModule(module, properties.tab(AddonTabs.tab_main))));

@@ -16,14 +16,12 @@ public class FMLEventListener
 {
 	public FMLEventListener()
 	{
-		MekanismItems.MODULE_BASE.getInternalRegistryName();
+
 	}
 
 	@SubscribeEvent
 	public void onRegistryRegister(RegistryEvent.Register<Item> event)
 	{
-		AddonMekanismModules.registerAll();
-
 		ItemMekaSuitArmor helmet = MekanismItems.MEKASUIT_HELMET.get();
 		MekaSuitGasSpecHelper.addSpec(helmet, GasTankSpec.createFillOnly(AddonConfigs.Common.mekanism.mekaSuitHelmet_OxygenTransfer::get, AddonConfigs.Common.mekanism.mekaSuitHelmet_OxygenCapacity::get, g -> g == MekanismGases.OXYGEN.get()));
 		Modules.setSupported(helmet, AddonMekanismModules.SPACE_BREATHING_UNIT);

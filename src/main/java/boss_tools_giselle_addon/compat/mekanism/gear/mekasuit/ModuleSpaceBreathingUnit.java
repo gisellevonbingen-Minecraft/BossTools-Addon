@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import boss_tools_giselle_addon.BossToolsAddon;
 import boss_tools_giselle_addon.config.AddonConfigs;
 import mekanism.api.Action;
 import mekanism.api.chemical.gas.Gas;
@@ -29,7 +30,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 {
-	public static final ResourceLocation ICON = MekanismUtils.getResource(MekanismUtils.ResourceType.GUI_HUD, "space_breathing_unit.png");
+	public static final ResourceLocation ICON = BossToolsAddon.rl(MekanismUtils.ResourceType.GUI_HUD.getPrefix() + "space_breathing_unit.png");
 	public static final String OXYGEN_NBT_KEY = "Oxygen_Bullet_Generator";
 	public static final String TIMER_NBT_KEY = "timer_oxygen";
 
