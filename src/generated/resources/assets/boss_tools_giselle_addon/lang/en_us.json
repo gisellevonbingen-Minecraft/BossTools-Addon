@@ -6,19 +6,6 @@
   "block.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
   "block.boss_tools_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
   
-  "item.boss_tools_giselle_addon.desh_nugget": "Desh Nugget",
-  "item.boss_tools_giselle_addon.silicon_nugget": "Silicon Nugget",
-  "item.boss_tools_giselle_addon.steel_nugget": "Steel Nugget",
-
-  "block.boss_tools_giselle_addon.molten_desh_fluid": "Molten Desh",
-  "fluid.boss_tools_giselle_addon.molten_desh": "Molten Desh",
-  "fluid.boss_tools_giselle_addon.flowing_molten_desh": "Flowing Molten Desh",
-  "item.boss_tools_giselle_addon.molten_desh_bucket": "Molten Desh Bucket",
-  "block.boss_tools_giselle_addon.molten_silicon_fluid": "Molten Silicon",
-  "fluid.boss_tools_giselle_addon.molten_silicon": "Molten Silicon",
-  "fluid.boss_tools_giselle_addon.flowing_molten_silicon": "Flowing Molten Silicon",
-  "item.boss_tools_giselle_addon.molten_silicon_bucket": "Molten Silicon Bucket",
-  
   "module.boss_tools_giselle_addon.space_breathing_unit": "Space Breathing Unit",
   "description.boss_tools_giselle_addon.space_breathing_unit": "Consume oxygen and energy, can breath in Space-BossTools dimensions\nWill also fill this module with oxygen when necessary",
   "module.boss_tools_giselle_addon.space_fire_proof_unit": "Space Fire Proof Unit",
