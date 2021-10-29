@@ -2,18 +2,20 @@
   "type": "thermal:press",
   "ingredients": [
     {
-      "tag": "forge:ingots/desh"
+      "item": "boss_tools:venus_sandstone",
+      "count": 1
     },
     {
-      "item": "boss_tools_giselle_addon:press_compressing_die"
+      "item": "thermal:press_unpacking_die"
     }
   ],
   "result": [
     {
-      "item": "boss_tools:compressed_desh"
+      "item": "boss_tools:venus_sand",
+      "count": 4
     }
   ],
-  "energy": 2400,
+  "energy": 400,
   "conditions":[
     {
       "type":"forge:mod_loaded",

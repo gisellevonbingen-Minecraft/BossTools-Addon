@@ -1,0 +1,22 @@
+{
+  "type": "thermal:pulverizer",
+  "ingredient": {
+    "value": [
+      {
+        "item": "boss_tools:venus_sandstone"
+      }
+    ]
+  },
+  "result": [
+    {
+      "item": "boss_tools:venus_sand",
+      "count": 2
+    }
+  ],
+  "conditions":[
+    {
+      "type":"forge:mod_loaded",
+      "modid":"thermal_expansion"
+    }
+  ]
+}
