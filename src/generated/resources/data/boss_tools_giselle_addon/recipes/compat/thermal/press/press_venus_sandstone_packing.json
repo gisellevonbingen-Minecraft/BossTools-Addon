@@ -1,0 +1,24 @@
+{
+  "type": "thermal:press",
+  "ingredients": [
+    {
+      "item": "boss_tools:venus_sand",
+      "count": 4
+    },
+    {
+      "item": "thermal:press_packing_2x2_die"
+    }
+  ],
+  "result": [
+    {
+      "item": "boss_tools:venus_sandstone"
+    }
+  ],
+  "energy": 400,
+   "conditions":[
+      {
+         "type":"forge:mod_loaded",
+         "modid":"thermal_expansion"
+      }
+   ]
+}
