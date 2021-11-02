@@ -5,20 +5,12 @@ import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 public class ConfigMachines
 {
-	public final ConfigValue<Integer> oxygenaccepter_mekanismGasOxygenUsage;
 	public final ConfigValue<Integer> fuelloader_capacity;
 	public final ConfigValue<Integer> fuelloader_transfer;
 	public final ConfigValue<Double> fuelloader_range;
 
 	public ConfigMachines(ForgeConfigSpec.Builder builder)
 	{
-		builder.push("oxygen_accepter");
-
-		builder.comment("for Space-BossTools oxygen 8 mb, usage  amount of Mekanism Gas Oxygen");
-		this.oxygenaccepter_mekanismGasOxygenUsage = builder.define("mekanismGasOxygenUsage", 8);
-
-		builder.pop();
-		
 		builder.push("fuel_loader");
 		
 		this.fuelloader_capacity = builder.define("fluidCapacity", 8000);
