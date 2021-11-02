@@ -13,7 +13,7 @@ public class AddonTabs
 		@Override
 		public ItemStack makeIcon()
 		{
-			return new ItemStack(AddonItems.BLOCKS.get(AddonBlocks.OXYGEN_ACCEPTER).get());
+			return new ItemStack(AddonItems.BLOCKS.get(AddonBlocks.FUEL_LOADER).get());
 		}
 
 	};
