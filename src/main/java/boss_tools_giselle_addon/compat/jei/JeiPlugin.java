@@ -31,12 +31,6 @@ import net.mrscauthd.boss_tools.JeiPlugin.OxygenGeneratorJeiCategory.OxygenGener
 import net.mrscauthd.boss_tools.JeiPlugin.OxygenMachineJeiCategory;
 import net.mrscauthd.boss_tools.JeiPlugin.OxygenMachineJeiCategory.OxygenMachineRecipeWrapper;
 import net.mrscauthd.boss_tools.JeiPlugin.WorkbenchJeiCategory;
-import net.mrscauthd.boss_tools.gui.BlastFurnaceGUIGuiWindow;
-import net.mrscauthd.boss_tools.gui.CompressorGuiGuiWindow;
-import net.mrscauthd.boss_tools.gui.GeneratorGUIGuiWindow;
-import net.mrscauthd.boss_tools.gui.NasaWorkbenchGuiWindow;
-import net.mrscauthd.boss_tools.gui.OxygenBulletGeneratorGUIGuiWindow;
-import net.mrscauthd.boss_tools.gui.OxygenLoaderGuiGuiWindow;
 import net.mrscauthd.boss_tools.item.NetheriteSpaceArmorItem;
 import net.mrscauthd.boss_tools.item.SpaceArmorItem;
 
@@ -76,13 +70,6 @@ public class JeiPlugin implements IModPlugin
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration)
 	{
-		registration.addRecipeClickArea(NasaWorkbenchGuiWindow.class, 108, 49, 14, 14, CATEGORY_NASAWORKBENCH);
-		registration.addRecipeClickArea(GeneratorGUIGuiWindow.class, 78, 52, 13, 13, CATEGORY_COALGENERATOR);
-		registration.addRecipeClickArea(BlastFurnaceGUIGuiWindow.class, 73, 38, 22, 15, CATEGORY_BLASTFURNACE);
-		registration.addRecipeClickArea(CompressorGuiGuiWindow.class, 61, 39, 22, 15, CATEGORY_COMPRESSOR);
-		registration.addRecipeClickArea(OxygenLoaderGuiGuiWindow.class, 76, 42, 14, 12, CATEGORY_OXYGENLOADER);
-		registration.addRecipeClickArea(OxygenBulletGeneratorGUIGuiWindow.class, 76, 30, 14, 12, CATEGORY_OXYGENGENERATOR);
-
 		registration.addGuiContainerHandler(ElectricBlastFurnaceScreen.class, new ElectricBlastFurnaceGuiContainerHandler());
 	}
 
@@ -99,7 +86,6 @@ public class JeiPlugin implements IModPlugin
 			registration.addRecipes(this.generateOxygenGeneratorRecipes(), CATEGORY_OXYGENGENERATOR);
 		}
 
-		this.addIngredientInfo(registration, AddonBlocks.OXYGEN_ACCEPTER.get());
 		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get(), AddonConfigs.Common.machines.fuelloader_range.get());
 	}
 
