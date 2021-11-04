@@ -1,12 +1,20 @@
 package boss_tools_giselle_addon.compat.mekanism.gear;
 
 import java.lang.reflect.Method;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
+import boss_tools_giselle_addon.BossToolsAddon;
 import boss_tools_giselle_addon.util.ReflectionUtil;
+import mekanism.api.math.FloatingLong;
 import mekanism.api.text.ILangEntry;
 import mekanism.common.content.gear.Modules;
 import mekanism.common.content.gear.Modules.ModuleData;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraftforge.event.entity.living.LivingEvent;
 
 public class ModulesHelper
 {
@@ -30,6 +38,75 @@ public class ModulesHelper
 			return null;
 		}
 
+	}
+
+	public static <T extends mekanism.common.content.gear.Module> T findArmorEnabledModule(Entity entity, ModuleData<T> type)
+	{
+		for (ItemStack itemStack : entity.getArmorSlots())
+		{
+			T module = Modules.load(itemStack, type);
+
+			if (module != null && module.isEnabled() == true)
+			{
+				return module;
+			}
+
+		}
+
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param <T>
+	 *            T extends mekanism.common.content.gear.Module
+	 * @param e
+	 *            Cancelable LivingEvent
+	 * @param type
+	 *            Module Type
+	 * @param getEnergyUsing
+	 *            Energy function for cancel
+	 * @return Whether canceled in this method
+	 */
+	public static <T extends mekanism.common.content.gear.Module> boolean tryCancel(LivingEvent e, ModuleData<T> type, Function<T, FloatingLong> getEnergyUsing)
+	{
+		if (e.isCancelable() == false || e.isCanceled() == true)
+		{
+			return false;
+		}
+
+		LivingEntity entity = e.getEntityLiving();
+		T module = ModulesHelper.findArmorEnabledModule(entity, type);
+
+		if (module != null)
+		{
+			FloatingLong usingEnergy = getEnergyUsing.apply(module);
+
+			if (module.canUseEnergy(entity, usingEnergy) == true)
+			{
+				e.setCanceled(true);
+				module.useEnergy(entity, usingEnergy);
+				return true;
+			}
+
+		}
+
+		return false;
+	}
+
+	public static CompoundNBT getCustomTag(mekanism.common.content.gear.Module module, ItemStack container)
+	{
+		return container.getTagElement(getCustomTagKey(module));
+	}
+
+	public static CompoundNBT getOrCreateCustomTag(mekanism.common.content.gear.Module module, ItemStack container)
+	{
+		return container.getOrCreateTagElement(getCustomTagKey(module));
+	}
+
+	public static String getCustomTagKey(mekanism.common.content.gear.Module module)
+	{
+		return BossToolsAddon.rl("module/" + module.getName()).toString();
 	}
 
 	private ModulesHelper()

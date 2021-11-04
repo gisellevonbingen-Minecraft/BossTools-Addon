@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.compat.mekanism.gear.ModulesHelper;
 import boss_tools_giselle_addon.config.AddonConfigs;
 import mekanism.api.Action;
 import mekanism.api.chemical.gas.Gas;
@@ -30,13 +31,14 @@ import net.minecraft.util.math.BlockPos;
 
 public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 {
+	private static final String OXYGEN_LIFE_KEY = "oxygenLife";
+
 	public static final ResourceLocation ICON = BossToolsAddon.rl(MekanismUtils.ResourceType.GUI_HUD.getPrefix() + "space_breathing_unit.png");
-	public static final String OXYGEN_NBT_KEY = "Oxygen_Bullet_Generator";
-	public static final String TIMER_NBT_KEY = "timer_oxygen";
 
 	private long maxProduceRate = 0;
-	private long usingOxygen = 0;
-	private FloatingLong usingEnergy = null;
+	private long oxygenUsing = 0;
+	private long oxygenDuration = 0;
+	private FloatingLong energyUsing;
 
 	@Override
 	public void init(ModuleData<?> data, ItemStack container)
@@ -44,8 +46,32 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 		super.init(data, container);
 
 		this.maxProduceRate = AddonConfigs.Common.mekanism.moduleSpaceBreathing_maxProduceRate.get();
-		this.usingOxygen = AddonConfigs.Common.mekanism.moduleSpaceBreathing_usingOxygen.get();
-		this.usingEnergy = FloatingLong.create(AddonConfigs.Common.mekanism.moduleSpaceBreathing_usingEnergy.get());
+		this.oxygenUsing = AddonConfigs.Common.mekanism.moduleSpaceBreathing_oxygenUsing.get();
+		this.oxygenDuration = AddonConfigs.Common.mekanism.moduleSpaceBreathing_oxygenDuration.get();
+		this.energyUsing = FloatingLong.create(AddonConfigs.Common.mekanism.moduleSpaceBreathing_energyUsing.get());
+	}
+
+	/**
+	 * 
+	 * @param entity
+	 * @return whether provided oxygen to entity
+	 */
+	public boolean provideOxygen(LivingEntity entity)
+	{
+		if (this.getOxygenLife() > 0)
+		{
+			return true;
+		}
+		else if (this.useResources(entity) == true)
+		{
+			this.setOxygenLife(this.getOxygenDuration());
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
 	}
 
 	@Override
@@ -54,22 +80,18 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 		super.tickServer(player);
 
 		this.produceOxygen(player);
-		this.useOxygen(player);
+		this.reduceOxygenLife();
 	}
 
-	private void useOxygen(PlayerEntity player)
+	private void reduceOxygenLife()
 	{
-		CompoundNBT compound = player.getPersistentData();
+		long oxygenLife = this.getOxygenLife();
 
-		if (compound.getBoolean(OXYGEN_NBT_KEY) == false)
+		if (oxygenLife > 0)
 		{
-			if (this.useResources(player) == true)
-			{
-				compound.putBoolean(OXYGEN_NBT_KEY, true);
-				compound.putDouble(TIMER_NBT_KEY, 0);
-			}
-
+			this.setOxygenLife(oxygenLife - 1);
 		}
+
 	}
 
 	private void produceOxygen(PlayerEntity player)
@@ -112,16 +134,16 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 	{
 		ItemStack container = this.getContainer();
 		IGasHandler gasHandlerItem = container.getCapability(Capabilities.GAS_HANDLER_CAPABILITY).orElse(null);
-		GasStack usingOxygen = new GasStack(this.getGas(), this.getUsingOxygen());
+		GasStack usingOxygen = new GasStack(this.getGas(), this.getOxygenUsing());
 
 		if (gasHandlerItem != null && gasHandlerItem.extractChemical(usingOxygen, Action.SIMULATE).getAmount() >= usingOxygen.getAmount())
 		{
-			FloatingLong usingEnergy = this.getUsingEnergy();
+			FloatingLong energyUsing = this.getEnergyUsing();
 
-			if (this.canUseEnergy(entity, usingEnergy) == true)
+			if (this.canUseEnergy(entity, energyUsing) == true)
 			{
 				gasHandlerItem.extractChemical(usingOxygen, Action.EXECUTE);
-				this.useEnergy(entity, usingEnergy);
+				this.useEnergy(entity, energyUsing);
 				return true;
 			}
 
@@ -179,14 +201,31 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 		return this.maxProduceRate;
 	}
 
-	public long getUsingOxygen()
+	public long getOxygenUsing()
 	{
-		return this.usingOxygen;
+		return this.oxygenUsing;
 	}
 
-	public FloatingLong getUsingEnergy()
+	public long getOxygenDuration()
 	{
-		return this.usingEnergy;
+		return this.oxygenDuration;
+	}
+
+	public FloatingLong getEnergyUsing()
+	{
+		return this.energyUsing;
+	}
+
+	public long getOxygenLife()
+	{
+		CompoundNBT compound = ModulesHelper.getCustomTag(this, this.getContainer());
+		return compound != null ? compound.getLong(OXYGEN_LIFE_KEY) : 0L;
+	}
+
+	public void setOxygenLife(long oxygenLife)
+	{
+		CompoundNBT compound = ModulesHelper.getOrCreateCustomTag(this, this.getContainer());
+		compound.putLong(OXYGEN_LIFE_KEY, Math.max(oxygenLife, 0L));
 	}
 
 }

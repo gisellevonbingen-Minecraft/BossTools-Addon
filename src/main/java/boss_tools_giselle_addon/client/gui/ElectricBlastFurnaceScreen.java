@@ -10,8 +10,9 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.mrscauthd.boss_tools.gauge.GaugeDataHelper;
+import net.mrscauthd.boss_tools.gui.guihelper.GuiHelper;
 
 public class ElectricBlastFurnaceScreen extends ContainerScreen<ElectricBlastFurnaceContainer>
 {
@@ -37,16 +38,16 @@ public class ElectricBlastFurnaceScreen extends ContainerScreen<ElectricBlastFur
 		this.renderTooltip(matrixStack, mouseX, mouseY);
 
 		ElectricBlastFurnaceTileEntity tileEntity = this.menu.getTileEntity();
-		IEnergyStorage energyStorage = tileEntity.getEnergyStorage();
+		IEnergyStorage energyStorage = tileEntity.getPrimaryEnergyStorage();
 
 		int energyLeft = this.leftPos + ENERGY_LEFT;
 		int energyTop = this.topPos + ENERGY_TOP;
 		int arrowLeft = this.leftPos + ARROW_LEFT;
 		int arrowTop = this.topPos + ARROW_TOP;
 
-		if (GuiHelper.getFluidTankBounds(energyLeft, energyTop).contains(mouseX, mouseY))
+		if (GuiHelper.getEnergyBounds(energyLeft, energyTop).contains(mouseX, mouseY))
 		{
-			this.renderTooltip(matrixStack, new StringTextComponent(energyStorage.getEnergyStored() + " FE / " + energyStorage.getMaxEnergyStored() + " FE"), mouseX, mouseY);
+			this.renderTooltip(matrixStack, GaugeDataHelper.getEnergy(tileEntity).getText(), mouseX, mouseY);
 		}
 
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);

@@ -28,6 +28,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ElectricBlastFurnaceBlock extends Block
 {
@@ -93,7 +94,7 @@ public class ElectricBlastFurnaceBlock extends Block
 			if (tileEntity instanceof ElectricBlastFurnaceTileEntity)
 			{
 				ElectricBlastFurnaceTileEntity blastFurnace = (ElectricBlastFurnaceTileEntity) level.getBlockEntity(pos);
-				blastFurnace.openGui((ServerPlayerEntity) entity);
+				NetworkHooks.openGui((ServerPlayerEntity) entity, blastFurnace, pos);
 			}
 
 			return ActionResultType.CONSUME;

@@ -1,55 +1,39 @@
 package boss_tools_giselle_addon;
 
-import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsEntity;
+import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsDataParameterBoolean;
+import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsDataParameterInteger;
+import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsNBT;
 import boss_tools_giselle_addon.common.adapter.FuelAdapterCreateEntityEvent;
-import boss_tools_giselle_addon.common.adapter.OxygenStorageAdapterBossToolsSpaceArmor;
-import boss_tools_giselle_addon.common.adapter.OxygenStorageAdapterItemStackCreateEvent;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.boss_tools.block.FuelBlock;
-import net.mrscauthd.boss_tools.entity.RocketEntity;
+import net.mrscauthd.boss_tools.ModInnet;
+import net.mrscauthd.boss_tools.entity.RocketTier1Entity;
 import net.mrscauthd.boss_tools.entity.RocketTier2Entity;
 import net.mrscauthd.boss_tools.entity.RocketTier3Entity;
 import net.mrscauthd.boss_tools.entity.RoverEntity;
-import net.mrscauthd.boss_tools.item.FuelBucketBigItem;
-import net.mrscauthd.boss_tools.item.NetheriteSpaceArmorItem;
-import net.mrscauthd.boss_tools.item.SpaceArmorItem;
 
 public class EventListener
 {
 	@SubscribeEvent
 	public void onFuelAdapterCreateEntity(FuelAdapterCreateEntityEvent e)
 	{
-		Entity taget = e.getTaget();
+		Entity target = e.getTaget();
 
-		if (taget instanceof RoverEntity.CustomEntity)
+		if (target instanceof RoverEntity.CustomEntity)
 		{
-			e.setAdapter(FuelAdapterBossToolsEntity::new, FuelBlock.bucket);
+			e.setAdapter(new FuelAdapterBossToolsNBT(target, ModInnet.FUEL_BUCKET.get()));
 		}
-		else if (taget instanceof RocketEntity.CustomEntity)
+		else if (target instanceof RocketTier1Entity)
 		{
-			e.setAdapter(FuelAdapterBossToolsEntity::new, FuelBlock.bucket);
+			e.setAdapter(new FuelAdapterBossToolsDataParameterBoolean(target, ModInnet.FUEL_BUCKET.get(), RocketTier1Entity.BUCKET));
 		}
-		else if (taget instanceof RocketTier2Entity.CustomEntity)
+		else if (target instanceof RocketTier2Entity)
 		{
-			e.setAdapter(FuelAdapterBossToolsEntity::new, FuelBucketBigItem.block);
+			e.setAdapter(new FuelAdapterBossToolsDataParameterInteger(target, ModInnet.FUEL_BUCKET.get(), RocketTier2Entity.BUCKETS, 3));
 		}
-		else if (taget instanceof RocketTier3Entity.CustomEntity)
+		else if (target instanceof RocketTier3Entity)
 		{
-			e.setAdapter(FuelAdapterBossToolsEntity::new, FuelBucketBigItem.block);
-		}
-
-	}
-
-	@SubscribeEvent
-	public void onOxygenStorageAdapterItemStackCreate(OxygenStorageAdapterItemStackCreateEvent e)
-	{
-		Item item = e.getTaget().getItem();
-
-		if (item == SpaceArmorItem.body || item == NetheriteSpaceArmorItem.body)
-		{
-			e.setAdapter(OxygenStorageAdapterBossToolsSpaceArmor::new);
+			e.setAdapter(new FuelAdapterBossToolsDataParameterInteger(target, ModInnet.FUEL_BUCKET.get(), RocketTier3Entity.BUCKETS, 3));
 		}
 
 	}

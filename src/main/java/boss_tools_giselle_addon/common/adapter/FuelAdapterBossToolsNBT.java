@@ -4,11 +4,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
 
-public class FuelAdapterBossToolsEntity extends FuelAdapter<Entity>
+public class FuelAdapterBossToolsNBT extends FuelAdapter<Entity>
 {
 	private final Item fuelFullItem;
 
-	public FuelAdapterBossToolsEntity(Entity target, Item fuelFullItem)
+	public FuelAdapterBossToolsNBT(Entity target, Item fuelFullItem)
 	{
 		super(target);
 		this.fuelFullItem = fuelFullItem;

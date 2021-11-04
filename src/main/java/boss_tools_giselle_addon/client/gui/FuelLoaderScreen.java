@@ -10,16 +10,16 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.mrscauthd.boss_tools.gauge.GaugeDataHelper;
+import net.mrscauthd.boss_tools.gui.guihelper.GuiHelper;
 
 public class FuelLoaderScreen extends ContainerScreen<FuelLoaderContainer>
 {
 	public static final ResourceLocation TEXTURE = BossToolsAddon.rl("textures/gui/container/fuel_loader.png");
-	public static final int TANK_LEFT = 21;
-	public static final int TANK_TOP = 129;
+	public static final int TANK_LEFT = 127;
+	public static final int TANK_TOP = 27;
 
 	public FuelLoaderScreen(FuelLoaderContainer container, PlayerInventory inv, ITextComponent text)
 	{
@@ -41,12 +41,12 @@ public class FuelLoaderScreen extends ContainerScreen<FuelLoaderContainer>
 		int tank = 0;
 		FluidStack fluidInTank = fluidTank.getFluidInTank(tank);
 
-		int tankLeft = this.leftPos + TANK_TOP;
-		int tankTop = this.topPos + TANK_LEFT;
+		int tankLeft = this.leftPos + TANK_LEFT;
+		int tankTop = this.topPos + TANK_TOP;
 
 		if (GuiHelper.getFluidTankBounds(tankLeft, tankTop).contains(mouseX, mouseY))
 		{
-			this.renderTooltip(matrixStack, new TranslationTextComponent(fluidInTank.getTranslationKey()).append(new StringTextComponent(": " + fluidInTank.getAmount() + " mB")), mouseX, mouseY);
+			this.renderTooltip(matrixStack, GaugeDataHelper.getFluid(tileEntity.getFluidTank()).getText(), mouseX, mouseY);
 		}
 
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);

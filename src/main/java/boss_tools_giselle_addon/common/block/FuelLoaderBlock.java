@@ -21,6 +21,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class FuelLoaderBlock extends Block
 {
@@ -56,7 +57,7 @@ public class FuelLoaderBlock extends Block
 			if (tileEntity instanceof FuelLoaderTileEntity)
 			{
 				FuelLoaderTileEntity fuelLoader = (FuelLoaderTileEntity) level.getBlockEntity(pos);
-				fuelLoader.openGui((ServerPlayerEntity) entity);
+				NetworkHooks.openGui((ServerPlayerEntity) entity, fuelLoader, pos);
 			}
 
 			return ActionResultType.CONSUME;

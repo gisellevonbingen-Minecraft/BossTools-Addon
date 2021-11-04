@@ -94,11 +94,17 @@ dependencies {
 	// Mixin
     annotationProcessor 'org.spongepowered:mixin:0.8:processor'
   
+	// The One Probe
+	implementation fg.deobf("curse.maven:the-one-probe-245211:3319255")
+  
+	// Hwyla
+	implementation fg.deobf("curse.maven:hwyla-253449:3033593")
+  
 	// Obfuscate
 	implementation fg.deobf("curse.maven:obfuscate-289380:3067472")
 
 	// Space-BossTools
-	implementation fg.deobf("curse.maven:space-bosstools-377448:3431268")
+	implementation fg.deobf("net.mrscauthd:boss_tools:1.16.5-5.5")
 	
 	// JEI
     compileOnly fg.deobf("mezz.jei:jei-${mezz_jei_version}:api")

@@ -1,12 +1,14 @@
 package boss_tools_giselle_addon.compat.jei;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import boss_tools_giselle_addon.common.inventory.container.ElectricBlastFurnaceContainer;
 import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.ResourceLocation;
+import net.mrscauthd.boss_tools.jei.JeiPlugin.BlastingFurnaceJeiCategory;
 
 public class ElectricBlastFurnaceRecipeTransferInfo implements IRecipeTransferInfo<ElectricBlastFurnaceContainer>
 {
@@ -19,7 +21,7 @@ public class ElectricBlastFurnaceRecipeTransferInfo implements IRecipeTransferIn
 	@Override
 	public ResourceLocation getRecipeCategoryUid()
 	{
-		return JeiPlugin.CATEGORY_BLASTFURNACE;
+		return BlastingFurnaceJeiCategory.Uid;
 	}
 
 	@Override
@@ -31,7 +33,7 @@ public class ElectricBlastFurnaceRecipeTransferInfo implements IRecipeTransferIn
 	@Override
 	public List<Slot> getRecipeSlots(ElectricBlastFurnaceContainer container)
 	{
-		return container.getInputSlots();
+		return Collections.singletonList(container.getInputSlot());
 	}
 
 	@Override
