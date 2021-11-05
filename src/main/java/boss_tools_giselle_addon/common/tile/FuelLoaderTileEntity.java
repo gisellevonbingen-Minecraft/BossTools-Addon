@@ -16,8 +16,6 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -61,7 +59,7 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 	@Override
 	public boolean hasSpaceInOutput()
 	{
-		return false;
+		return true;
 	}
 
 	@Override
@@ -86,7 +84,7 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 	{
 		super.createFluidHandlers(registry);
 
-		registry.put(this.fluidTank = new FluidTank(AddonConfigs.Common.machines.fuelloader_capacity.get(), fs -> FluidUtil2.isEquivalentTo(fs, this.getFluid()))
+		registry.put(this.fluidTank = new FluidTank(AddonConfigs.Common.machines.fuelLoader_capacity.get(), fs -> FluidUtil2.isEquivalentTo(fs, this.getFluid()))
 		{
 			@Override
 			protected void onContentsChanged()
@@ -180,12 +178,6 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 	}
 
 	@Override
-	public ITextComponent getDisplayName()
-	{
-		return new TranslationTextComponent("container.boss_tools_giselle_addon.fuel_loader");
-	}
-
-	@Override
 	protected void tickProcessing()
 	{
 		this.processTank();
@@ -203,7 +195,7 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 
 	public int getTransferPerTick()
 	{
-		return AddonConfigs.Common.machines.fuelloader_transfer.get();
+		return AddonConfigs.Common.machines.fuelLoader_transfer.get();
 	}
 
 	public boolean exchangeFuelItemAround()
@@ -230,7 +222,7 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 
 	public double getWorkingRange()
 	{
-		return AddonConfigs.Common.machines.fuelloader_range.get();
+		return AddonConfigs.Common.machines.fuelLoader_range.get();
 	}
 
 	public boolean exchangeFuelItem(FuelAdapter<? extends Entity> adapter)

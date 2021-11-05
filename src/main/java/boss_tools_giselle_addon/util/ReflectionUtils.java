@@ -3,7 +3,7 @@ package boss_tools_giselle_addon.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-public class ReflectionUtil
+public class ReflectionUtils
 {
 	public static Method getDeclaredAcessibleMethod(Class<?> klass, String name, Class<?>... parameterTypes)
 	{
@@ -47,7 +47,7 @@ public class ReflectionUtil
 		return null;
 	}
 
-	private ReflectionUtil()
+	private ReflectionUtils()
 	{
 
 	}

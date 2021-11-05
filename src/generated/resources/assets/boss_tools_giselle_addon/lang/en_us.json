@@ -3,7 +3,7 @@
   "itemGroup.boss_tools_giselle_addon_tab_main": "Space-BossTools: Giselle Addon",
   
   "block.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
-  "block.boss_tools_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
+  "block.boss_tools_giselle_addon.gravity_normalizer": "Gravity Normalizer",
   
   "module.boss_tools_giselle_addon.space_breathing_unit": "Space Breathing Unit",
   "description.boss_tools_giselle_addon.space_breathing_unit": "Consume oxygen and energy, can breath in Space-BossTools dimensions\nWill also fill this module with oxygen when necessary",
@@ -17,9 +17,14 @@
   "item.boss_tools_giselle_addon.press_compressing_die": "Compressing Die",
   
   "container.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
-  "container.boss_tools_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
+  "container.boss_tools_giselle_addon.gravity_normalizer": "Gravity Normalizer",
+  
+  "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.text": "Working Area: %1$sx%2$sx%3$s",
+  "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.show": "Show",
+  "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.hide": "Hide",
   
   "jei.info.fuel_loader": "Give 'Fuel Bucket' to Rover, Rockets within %1$s Blocks\nAnd take empty bucket",
+  "jei.info.gravity_normalizer": "Normalize entity's gravity like to overworld within range",
   
   "_eof": "eof"
 }

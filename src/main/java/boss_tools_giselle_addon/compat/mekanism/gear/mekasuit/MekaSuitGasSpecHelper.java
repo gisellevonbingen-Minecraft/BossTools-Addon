@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import boss_tools_giselle_addon.util.ReflectionUtil;
+import boss_tools_giselle_addon.util.ReflectionUtils;
 import mekanism.common.capabilities.chemical.item.RateLimitMultiTankGasHandler.GasTankSpec;
 import mekanism.common.item.gear.ItemMekaSuitArmor;
 
@@ -24,7 +24,7 @@ public class MekaSuitGasSpecHelper
 		{
 			try
 			{
-				return (Set<GasTankSpec>) ReflectionUtil.getDeclaredAccessibleField(ItemMekaSuitArmor.class, "gasTankSpecs").get(i);
+				return (Set<GasTankSpec>) ReflectionUtils.getDeclaredAccessibleField(ItemMekaSuitArmor.class, "gasTankSpecs").get(i);
 			}
 			catch (IllegalArgumentException | IllegalAccessException e)
 			{

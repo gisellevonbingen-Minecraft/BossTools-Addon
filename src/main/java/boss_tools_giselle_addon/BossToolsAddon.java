@@ -7,6 +7,7 @@ import boss_tools_giselle_addon.client.AddonClientProxy;
 import boss_tools_giselle_addon.common.block.AddonBlocks;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.item.AddonItems;
+import boss_tools_giselle_addon.common.network.AddonNetwork;
 import boss_tools_giselle_addon.common.tile.AddonTiles;
 import boss_tools_giselle_addon.compat.CompatibleManager;
 import boss_tools_giselle_addon.config.AddonConfigs;
@@ -36,6 +37,7 @@ public class BossToolsAddon
 		AddonItems.ITEMS.register(fml_bus);
 		AddonTiles.TILES.register(fml_bus);
 		AddonContainers.CONTAINERS.register(fml_bus);
+		AddonNetwork.registerAll();
 
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
 
@@ -47,6 +49,16 @@ public class BossToolsAddon
 	public static ResourceLocation rl(String path)
 	{
 		return new ResourceLocation(MODID, path);
+	}
+
+	public static String tl(String category, String path)
+	{
+		return category + "." + MODID + "." + path;
+	}
+
+	public static String tl(String category, ResourceLocation rl, String path)
+	{
+		return category + "." + rl.getNamespace() + "." + rl.getPath() + "." + path;
 	}
 
 	public static ResourceLocation prl(String path)

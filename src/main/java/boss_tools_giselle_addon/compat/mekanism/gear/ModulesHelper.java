@@ -5,7 +5,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import boss_tools_giselle_addon.BossToolsAddon;
-import boss_tools_giselle_addon.util.ReflectionUtil;
+import boss_tools_giselle_addon.util.ReflectionUtils;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.text.ILangEntry;
 import mekanism.common.content.gear.Modules;
@@ -18,7 +18,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 
 public class ModulesHelper
 {
-	private static final Method registerMethod = ReflectionUtil.getDeclaredAcessibleMethod(Modules.class, "register", String.class, ILangEntry.class, ILangEntry.class, Supplier.class, int.class);
+	private static final Method registerMethod = ReflectionUtils.getDeclaredAcessibleMethod(Modules.class, "register", String.class, ILangEntry.class, ILangEntry.class, Supplier.class, int.class);
 
 	public static <M extends mekanism.common.content.gear.Module> ModuleData<M> register(String name, ILangEntry langEntry, ILangEntry description, Supplier<M> moduleSupplier)
 	{
@@ -106,7 +106,7 @@ public class ModulesHelper
 
 	public static String getCustomTagKey(mekanism.common.content.gear.Module module)
 	{
-		return BossToolsAddon.rl("module/" + module.getName()).toString();
+		return BossToolsAddon.rl("compat/mekanism/module/" + module.getName()).toString();
 	}
 
 	private ModulesHelper()

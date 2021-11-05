@@ -4,25 +4,18 @@ import java.util.Collections;
 import java.util.List;
 
 import boss_tools_giselle_addon.common.inventory.ItemHandlerHelper2;
-import boss_tools_giselle_addon.common.tile.ElectricBlastFurnaceTileEntity;
+import boss_tools_giselle_addon.common.tile.GravityNormalizerTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer.Builder;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -30,41 +23,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class ElectricBlastFurnaceBlock extends Block
+public class GravityNormalizerBlock extends Block
 {
-	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	public static final BooleanProperty LIT = BlockStateProperties.LIT;
-
-	public ElectricBlastFurnaceBlock(Properties properties)
+	public GravityNormalizerBlock(Properties properties)
 	{
 		super(properties.strength(3.0F).harvestTool(ToolType.PICKAXE));
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
-	}
-
-	@Override
-	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
-	{
-		super.createBlockStateDefinition(builder);
-		builder.add(FACING);
-		builder.add(LIT);
-	}
-
-	@Override
-	public BlockState rotate(BlockState state, Rotation rot)
-	{
-		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
-	}
-
-	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context)
-	{
-		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
-	}
-
-	@Override
-	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos)
-	{
-		return state.getValue(LIT) ? 12 : 0;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -74,10 +37,10 @@ public class ElectricBlastFurnaceBlock extends Block
 		{
 			TileEntity tileEntity = level.getBlockEntity(pos);
 
-			if (tileEntity instanceof ElectricBlastFurnaceTileEntity)
+			if (tileEntity instanceof GravityNormalizerTileEntity)
 			{
-				 NonNullList<ItemStack> stacks = ItemHandlerHelper2.getStacks(((ElectricBlastFurnaceTileEntity) tileEntity).getItemHandler());
-				 InventoryHelper.dropContents(level, pos, stacks);
+				NonNullList<ItemStack> stacks = ItemHandlerHelper2.getStacks(((GravityNormalizerTileEntity) tileEntity).getItemHandler());
+				InventoryHelper.dropContents(level, pos, stacks);
 			}
 
 		}
@@ -91,10 +54,10 @@ public class ElectricBlastFurnaceBlock extends Block
 		{
 			TileEntity tileEntity = level.getBlockEntity(pos);
 
-			if (tileEntity instanceof ElectricBlastFurnaceTileEntity)
+			if (tileEntity instanceof GravityNormalizerTileEntity)
 			{
-				ElectricBlastFurnaceTileEntity blastFurnace = (ElectricBlastFurnaceTileEntity) level.getBlockEntity(pos);
-				NetworkHooks.openGui((ServerPlayerEntity) entity, blastFurnace, pos);
+				GravityNormalizerTileEntity gravityNormalizer = (GravityNormalizerTileEntity) level.getBlockEntity(pos);
+				NetworkHooks.openGui((ServerPlayerEntity) entity, gravityNormalizer, pos);
 			}
 
 			return ActionResultType.CONSUME;
@@ -130,7 +93,7 @@ public class ElectricBlastFurnaceBlock extends Block
 
 	public TileEntity createTileEntity(BlockState state, IBlockReader world)
 	{
-		return new ElectricBlastFurnaceTileEntity();
+		return new GravityNormalizerTileEntity();
 	}
 
 }
