@@ -19,7 +19,7 @@
   "container.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
   "container.boss_tools_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
   
-  "jei.info.fuel_loader": "Give 'Fuel Bucket' or 'Barrel of Fuel' to Rover, Rockets within %1$s Blocks\nAnd take empty bucket or barrel",
+  "jei.info.fuel_loader": "Give 'Fuel Bucket' to Rover, Rockets within %1$s Blocks\nAnd take empty bucket",
   
   "_eof": "eof"
 }
