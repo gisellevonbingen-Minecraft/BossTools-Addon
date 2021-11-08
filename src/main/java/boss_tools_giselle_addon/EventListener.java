@@ -4,9 +4,7 @@ import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsDataParameter
 import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsDataParameterInteger;
 import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsNBT;
 import boss_tools_giselle_addon.common.adapter.FuelAdapterCreateEntityEvent;
-import boss_tools_giselle_addon.common.tile.GravityNormalizerTileEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
@@ -18,7 +16,6 @@ import net.mrscauthd.boss_tools.entity.RocketTier2Entity;
 import net.mrscauthd.boss_tools.entity.RocketTier3Entity;
 import net.mrscauthd.boss_tools.entity.RoverEntity;
 import net.mrscauthd.boss_tools.events.Gravity;
-import net.mrscauthd.boss_tools.events.Gravity.GravityType;
 import net.mrscauthd.boss_tools.events.forgeevents.ItemGravityEvent;
 import net.mrscauthd.boss_tools.events.forgeevents.LivingGravityEvent;
 
@@ -62,7 +59,7 @@ public class EventListener
 	@SubscribeEvent
 	public static void onLivingUpdateEvent(LivingUpdateEvent e)
 	{
-		resetNormalizingWithCheckType(Gravity.GravityType.LIVING, e.getEntityLiving());
+		GravityNormalizeUtils.resetNormalizingWithCheckType(Gravity.GravityType.LIVING, e.getEntityLiving());
 	}
 
 	@SubscribeEvent
@@ -70,20 +67,7 @@ public class EventListener
 	{
 		if (e.phase == TickEvent.Phase.END)
 		{
-			resetNormalizingWithCheckType(Gravity.GravityType.PLAYER, e.player);
-		}
-
-	}
-
-	public static void resetNormalizingWithCheckType(GravityType living, LivingEntity entityLiving)
-	{
-		if (Gravity.checkType(living, entityLiving) == true)
-		{
-			if (GravityNormalizerTileEntity.isNormalizing(entityLiving) == true)
-			{
-				GravityNormalizerTileEntity.setNormalizing(entityLiving, false);
-			}
-
+			GravityNormalizeUtils.resetNormalizingWithCheckType(Gravity.GravityType.PLAYER, e.player);
 		}
 
 	}
@@ -103,7 +87,7 @@ public class EventListener
 
 		Entity entity = e.getEntity();
 
-		if (GravityNormalizerTileEntity.isNormalizing(entity) == true)
+		if (GravityNormalizeUtils.isNormalizing(entity) == true)
 		{
 			e.setCanceled(true);
 		}

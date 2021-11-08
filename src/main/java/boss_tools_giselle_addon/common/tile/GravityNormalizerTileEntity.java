@@ -4,16 +4,13 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.GravityNormalizeUtils;
 import boss_tools_giselle_addon.common.inventory.container.GravityNormalizerContainer;
 import boss_tools_giselle_addon.config.AddonConfigs;
-import boss_tools_giselle_addon.util.NBTUtils;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -30,9 +27,6 @@ public class GravityNormalizerTileEntity extends AbstractMachineTileEntity
 {
 	public static final String DATA_RANGE_KEY = "range";
 	public static final String DATA_WORKINGAREA_VISIBLE_KEY = "workingAreaVisible";
-
-	public static final String NBT_KEY = BossToolsAddon.rl("tile/gravity_normalizer").toString();
-	public static final String NBT_NORMALIZING_KEY = "normalizing";
 
 	private PowerSystem energyPowerSystem;
 
@@ -104,14 +98,14 @@ public class GravityNormalizerTileEntity extends AbstractMachineTileEntity
 	public void tick()
 	{
 		this.doNormalize();
-		
+
 		super.tick();
 	}
 
 	@Override
 	protected void tickProcessing()
 	{
-		
+
 	}
 
 	protected void doNormalize()
@@ -130,28 +124,17 @@ public class GravityNormalizerTileEntity extends AbstractMachineTileEntity
 
 		for (LivingEntity entity : livings)
 		{
-			setNormalizing(entity, true);
+			GravityNormalizeUtils.setNormalizing(entity, true);
 		}
 
 		List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, workingArea);
 
 		for (ItemEntity entity : items)
 		{
-			setNormalizing(entity, true);
+			GravityNormalizeUtils.setNormalizing(entity, true);
 		}
 
 		this.setProcessedInThisTick();
-	}
-
-	public static void setNormalizing(Entity entity, boolean normalzing)
-	{
-		CompoundNBT compound = NBTUtils.getOrCreateTag(entity.getPersistentData(), NBT_KEY);
-		compound.putBoolean(NBT_NORMALIZING_KEY, normalzing);
-	}
-
-	public static boolean isNormalizing(Entity entity)
-	{
-		return NBTUtils.getTag(entity.getPersistentData(), NBT_KEY).getBoolean(NBT_NORMALIZING_KEY);
 	}
 
 	public int getRange()

@@ -3,10 +3,9 @@
   "package": "boss_tools_giselle_addon.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-
+    "MixinItemEntity"
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "refmap": "boss_tools_giselle_addon.mixin-refmap.json"
+  }
 }
