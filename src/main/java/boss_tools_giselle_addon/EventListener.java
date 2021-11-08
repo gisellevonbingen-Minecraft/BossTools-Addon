@@ -57,22 +57,6 @@ public class EventListener
 	}
 
 	@SubscribeEvent
-	public static void onLivingUpdateEvent(LivingUpdateEvent e)
-	{
-		GravityNormalizeUtils.resetNormalizingWithCheckType(Gravity.GravityType.LIVING, e.getEntityLiving());
-	}
-
-	@SubscribeEvent
-	public static void onPlayerTick(PlayerTickEvent e)
-	{
-		if (e.phase == TickEvent.Phase.END)
-		{
-			GravityNormalizeUtils.resetNormalizingWithCheckType(Gravity.GravityType.PLAYER, e.player);
-		}
-
-	}
-
-	@SubscribeEvent
 	public void onItemGravity(ItemGravityEvent e)
 	{
 		this.tryCancelGravity(e);
@@ -90,6 +74,7 @@ public class EventListener
 		if (GravityNormalizeUtils.isNormalizing(entity) == true)
 		{
 			e.setCanceled(true);
+			GravityNormalizeUtils.setNormalizing(entity, false);
 		}
 
 	}
