@@ -10,9 +10,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.mrscauthd.boss_tools.ModInnet;
+import net.mrscauthd.boss_tools.events.forgeevents.LivingGravityEvent;
 import net.mrscauthd.boss_tools.events.forgeevents.LivingSetFireInHotPlanetEvent;
 import net.mrscauthd.boss_tools.events.forgeevents.LivingSetVenusRainEvent;
-import net.mrscauthd.boss_tools.events.forgeevents.LivingSpaceGravityEvent;
 
 public class CommonEventListener
 {
@@ -48,7 +48,7 @@ public class CommonEventListener
 	}
 
 	@SubscribeEvent
-	public void onLivingSpaceGravity(LivingSpaceGravityEvent e)
+	public void onLivingGravityEvent(LivingGravityEvent e)
 	{
 		ModulesHelper.tryCancel(e, AddonMekanismModules.GRAVITY_NORMALIZING_UNIT, ModuleGravityNormalizingUnit::getEnergyUsing);
 	}

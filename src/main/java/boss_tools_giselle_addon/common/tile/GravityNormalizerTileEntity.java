@@ -101,9 +101,17 @@ public class GravityNormalizerTileEntity extends AbstractMachineTileEntity
 	}
 
 	@Override
-	protected void tickProcessing()
+	public void tick()
 	{
 		this.doNormalize();
+		
+		super.tick();
+	}
+
+	@Override
+	protected void tickProcessing()
+	{
+		
 	}
 
 	protected void doNormalize()
