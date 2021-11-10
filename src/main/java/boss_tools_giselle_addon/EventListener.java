@@ -5,17 +5,13 @@ import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsDataParameter
 import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsNBT;
 import boss_tools_giselle_addon.common.adapter.FuelAdapterCreateEntityEvent;
 import net.minecraft.entity.Entity;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.mrscauthd.boss_tools.ModInnet;
 import net.mrscauthd.boss_tools.entity.RocketTier1Entity;
 import net.mrscauthd.boss_tools.entity.RocketTier2Entity;
 import net.mrscauthd.boss_tools.entity.RocketTier3Entity;
 import net.mrscauthd.boss_tools.entity.RoverEntity;
-import net.mrscauthd.boss_tools.events.Gravity;
 import net.mrscauthd.boss_tools.events.forgeevents.ItemGravityEvent;
 import net.mrscauthd.boss_tools.events.forgeevents.LivingGravityEvent;
 
