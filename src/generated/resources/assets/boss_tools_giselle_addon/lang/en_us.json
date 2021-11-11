@@ -3,6 +3,7 @@
   "itemGroup.boss_tools_giselle_addon_tab_main": "Space-BossTools: Giselle Addon",
   
   "block.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
+  "block.boss_tools_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
   "block.boss_tools_giselle_addon.gravity_normalizer": "Gravity Normalizer",
   
   "module.boss_tools_giselle_addon.space_breathing_unit": "Space Breathing Unit",
@@ -17,6 +18,7 @@
   "item.boss_tools_giselle_addon.press_compressing_die": "Compressing Die",
   
   "container.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
+  "container.boss_tools_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
   "container.boss_tools_giselle_addon.gravity_normalizer": "Gravity Normalizer",
   
   "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.text": "Working Area: %1$sx%2$sx%3$s",

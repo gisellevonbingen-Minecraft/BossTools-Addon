@@ -1,6 +1,7 @@
 package boss_tools_giselle_addon.compat.jei;
 
 import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.client.gui.ElectricBlastFurnaceScreen;
 import boss_tools_giselle_addon.common.block.AddonBlocks;
 import boss_tools_giselle_addon.config.AddonConfigs;
 import mezz.jei.api.IModPlugin;
@@ -13,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.mrscauthd.boss_tools.jei.JeiPlugin.BlastingFurnaceJeiCategory;
 
 @mezz.jei.api.JeiPlugin
 public class JeiPlugin implements IModPlugin
@@ -31,19 +33,19 @@ public class JeiPlugin implements IModPlugin
 	@Override
 	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration)
 	{
-
+		registration.addRecipeTransferHandler(new ElectricBlastFurnaceRecipeTransferInfo());
 	}
 
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration)
 	{
-
+		registration.addRecipeCatalyst(new ItemStack(AddonBlocks.ELECTRIC_BLAST_FURNACE.get()), BlastingFurnaceJeiCategory.Uid);
 	}
 
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration)
 	{
-
+		registration.addGuiContainerHandler(ElectricBlastFurnaceScreen.class, new ElectricBlastFurnaceGuiContainerHandler());
 	}
 
 	@Override
