@@ -27,7 +27,7 @@ public class EventListener
 
 		Entity target = e.getTaget();
 
-		if (target instanceof RoverEntity.CustomEntity)
+		if (target instanceof RoverEntity)
 		{
 			e.setAdapter(new FuelAdapterBossToolsNBT(target, ModInnet.FUEL_BUCKET.get()));
 		}
