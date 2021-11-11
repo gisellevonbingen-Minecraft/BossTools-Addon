@@ -7,6 +7,7 @@ import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.tile.AddonTiles;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -19,6 +20,7 @@ public class AddonClientProxy
 	{
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		bus.addListener(this::onClientSetup);
+		bus.addListener(this::onAtlasPreStitch);
 		bus.addGenericListener(ContainerType.class, this::registerContainer);
 	}
 
@@ -31,6 +33,11 @@ public class AddonClientProxy
 	{
 		ScreenManager.register(AddonContainers.FUEL_LOADER.get(), FuelLoaderScreen::new);
 		ScreenManager.register(AddonContainers.GRAVITY_NORMALIZER.get(), GravityNormalizerScreen::new);
+	}
+
+	public void onAtlasPreStitch(TextureStitchEvent.Pre event)
+	{
+		event.addSprite(RenderHelper.TILE_SURFACE);
 	}
 
 }
