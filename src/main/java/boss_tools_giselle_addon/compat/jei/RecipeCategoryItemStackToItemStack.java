@@ -21,12 +21,12 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 	public static final ResourceLocation BACKGROUND_LOCATION = BossToolsAddon.rl("textures/jei/itemstack_to_itemstack.png");
 	public static final int BACKGROUND_HEIGHT = 84;
 	public static final int BACKGROUND_WIDTH = 144;
-	public static final int ARROW_LEFT = 36;
+	public static final int ARROW_LEFT = 55;
 	public static final int ARROW_TOP = 29;
-	public static final int INPUT_X = 14;
+	public static final int INPUT_X = 33;
 	public static final int INPUT_Y = 29;
-	public static final int OUTPUT_X = 69;
-	public static final int OUTPUT_Y = 28;
+	public static final int OUTPUT_X = 88;
+	public static final int OUTPUT_Y = 29;
 
 	private LoadingCache<Integer, IDrawableAnimated> cachedArrows;
 	private IDrawable background;

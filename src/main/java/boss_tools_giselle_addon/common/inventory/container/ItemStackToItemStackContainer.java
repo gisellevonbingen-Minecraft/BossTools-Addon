@@ -29,8 +29,8 @@ public class ItemStackToItemStackContainer<T extends ItemStackToItemStackTileEnt
 		this.tileEntity = tileEntity;
 
 		IItemHandlerModifiable itemHandler = tileEntity.getItemHandler();
-		this.inputSlot = this.addSlot(new SlotItemHandler(itemHandler, tileEntity.getSlotIngredient(), 40, 36));
-		this.addSlot(new SlotItemHandler(itemHandler, tileEntity.getSlotOutput(), 92, 36)
+		this.inputSlot = this.addSlot(new SlotItemHandler(itemHandler, tileEntity.getSlotIngredient(), 40, 30));
+		this.addSlot(new SlotItemHandler(itemHandler, tileEntity.getSlotOutput(), 92, 30)
 		{
 			@Override
 			public boolean mayPlace(ItemStack stack)

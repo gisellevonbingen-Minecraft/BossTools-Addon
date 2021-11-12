@@ -18,6 +18,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.mrscauthd.boss_tools.ModInnet;
 import net.mrscauthd.boss_tools.crafting.BossToolsRecipeTypes;
@@ -107,13 +108,17 @@ public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntity
 
 		this.getTileData().putString(KEY_MODE, key.toString());
 		this.resetTimer();
+		ItemStackToItemStackTileEntityUtils.getItemStackCache(this).set(ItemStack.EMPTY);
 		this.setChanged();
 	}
 
 	public ICompressorMode getCyclicMode(int direction)
 	{
 		List<ICompressorMode> modes = this.getAvailableModes();
-		ICompressorMode nextMode = modes.get((modes.indexOf(this.getMode()) + direction) % modes.size());
+		int size = modes.size();
+
+		int nextIndex = (((modes.indexOf(this.getMode()) + direction) % size) + size) % size;
+		ICompressorMode nextMode = modes.get(nextIndex);
 		return nextMode;
 	}
 
@@ -133,7 +138,11 @@ public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntity
 
 		public ItemStackToItemStackRecipeType<?> getRecipeType();
 
-		public ITextComponent getText();
+		public default ITextComponent getText()
+		{
+			ResourceLocation key = this.getRecipeTypeKey();
+			return new TranslationTextComponent("compressormode." + key.getNamespace() + "." + key.getPath());
+		}
 
 		public default ResourceLocation getRecipeTypeKey()
 		{
@@ -176,12 +185,6 @@ public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntity
 			}
 
 			return this.icon;
-		}
-
-		@Override
-		public ITextComponent getText()
-		{
-			return null;
 		}
 
 	}

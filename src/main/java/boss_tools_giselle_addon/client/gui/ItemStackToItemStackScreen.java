@@ -20,7 +20,7 @@ public class ItemStackToItemStackScreen<T extends ItemStackToItemStackContainer<
 	public static final int ENERGY_LEFT = 144;
 	public static final int ENERGY_TOP = 21;
 	public static final int ARROW_LEFT = 62;
-	public static final int ARROW_TOP = 36;
+	public static final int ARROW_TOP = 30;
 
 	public ItemStackToItemStackScreen(T container, PlayerInventory inv, ITextComponent text)
 	{

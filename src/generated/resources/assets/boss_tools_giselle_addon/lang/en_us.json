@@ -27,6 +27,13 @@
   "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.show": "Show",
   "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.hide": "Hide",
   
+  "gui.boss_tools_giselle_addon.advanced_compressor.change.next": "Next: %s",
+  "gui.boss_tools_giselle_addon.advanced_compressor.change.prev": "Prev: %s",
+  
+  "compressormode.boss_tools.compressing": "Compressing",
+  "compressormode.boss_tools_giselle_addon.plating": "Plating",
+  "gui.boss_tools_giselle_addon.advanced_compressor.workingarea.hide": "Hide",
+  
   "jei.category.boss_tools_giselle_addon.plating": "Compressor - Plating",
   "jei.info.boss_tools_giselle_addon.fuel_loader": "Give 'Fuel Bucket' to Rover, Rockets within %1$s Blocks\nAnd take empty bucket",
   "jei.info.boss_tools_giselle_addon.gravity_normalizer": "Normalize entity's gravity like to overworld within range",
