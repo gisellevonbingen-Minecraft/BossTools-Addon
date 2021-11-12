@@ -1,0 +1,22 @@
+{
+   "type":"minecraft:crafting_shaped",
+   "result":{
+      "item":"boss_tools_giselle_addon:advanced_compressor"
+   },
+   "pattern":[
+      " S ",
+      "SCS",
+      " R "
+   ],
+   "key":{
+      "S":{
+         "item":"boss_tools:compressed_steel"
+      },
+      "C":{
+         "item":"boss_tools:compressor"
+      },
+      "R":{
+         "item": "minecraft:redstone"
+      }
+   }
+} 

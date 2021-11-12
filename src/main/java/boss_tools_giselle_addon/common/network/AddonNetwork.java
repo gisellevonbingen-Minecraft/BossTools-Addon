@@ -21,6 +21,7 @@ public class AddonNetwork
 	{
 		registerMessage(GravityNormalizerMessageWorkingAreaVisible.class, GravityNormalizerMessageWorkingAreaVisible::new);
 		registerMessage(GravityNormalizerMessageRange.class, GravityNormalizerMessageRange::new);
+		registerMessage(AdvancedCompressorMessageMode.class, AdvancedCompressorMessageMode::new);
 	}
 
 	public static <T extends AbstractMessage> void registerMessage(Class<T> messageType, Supplier<T> supplier)

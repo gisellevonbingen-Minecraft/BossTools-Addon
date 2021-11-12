@@ -1,5 +1,6 @@
 package boss_tools_giselle_addon.client;
 
+import boss_tools_giselle_addon.client.gui.AdvancedCompressorScreen;
 import boss_tools_giselle_addon.client.gui.ElectricBlastFurnaceScreen;
 import boss_tools_giselle_addon.client.gui.FuelLoaderScreen;
 import boss_tools_giselle_addon.client.gui.GravityNormalizerScreen;
@@ -34,6 +35,7 @@ public class AddonClientProxy
 	{
 		ScreenManager.register(AddonContainers.FUEL_LOADER.get(), FuelLoaderScreen::new);
 		ScreenManager.register(AddonContainers.ELECTRIC_BLAST_FURNACE.get(), ElectricBlastFurnaceScreen::new);
+		ScreenManager.register(AddonContainers.ADVANCED_COMPRESSOR.get(), AdvancedCompressorScreen::new);
 		ScreenManager.register(AddonContainers.GRAVITY_NORMALIZER.get(), GravityNormalizerScreen::new);
 	}
 

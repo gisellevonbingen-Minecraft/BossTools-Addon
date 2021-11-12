@@ -7,6 +7,7 @@ import boss_tools_giselle_addon.client.AddonClientProxy;
 import boss_tools_giselle_addon.common.block.AddonBlocks;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.item.AddonItems;
+import boss_tools_giselle_addon.common.item.crafting.AddonRecipes;
 import boss_tools_giselle_addon.common.network.AddonNetwork;
 import boss_tools_giselle_addon.common.tile.AddonTiles;
 import boss_tools_giselle_addon.compat.CompatibleManager;
@@ -35,6 +36,7 @@ public class BossToolsAddon
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);
+		AddonRecipes.RECIPE_SERIALIZERS.register(fml_bus);
 		AddonTiles.TILES.register(fml_bus);
 		AddonContainers.CONTAINERS.register(fml_bus);
 		AddonNetwork.registerAll();
@@ -56,9 +58,14 @@ public class BossToolsAddon
 		return category + "." + MODID + "." + path;
 	}
 
+	public static String tl(String category, ResourceLocation rl)
+	{
+		return category + "." + rl.getNamespace() + "." + rl.getPath();
+	}
+
 	public static String tl(String category, ResourceLocation rl, String path)
 	{
-		return category + "." + rl.getNamespace() + "." + rl.getPath() + "." + path;
+		return tl(category, rl) + "." + path;
 	}
 
 	public static ResourceLocation prl(String path)

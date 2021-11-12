@@ -17,6 +17,7 @@ public class AddonContainers
 	public static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, BossToolsAddon.MODID);
 	public static final RegistryObject<ContainerType<FuelLoaderContainer>> FUEL_LOADER = register("fuel_loader", FuelLoaderContainer::new);
 	public static final RegistryObject<ContainerType<ElectricBlastFurnaceContainer>> ELECTRIC_BLAST_FURNACE = register("electric_blast_furnace", ElectricBlastFurnaceContainer::new);
+	public static final RegistryObject<ContainerType<AdvancedCompressorContainer>> ADVANCED_COMPRESSOR = register("advanced_compressor", AdvancedCompressorContainer::new);
 	public static final RegistryObject<ContainerType<GravityNormalizerContainer>> GRAVITY_NORMALIZER = register("gravity_normalizer", GravityNormalizerContainer::new);
 
 	public static <C extends Container> RegistryObject<ContainerType<C>> register(String name, IContainerFactory<C> factory)

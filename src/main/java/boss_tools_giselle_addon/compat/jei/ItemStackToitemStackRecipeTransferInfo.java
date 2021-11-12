@@ -4,40 +4,48 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import boss_tools_giselle_addon.common.inventory.container.ElectricBlastFurnaceContainer;
+import boss_tools_giselle_addon.common.inventory.container.ItemStackToItemStackContainer;
 import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.ResourceLocation;
-import net.mrscauthd.boss_tools.jei.JeiPlugin.BlastingFurnaceJeiCategory;
 
-public class ElectricBlastFurnaceRecipeTransferInfo implements IRecipeTransferInfo<ElectricBlastFurnaceContainer>
+public class ItemStackToitemStackRecipeTransferInfo<C extends ItemStackToItemStackContainer<?>> implements IRecipeTransferInfo<C>
 {
-	@Override
-	public Class<ElectricBlastFurnaceContainer> getContainerClass()
+	private final Class<C> clazz;
+	private final ResourceLocation uid;
+
+	public ItemStackToitemStackRecipeTransferInfo(Class<C> clazz, ResourceLocation uid)
 	{
-		return ElectricBlastFurnaceContainer.class;
+		this.clazz = clazz;
+		this.uid = uid;
+	}
+
+	@Override
+	public Class<C> getContainerClass()
+	{
+		return this.clazz;
 	}
 
 	@Override
 	public ResourceLocation getRecipeCategoryUid()
 	{
-		return BlastingFurnaceJeiCategory.Uid;
+		return this.uid;
 	}
 
 	@Override
-	public boolean canHandle(ElectricBlastFurnaceContainer container)
+	public boolean canHandle(C container)
 	{
 		return true;
 	}
 
 	@Override
-	public List<Slot> getRecipeSlots(ElectricBlastFurnaceContainer container)
+	public List<Slot> getRecipeSlots(C container)
 	{
 		return Collections.singletonList(container.getInputSlot());
 	}
 
 	@Override
-	public List<Slot> getInventorySlots(ElectricBlastFurnaceContainer container)
+	public List<Slot> getInventorySlots(C container)
 	{
 		List<Slot> slots = new ArrayList<>();
 		int inventorySlotStart = container.getHandlerEndIndex();
@@ -50,7 +58,7 @@ public class ElectricBlastFurnaceRecipeTransferInfo implements IRecipeTransferIn
 
 		return slots;
 	}
-	
+
 	@Override
 	public boolean requireCompleteSets()
 	{

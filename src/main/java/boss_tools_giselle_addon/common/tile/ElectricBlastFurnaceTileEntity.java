@@ -7,8 +7,6 @@ import boss_tools_giselle_addon.common.inventory.container.ElectricBlastFurnaceC
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.state.BooleanProperty;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.mrscauthd.boss_tools.crafting.BossToolsRecipeTypes;
 import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipeType;
@@ -47,12 +45,6 @@ public class ElectricBlastFurnaceTileEntity extends ItemStackToItemStackTileEnti
 	public Container createMenu(int windowId, PlayerInventory inv)
 	{
 		return new ElectricBlastFurnaceContainer(windowId, inv, this);
-	}
-
-	@Override
-	public ITextComponent getDisplayName()
-	{
-		return new TranslationTextComponent("container.boss_tools_giselle_addon.electric_blast_furnace");
 	}
 
 	public int getBasePowerForOperation()

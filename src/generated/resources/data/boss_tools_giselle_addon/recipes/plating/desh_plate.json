@@ -1,0 +1,13 @@
+{
+   "type":"boss_tools_giselle_addon:plating",
+   "input":{
+      "ingredient":{
+         "tag":"forge:ingots/desh"
+      }
+   },
+   "output":{
+      "item":"boss_tools:desh_plate",
+      "count":1
+   },
+   "cookTime":200
+}

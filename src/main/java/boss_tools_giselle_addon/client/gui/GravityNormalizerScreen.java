@@ -32,6 +32,8 @@ public class GravityNormalizerScreen extends ContainerScreen<GravityNormalizerCo
 
 	private boolean cachedWorkingAreaVisible;
 	private Button workingAreaVisibleButton;
+	private Button workingAreaPlusButton;
+	private Button workingAreaMinusButton;
 
 	public GravityNormalizerScreen(GravityNormalizerContainer container, PlayerInventory inv, ITextComponent text)
 	{
@@ -120,21 +122,21 @@ public class GravityNormalizerScreen extends ContainerScreen<GravityNormalizerCo
 		super.init();
 
 		this.workingAreaVisibleButton = this.addButton(new Button(this.leftPos - 20, this.topPos - 20, 20, 20, new StringTextComponent(""), this::onWorkingAreaVisibleButtonClick));
-		this.addButton(new Button(this.leftPos - 20, this.topPos + 5, 20, 20, new StringTextComponent("+"), this::onWorkingAreaUpButtonClick));
-		this.addButton(new Button(this.leftPos - 20, this.topPos + 25, 20, 20, new StringTextComponent("-"), this::onWorkingAreaDownButtonClick));
+		this.workingAreaPlusButton = this.addButton(new Button(this.leftPos - 20, this.topPos + 5, 20, 20, new StringTextComponent("+"), this::onWorkingAreaUpButtonClick));
+		this.workingAreaMinusButton = this.addButton(new Button(this.leftPos - 20, this.topPos + 25, 20, 20, new StringTextComponent("-"), this::onWorkingAreaDownButtonClick));
 
 		this.resizeWorkingAreaVisibleButton();
 		this.refreshWorkingAreaVisibleButtonMessage();
 	}
 
-	protected void onWorkingAreaVisibleButtonClick(Button button)
+	public void onWorkingAreaVisibleButtonClick(Button button)
 	{
 		GravityNormalizerTileEntity tileEntity = this.getMenu().getTileEntity();
 		boolean nextVisible = !tileEntity.isWorkingAreaVisible();
 		AddonNetwork.CHANNEL.sendToServer(new GravityNormalizerMessageWorkingAreaVisible(tileEntity, nextVisible));
 	}
 
-	protected void onWorkingAreaUpButtonClick(Button button)
+	public void onWorkingAreaUpButtonClick(Button button)
 	{
 		GravityNormalizerTileEntity tileEntity = this.getMenu().getTileEntity();
 		int nextRange = tileEntity.getRange() + 1;
@@ -142,14 +144,14 @@ public class GravityNormalizerScreen extends ContainerScreen<GravityNormalizerCo
 
 	}
 
-	protected void onWorkingAreaDownButtonClick(Button button)
+	public void onWorkingAreaDownButtonClick(Button button)
 	{
 		GravityNormalizerTileEntity tileEntity = this.getMenu().getTileEntity();
 		int nextRange = tileEntity.getRange() - 1;
 		AddonNetwork.CHANNEL.sendToServer(new GravityNormalizerMessageRange(tileEntity, nextRange));
 	}
 
-	protected void updateWorkingAreaVisibleButton()
+	public void updateWorkingAreaVisibleButton()
 	{
 		boolean next = this.getMenu().getTileEntity().isWorkingAreaVisible();
 
@@ -161,7 +163,7 @@ public class GravityNormalizerScreen extends ContainerScreen<GravityNormalizerCo
 
 	}
 
-	protected ITextComponent getWorkingAreaVisibleMessage(boolean visible)
+	public ITextComponent getWorkingAreaVisibleMessage(boolean visible)
 	{
 		String prefix = this.tl("workingarea.");
 		String method = visible ? "hide" : "show";
@@ -175,18 +177,34 @@ public class GravityNormalizerScreen extends ContainerScreen<GravityNormalizerCo
 		return prefix;
 	}
 
-	protected void refreshWorkingAreaVisibleButtonMessage()
+	public void refreshWorkingAreaVisibleButtonMessage()
 	{
 		ITextComponent message = this.getWorkingAreaVisibleMessage(this.cachedWorkingAreaVisible);
-		this.workingAreaVisibleButton.setMessage(message);
+		this.getWorkingAreaVisibleButton().setMessage(message);
 	}
 
-	protected void resizeWorkingAreaVisibleButton()
+	public void resizeWorkingAreaVisibleButton()
 	{
-		int messageWidth = this.workingAreaVisibleButton.getHeight();
+		Button workingAreaVisibleButton = this.getWorkingAreaVisibleButton();
+		int messageWidth = workingAreaVisibleButton.getHeight();
 		messageWidth = Math.max(messageWidth, this.font.width(this.getWorkingAreaVisibleMessage(true)));
 		messageWidth = Math.max(messageWidth, this.font.width(this.getWorkingAreaVisibleMessage(false)));
-		this.workingAreaVisibleButton.setWidth(messageWidth + 8);
+		workingAreaVisibleButton.setWidth(messageWidth + 8);
+	}
+
+	public Button getWorkingAreaVisibleButton()
+	{
+		return this.workingAreaVisibleButton;
+	}
+	
+	public Button getWorkingAreaPlusButton()
+	{
+		return this.workingAreaPlusButton;
+	}
+	
+	public Button getWorkingAreaMinusButton()
+	{
+		return this.workingAreaMinusButton;
 	}
 
 }
