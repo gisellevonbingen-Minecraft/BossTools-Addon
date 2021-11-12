@@ -3,19 +3,20 @@ package boss_tools_giselle_addon.common.adapter;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.network.datasync.DataParameter;
+import net.mrscauthd.boss_tools.fluid.FluidUtil2;
 
-public class FuelAdapterBossToolsDataParameterInteger extends FuelAdapter<Entity>
+public class FuelAdapterBossToolsFuel extends FuelAdapter<Entity>
 {
 	private final Item fuelFullItem;
 	private final DataParameter<Integer> parameter;
-	private final int fillCount;
+	private int capacity;
 
-	public FuelAdapterBossToolsDataParameterInteger(Entity target, Item fuelFullItem, DataParameter<Integer> parameter, int fillCount)
+	public FuelAdapterBossToolsFuel(Entity target, Item fuelFullItem, DataParameter<Integer> parameter, int capacity)
 	{
 		super(target);
 		this.fuelFullItem = fuelFullItem;
 		this.parameter = parameter;
-		this.fillCount = fillCount;
+		this.capacity = capacity;
 	}
 
 	@Override
@@ -28,7 +29,7 @@ public class FuelAdapterBossToolsDataParameterInteger extends FuelAdapter<Entity
 	public boolean canInsertFuel()
 	{
 		Integer current = this.getTarget().getEntityData().get(this.getParameter());
-		return current < this.getFillCount();
+		return (this.getCapacity() - current) >= FluidUtil2.BUCKET_SIZE;
 	}
 
 	@Override
@@ -36,15 +37,15 @@ public class FuelAdapterBossToolsDataParameterInteger extends FuelAdapter<Entity
 	{
 		return this.fuelFullItem;
 	}
-
+	
 	public DataParameter<Integer> getParameter()
 	{
-		return parameter;
+		return this.parameter;
 	}
-
-	public int getFillCount()
+	
+	public int getCapacity()
 	{
-		return this.fillCount;
+		return this.capacity;
 	}
 
 }

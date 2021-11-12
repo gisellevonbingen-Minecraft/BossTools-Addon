@@ -141,7 +141,7 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 		}
 		else if (this.getSlotInputStart() <= index && index < this.getSlotInputEnd())
 		{
-			return direction == null;
+			return true;
 		}
 		else if (this.getSlotOutputStart() <= index && index < this.getSlotOutputEnd())
 		{
@@ -165,6 +165,10 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 		else if (this.getSlotInputStart() <= index && index < this.getSlotInputEnd())
 		{
 			return direction == null;
+		}
+		else if (this.getSlotOutputStart() <= index && index < this.getSlotOutputEnd())
+		{
+			return true;
 		}
 
 		return super.canTakeItemThroughFace(index, stack, direction);

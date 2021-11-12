@@ -1,8 +1,8 @@
 package boss_tools_giselle_addon;
 
-import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsDataParameterBoolean;
-import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsDataParameterInteger;
-import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsNBT;
+import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsBucket;
+import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsBuckets;
+import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsFuel;
 import boss_tools_giselle_addon.common.adapter.FuelAdapterCreateEntityEvent;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.event.entity.EntityEvent;
@@ -29,19 +29,19 @@ public class EventListener
 
 		if (target instanceof RoverEntity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsNBT(target, ModInnet.FUEL_BUCKET.get()));
+			e.setAdapter(new FuelAdapterBossToolsFuel(target, ModInnet.FUEL_BUCKET.get(), RoverEntity.FUEL, 3000));
 		}
 		else if (target instanceof RocketTier1Entity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsDataParameterBoolean(target, ModInnet.FUEL_BUCKET.get(), RocketTier1Entity.BUCKET));
+			e.setAdapter(new FuelAdapterBossToolsBucket(target, ModInnet.FUEL_BUCKET.get(), RocketTier1Entity.BUCKET));
 		}
 		else if (target instanceof RocketTier2Entity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsDataParameterInteger(target, ModInnet.FUEL_BUCKET.get(), RocketTier2Entity.BUCKETS, 3));
+			e.setAdapter(new FuelAdapterBossToolsBuckets(target, ModInnet.FUEL_BUCKET.get(), RocketTier2Entity.BUCKETS, 3));
 		}
 		else if (target instanceof RocketTier3Entity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsDataParameterInteger(target, ModInnet.FUEL_BUCKET.get(), RocketTier3Entity.BUCKETS, 3));
+			e.setAdapter(new FuelAdapterBossToolsBuckets(target, ModInnet.FUEL_BUCKET.get(), RocketTier3Entity.BUCKETS, 3));
 		}
 
 	}

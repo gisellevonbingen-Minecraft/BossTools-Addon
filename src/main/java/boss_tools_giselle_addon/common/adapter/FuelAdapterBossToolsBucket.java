@@ -4,12 +4,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.network.datasync.DataParameter;
 
-public class FuelAdapterBossToolsDataParameterBoolean extends FuelAdapter<Entity>
+public class FuelAdapterBossToolsBucket extends FuelAdapter<Entity>
 {
 	private final Item fuelFullItem;
 	private final DataParameter<Boolean> parameter;
 
-	public FuelAdapterBossToolsDataParameterBoolean(Entity target, Item fuelFullItem, DataParameter<Boolean> parameter)
+	public FuelAdapterBossToolsBucket(Entity target, Item fuelFullItem, DataParameter<Boolean> parameter)
 	{
 		super(target);
 		this.fuelFullItem = fuelFullItem;

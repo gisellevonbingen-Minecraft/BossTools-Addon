@@ -98,11 +98,6 @@ public class FuelLoaderContainer extends Container
 
 				}
 
-				if (this.moveItemStackTo(slotStack, internalSlotFluidSink, internalSlotFluidSink + 1, false) == true)
-				{
-					moved = true;
-				}
-
 				if (moved == false)
 				{
 					return ItemStack.EMPTY;
