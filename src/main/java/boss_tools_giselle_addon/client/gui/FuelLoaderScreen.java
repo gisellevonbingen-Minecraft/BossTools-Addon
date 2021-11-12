@@ -44,7 +44,7 @@ public class FuelLoaderScreen extends ContainerScreen<FuelLoaderContainer>
 		int tankLeft = this.leftPos + TANK_LEFT;
 		int tankTop = this.topPos + TANK_TOP;
 
-		if (GuiHelper.getFluidTankBounds(tankLeft, tankTop).contains(mouseX, mouseY))
+		if (GuiHelper.isHover(GuiHelper.getFluidTankBounds(tankLeft, tankTop), mouseX, mouseY) == true)
 		{
 			this.renderTooltip(matrix, GaugeDataHelper.getFluid(tileEntity.getFluidTank()).getText(), mouseX, mouseY);
 		}

@@ -45,7 +45,7 @@ public class ElectricBlastFurnaceScreen extends ContainerScreen<ElectricBlastFur
 		int arrowLeft = this.leftPos + ARROW_LEFT;
 		int arrowTop = this.topPos + ARROW_TOP;
 
-		if (GuiHelper.getEnergyBounds(energyLeft, energyTop).contains(mouseX, mouseY))
+		if (GuiHelper.isHover(GuiHelper.getEnergyBounds(energyLeft, energyTop), mouseX, mouseY) == true)
 		{
 			this.renderTooltip(matrix, GaugeDataHelper.getEnergy(tileEntity).getText(), mouseX, mouseY);
 		}

@@ -55,7 +55,7 @@ public class GravityNormalizerScreen extends ContainerScreen<GravityNormalizerCo
 		int energyLeft = this.leftPos + ENERGY_LEFT;
 		int energyTop = this.topPos + ENERGY_TOP;
 
-		if (GuiHelper.getEnergyBounds(energyLeft, energyTop).contains(mouseX, mouseY))
+		if (GuiHelper.isHover(GuiHelper.getEnergyBounds(energyLeft, energyTop), mouseX, mouseY) == true)
 		{
 			this.renderTooltip(matrix, GaugeDataHelper.getEnergy(energyStorage).getText(), mouseX, mouseY);
 		}
