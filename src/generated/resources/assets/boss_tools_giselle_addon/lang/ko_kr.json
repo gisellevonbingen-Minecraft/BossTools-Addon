@@ -1,0 +1,41 @@
+{
+
+  "itemGroup.boss_tools_giselle_addon_tab_main": "Space-BossTools: Giselle Addon",
+  
+  "block.boss_tools_giselle_addon.fuel_loader": "연료 적재기",
+  "block.boss_tools_giselle_addon.electric_blast_furnace": "전기 용광로",
+  "block.boss_tools_giselle_addon.advanced_compressor": "고급 압축기",
+  "block.boss_tools_giselle_addon.gravity_normalizer": "중력 정규화 장치",
+  
+  "module.boss_tools_giselle_addon.space_breathing_unit": "우주 호흡 기구",
+  "description.boss_tools_giselle_addon.space_breathing_unit": "산소와 에너지를 소모하여, Space-BossTools 차원에서 호흡할 수 있습니다\n수중, 우천시 모듈에 산소가 충전됩니다",
+  "module.boss_tools_giselle_addon.space_fire_proof_unit": "우주 내화 기구",
+  "description.boss_tools_giselle_addon.space_fire_proof_unit": "에너지를 소모하여, Space-BossTools 차원에서 자신에게 불이 붙지 않습니다",
+  "module.boss_tools_giselle_addon.venus_acid_proof_unit": "우주 내산성 기구",
+  "description.boss_tools_giselle_addon.venus_acid_proof_unit": "에너지를 소모하여, Space-BossTools 차원에서 산성비 피해를 입지 않습니다",
+  "module.boss_tools_giselle_addon.gravity_normalizing_unit": "중력 정규화 모듈",
+  "description.boss_tools_giselle_addon.gravity_normalizing_unit": "중력을 오버월드 처럼 정규화합니다",
+ 
+  "item.boss_tools_giselle_addon.press_compressing_die": "Compressing Die",
+  
+  "container.boss_tools_giselle_addon.fuel_loader": "연료 적재기",
+  "container.boss_tools_giselle_addon.electric_blast_furnace": "전기 용광로",
+  "container.boss_tools_giselle_addon.advanced_compressor": "고급 압축기",
+  "container.boss_tools_giselle_addon.gravity_normalizer": "중력 정규화 장치",
+  
+  "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.text": "작업 영역: %1$sx%2$sx%3$s",
+  "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.show": "표시",
+  "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.hide": "숨김",
+  
+  "gui.boss_tools_giselle_addon.advanced_compressor.change.next": "다음: %s",
+  "gui.boss_tools_giselle_addon.advanced_compressor.change.prev": "이전: %s",
+  
+  "compressormode.boss_tools.compressing": "압축",
+  "compressormode.boss_tools_giselle_addon.plating": "가압",
+  
+  "jei.category.boss_tools_giselle_addon.plating": "압축기 - 가압",
+  "jei.info.boss_tools_giselle_addon.fuel_loader": "%1$s 블럭 이내에 존재하는 '로버' 혹은 '로켓'에게 '연료 양동이' 를 넣고\n'양동이'를 가져옵니다",
+  "jei.info.boss_tools_giselle_addon.gravity_normalizer": "범위 내 중력을 오버월드처럼 정규화합니다",
+  
+  "_eof": "eof"
+}

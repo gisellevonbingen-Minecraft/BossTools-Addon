@@ -10,7 +10,7 @@
   "module.boss_tools_giselle_addon.space_breathing_unit": "Space Breathing Unit",
   "description.boss_tools_giselle_addon.space_breathing_unit": "Consume oxygen and energy, can breath in Space-BossTools dimensions\nWill also fill this module with oxygen when necessary",
   "module.boss_tools_giselle_addon.space_fire_proof_unit": "Space Fire Proof Unit",
-  "description.boss_tools_giselle_addon.space_fire_proof_unit": "Consume energy, don't damage from fire in Space-BossTools dimensions",
+  "description.boss_tools_giselle_addon.space_fire_proof_unit": "Consume energy, don't set fire to player in Space-BossTools dimensions",
   "module.boss_tools_giselle_addon.venus_acid_proof_unit": "Venus Acid Proof Unit",
   "description.boss_tools_giselle_addon.venus_acid_proof_unit": "Consume energy, don't damage from venus acid rain",
   "module.boss_tools_giselle_addon.gravity_normalizing_unit": "Gravity Normalizing Unit",
@@ -32,10 +32,9 @@
   
   "compressormode.boss_tools.compressing": "Compressing",
   "compressormode.boss_tools_giselle_addon.plating": "Plating",
-  "gui.boss_tools_giselle_addon.advanced_compressor.workingarea.hide": "Hide",
   
   "jei.category.boss_tools_giselle_addon.plating": "Compressor - Plating",
-  "jei.info.boss_tools_giselle_addon.fuel_loader": "Give 'Fuel Bucket' to Rover, Rockets within %1$s Blocks\nAnd take empty bucket",
+  "jei.info.boss_tools_giselle_addon.fuel_loader": "Give 'Fuel Bucket' to 'Rover', 'Rockets' within %1$s Blocks\nAnd take 'Bucket'",
   "jei.info.boss_tools_giselle_addon.gravity_normalizer": "Normalize entity's gravity like to overworld within range",
   
   "_eof": "eof"
