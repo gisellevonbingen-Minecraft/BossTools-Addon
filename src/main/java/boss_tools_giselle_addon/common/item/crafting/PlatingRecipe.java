@@ -8,7 +8,6 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.mrscauthd.boss_tools.ModInnet;
 import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipe;
 
 public class PlatingRecipe extends ItemStackToItemStackRecipe
@@ -32,7 +31,7 @@ public class PlatingRecipe extends ItemStackToItemStackRecipe
 	@Override
 	public IRecipeSerializer<?> getSerializer()
 	{
-		return ModInnet.RECIPE_SERIALIZER_COMPRESSING.get();
+		return AddonRecipes.RECIPE_SERIALIZER_PLATING.get();
 	}
 
 	@Override
