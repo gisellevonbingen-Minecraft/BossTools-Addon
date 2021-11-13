@@ -1,2 +1,1 @@
-# Minecraft-MyFirstMod
- For tutorial, test idea
+# Space-BossTools-Addon
