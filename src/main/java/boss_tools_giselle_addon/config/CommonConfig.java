@@ -10,8 +10,6 @@ public class CommonConfig
 
 	public CommonConfig(ForgeConfigSpec.Builder builder)
 	{
-		builder.comment("if true, hide that machine(vehicle)'s recipes");
-
 		builder.push("machines");
 		this.machines = new ConfigMachines(builder);
 		builder.pop();
