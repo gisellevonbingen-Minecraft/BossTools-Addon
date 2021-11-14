@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.mrscauthd.boss_tools.machines.tile.ItemStackToItemStackTileEntity;
 
-public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<? extends T>, T extends ItemStackToItemStackTileEntity> implements IItemStackToitemStackRegistration<S, C>
+public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntity> implements IItemStackToitemStackRegistration<S, C>
 {
 	private Class<S> screenClass;
 	private Class<C> containerClass;

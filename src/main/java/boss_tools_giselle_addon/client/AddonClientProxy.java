@@ -4,6 +4,7 @@ import boss_tools_giselle_addon.client.gui.AdvancedCompressorScreen;
 import boss_tools_giselle_addon.client.gui.ElectricBlastFurnaceScreen;
 import boss_tools_giselle_addon.client.gui.FuelLoaderScreen;
 import boss_tools_giselle_addon.client.gui.GravityNormalizerScreen;
+import boss_tools_giselle_addon.client.renderer.tileentity.FuelLoaderRenderer;
 import boss_tools_giselle_addon.client.renderer.tileentity.GravityNormalizerRenderer;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.tile.AddonTiles;
@@ -28,6 +29,7 @@ public class AddonClientProxy
 
 	public void onClientSetup(FMLClientSetupEvent event)
 	{
+		ClientRegistry.bindTileEntityRenderer(AddonTiles.FUEL_LOADER.get(), FuelLoaderRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(AddonTiles.GRAVITY_NORMALIZER.get(), GravityNormalizerRenderer::new);
 	}
 

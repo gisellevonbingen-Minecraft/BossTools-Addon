@@ -2,11 +2,10 @@ package boss_tools_giselle_addon.common.block;
 
 import boss_tools_giselle_addon.common.tile.AdvancedCompressorTileEntity;
 import net.minecraft.block.BlockState;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 
-public class AdvancedCompressorBlock extends AbstractMachineBlock
+public class AdvancedCompressorBlock extends ItemStackToItemStackBlock<AdvancedCompressorTileEntity>
 {
 	public AdvancedCompressorBlock(Properties properties)
 	{
@@ -25,9 +24,9 @@ public class AdvancedCompressorBlock extends AbstractMachineBlock
 		return true;
 	}
 
-	public TileEntity createTileEntity(BlockState state, IBlockReader world)
+	public AdvancedCompressorTileEntity createTileEntity(BlockState state, IBlockReader level)
 	{
 		return new AdvancedCompressorTileEntity();
 	}
-
+	
 }

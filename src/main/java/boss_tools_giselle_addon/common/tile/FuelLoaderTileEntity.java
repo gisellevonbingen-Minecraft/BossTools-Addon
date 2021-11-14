@@ -16,6 +16,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -33,6 +34,8 @@ import net.mrscauthd.boss_tools.machines.tile.NamedComponentRegistry;
 
 public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 {
+	public static final String DATA_WORKINGAREA_VISIBLE_KEY = "workingAreaVisible";
+
 	public static final int SLOTS_FLUID = 2;
 	public static final int SLOT_FLUID_SOURCE = 0;
 	public static final int SLOT_FLUID_SINK = 1;
@@ -205,8 +208,7 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 	public boolean exchangeFuelItemAround()
 	{
 		World level = this.getLevel();
-		double workingRange = this.getWorkingRange();
-		AxisAlignedBB workingArea = new AxisAlignedBB(this.getBlockPos()).inflate(workingRange, 0.0D, workingRange);
+		AxisAlignedBB workingArea = this.getWorkingArea();
 		List<Entity> entities = level.getEntities(null, workingArea);
 		boolean worked = false;
 
@@ -224,9 +226,46 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 		return worked;
 	}
 
-	public double getWorkingRange()
+	@Override
+	public AxisAlignedBB getRenderBoundingBox()
+	{
+		return this.getWorkingArea();
+	}
+
+	public boolean isWorkingAreaVisible()
+	{
+		return this.getTileData().getBoolean(DATA_WORKINGAREA_VISIBLE_KEY);
+	}
+
+	public void setWorkingAreaVisible(boolean visible)
+	{
+		if (this.isWorkingAreaVisible() != visible)
+		{
+			this.getTileData().putBoolean(DATA_WORKINGAREA_VISIBLE_KEY, visible);
+			this.setChanged();
+		}
+
+	}
+
+	public int getWorkingRange()
 	{
 		return AddonConfigs.Common.machines.fuelLoader_range.get();
+	}
+
+	public AxisAlignedBB getWorkingArea()
+	{
+		return this.getWorkingArea(this.getWorkingRange());
+	}
+
+	public AxisAlignedBB getWorkingArea(double range)
+	{
+		return this.getWorkingArea(this.getBlockPos(), range);
+	}
+
+	public AxisAlignedBB getWorkingArea(BlockPos pos, double range)
+	{
+		double half = range / 2.0D;
+		return new AxisAlignedBB(pos).inflate(range, half, range).move(0.0D, half, 0.0D);
 	}
 
 	public boolean exchangeFuelItem(FuelAdapter<? extends Entity> adapter)

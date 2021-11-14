@@ -19,6 +19,7 @@ public class AddonNetwork
 
 	public static void registerAll()
 	{
+		registerMessage(FuelLoaderMessageWorkingAreaVisible.class, FuelLoaderMessageWorkingAreaVisible::new);
 		registerMessage(GravityNormalizerMessageWorkingAreaVisible.class, GravityNormalizerMessageWorkingAreaVisible::new);
 		registerMessage(GravityNormalizerMessageRange.class, GravityNormalizerMessageRange::new);
 		registerMessage(AdvancedCompressorMessageMode.class, AdvancedCompressorMessageMode::new);

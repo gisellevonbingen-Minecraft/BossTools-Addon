@@ -2,31 +2,28 @@ package boss_tools_giselle_addon.common.inventory.container;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
-import net.mrscauthd.boss_tools.gui.ContainerHelper;
+import net.mrscauthd.boss_tools.gui.helper.ContainerHelper;
 import net.mrscauthd.boss_tools.machines.tile.ItemStackToItemStackTileEntity;
 
-public class ItemStackToItemStackContainer<T extends ItemStackToItemStackTileEntity> extends Container
+public class ItemStackToItemStackContainer<O extends ItemStackToItemStackContainer<O, T>, T extends ItemStackToItemStackTileEntity> extends AbstractMachineContainer<ItemStackToItemStackContainer<O, T>, T>
 {
 	@FunctionalInterface
-	public interface IItemStackToItemStackContainerConstructor<T extends ItemStackToItemStackTileEntity>
+	public interface IItemStackToItemStackContainerConstructor<O extends ItemStackToItemStackContainer<O, T>, T extends ItemStackToItemStackTileEntity>
 	{
-		public ItemStackToItemStackContainer<T> invoke(ContainerType<? extends ItemStackToItemStackContainer<T>> type, int windowId, PlayerInventory inv, T tileEntity);
+		public ItemStackToItemStackContainer<O, T> invoke(ContainerType<? extends ItemStackToItemStackContainer<O, T>> type, int windowId, PlayerInventory inv, T tileEntity);
 	}
 
-	private T tileEntity;
 	private int handlerEndIndex;
 	private Slot inputSlot;
 
-	public ItemStackToItemStackContainer(ContainerType<? extends ItemStackToItemStackContainer<T>> type, int windowId, PlayerInventory inv, T tileEntity)
+	public ItemStackToItemStackContainer(ContainerType<? extends O> type, int windowId, PlayerInventory inv, T tileEntity)
 	{
-		super(type, windowId);
-		this.tileEntity = tileEntity;
+		super(type, windowId, inv, tileEntity);
 
 		IItemHandlerModifiable itemHandler = tileEntity.getItemHandler();
 		this.inputSlot = this.addSlot(new SlotItemHandler(itemHandler, tileEntity.getSlotIngredient(), 40, 30));
@@ -46,17 +43,6 @@ public class ItemStackToItemStackContainer<T extends ItemStackToItemStackTileEnt
 	public Slot getInputSlot()
 	{
 		return this.inputSlot;
-	}
-
-	@Override
-	public boolean stillValid(PlayerEntity player)
-	{
-		return !this.getTileEntity().isRemoved();
-	}
-
-	public T getTileEntity()
-	{
-		return this.tileEntity;
 	}
 
 	@Override

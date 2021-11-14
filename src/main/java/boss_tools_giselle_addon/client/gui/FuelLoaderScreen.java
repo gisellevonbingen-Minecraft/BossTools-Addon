@@ -5,17 +5,19 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import boss_tools_giselle_addon.BossToolsAddon;
 import boss_tools_giselle_addon.common.inventory.container.FuelLoaderContainer;
+import boss_tools_giselle_addon.common.network.AddonNetwork;
+import boss_tools_giselle_addon.common.network.FuelLoaderMessageWorkingAreaVisible;
 import boss_tools_giselle_addon.common.tile.FuelLoaderTileEntity;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.mrscauthd.boss_tools.gauge.GaugeDataHelper;
-import net.mrscauthd.boss_tools.gui.guihelper.GuiHelper;
+import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 
-public class FuelLoaderScreen extends ContainerScreen<FuelLoaderContainer>
+public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainer>
 {
 	public static final ResourceLocation TEXTURE = BossToolsAddon.rl("textures/gui/container/fuel_loader.png");
 	public static final int TANK_LEFT = 127;
@@ -29,6 +31,32 @@ public class FuelLoaderScreen extends ContainerScreen<FuelLoaderContainer>
 		this.inventoryLabelY = this.imageHeight - 94;
 	}
 
+	@Override
+	public boolean hasWorkingArea()
+	{
+		return true;
+	}
+
+	@Override
+	public boolean isWorkingAreaVisible()
+	{
+		return this.getMenu().getTileEntity().isWorkingAreaVisible();
+	}
+
+	@Override
+	public AxisAlignedBB getWorkingArea()
+	{
+		return this.getMenu().getTileEntity().getWorkingArea();
+	}
+
+	@Override
+	public void setWorkingAreaVisible(boolean visible)
+	{
+		super.setWorkingAreaVisible(visible);
+
+		AddonNetwork.CHANNEL.sendToServer(new FuelLoaderMessageWorkingAreaVisible(this.getMenu().getTileEntity(), visible));
+	}
+
 	public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
 	{
 		this.renderBackground(matrix);
@@ -36,7 +64,7 @@ public class FuelLoaderScreen extends ContainerScreen<FuelLoaderContainer>
 
 		this.renderTooltip(matrix, mouseX, mouseY);
 
-		FuelLoaderTileEntity tileEntity = this.menu.getTileEntity();
+		FuelLoaderTileEntity tileEntity = this.getMenu().getTileEntity();
 		IFluidHandler fluidTank = tileEntity.getFluidTank();
 		int tank = 0;
 		FluidStack fluidInTank = fluidTank.getFluidInTank(tank);
@@ -57,6 +85,8 @@ public class FuelLoaderScreen extends ContainerScreen<FuelLoaderContainer>
 	@Override
 	protected void renderBg(MatrixStack matrix, float partialTicks, int mouseX, int mouseY)
 	{
+		super.renderBg(matrix, partialTicks, mouseX, mouseY);
+
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.minecraft.getTextureManager().bind(TEXTURE);
 		this.blit(matrix, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);

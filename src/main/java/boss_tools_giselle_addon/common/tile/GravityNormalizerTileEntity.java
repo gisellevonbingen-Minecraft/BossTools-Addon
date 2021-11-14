@@ -14,8 +14,6 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.mrscauthd.boss_tools.machines.tile.AbstractMachineTileEntity;
 import net.mrscauthd.boss_tools.machines.tile.NamedComponentRegistry;
@@ -36,17 +34,10 @@ public class GravityNormalizerTileEntity extends AbstractMachineTileEntity
 		this.setWorkingAreaVisible(false);
 	}
 
-	@OnlyIn(value = Dist.CLIENT)
-	@Override
-	public double getViewDistance()
-	{
-		return 256.0D;
-	}
-
 	@Override
 	public AxisAlignedBB getRenderBoundingBox()
 	{
-		return new AxisAlignedBB(this.getBlockPos()).inflate(32.0D);
+		return this.getWorkingArea();
 	}
 
 	@Override
@@ -166,6 +157,7 @@ public class GravityNormalizerTileEntity extends AbstractMachineTileEntity
 			this.getTileData().putBoolean(DATA_WORKINGAREA_VISIBLE_KEY, visible);
 			this.setChanged();
 		}
+
 	}
 
 	public AxisAlignedBB getWorkingArea()

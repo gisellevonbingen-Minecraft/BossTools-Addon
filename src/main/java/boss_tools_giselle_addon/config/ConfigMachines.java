@@ -7,7 +7,7 @@ public class ConfigMachines
 {
 	public final ConfigValue<Integer> fuelLoader_capacity;
 	public final ConfigValue<Integer> fuelLoader_transfer;
-	public final ConfigValue<Double> fuelLoader_range;
+	public final ConfigValue<Integer> fuelLoader_range;
 
 	public final ConfigValue<Integer> gravityNormalizer_energyUsingBase;
 	public final ConfigValue<Integer> gravityNormalizer_energyUsingPerRange;
@@ -19,7 +19,7 @@ public class ConfigMachines
 		this.fuelLoader_capacity = builder.define("fluidCapacity", 8000);
 		this.fuelLoader_transfer = builder.define("fluidTransfer", 256);
 		builder.comment("blocks from FuelLoader to each direction");
-		this.fuelLoader_range = builder.define("workingRange", 2.0D);
+		this.fuelLoader_range = builder.define("workingRange", 2);
 
 		builder.pop();
 

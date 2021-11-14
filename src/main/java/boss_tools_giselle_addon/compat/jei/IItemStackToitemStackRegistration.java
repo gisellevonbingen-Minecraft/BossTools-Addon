@@ -2,16 +2,16 @@ package boss_tools_giselle_addon.compat.jei;
 
 import java.util.List;
 
+import boss_tools_giselle_addon.client.gui.ItemStackToItemStackScreen;
 import boss_tools_giselle_addon.common.inventory.container.ItemStackToItemStackContainer;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public interface IItemStackToitemStackRegistration<S extends ContainerScreen<? extends C>, C extends ItemStackToItemStackContainer<?>>
+public interface IItemStackToitemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ?>>
 {
 	public IGuiContainerHandler<S> createContainerHandler();
 

@@ -23,9 +23,9 @@
   "container.boss_tools_giselle_addon.advanced_compressor": "Advanced Compressor",
   "container.boss_tools_giselle_addon.gravity_normalizer": "Gravity Normalizer",
   
-  "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.text": "Working Area: %1$sx%2$sx%3$s",
-  "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.show": "Show",
-  "gui.boss_tools_giselle_addon.gravity_normalizer.workingarea.hide": "Hide",
+  "gui.boss_tools_giselle_addon.workingarea.text": "Working Area: %1$sx%2$sx%3$s",
+  "gui.boss_tools_giselle_addon.workingarea.show": "Show",
+  "gui.boss_tools_giselle_addon.workingarea.hide": "Hide",
   
   "gui.boss_tools_giselle_addon.advanced_compressor.change.next": "Next: %s",
   "gui.boss_tools_giselle_addon.advanced_compressor.change.prev": "Prev: %s",

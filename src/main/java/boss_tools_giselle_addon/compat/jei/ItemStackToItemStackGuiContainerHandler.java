@@ -15,10 +15,10 @@ import net.minecraft.client.renderer.Rectangle2d;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.mrscauthd.boss_tools.gui.guihelper.GuiHelper;
+import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 import net.mrscauthd.boss_tools.machines.tile.ItemStackToItemStackTileEntity;
 
-public abstract class ItemStackToItemStackGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<? extends T>, T extends ItemStackToItemStackTileEntity> implements IGuiContainerHandler<S>
+public abstract class ItemStackToItemStackGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntity> implements IGuiContainerHandler<S>
 {
 	public ItemStackToItemStackGuiContainerHandler()
 	{

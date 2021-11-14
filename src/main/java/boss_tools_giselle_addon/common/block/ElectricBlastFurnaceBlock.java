@@ -2,11 +2,10 @@ package boss_tools_giselle_addon.common.block;
 
 import boss_tools_giselle_addon.common.tile.ElectricBlastFurnaceTileEntity;
 import net.minecraft.block.BlockState;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 
-public class ElectricBlastFurnaceBlock extends AbstractMachineBlock
+public class ElectricBlastFurnaceBlock extends ItemStackToItemStackBlock<ElectricBlastFurnaceTileEntity>
 {
 	public ElectricBlastFurnaceBlock(Properties properties)
 	{
@@ -25,7 +24,7 @@ public class ElectricBlastFurnaceBlock extends AbstractMachineBlock
 		return true;
 	}
 
-	public TileEntity createTileEntity(BlockState state, IBlockReader world)
+	public ElectricBlastFurnaceTileEntity createTileEntity(BlockState state, IBlockReader level)
 	{
 		return new ElectricBlastFurnaceTileEntity();
 	}

@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.mrscauthd.boss_tools.machines.tile.AbstractMachineTileEntity;
 
-public abstract class AbstractMachineBlock extends Block
+public abstract class AbstractMachineBlock<T extends AbstractMachineTileEntity> extends Block
 {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -71,11 +71,11 @@ public abstract class AbstractMachineBlock extends Block
 	}
 
 	@Override
-	public BlockState rotate(BlockState state, Rotation rot)
+	public BlockState rotate(BlockState state, Rotation rotation)
 	{
 		if (this.useFacing() == true)
 		{
-			return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+			return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
 		}
 		else
 		{
@@ -101,7 +101,7 @@ public abstract class AbstractMachineBlock extends Block
 	}
 
 	@Override
-	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos)
+	public int getLightValue(BlockState state, IBlockReader level, BlockPos pos)
 	{
 		if (this.useLit() == true)
 		{
@@ -109,7 +109,7 @@ public abstract class AbstractMachineBlock extends Block
 		}
 		else
 		{
-			return super.getLightValue(state, world, pos);
+			return super.getLightValue(state, level, pos);
 		}
 
 	}
@@ -129,11 +129,11 @@ public abstract class AbstractMachineBlock extends Block
 	{
 		if (state.getBlock() != newState.getBlock())
 		{
-			TileEntity tileEntity = level.getBlockEntity(pos);
+			T tileEntity = this.getTileEntity(level, pos);
 
-			if (tileEntity instanceof AbstractMachineTileEntity)
+			if (tileEntity != null)
 			{
-				NonNullList<ItemStack> stacks = ItemHandlerHelper2.getStacks(((AbstractMachineTileEntity) tileEntity).getItemHandler());
+				NonNullList<ItemStack> stacks = ItemHandlerHelper2.getStacks(tileEntity.getItemHandler());
 				InventoryHelper.dropContents(level, pos, stacks);
 			}
 
@@ -146,11 +146,11 @@ public abstract class AbstractMachineBlock extends Block
 	{
 		if (entity instanceof ServerPlayerEntity)
 		{
-			TileEntity tileEntity = level.getBlockEntity(pos);
+			T tileEntity = this.getTileEntity(level, pos);
 
-			if (tileEntity instanceof AbstractMachineTileEntity)
+			if (tileEntity != null)
 			{
-				NetworkHooks.openGui((ServerPlayerEntity) entity, (AbstractMachineTileEntity) level.getBlockEntity(pos), pos);
+				NetworkHooks.openGui((ServerPlayerEntity) entity, tileEntity, pos);
 			}
 
 			return ActionResultType.CONSUME;
@@ -160,6 +160,19 @@ public abstract class AbstractMachineBlock extends Block
 			return ActionResultType.SUCCESS;
 		}
 
+	}
+
+	@SuppressWarnings("unchecked")
+	public T getTileEntity(World level, BlockPos pos)
+	{
+		TileEntity tileEntity = level.getBlockEntity(pos);
+
+		if (tileEntity instanceof AbstractMachineTileEntity)
+		{
+			return (T) tileEntity;
+		}
+
+		return null;
 	}
 
 	@Override
@@ -185,6 +198,6 @@ public abstract class AbstractMachineBlock extends Block
 	}
 
 	@Override
-	public abstract TileEntity createTileEntity(BlockState state, IBlockReader world);
+	public abstract T createTileEntity(BlockState state, IBlockReader level);
 
 }

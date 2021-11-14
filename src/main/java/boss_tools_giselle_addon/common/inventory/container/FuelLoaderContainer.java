@@ -5,21 +5,17 @@ import java.util.List;
 import boss_tools_giselle_addon.common.tile.FuelLoaderTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
-import net.mrscauthd.boss_tools.gui.ContainerHelper;
+import net.mrscauthd.boss_tools.gui.helper.ContainerHelper;
 
-public class FuelLoaderContainer extends Container
+public class FuelLoaderContainer extends AbstractMachineContainer<FuelLoaderContainer, FuelLoaderTileEntity>
 {
-	private FuelLoaderTileEntity tileEntity;
-
 	public FuelLoaderContainer(int windowId, PlayerInventory inv, FuelLoaderTileEntity tileEntity)
 	{
-		super(AddonContainers.FUEL_LOADER.get(), windowId);
-		this.tileEntity = tileEntity;
+		super(AddonContainers.FUEL_LOADER.get(), windowId, inv, tileEntity);
 
 		IItemHandlerModifiable itemHandler = tileEntity.getItemHandler();
 
@@ -117,17 +113,6 @@ public class FuelLoaderContainer extends Container
 		}
 
 		return itemStack;
-	}
-
-	@Override
-	public boolean stillValid(PlayerEntity player)
-	{
-		return !this.getTileEntity().isRemoved();
-	}
-
-	public FuelLoaderTileEntity getTileEntity()
-	{
-		return this.tileEntity;
 	}
 
 }
