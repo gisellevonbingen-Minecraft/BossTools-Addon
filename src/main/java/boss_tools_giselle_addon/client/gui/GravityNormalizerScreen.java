@@ -15,10 +15,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.mrscauthd.boss_tools.gauge.GaugeDataHelper;
 import net.mrscauthd.boss_tools.gauge.GaugeTextHelper;
-import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 
 public class GravityNormalizerScreen extends AbstractMachineScreen<GravityNormalizerContainer>
 {
@@ -63,27 +61,13 @@ public class GravityNormalizerScreen extends AbstractMachineScreen<GravityNormal
 		AddonNetwork.CHANNEL.sendToServer(new GravityNormalizerMessageWorkingAreaVisible(this.getMenu().getTileEntity(), visible));
 	}
 
-	public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
+	@Override
+	protected void renderContents(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
 	{
-		this.renderBackground(matrix);
-		super.render(matrix, mouseX, mouseY, partialTicks);
-
-		this.renderTooltip(matrix, mouseX, mouseY);
+		super.renderContents(matrix, mouseX, mouseY, partialTicks);
 
 		GravityNormalizerTileEntity tileEntity = this.getMenu().getTileEntity();
-		IEnergyStorage energyStorage = tileEntity.getPrimaryEnergyStorage();
-
-		int energyLeft = this.leftPos + ENERGY_LEFT;
-		int energyTop = this.topPos + ENERGY_TOP;
-
-		if (GuiHelper.isHover(GuiHelper.getEnergyBounds(energyLeft, energyTop), mouseX, mouseY) == true)
-		{
-			this.renderTooltip(matrix, GaugeDataHelper.getEnergy(energyStorage).getText(), mouseX, mouseY);
-		}
-
-		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.enableBlend();
-		GuiHelper.drawEnergy(matrix, energyLeft, energyTop, energyStorage);
+		this.renderEnergy(matrix, mouseX, mouseY, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, tileEntity.getPrimaryEnergyStorage());
 	}
 
 	@Override

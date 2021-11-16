@@ -5,6 +5,7 @@ import java.text.NumberFormat;
 import javax.annotation.Nullable;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 
 import boss_tools_giselle_addon.BossToolsAddon;
 import boss_tools_giselle_addon.common.inventory.container.AbstractMachineContainer;
@@ -18,6 +19,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.mrscauthd.boss_tools.gauge.GaugeDataHelper;
+import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 
 public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> extends ContainerScreen<C>
 {
@@ -36,7 +42,7 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 
 		if (this.hasWorkingArea() == true)
 		{
-			this.workingAreaVisibleButton = this.addButton(new Button(this.leftPos, this.topPos - 20, 20, 20, new StringTextComponent(""), this::onWorkingAreaVisibleButtonClick));
+			this.workingAreaVisibleButton = this.addButton(new Button(this.leftPos, this.topPos - 20, 20, 20, new StringTextComponent(""), this::onChangeModeButtonClick));
 
 			this.resizeWorkingAreaVisibleButton();
 			this.refreshWorkingAreaVisibleButtonMessage();
@@ -65,7 +71,7 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 		this.cachedWorkingAreaVisible = visible;
 	}
 
-	public void onWorkingAreaVisibleButtonClick(Button button)
+	public void onChangeModeButtonClick(Button button)
 	{
 		this.setWorkingAreaVisible(!this.isWorkingAreaVisible());
 	}
@@ -105,12 +111,23 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 	@Override
 	public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
 	{
+		this.renderBackground(matrix);
 		super.render(matrix, mouseX, mouseY, partialTicks);
+
+		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+		RenderSystem.enableBlend();
+		this.renderContents(matrix, mouseX, mouseY, partialTicks);
+		this.renderTooltip(matrix, mouseX, mouseY);
 
 		if (this.hasWorkingArea() == true)
 		{
 			this.updateWorkingAreaVisibleButton();
 		}
+
+	}
+
+	protected void renderContents(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
+	{
 
 	}
 
@@ -160,6 +177,28 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 			this.drawWorkingAreaText(matrix, workingArea, this.getWorkingAreaVisibleButton());
 		}
 
+	}
+
+	protected void renderEnergy(MatrixStack matrix, int mouseX, int mouseY, int left, int top, IEnergyStorage energyStorage)
+	{
+		if (GuiHelper.isHover(GuiHelper.getEnergyBounds(left, top), mouseX, mouseY) == true)
+		{
+			this.renderTooltip(matrix, GaugeDataHelper.getEnergy(energyStorage).getText(), mouseX, mouseY);
+		}
+
+		GuiHelper.drawEnergy(matrix, left, top, energyStorage);
+	}
+
+	protected void renderTank(MatrixStack matrix, int mouseX, int mouseY, int left, int top, FluidTank tank)
+	{
+		FluidStack fluidInTank = tank.getFluid();
+
+		if (GuiHelper.isHover(GuiHelper.getFluidTankBounds(left, top), mouseX, mouseY) == true)
+		{
+			this.renderTooltip(matrix, GaugeDataHelper.getFluid(tank).getText(), mouseX, mouseY);
+		}
+
+		GuiHelper.drawFluidTank(matrix, left, top, fluidInTank, tank.getCapacity());
 	}
 
 	protected ITextComponent getWorkingAreaBoundsText(AxisAlignedBB workingArea)

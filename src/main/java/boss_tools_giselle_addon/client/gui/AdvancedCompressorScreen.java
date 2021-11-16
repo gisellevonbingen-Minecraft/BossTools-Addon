@@ -1,12 +1,9 @@
 package boss_tools_giselle_addon.client.gui;
 
-import java.util.List;
-
 import org.lwjgl.glfw.GLFW;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import boss_tools_giselle_addon.BossToolsAddon;
 import boss_tools_giselle_addon.common.inventory.container.AdvancedCompressorContainer;
 import boss_tools_giselle_addon.common.network.AddonNetwork;
 import boss_tools_giselle_addon.common.network.AdvancedCompressorMessageMode;
@@ -17,7 +14,6 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -35,7 +31,7 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 	{
 		super.init();
 
-		this.changeModeButton = this.addButton(new ItemIconButton(this.leftPos + 38, this.topPos + 50, 20, 20, ItemStack.EMPTY, this::onWorkingAreaVisibleButtonClick));
+		this.changeModeButton = this.addButton(new ItemIconButton(this.leftPos + 38, this.topPos + 50, 20, 20, ItemStack.EMPTY, this::onChangeModeButtonClick));
 		this.refreshChnageModeButtonText();
 	}
 
@@ -47,21 +43,19 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 
 		if (this.getChangeModeButton().isHovered() == true)
 		{
-			int direction = 1;
-			String text = "next";
-
-			if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT) == true)
-			{
-				direction = -1;
-				text = "prev";
-			}
-
 			AdvancedCompressorTileEntity tileEntity = this.getMenu().getTileEntity();
+			int direction = this.getCyclicDirection();
 			ICompressorMode cyclicMode = tileEntity.getCyclicMode(direction);
-			ResourceLocation registryName = tileEntity.getType().getRegistryName();
-			this.renderTooltip(matrix, new TranslationTextComponent(BossToolsAddon.tl("gui", registryName, "change." + text), cyclicMode.getText()), mouseX, mouseY);
+			String text = direction > 0 ? "next" : "prev";
+			this.renderTooltip(matrix, new TranslationTextComponent(this.rtl("change." + text), cyclicMode.getText()), mouseX, mouseY);
 		}
 
+	}
+
+	private int getCyclicDirection()
+	{
+		long window = Minecraft.getInstance().getWindow().getWindow();
+		return InputMappings.isKeyDown(window, GLFW.GLFW_KEY_LEFT_SHIFT) ? -1 : 1;
 	}
 
 	@Override
@@ -78,19 +72,12 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 		this.getChangeModeButton().setItemStack(this.getMenu().getTileEntity().getMode().getIcon());
 	}
 
-	public void onWorkingAreaVisibleButtonClick(Button button)
+	public void onChangeModeButtonClick(Button button)
 	{
 		AdvancedCompressorTileEntity tileEntity = this.getMenu().getTileEntity();
-		ICompressorMode nextMode = this.getNextMode();
-		AddonNetwork.CHANNEL.sendToServer(new AdvancedCompressorMessageMode(tileEntity, nextMode.getRecipeTypeKey()));
-	}
-
-	public ICompressorMode getNextMode()
-	{
-		AdvancedCompressorTileEntity tileEntity = this.getMenu().getTileEntity();
-		List<ICompressorMode> modes = tileEntity.getAvailableModes();
-		ICompressorMode nextMode = modes.get((modes.indexOf(tileEntity.getMode()) + 1) % modes.size());
-		return nextMode;
+		int direction = this.getCyclicDirection();
+		ICompressorMode cyclicMode = tileEntity.getCyclicMode(direction);
+		AddonNetwork.CHANNEL.sendToServer(new AdvancedCompressorMessageMode(tileEntity, cyclicMode.getRecipeTypeKey()));
 	}
 
 	public ItemIconButton getChangeModeButton()

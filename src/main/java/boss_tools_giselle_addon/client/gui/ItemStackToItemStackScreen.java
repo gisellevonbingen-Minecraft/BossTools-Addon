@@ -8,8 +8,6 @@ import boss_tools_giselle_addon.common.inventory.container.ItemStackToItemStackC
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.mrscauthd.boss_tools.gauge.GaugeDataHelper;
 import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 import net.mrscauthd.boss_tools.machines.tile.ItemStackToItemStackTileEntity;
 
@@ -29,30 +27,14 @@ public class ItemStackToItemStackScreen<C extends ItemStackToItemStackContainer<
 		this.inventoryLabelY = this.imageHeight - 94;
 	}
 
-	public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
+	@Override
+	protected void renderContents(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
 	{
-		this.renderBackground(matrix);
-		super.render(matrix, mouseX, mouseY, partialTicks);
-
-		this.renderTooltip(matrix, mouseX, mouseY);
+		super.renderContents(matrix, mouseX, mouseY, partialTicks);
 
 		ItemStackToItemStackTileEntity tileEntity = this.getMenu().getTileEntity();
-		IEnergyStorage energyStorage = tileEntity.getPrimaryEnergyStorage();
-
-		int energyLeft = this.leftPos + ENERGY_LEFT;
-		int energyTop = this.topPos + ENERGY_TOP;
-		int arrowLeft = this.leftPos + ARROW_LEFT;
-		int arrowTop = this.topPos + ARROW_TOP;
-
-		if (GuiHelper.isHover(GuiHelper.getEnergyBounds(energyLeft, energyTop), mouseX, mouseY) == true)
-		{
-			this.renderTooltip(matrix, GaugeDataHelper.getEnergy(tileEntity).getText(), mouseX, mouseY);
-		}
-
-		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.enableBlend();
-		GuiHelper.drawEnergy(matrix, energyLeft, energyTop, energyStorage);
-		GuiHelper.drawArrow(matrix, arrowLeft, arrowTop, tileEntity.getTimerRatio());
+		this.renderEnergy(matrix, mouseX, mouseY, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, tileEntity.getPrimaryEnergyStorage());
+		GuiHelper.drawArrow(matrix, this.leftPos + ARROW_LEFT, this.topPos + ARROW_TOP, tileEntity.getTimerRatio());
 	}
 
 	@Override

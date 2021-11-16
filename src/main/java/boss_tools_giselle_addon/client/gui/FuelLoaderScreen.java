@@ -12,10 +12,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.mrscauthd.boss_tools.gauge.GaugeDataHelper;
-import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 
 public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainer>
 {
@@ -53,33 +49,16 @@ public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainer>
 	public void setWorkingAreaVisible(boolean visible)
 	{
 		super.setWorkingAreaVisible(visible);
-
 		AddonNetwork.CHANNEL.sendToServer(new FuelLoaderMessageWorkingAreaVisible(this.getMenu().getTileEntity(), visible));
 	}
 
-	public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
+	@Override
+	public void renderContents(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
 	{
-		this.renderBackground(matrix);
-		super.render(matrix, mouseX, mouseY, partialTicks);
-
-		this.renderTooltip(matrix, mouseX, mouseY);
+		super.renderContents(matrix, mouseX, mouseY, partialTicks);
 
 		FuelLoaderTileEntity tileEntity = this.getMenu().getTileEntity();
-		IFluidHandler fluidTank = tileEntity.getFluidTank();
-		int tank = 0;
-		FluidStack fluidInTank = fluidTank.getFluidInTank(tank);
-
-		int tankLeft = this.leftPos + TANK_LEFT;
-		int tankTop = this.topPos + TANK_TOP;
-
-		if (GuiHelper.isHover(GuiHelper.getFluidTankBounds(tankLeft, tankTop), mouseX, mouseY) == true)
-		{
-			this.renderTooltip(matrix, GaugeDataHelper.getFluid(tileEntity.getFluidTank()).getText(), mouseX, mouseY);
-		}
-
-		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.enableBlend();
-		GuiHelper.drawFluidTank(matrix, tankLeft, tankTop, fluidInTank, fluidTank.getTankCapacity(tank));
+		this.renderTank(matrix, mouseX, mouseY, this.leftPos + TANK_LEFT, this.topPos + TANK_TOP, tileEntity.getFluidTank());
 	}
 
 	@Override
