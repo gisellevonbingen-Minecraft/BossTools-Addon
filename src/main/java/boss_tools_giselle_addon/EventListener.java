@@ -14,6 +14,7 @@ import net.mrscauthd.boss_tools.entity.RocketTier3Entity;
 import net.mrscauthd.boss_tools.entity.RoverEntity;
 import net.mrscauthd.boss_tools.events.forgeevents.ItemGravityEvent;
 import net.mrscauthd.boss_tools.events.forgeevents.LivingGravityEvent;
+import net.mrscauthd.boss_tools.fluid.FluidUtil2;
 
 public class EventListener
 {
@@ -29,7 +30,7 @@ public class EventListener
 
 		if (target instanceof RoverEntity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsFuel(target, ModInnet.FUEL_BUCKET.get(), RoverEntity.FUEL, 3000));
+			e.setAdapter(new FuelAdapterBossToolsFuel(target, ModInnet.FUEL_BUCKET.get(), RoverEntity.FUEL, FluidUtil2.BUCKET_SIZE * RoverEntity.FUEL_BUCKETS));
 		}
 		else if (target instanceof RocketTier1Entity)
 		{
@@ -37,11 +38,11 @@ public class EventListener
 		}
 		else if (target instanceof RocketTier2Entity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsBuckets(target, ModInnet.FUEL_BUCKET.get(), RocketTier2Entity.BUCKETS, 3));
+			e.setAdapter(new FuelAdapterBossToolsBuckets(target, ModInnet.FUEL_BUCKET.get(), RocketTier2Entity.BUCKETS, RocketTier2Entity.FUEL_BUCKETS));
 		}
 		else if (target instanceof RocketTier3Entity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsBuckets(target, ModInnet.FUEL_BUCKET.get(), RocketTier3Entity.BUCKETS, 3));
+			e.setAdapter(new FuelAdapterBossToolsBuckets(target, ModInnet.FUEL_BUCKET.get(), RocketTier3Entity.BUCKETS, RocketTier3Entity.FUEL_BUCKETS));
 		}
 
 	}
