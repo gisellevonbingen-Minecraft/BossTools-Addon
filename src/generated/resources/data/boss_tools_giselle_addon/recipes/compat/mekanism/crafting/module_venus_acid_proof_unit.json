@@ -22,7 +22,7 @@
          "item":"mekanism:module_base"
       },
       "#":{
-         "item":"boss_tools:compressed_silicon"
+         "tag":"boss_tools:compresseds/silicon"
       },
       "P":{
          "tag":"forge:pellets/polonium"

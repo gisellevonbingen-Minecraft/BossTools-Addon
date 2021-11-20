@@ -22,7 +22,7 @@
          "item":"mekanism:module_base"
       },
       "#":{
-         "item":"boss_tools:compressed_desh"
+         "tag":"boss_tools:compresseds/desh"
       },
       "P":{
          "tag":"forge:pellets/polonium"

@@ -10,7 +10,7 @@
    ],
    "key":{
       "S":{
-         "item":"boss_tools:compressed_steel"
+         "tag":"boss_tools:compresseds/steel"
       },
       "C":{
          "item":"boss_tools:compressor"
