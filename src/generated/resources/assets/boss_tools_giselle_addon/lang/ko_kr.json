@@ -36,6 +36,8 @@
   "jei.category.boss_tools_giselle_addon.plating": "압축기 - 가압",
   "jei.info.boss_tools_giselle_addon.fuel_loader": "%1$s 블럭 이내에 존재하는 '로버' 혹은 '로켓'에게 '연료 양동이' 를 넣고\n'양동이'를 가져옵니다",
   "jei.info.boss_tools_giselle_addon.gravity_normalizer": "범위 내 중력을 오버월드처럼 정규화합니다",
+    
+  "item.jaopca.boss_tools_compresseds": "압축 %s",
   
   "_eof": "eof"
 }

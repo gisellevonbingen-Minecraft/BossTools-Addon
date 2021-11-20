@@ -45,7 +45,7 @@ public class BossToolsAddon
 
 		MinecraftForge.EVENT_BUS.register(new EventListener());
 
-		CompatibleManager.loadAll();
+		CompatibleManager.visit();
 	}
 
 	public static ResourceLocation rl(String path)

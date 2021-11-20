@@ -37,5 +37,7 @@
   "jei.info.boss_tools_giselle_addon.fuel_loader": "Give 'Fuel Bucket' to 'Rover', 'Rockets' within %1$s Blocks\nAnd take 'Bucket'",
   "jei.info.boss_tools_giselle_addon.gravity_normalizer": "Normalize entity's gravity like to overworld within range",
   
+  "item.jaopca.boss_tools_compresseds": "Compressed %s",
+  
   "_eof": "eof"
 }
