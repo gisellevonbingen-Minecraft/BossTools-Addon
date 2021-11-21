@@ -6,6 +6,9 @@ import boss_tools_giselle_addon.compat.mekanism.gear.mekasuit.ModuleGravityNorma
 import boss_tools_giselle_addon.compat.mekanism.gear.mekasuit.ModuleSpaceBreathingUnit;
 import boss_tools_giselle_addon.compat.mekanism.gear.mekasuit.ModuleSpaceFireProofUnit;
 import boss_tools_giselle_addon.compat.mekanism.gear.mekasuit.ModuleVenusAcidProofUnit;
+import boss_tools_giselle_addon.config.AddonConfigs;
+import mekanism.api.math.FloatingLong;
+import mekanism.common.content.gear.Modules;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -50,6 +53,11 @@ public class CommonEventListener
 	@SubscribeEvent
 	public void onLivingGravityEvent(LivingGravityEvent e)
 	{
+		if (AddonConfigs.Common.mekanism.moduleGravitationalModulating_normalizable.get() == true)
+		{
+			ModulesHelper.tryCancel(e, Modules.GRAVITATIONAL_MODULATING_UNIT, m -> FloatingLong.create(AddonConfigs.Common.mekanism.moduleGravitationalModulating_energyUsing.get()));
+		}
+
 		ModulesHelper.tryCancel(e, AddonMekanismModules.GRAVITY_NORMALIZING_UNIT, ModuleGravityNormalizingUnit::getEnergyUsing);
 	}
 

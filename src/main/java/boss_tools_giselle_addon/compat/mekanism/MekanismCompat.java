@@ -2,8 +2,10 @@ package boss_tools_giselle_addon.compat.mekanism;
 
 import boss_tools_giselle_addon.compat.CompatibleMod;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class MekanismCompat extends CompatibleMod
@@ -29,6 +31,8 @@ public class MekanismCompat extends CompatibleMod
 		fml_bus.register(new FMLEventListener());
 
 		MinecraftForge.EVENT_BUS.register(new CommonEventListener());
+
+		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> MekanismCompatClient::new);
 	}
 
 }

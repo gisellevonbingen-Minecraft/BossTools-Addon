@@ -4,14 +4,18 @@ import java.lang.reflect.Method;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import javax.annotation.Nullable;
+
 import boss_tools_giselle_addon.BossToolsAddon;
 import boss_tools_giselle_addon.util.ReflectionUtils;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.text.ILangEntry;
 import mekanism.common.content.gear.Modules;
 import mekanism.common.content.gear.Modules.ModuleData;
+import mekanism.common.util.MekanismUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -68,7 +72,7 @@ public class ModulesHelper
 	 *            Energy function for cancel
 	 * @return Whether canceled in this method
 	 */
-	public static <T extends mekanism.common.content.gear.Module> boolean tryCancel(LivingEvent e, ModuleData<T> type, Function<T, FloatingLong> getEnergyUsing)
+	public static <T extends mekanism.common.content.gear.Module> boolean tryCancel(LivingEvent e, ModuleData<T> type, @Nullable Function<T, FloatingLong> getEnergyUsing)
 	{
 		if (e.isCancelable() == false || e.isCanceled() == true)
 		{
@@ -80,12 +84,31 @@ public class ModulesHelper
 
 		if (module != null)
 		{
-			FloatingLong usingEnergy = getEnergyUsing.apply(module);
+			boolean cancel = false;
 
-			if (module.canUseEnergy(entity, usingEnergy) == true)
+			if (entity instanceof PlayerEntity && MekanismUtils.isPlayingMode((PlayerEntity) entity) == false)
+			{
+				cancel = true;
+			}
+			else if (getEnergyUsing != null)
+			{
+				FloatingLong usingEnergy = getEnergyUsing.apply(module);
+
+				if (module.canUseEnergy(entity, usingEnergy) == true)
+				{
+					module.useEnergy(entity, usingEnergy);
+					cancel = true;
+				}
+
+			}
+			else
+			{
+				cancel = true;
+			}
+
+			if (cancel == true)
 			{
 				e.setCanceled(true);
-				module.useEnergy(entity, usingEnergy);
 				return true;
 			}
 

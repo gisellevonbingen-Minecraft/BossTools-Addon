@@ -16,6 +16,9 @@ public class ConfigMekanism
 	public final ConfigValue<Integer> moduleSpaceFireProof_energyUsing;
 	public final ConfigValue<Integer> moduleVenusAcidProof_energyUsing;
 	public final ConfigValue<Integer> moduleSpaceGravityNormalizing_energyUsing;
+	
+	public final ConfigValue<Boolean> moduleGravitationalModulating_normalizable;
+	public final ConfigValue<Integer> moduleGravitationalModulating_energyUsing;
 
 	public ConfigMekanism(ForgeConfigSpec.Builder builder)
 	{
@@ -48,6 +51,13 @@ public class ConfigMekanism
 		builder.push("module_space_gravity_normalizing_unit");
 		builder.comment("Energy usage when normalizing gravity every tick in Space-BossTools dimensions");
 		this.moduleSpaceGravityNormalizing_energyUsing = builder.define("energyUsing", 10);
+		builder.pop();
+
+		builder.push("module_gravitational_modulating_unit");
+		builder.comment("Can normalize gravity instead module_space_gravity_normalizing_unit");
+		this.moduleGravitationalModulating_normalizable = builder.define("normalizable", true);
+		builder.comment("Energy usage when normalizing gravity every tick in Space-BossTools dimensions");
+		this.moduleGravitationalModulating_energyUsing = builder.define("energyUsing", 10);
 		builder.pop();
 	}
 
