@@ -1,0 +1,13 @@
+{
+   "replace":false,
+   "values":[
+      {
+         "id":"thermal:refined_fuel",
+         "required":false
+      },
+	  {
+         "id":"vehicle:fuelium",
+         "required":false
+      }
+   ]
+}

@@ -7,7 +7,6 @@ import boss_tools_giselle_addon.common.adapter.FuelAdapterCreateEntityEvent;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.boss_tools.ModInnet;
 import net.mrscauthd.boss_tools.entity.RocketTier1Entity;
 import net.mrscauthd.boss_tools.entity.RocketTier2Entity;
 import net.mrscauthd.boss_tools.entity.RocketTier3Entity;
@@ -30,19 +29,19 @@ public class EventListener
 
 		if (target instanceof RoverEntity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsFuel(target, ModInnet.FUEL_BUCKET.get(), RoverEntity.FUEL, FluidUtil2.BUCKET_SIZE * RoverEntity.FUEL_BUCKETS));
+			e.setAdapter(new FuelAdapterBossToolsFuel(target, RoverEntity.FUEL, FluidUtil2.BUCKET_SIZE * RoverEntity.FUEL_BUCKETS));
 		}
 		else if (target instanceof RocketTier1Entity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsBucket(target, ModInnet.FUEL_BUCKET.get(), RocketTier1Entity.BUCKET));
+			e.setAdapter(new FuelAdapterBossToolsBucket(target, RocketTier1Entity.BUCKET));
 		}
 		else if (target instanceof RocketTier2Entity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsBuckets(target, ModInnet.FUEL_BUCKET.get(), RocketTier2Entity.BUCKETS, RocketTier2Entity.FUEL_BUCKETS));
+			e.setAdapter(new FuelAdapterBossToolsBuckets(target, RocketTier2Entity.BUCKETS, RocketTier2Entity.FUEL_BUCKETS));
 		}
 		else if (target instanceof RocketTier3Entity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsBuckets(target, ModInnet.FUEL_BUCKET.get(), RocketTier3Entity.BUCKETS, RocketTier3Entity.FUEL_BUCKETS));
+			e.setAdapter(new FuelAdapterBossToolsBuckets(target, RocketTier3Entity.BUCKETS, RocketTier3Entity.FUEL_BUCKETS));
 		}
 
 	}

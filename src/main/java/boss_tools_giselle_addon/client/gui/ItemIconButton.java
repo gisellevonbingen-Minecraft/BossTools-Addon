@@ -1,12 +1,9 @@
 package boss_tools_giselle_addon.client.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 
-import net.minecraft.client.Minecraft;
+import boss_tools_giselle_addon.client.ItemStackRenderer;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -30,23 +27,7 @@ public class ItemIconButton extends Button
 	public void renderButton(MatrixStack matrix, int mouseX, int mouseY, float p_230431_4_)
 	{
 		super.renderButton(matrix, mouseX, mouseY, p_230431_4_);
-
-		RenderSystem.pushMatrix();
-		RenderSystem.multMatrix(matrix.last().pose());
-		RenderSystem.enableDepthTest();
-		RenderHelper.turnBackOn();
-
-		Minecraft minecraft = Minecraft.getInstance();
-		ItemRenderer itemRenderer = minecraft.getItemRenderer();
-		ItemStack itemStack = this.getItemStack();
-		int x = this.x + (this.width - 16) / 2;
-		int y = this.y + (this.height - 16) / 2;
-		itemRenderer.renderAndDecorateItem(null, itemStack, x, y);
-		itemRenderer.renderGuiItemDecorations(minecraft.font, itemStack, x, y, null);
-
-		RenderSystem.disableBlend();
-		RenderHelper.turnOff();
-		RenderSystem.popMatrix();
+		ItemStackRenderer.render(itemStack, matrix, x, y);
 	}
 
 	public ItemStack getItemStack()

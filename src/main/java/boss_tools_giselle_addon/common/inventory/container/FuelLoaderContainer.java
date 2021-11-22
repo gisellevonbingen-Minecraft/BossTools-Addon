@@ -1,5 +1,7 @@
 package boss_tools_giselle_addon.common.inventory.container;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import boss_tools_giselle_addon.common.tile.FuelLoaderTileEntity;
@@ -13,6 +15,8 @@ import net.mrscauthd.boss_tools.gui.helper.ContainerHelper;
 
 public class FuelLoaderContainer extends AbstractMachineContainer<FuelLoaderContainer, FuelLoaderTileEntity>
 {
+	private final List<Slot> inputSlots;
+
 	public FuelLoaderContainer(int windowId, PlayerInventory inv, FuelLoaderTileEntity tileEntity)
 	{
 		super(AddonContainers.FUEL_LOADER.get(), windowId, inv, tileEntity);
@@ -26,11 +30,15 @@ public class FuelLoaderContainer extends AbstractMachineContainer<FuelLoaderCont
 
 		int slotInputStart = tileEntity.getSlotInputStart();
 		int slotsInput = tileEntity.getSlotsInput();
+		List<Slot> inputSlots = new ArrayList<>();
 
 		for (int i = 0; i < slotsInput; i++)
 		{
-			this.addSlot(new SlotItemHandler(itemHandler, slotInputStart + i, 8 + 18 * i, 20));
+			Slot slot = this.addSlot(new SlotItemHandler(itemHandler, slotInputStart + i, 8 + 18 * i, 20));
+			inputSlots.add(slot);
 		}
+
+		this.inputSlots = Collections.unmodifiableList(inputSlots);
 
 		int slotOutputStart = tileEntity.getSlotOutputStart();
 		int slotsOutput = tileEntity.getSlotsOutput();
@@ -113,6 +121,11 @@ public class FuelLoaderContainer extends AbstractMachineContainer<FuelLoaderCont
 		}
 
 		return itemStack;
+	}
+
+	public List<Slot> getInputSlots()
+	{
+		return this.inputSlots;
 	}
 
 }

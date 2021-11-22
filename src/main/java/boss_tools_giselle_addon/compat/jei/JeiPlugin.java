@@ -27,6 +27,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.mrscauthd.boss_tools.ModInnet;
 import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipeType;
 import net.mrscauthd.boss_tools.jei.JeiPlugin.BlastingFurnaceJeiCategory;
 import net.mrscauthd.boss_tools.jei.JeiPlugin.CompressorJeiCategory;
@@ -129,7 +130,7 @@ public class JeiPlugin implements IModPlugin
 	{
 		this.getPlatingCategory().registerRecipes(registration);
 
-		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get(), AddonConfigs.Common.machines.fuelLoader_range.get());
+		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get(), AddonConfigs.Common.machines.fuelLoader_range.get(), ModInnet.FLUID_VEHICLE_FUEL_TAG.toString());
 		this.addIngredientInfo(registration, AddonBlocks.GRAVITY_NORMALIZER.get());
 	}
 
