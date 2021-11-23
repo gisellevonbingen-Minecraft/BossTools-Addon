@@ -16,7 +16,7 @@
          "tag":"forge:plates/iron"
       },
       "B":{
-         "item":"boss_tools:fuel_bucket"
+         "item":"minecraft:bucket"
       }
    }
 }
