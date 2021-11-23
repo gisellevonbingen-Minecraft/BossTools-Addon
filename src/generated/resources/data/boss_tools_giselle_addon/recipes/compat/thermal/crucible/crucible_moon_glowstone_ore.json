@@ -1,0 +1,19 @@
+{
+   "type":"thermal:crucible",
+   "conditions":[
+      {
+         "type":"forge:mod_loaded",
+         "modid":"thermal_expansion"
+      }
+   ],
+   "ingredient":{
+      "item":"boss_tools:moon_glowstone_ore"
+   },
+   "result":[
+      {
+         "fluid":"thermal:glowstone",
+         "amount":1000
+      }
+   ],
+   "energy":80000
+}
