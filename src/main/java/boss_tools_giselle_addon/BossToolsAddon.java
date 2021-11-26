@@ -21,11 +21,12 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.mrscauthd.boss_tools.BossToolsMod;
 
 @Mod(BossToolsAddon.MODID)
 public class BossToolsAddon
 {
-	public static final String PMODID = "boss_tools";
+	public static final String PMODID = BossToolsMod.ModId;
 	public static final String MODID = "boss_tools_giselle_addon";
 	public static final Logger LOGGER = LogManager.getLogger();
 

@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.Rectangle2d;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.mrscauthd.boss_tools.gauge.GaugeTextHelper;
 import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 import net.mrscauthd.boss_tools.machines.tile.ItemStackToItemStackTileEntity;
 
@@ -50,7 +51,7 @@ public abstract class ItemStackToItemStackGuiContainerHandler<S extends ItemStac
 			public List<ITextComponent> getTooltipStrings()
 			{
 				List<ITextComponent> list = new ArrayList<>();
-				list.add(tileEntity.getCookTimeGaugeData().getText());
+				list.add(GaugeTextHelper.getStorageText(tileEntity.getCookTimeGaugeValue()).build());
 				list.add(new TranslationTextComponent("jei.tooltip.show.recipes"));
 				return list;
 			}

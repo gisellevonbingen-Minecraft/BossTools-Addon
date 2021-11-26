@@ -15,8 +15,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.mrscauthd.boss_tools.gauge.GaugeDataHelper;
 import net.mrscauthd.boss_tools.gauge.GaugeTextHelper;
+import net.mrscauthd.boss_tools.gauge.GaugeValueHelper;
 
 public class GravityNormalizerScreen extends AbstractMachineScreen<GravityNormalizerContainer>
 {
@@ -89,7 +89,7 @@ public class GravityNormalizerScreen extends AbstractMachineScreen<GravityNormal
 		double usingScale = 0.8D;
 		RenderSystem.scaled(usingScale, usingScale, usingScale);
 		GravityNormalizerTileEntity tileEntity = this.getMenu().getTileEntity();
-		ITextComponent usingText = GaugeTextHelper.getUsingText(GaugeDataHelper.getEnergy(tileEntity.getEnergyPowerSystem().getPowerForOperation()));
+		ITextComponent usingText = GaugeTextHelper.getUsingText(GaugeValueHelper.getEnergy(tileEntity.getEnergyPowerSystem().getPowerForOperation())).build();
 		int usingWidth = this.font.width(usingText);
 
 		this.font.draw(matrix, usingText, (int) ((this.imageWidth - 5) / usingScale) - usingWidth, (int) (this.inventoryLabelY / usingScale), 0x333333);

@@ -22,7 +22,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.mrscauthd.boss_tools.gauge.GaugeDataHelper;
+import net.mrscauthd.boss_tools.gauge.GaugeTextHelper;
+import net.mrscauthd.boss_tools.gauge.GaugeValueHelper;
 import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 
 public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> extends ContainerScreen<C>
@@ -181,24 +182,25 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 
 	protected void renderEnergy(MatrixStack matrix, int mouseX, int mouseY, int left, int top, IEnergyStorage energyStorage)
 	{
+		GuiHelper.drawEnergy(matrix, left, top, energyStorage);
+
 		if (GuiHelper.isHover(GuiHelper.getEnergyBounds(left, top), mouseX, mouseY) == true)
 		{
-			this.renderTooltip(matrix, GaugeDataHelper.getEnergy(energyStorage).getText(), mouseX, mouseY);
+			this.renderTooltip(matrix, GaugeTextHelper.getStorageText(GaugeValueHelper.getEnergy(energyStorage)).build(), mouseX, mouseY);
 		}
 
-		GuiHelper.drawEnergy(matrix, left, top, energyStorage);
 	}
 
 	protected void renderTank(MatrixStack matrix, int mouseX, int mouseY, int left, int top, FluidTank tank)
 	{
 		FluidStack fluidInTank = tank.getFluid();
+		GuiHelper.drawFluidTank(matrix, left, top, fluidInTank, tank.getCapacity());
 
 		if (GuiHelper.isHover(GuiHelper.getFluidTankBounds(left, top), mouseX, mouseY) == true)
 		{
-			this.renderTooltip(matrix, GaugeDataHelper.getFluid(tank).getText(), mouseX, mouseY);
+			this.renderTooltip(matrix, GaugeTextHelper.getStorageText(GaugeValueHelper.getFluid(tank)).build(), mouseX, mouseY);
 		}
 
-		GuiHelper.drawFluidTank(matrix, left, top, fluidInTank, tank.getCapacity());
 	}
 
 	protected ITextComponent getWorkingAreaBoundsText(AxisAlignedBB workingArea)
