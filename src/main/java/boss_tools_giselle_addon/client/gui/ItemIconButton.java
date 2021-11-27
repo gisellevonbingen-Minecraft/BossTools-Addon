@@ -27,7 +27,7 @@ public class ItemIconButton extends Button
 	public void renderButton(MatrixStack matrix, int mouseX, int mouseY, float p_230431_4_)
 	{
 		super.renderButton(matrix, mouseX, mouseY, p_230431_4_);
-		ItemStackRenderer.render(itemStack, matrix, x, y);
+		ItemStackRenderer.render(itemStack, matrix, x + (this.width - 16) / 2, y + (this.height - 16) / 2);
 	}
 
 	public ItemStack getItemStack()
