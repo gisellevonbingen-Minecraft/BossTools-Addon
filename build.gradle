@@ -128,9 +128,6 @@ dependencies {
     
 	// Refined Storage
     compileOnly fg.deobf("curse.maven:refined-storage-243076:3400575")
-    
-	// JAOPCA
-	compileOnly fg.deobf("thelm:jaopca:1.16.5-3.4.1.15:api")
 }
 
 jar {
