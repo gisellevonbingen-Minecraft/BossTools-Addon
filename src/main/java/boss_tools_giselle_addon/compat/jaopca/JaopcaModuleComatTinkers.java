@@ -46,13 +46,19 @@ public class JaopcaModuleComatTinkers implements IModule
 		IMiscHelper miscHelper = api.miscHelper();
 
 		ResourceLocation id = JaopcaCompat.rl(BossToolsAddon.PMODID + ".smeltery.melting." + material.getName() + "_" + suffix);
-		ResourceLocation inputLocation = miscHelper.getTagLocation(JaopcaModule.COMPRESSED_TAG, material.getName());
+		ResourceLocation compressedsTag = miscHelper.getTagLocation(JaopcaModule.COMPRESSEDS_TAG, material.getName());
 		ResourceLocation moltenLocation = miscHelper.getTagLocation("molten", material.getName(), "_");
 
 		int ingots = 1;
 		ToIntFunction<FluidStack> tempFunction = stack -> stack.getFluid().getAttributes().getTemperature(stack) - 300;
 		ToIntFunction<FluidStack> moltenTime = stack -> IMeltingRecipe.calcTime(tempFunction.applyAsInt(stack), ingots);
-		TConstructHelper.INSTANCE.registerMeltingRecipe(id, inputLocation, moltenLocation, FluidValues.INGOT * ingots, tempFunction, moltenTime, false);
+
+		if (api.getItemTags().contains(compressedsTag) == false || api.getFluidTags().contains(moltenLocation) == false)
+		{
+			return;
+		}
+
+		TConstructHelper.INSTANCE.registerMeltingRecipe(id, compressedsTag, moltenLocation, FluidValues.INGOT * ingots, tempFunction, moltenTime, false);
 	}
 
 }
