@@ -12,8 +12,8 @@ import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipeType;
 public class AddonRecipes
 {
 	public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, BossToolsAddon.MODID);
-	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_PLATING = RECIPE_SERIALIZERS.register("plating", () -> new PlatingRecipeSerializer());
-	public static final ItemStackToItemStackRecipeType<PlatingRecipe> PLATING = create(new ItemStackToItemStackRecipeType<>("plating"));
+	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ROLLING = RECIPE_SERIALIZERS.register("rolling", () -> new RollingRecipeSerializer());
+	public static final ItemStackToItemStackRecipeType<RollingRecipe> ROLLING = create(new ItemStackToItemStackRecipeType<>("rolling"));
 
 	private static <T extends BossToolsRecipeType<?>> T create(T value)
 	{

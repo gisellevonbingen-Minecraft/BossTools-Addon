@@ -1,5 +1,5 @@
 {
-   "type":"boss_tools_giselle_addon:plating",
+   "type":"boss_tools_giselle_addon:rolling",
    "input":{
       "ingredient":{
          "tag":"forge:ingots/desh"
