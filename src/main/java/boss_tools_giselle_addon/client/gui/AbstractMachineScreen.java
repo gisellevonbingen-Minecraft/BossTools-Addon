@@ -147,24 +147,24 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 
 		ITextComponent workingAreaText = this.getWorkingAreaBoundsText(workingArea);
 
-		int sideWidth = 2;
+		int sideWidth = 1;
 		int sidePadding = 2;
 		int workingAreaWidth = this.font.width(workingAreaText) + (sidePadding * 2);
 		int workingAreaHeight = 11;
 		int workingAreaLeft = left.x + left.getWidth() - this.leftPos;
 		int workignAreaTop = -workingAreaHeight;
 		int workingAreaOffsetX = workingAreaLeft;
-		this.minecraft.getTextureManager().bind(new ResourceLocation("boss_tools:textures/workingarea_side.png"));
+		this.minecraft.getTextureManager().bind(BossToolsAddon.rl("textures/gui/workingarea_side.png"));
 		AbstractGui.blit(matrix, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
-		this.minecraft.getTextureManager().bind(new ResourceLocation("boss_tools:textures/workingarea_middle.png"));
+		this.minecraft.getTextureManager().bind(BossToolsAddon.rl("textures/gui/workingarea_middle.png"));
 		AbstractGui.blit(matrix, workingAreaOffsetX, workignAreaTop, 0, 0, workingAreaWidth, workingAreaHeight, workingAreaWidth, workingAreaHeight);
 		workingAreaOffsetX += workingAreaWidth;
-		this.minecraft.getTextureManager().bind(new ResourceLocation("boss_tools:textures/workingarea_side.png"));
+		this.minecraft.getTextureManager().bind(BossToolsAddon.rl("textures/gui/workingarea_side.png"));
 		AbstractGui.blit(matrix, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
 
-		this.font.draw(matrix, workingAreaText, workingAreaLeft + sideWidth + sidePadding, workignAreaTop + 2, 0x339900);
+		this.font.draw(matrix, workingAreaText, workingAreaLeft + sideWidth + sidePadding, workignAreaTop + 2, 0x303030);
 	}
 
 	@Override
