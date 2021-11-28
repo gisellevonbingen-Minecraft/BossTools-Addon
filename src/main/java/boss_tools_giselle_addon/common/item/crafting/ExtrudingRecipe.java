@@ -10,19 +10,19 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipe;
 
-public class RollingRecipe extends ItemStackToItemStackRecipe
+public class ExtrudingRecipe extends ItemStackToItemStackRecipe
 {
-	public RollingRecipe(ResourceLocation id, JsonObject json)
+	public ExtrudingRecipe(ResourceLocation id, JsonObject json)
 	{
 		super(id, json);
 	}
 
-	public RollingRecipe(ResourceLocation id, PacketBuffer buffer)
+	public ExtrudingRecipe(ResourceLocation id, PacketBuffer buffer)
 	{
 		super(id, buffer);
 	}
 
-	public RollingRecipe(ResourceLocation id, Ingredient ingredient, ItemStack output, int cookTime)
+	public ExtrudingRecipe(ResourceLocation id, Ingredient ingredient, ItemStack output, int cookTime)
 	{
 		super(id, ingredient, output, cookTime);
 	}
@@ -30,13 +30,13 @@ public class RollingRecipe extends ItemStackToItemStackRecipe
 	@Override
 	public IRecipeSerializer<?> getSerializer()
 	{
-		return AddonRecipes.RECIPE_SERIALIZER_ROLLING.get();
+		return AddonRecipes.RECIPE_SERIALIZER_EXTRUDING.get();
 	}
 
 	@Override
 	public IRecipeType<?> getType()
 	{
-		return AddonRecipes.ROLLING;
+		return AddonRecipes.EXTRUDING;
 	}
 
 }

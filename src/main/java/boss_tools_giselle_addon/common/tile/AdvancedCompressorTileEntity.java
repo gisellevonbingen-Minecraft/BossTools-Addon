@@ -154,7 +154,10 @@ public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntity
 	public enum CompressorMode implements ICompressorMode
 	{
 		COMPRESSING(BossToolsRecipeTypes.COMPRESSING, () -> new ItemStack(ModInnet.COMPRESSED_STEEL.get())),
-		ROLLING(AddonRecipes.ROLLING, () -> new ItemStack(ModInnet.IRON_PLATE.get()));
+		ROLLING(AddonRecipes.ROLLING, () -> new ItemStack(ModInnet.IRON_PLATE.get())),
+		EXTRUDING(AddonRecipes.EXTRUDING, () -> new ItemStack(ModInnet.IRON_STICK.get())),
+		// EOL
+		;
 
 		private final ItemStackToItemStackRecipeType<?> recipeType;
 		private final Supplier<ItemStack> iconSupplier;

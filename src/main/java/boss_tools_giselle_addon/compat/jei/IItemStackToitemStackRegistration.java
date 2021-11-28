@@ -32,16 +32,22 @@ public interface IItemStackToitemStackRegistration<S extends ItemStackToItemStac
 	{
 		for (ItemStack itemStack : this.getItemstacks())
 		{
-			registration.addRecipeCatalyst(itemStack, this.getCategories().toArray(new ResourceLocation[0]));
+			for (ResourceLocation category : this.getCategories())
+			{
+				registration.addRecipeCatalyst(itemStack, category);
+			}
+
 		}
 
 	}
 
 	public default void addRecipeTransferHandler(IRecipeTransferRegistration registration)
 	{
+		Class<C> containerClass = this.getContainerClass();
+
 		for (ResourceLocation uid : this.getCategories())
 		{
-			registration.addRecipeTransferHandler(new ItemStackToitemStackRecipeTransferInfo<C>(this.getContainerClass(), uid));
+			registration.addRecipeTransferHandler(new ItemStackToitemStackRecipeTransferInfo<C>(containerClass, uid));
 		}
 
 	}
