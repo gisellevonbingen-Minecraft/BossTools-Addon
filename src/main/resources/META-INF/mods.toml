@@ -24,12 +24,6 @@ Just Description
     ordering="NONE"
     side="BOTH"
 [[dependencies.boss_tools_giselle_addon]]
-    modId="obfuscate"
-    mandatory=true
-    versionRange="[0.5.0,)"
-    ordering="AFTER"
-    side="BOTH"
-[[dependencies.boss_tools_giselle_addon]]
     modId="boss_tools"
     mandatory=true
     versionRange="[5.5,)"
