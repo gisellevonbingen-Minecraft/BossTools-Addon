@@ -14,7 +14,7 @@ Just Description
 [[dependencies.boss_tools_giselle_addon]]
     modId="forge"
     mandatory=true
-    versionRange="[36,)"
+    versionRange="[36.2.4,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.boss_tools_giselle_addon]]

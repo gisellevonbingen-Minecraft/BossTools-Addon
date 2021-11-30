@@ -89,7 +89,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.2'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.4'
 	
 	// Mixin
     annotationProcessor 'org.spongepowered:mixin:0.8:processor'
@@ -115,8 +115,8 @@ dependencies {
     runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")
 	
     // Tinkers Contruct
-    implementation fg.deobf("curse.maven:mantle-74924:3439180")
-    implementation fg.deobf("curse.maven:tinkers-construct-74072:3439200")
+    implementation fg.deobf("curse.maven:mantle-74924:3482897")
+    implementation fg.deobf("curse.maven:tinkers-construct-74072:3482903")
     
     // Thermal Expansion
     implementation fg.deobf("curse.maven:cofh-core-69162:3407019")
