@@ -8,9 +8,7 @@ displayName="Space-BossTools: Giselle Addon"
 logoFile="examplemod.png"
 credits="gisellevonbingen"
 authors="gisellevonbingen"
-description='''
-Just Description
-'''
+description=''''''
 [[dependencies.boss_tools_giselle_addon]]
     modId="forge"
     mandatory=true

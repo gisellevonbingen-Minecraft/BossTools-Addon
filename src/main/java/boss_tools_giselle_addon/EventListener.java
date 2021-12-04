@@ -1,22 +1,41 @@
 package boss_tools_giselle_addon;
 
-import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsBucket;
-import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsBuckets;
-import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsFuel;
+import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsRocket;
+import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsRover;
 import boss_tools_giselle_addon.common.adapter.FuelAdapterCreateEntityEvent;
+import boss_tools_giselle_addon.common.entity.BossToolsRocketHelper;
+import boss_tools_giselle_addon.common.entity.BossToolsRoverHelper;
+import boss_tools_giselle_addon.common.event.EntityGaugeValueFetchEvent;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.boss_tools.entity.RocketTier1Entity;
-import net.mrscauthd.boss_tools.entity.RocketTier2Entity;
-import net.mrscauthd.boss_tools.entity.RocketTier3Entity;
 import net.mrscauthd.boss_tools.entity.RoverEntity;
 import net.mrscauthd.boss_tools.events.forgeevents.ItemGravityEvent;
 import net.mrscauthd.boss_tools.events.forgeevents.LivingGravityEvent;
-import net.mrscauthd.boss_tools.fluid.FluidUtil2;
+import net.mrscauthd.boss_tools.gauge.GaugeValueHelper;
 
 public class EventListener
 {
+	@SubscribeEvent
+	public void onEntityGaugeValueFetch(EntityGaugeValueFetchEvent e)
+	{
+		Entity entity = e.getEntity();
+
+		if (entity instanceof RoverEntity)
+		{
+			int amount = BossToolsRoverHelper.getFuelAmount(entity);
+			int capacity = BossToolsRoverHelper.getFuelCapacity(entity);
+			e.getValues().add(GaugeValueHelper.getFuel(amount, capacity));
+		}
+		else if (BossToolsRocketHelper.isBossToolsRocket(entity))
+		{
+			int amount = BossToolsRocketHelper.getFuelAmount(entity) * 10;
+			int capacity = BossToolsRocketHelper.getFuelCapacity(entity) * 10;
+			e.getValues().add(GaugeValueHelper.getFuel(amount, capacity));
+		}
+
+	}
+
 	@SubscribeEvent
 	public void onFuelAdapterCreateEntity(FuelAdapterCreateEntityEvent e)
 	{
@@ -29,19 +48,11 @@ public class EventListener
 
 		if (target instanceof RoverEntity)
 		{
-			e.setAdapter(new FuelAdapterBossToolsFuel(target, RoverEntity.FUEL, FluidUtil2.BUCKET_SIZE * RoverEntity.FUEL_BUCKETS));
+			e.setAdapter(new FuelAdapterBossToolsRover(target));
 		}
-		else if (target instanceof RocketTier1Entity)
+		else if (BossToolsRocketHelper.isBossToolsRocket(target))
 		{
-			e.setAdapter(new FuelAdapterBossToolsBucket(target, RocketTier1Entity.BUCKET));
-		}
-		else if (target instanceof RocketTier2Entity)
-		{
-			e.setAdapter(new FuelAdapterBossToolsBuckets(target, RocketTier2Entity.BUCKETS, RocketTier2Entity.FUEL_BUCKETS));
-		}
-		else if (target instanceof RocketTier3Entity)
-		{
-			e.setAdapter(new FuelAdapterBossToolsBuckets(target, RocketTier3Entity.BUCKETS, RocketTier3Entity.FUEL_BUCKETS));
+			e.setAdapter(new FuelAdapterBossToolsRocket(target));
 		}
 
 	}
