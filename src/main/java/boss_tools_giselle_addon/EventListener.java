@@ -7,12 +7,14 @@ import boss_tools_giselle_addon.common.entity.BossToolsRocketHelper;
 import boss_tools_giselle_addon.common.entity.BossToolsRoverHelper;
 import boss_tools_giselle_addon.common.event.EntityGaugeValueFetchEvent;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.mrscauthd.boss_tools.entity.RoverEntity;
 import net.mrscauthd.boss_tools.events.forgeevents.ItemGravityEvent;
 import net.mrscauthd.boss_tools.events.forgeevents.LivingGravityEvent;
 import net.mrscauthd.boss_tools.gauge.GaugeValueHelper;
+import net.mrscauthd.boss_tools.gauge.GaugeValueSimple;
 
 public class EventListener
 {
@@ -29,9 +31,9 @@ public class EventListener
 		}
 		else if (BossToolsRocketHelper.isBossToolsRocket(entity))
 		{
-			int amount = BossToolsRocketHelper.getFuelAmount(entity) * 10;
-			int capacity = BossToolsRocketHelper.getFuelCapacity(entity) * 10;
-			e.getValues().add(GaugeValueHelper.getFuel(amount, capacity));
+			int amount = BossToolsRocketHelper.getFuelAmount(entity);
+			int capacity = BossToolsRocketHelper.getFuelCapacity(entity);
+			e.getValues().add(new GaugeValueSimple(GaugeValueHelper.FUEL_NAME, (int)(amount / (capacity / 100.0D)), 100, (ITextComponent) null, "%").color(GaugeValueHelper.FUEL_COLOR));
 		}
 
 	}
