@@ -38,7 +38,7 @@ public abstract class ItemStackToItemStackGuiContainerHandler<S extends ItemStac
 			@Override
 			public Rectangle2d getArea()
 			{
-				return GuiHelper.getArrowBounds(ItemStackToItemStackScreen.ARROW_LEFT, ItemStackToItemStackScreen.ARROW_TOP);
+				return GuiHelper.getArrowBounds(ItemStackToItemStackScreen.ARROW_LEFT, ItemStackToItemStackScreen.ARROW_TOP).toVanila();
 			}
 
 			@Override
