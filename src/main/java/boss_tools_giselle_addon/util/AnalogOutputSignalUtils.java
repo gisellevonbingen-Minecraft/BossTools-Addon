@@ -7,7 +7,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-public class AnalogOutputSignalUtil
+public class AnalogOutputSignalUtils
 {
 	public static int getAnalogOutputSignal(@Nullable IItemHandler inv)
 	{
@@ -28,7 +28,7 @@ public class AnalogOutputSignalUtil
 
 	}
 
-	private AnalogOutputSignalUtil()
+	private AnalogOutputSignalUtils()
 	{
 
 	}

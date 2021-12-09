@@ -1,6 +1,6 @@
 package boss_tools_giselle_addon.common.block;
 
-import boss_tools_giselle_addon.util.AnalogOutputSignalUtil;
+import boss_tools_giselle_addon.util.AnalogOutputSignalUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -25,7 +25,7 @@ public abstract class ItemStackToItemStackBlock<T extends ItemStackToItemStackTi
 	{
 		T tileEntity = this.getTileEntity(level, pos);
 		ItemStack output = tileEntity.getItem(tileEntity.getSlotOutput());
-		return AnalogOutputSignalUtil.getAnalogOutputSignal(output);
+		return AnalogOutputSignalUtils.getAnalogOutputSignal(output);
 	}
 
 }

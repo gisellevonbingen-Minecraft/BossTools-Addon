@@ -33,6 +33,12 @@
   "gui.boss_tools_giselle_addon.advanced_compressor.change.next": "Next: %s",
   "gui.boss_tools_giselle_addon.advanced_compressor.change.prev": "Prev: %s",
   
+  "gui.boss_tools_giselle_addon.flag_edit.title": "Edit Flag",
+  "gui.boss_tools_giselle_addon.flag_edit.verify": "Verify",
+  "gui.boss_tools_giselle_addon.flag_edit.verifying": "Verifying",
+  "gui.boss_tools_giselle_addon.flag_edit.save": "Save",
+  "gui.boss_tools_giselle_addon.flag_edit.warning": "※ warning: second layer will not render",
+  
   "compressormode.boss_tools.compressing": "Compressing",
   "compressormode.boss_tools_giselle_addon.rolling": "Rolling",
   "compressormode.boss_tools_giselle_addon.extruding": "Extruding",

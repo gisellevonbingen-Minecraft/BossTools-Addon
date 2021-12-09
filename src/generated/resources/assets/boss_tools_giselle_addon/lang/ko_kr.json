@@ -33,6 +33,12 @@
   "gui.boss_tools_giselle_addon.advanced_compressor.change.next": "다음: %s",
   "gui.boss_tools_giselle_addon.advanced_compressor.change.prev": "이전: %s",
   
+  "gui.boss_tools_giselle_addon.flag_edit.title": "깃발 편집",
+  "gui.boss_tools_giselle_addon.flag_edit.verify": "확인",
+  "gui.boss_tools_giselle_addon.flag_edit.verifying": "확인중",
+  "gui.boss_tools_giselle_addon.flag_edit.save": "저장",
+  "gui.boss_tools_giselle_addon.flag_edit.warning": "※ 경고: 두 번째 레이어는 렌더링되지 않습니다",
+  
   "compressormode.boss_tools.compressing": "압축",
   "compressormode.boss_tools_giselle_addon.rolling": "압연",
   "compressormode.boss_tools_giselle_addon.extruding": "압출",

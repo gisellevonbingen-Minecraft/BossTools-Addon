@@ -1,56 +1,53 @@
 package boss_tools_giselle_addon.common.network;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
 
-public abstract class TileEntityMessage<T extends TileEntity> extends AbstractMessage
+public abstract class TileEntityMessage<T extends TileEntity> extends BlockPosMessage
 {
-	private BlockPos blockPos;
-
 	public TileEntityMessage()
 	{
-		this.blockPos = BlockPos.ZERO;
+		super();
 	}
 
 	public TileEntityMessage(T tileEntity)
 	{
-		this.setBlockPos(tileEntity.getBlockPos());
+		super(tileEntity != null ? tileEntity.getBlockPos() : null);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void decode(PacketBuffer buffer)
+	public void onHandle(BlockPos blockPos, @Nullable ServerPlayerEntity sender)
 	{
-		this.setBlockPos(buffer.readBlockPos());
-	}
+		super.onHandle(blockPos, sender);
 
-	@Override
-	public void encode(PacketBuffer buffer)
-	{
-		buffer.writeBlockPos(this.getBlockPos());
-	}
+		if (sender == null)
+		{
+			return;
+		}
 
-	@Override
-	public void onHandle(Context context)
-	{
-		ServerPlayerEntity sender = context.getSender();
-		@SuppressWarnings("unchecked")
-		T tileEntity = (T) sender.getLevel().getBlockEntity(this.getBlockPos());
-		this.onHandle(tileEntity, sender);
+		T tileEntity = null;
+
+		try
+		{
+			TileEntity original = sender.getLevel().getBlockEntity(blockPos);
+			tileEntity = (T) original;
+		}
+		catch (Exception e)
+		{
+
+		}
+
+		if (tileEntity != null)
+		{
+			this.onHandle((T) tileEntity, sender);
+		}
+
 	}
 
 	public abstract void onHandle(T tileEntity, ServerPlayerEntity sender);
-
-	public void setBlockPos(BlockPos blockPos)
-	{
-		this.blockPos = blockPos;
-	}
-
-	public BlockPos getBlockPos()
-	{
-		return this.blockPos;
-	}
 
 }
