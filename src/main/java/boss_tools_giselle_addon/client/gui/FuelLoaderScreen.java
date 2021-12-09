@@ -1,7 +1,6 @@
 package boss_tools_giselle_addon.client.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 
 import boss_tools_giselle_addon.BossToolsAddon;
 import boss_tools_giselle_addon.common.inventory.container.FuelLoaderContainer;
@@ -66,7 +65,6 @@ public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainer>
 	{
 		super.renderBg(matrix, partialTicks, mouseX, mouseY);
 
-		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.minecraft.getTextureManager().bind(TEXTURE);
 		this.blit(matrix, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 	}

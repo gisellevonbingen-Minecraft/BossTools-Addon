@@ -115,7 +115,6 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 		this.renderBackground(matrix);
 		super.render(matrix, mouseX, mouseY, partialTicks);
 
-		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.enableBlend();
 		this.renderContents(matrix, mouseX, mouseY, partialTicks);
 		this.renderTooltip(matrix, mouseX, mouseY);

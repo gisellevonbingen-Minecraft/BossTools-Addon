@@ -236,7 +236,6 @@ public class FlagEditScreen extends Screen
 		valueTextField.setFocus(true);
 
 		RenderSystem.enableBlend();
-		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		Minecraft.getInstance().getTextureManager().bind(BACKGROUND);
 		this.blit(stack, this.getLeftPos(), this.getTopPos(), 0, 0, this.getImageWidth(), this.getImageHeight());
 

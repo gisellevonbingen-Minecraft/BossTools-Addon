@@ -1,7 +1,6 @@
 package boss_tools_giselle_addon.client.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 
 import boss_tools_giselle_addon.BossToolsAddon;
 import boss_tools_giselle_addon.common.inventory.container.GravityNormalizerContainer;
@@ -75,7 +74,6 @@ public class GravityNormalizerScreen extends AbstractMachineScreen<GravityNormal
 	{
 		super.renderBg(matrix, partialTicks, mouseX, mouseY);
 
-		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.minecraft.getTextureManager().bind(TEXTURE);
 		this.blit(matrix, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 	}
@@ -85,15 +83,15 @@ public class GravityNormalizerScreen extends AbstractMachineScreen<GravityNormal
 	{
 		super.renderLabels(matrix, mouseX, mouseY);
 
-		RenderSystem.pushMatrix();
-		double usingScale = 0.8D;
-		RenderSystem.scaled(usingScale, usingScale, usingScale);
+		matrix.pushPose();
+		float usingScale = 0.8F;
+		matrix.scale(usingScale, usingScale, usingScale);
 		GravityNormalizerTileEntity tileEntity = this.getMenu().getTileEntity();
 		ITextComponent usingText = GaugeTextHelper.getUsingText(GaugeValueHelper.getEnergy(tileEntity.getEnergyPowerSystem().getPowerForOperation())).build();
 		int usingWidth = this.font.width(usingText);
 
 		this.font.draw(matrix, usingText, (int) ((this.imageWidth - 5) / usingScale) - usingWidth, (int) (this.inventoryLabelY / usingScale), 0x333333);
-		RenderSystem.popMatrix();
+		matrix.popPose();
 	}
 
 	@Override
