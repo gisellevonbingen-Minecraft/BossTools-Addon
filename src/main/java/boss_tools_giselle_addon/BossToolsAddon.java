@@ -5,12 +5,12 @@ import org.apache.logging.log4j.Logger;
 
 import boss_tools_giselle_addon.client.AddonClientProxy;
 import boss_tools_giselle_addon.common.block.AddonBlocks;
+import boss_tools_giselle_addon.common.compat.CompatibleManager;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.item.AddonItems;
 import boss_tools_giselle_addon.common.item.crafting.AddonRecipes;
 import boss_tools_giselle_addon.common.network.AddonNetwork;
 import boss_tools_giselle_addon.common.tile.AddonTiles;
-import boss_tools_giselle_addon.compat.CompatibleManager;
 import boss_tools_giselle_addon.config.AddonConfigs;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
