@@ -1,6 +1,6 @@
 package boss_tools_giselle_addon.common.block;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.RegistryObject;

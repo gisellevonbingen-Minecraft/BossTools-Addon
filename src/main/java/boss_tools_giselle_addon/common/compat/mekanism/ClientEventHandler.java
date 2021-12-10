@@ -1,6 +1,6 @@
 package boss_tools_giselle_addon.common.compat.mekanism;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import mekanism.client.MekKeyHandler;
 import mekanism.client.MekanismKeyHandler;

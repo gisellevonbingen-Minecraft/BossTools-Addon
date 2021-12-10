@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.compat.mekanism.gear.ModulesHelper;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import mekanism.api.Action;

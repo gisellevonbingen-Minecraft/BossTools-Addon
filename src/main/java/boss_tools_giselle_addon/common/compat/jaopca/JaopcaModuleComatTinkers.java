@@ -2,7 +2,7 @@ package boss_tools_giselle_addon.common.compat.jaopca;
 
 import java.util.function.ToIntFunction;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;

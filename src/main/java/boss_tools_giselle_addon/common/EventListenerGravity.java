@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon;
+package boss_tools_giselle_addon.common;
 
 import boss_tools_giselle_addon.common.util.GravityNormalizeUtils;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

@@ -3,7 +3,7 @@ package boss_tools_giselle_addon.common.compat.hwyla;
 import java.util.ArrayList;
 import java.util.List;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import mcp.mobius.waila.api.IRegistrar;
 import mcp.mobius.waila.api.IWailaPlugin;
 import mcp.mobius.waila.api.RenderableTextComponent;

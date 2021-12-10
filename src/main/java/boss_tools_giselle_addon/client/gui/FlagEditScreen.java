@@ -9,8 +9,8 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import boss_tools_giselle_addon.BossToolsAddon;
 import boss_tools_giselle_addon.client.SkullRenderUtils;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.network.AddonNetwork;
 import boss_tools_giselle_addon.common.network.FlagEditMessageSave;
 import boss_tools_giselle_addon.common.util.GameProfileUtils;

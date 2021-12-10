@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.block.AddonBlocks;
 import boss_tools_giselle_addon.common.tab.AddonTabs;
 import net.minecraft.block.Block;

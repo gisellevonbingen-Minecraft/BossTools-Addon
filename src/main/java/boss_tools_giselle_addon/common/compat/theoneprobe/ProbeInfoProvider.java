@@ -2,7 +2,7 @@ package boss_tools_giselle_addon.common.compat.theoneprobe;
 
 import java.util.function.Function;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.event.EntityGaugeValueFetchEvent;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeHitEntityData;

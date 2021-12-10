@@ -1,6 +1,6 @@
 package boss_tools_giselle_addon.common.compat.mekanism.api.text;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import mekanism.api.text.ILangEntry;
 import net.minecraft.util.Util;
 

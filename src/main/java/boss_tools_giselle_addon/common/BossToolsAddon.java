@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon;
+package boss_tools_giselle_addon.common;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

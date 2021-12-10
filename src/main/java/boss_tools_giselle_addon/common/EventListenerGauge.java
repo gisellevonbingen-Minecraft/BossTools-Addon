@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon;
+package boss_tools_giselle_addon.common;
 
 import boss_tools_giselle_addon.common.entity.BossToolsRocketHelper;
 import boss_tools_giselle_addon.common.entity.BossToolsRoverHelper;

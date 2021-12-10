@@ -1,6 +1,6 @@
 package boss_tools_giselle_addon.common.compat.jaopca;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.compat.thermal.AddonThermalItems;
 import boss_tools_giselle_addon.common.compat.thermal.ThermalCompat;
 import net.minecraft.item.Item;

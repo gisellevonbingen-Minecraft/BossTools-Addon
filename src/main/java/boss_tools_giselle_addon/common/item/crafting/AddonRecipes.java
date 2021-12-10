@@ -1,6 +1,6 @@
 package boss_tools_giselle_addon.common.item.crafting;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.fml.RegistryObject;

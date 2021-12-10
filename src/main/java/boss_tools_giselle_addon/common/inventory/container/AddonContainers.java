@@ -1,6 +1,6 @@
 package boss_tools_giselle_addon.common.inventory.container;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.util.TriFunction;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;

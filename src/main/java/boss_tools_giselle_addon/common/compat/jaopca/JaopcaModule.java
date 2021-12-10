@@ -7,7 +7,7 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.item.crafting.AddonRecipes;
 import boss_tools_giselle_addon.common.item.crafting.RollingRecipe;
 import net.minecraft.item.ItemStack;

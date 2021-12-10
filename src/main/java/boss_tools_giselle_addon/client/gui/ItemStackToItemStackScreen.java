@@ -2,7 +2,7 @@ package boss_tools_giselle_addon.client.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import boss_tools_giselle_addon.BossToolsAddon;
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.inventory.container.ItemStackToItemStackContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
