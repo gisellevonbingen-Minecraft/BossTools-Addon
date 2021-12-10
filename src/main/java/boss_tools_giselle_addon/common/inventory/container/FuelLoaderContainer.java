@@ -18,7 +18,7 @@ public class FuelLoaderContainer extends AbstractMachineContainer<FuelLoaderCont
 
 		for (int i = tileEntity.getSlotFluidStart(); i < tileEntity.getSlotFluidEnd(); i++)
 		{
-			this.addSlot(new SlotItemHandler(itemHandler, i, 144, 28 + 30 * i));
+			this.addSlot(new SlotItemHandler(itemHandler, i, 88, 28 + 30 * i));
 		}
 
 		ContainerHelper.addInventorySlots(this, inv, 8, 100, this::addSlot);

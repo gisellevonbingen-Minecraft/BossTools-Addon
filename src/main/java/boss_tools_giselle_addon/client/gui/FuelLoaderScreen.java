@@ -15,7 +15,7 @@ import net.minecraft.util.text.ITextComponent;
 public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainer>
 {
 	public static final ResourceLocation TEXTURE = BossToolsAddon.rl("textures/gui/container/fuel_loader.png");
-	public static final int TANK_LEFT = 127;
+	public static final int TANK_LEFT = 71;
 	public static final int TANK_TOP = 27;
 
 	public FuelLoaderScreen(FuelLoaderContainer container, PlayerInventory inv, ITextComponent text)

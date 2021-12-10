@@ -87,20 +87,6 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 				FuelLoaderTileEntity.this.setChanged();
 			}
 
-			@Override
-			public FluidStack drain(int maxDrain, FluidAction action)
-			{
-				return super.drain(Math.max(getTransferPerTick(), maxDrain), action);
-			}
-
-			@Override
-			public int fill(FluidStack resource, FluidAction action)
-			{
-				FluidStack copy = resource.copy();
-				copy.setAmount(Math.max(getTransferPerTick(), copy.getAmount()));
-				return super.fill(copy, action);
-			}
-
 		});
 	}
 

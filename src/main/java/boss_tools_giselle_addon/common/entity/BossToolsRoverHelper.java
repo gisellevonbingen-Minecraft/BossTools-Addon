@@ -22,7 +22,7 @@ public class BossToolsRoverHelper
 
 	public static void setCurrentFuel(Entity entity, int fuel)
 	{
-		fuel = MathHelper.clamp(fuel, 0, getFuelAmount(entity));
+		fuel = MathHelper.clamp(fuel, 0, getFuelCapacity(entity));
 		EntityDataManager entityData = entity.getEntityData();
 
 		if (entity instanceof RoverEntity)
