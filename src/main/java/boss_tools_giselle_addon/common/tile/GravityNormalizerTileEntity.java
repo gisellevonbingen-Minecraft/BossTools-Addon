@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import boss_tools_giselle_addon.GravityNormalizeUtils;
 import boss_tools_giselle_addon.common.inventory.container.GravityNormalizerContainer;
+import boss_tools_giselle_addon.common.util.GravityNormalizeUtils;
 import boss_tools_giselle_addon.config.AddonConfigs;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
