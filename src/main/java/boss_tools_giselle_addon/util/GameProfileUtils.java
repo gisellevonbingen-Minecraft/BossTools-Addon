@@ -15,7 +15,7 @@ public class GameProfileUtils
 {
 	public static final String WHITELIST_HOST = "textures.minecraft.net";
 
-	public static String toUrl(String hash)
+	public static String toWhitelistUrl(String hash)
 	{
 		return "http://" + WHITELIST_HOST + "/texture/" + hash;
 	}
@@ -32,7 +32,6 @@ public class GameProfileUtils
 			}
 			else
 			{
-				System.out.println("invalid host:" + url.getHost());
 				return gameProfile;
 			}
 
@@ -55,7 +54,7 @@ public class GameProfileUtils
 				}
 				else
 				{
-					return fillTexturesFromUrl(gameProfile, toUrl(input));
+					return fillTexturesFromUrl(gameProfile, toWhitelistUrl(input));
 				}
 
 			}
