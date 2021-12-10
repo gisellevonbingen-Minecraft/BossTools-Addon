@@ -4,7 +4,7 @@ import com.mojang.authlib.GameProfile;
 
 import boss_tools_giselle_addon.common.network.AddonNetwork;
 import boss_tools_giselle_addon.common.network.FlagEditMessageOpen;
-import boss_tools_giselle_addon.util.SkullUtils;
+import boss_tools_giselle_addon.common.util.SkullUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;

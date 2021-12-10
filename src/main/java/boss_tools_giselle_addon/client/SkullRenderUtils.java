@@ -2,8 +2,6 @@ package boss_tools_giselle_addon.client;
 
 import java.util.Map;
 
-import javax.annotation.Nullable;
-
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
@@ -29,11 +27,6 @@ public class SkullRenderUtils
 		Impl bufferSource = minecraft.renderBuffers().crumblingBufferSource();
 		ResourceLocation texture = registerSkinTexture(stack, bufferSource, gameProfile);
 
-		if (texture == null)
-		{
-			return;
-		}
-
 		stack.pushPose();
 		stack.translate(0.25D, 0.5D, 0.0D);
 		stack.scale(1.0F, -1.0F, 1.0F);
@@ -44,7 +37,6 @@ public class SkullRenderUtils
 		bufferSource.endBatch(renderType);
 	}
 
-	@Nullable
 	public static ResourceLocation registerSkinTexture(MatrixStack stack, IRenderTypeBuffer bufferSource, GameProfile gameProfile)
 	{
 		Minecraft minecraft = Minecraft.getInstance();

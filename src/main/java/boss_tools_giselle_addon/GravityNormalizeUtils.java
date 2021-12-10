@@ -1,6 +1,6 @@
 package boss_tools_giselle_addon;
 
-import boss_tools_giselle_addon.util.NBTUtils;
+import boss_tools_giselle_addon.common.util.NBTUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundNBT;
