@@ -24,7 +24,7 @@ public class JaopcaModuleComatTinkers implements IModule
 	@Override
 	public String getName()
 	{
-		return BossToolsAddon.MODID + "_compat_timkers";
+		return BossToolsAddon.MODID + "_compat_tinkers";
 	}
 
 	@Override
