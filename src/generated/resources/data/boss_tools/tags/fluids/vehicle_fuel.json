@@ -8,6 +8,18 @@
 	  {
          "id":"vehicle:fuelium",
          "required":false
+      },
+	  {
+         "id":"foreg:diesel",
+         "required":false
+      },
+	  {
+         "id":"foreg:biodiesel",
+         "required":false
+      },
+	  {
+         "id":"foreg:biofuel",
+         "required":false
       }
    ]
 }

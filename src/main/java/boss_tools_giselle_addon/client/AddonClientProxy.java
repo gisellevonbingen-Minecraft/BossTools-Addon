@@ -4,7 +4,6 @@ import boss_tools_giselle_addon.client.gui.AdvancedCompressorScreen;
 import boss_tools_giselle_addon.client.gui.ElectricBlastFurnaceScreen;
 import boss_tools_giselle_addon.client.gui.FuelLoaderScreen;
 import boss_tools_giselle_addon.client.gui.GravityNormalizerScreen;
-import boss_tools_giselle_addon.client.renderer.tileentity.FlagRenderer;
 import boss_tools_giselle_addon.client.renderer.tileentity.FuelLoaderRenderer;
 import boss_tools_giselle_addon.client.renderer.tileentity.GravityNormalizerRenderer;
 import boss_tools_giselle_addon.client.util.RenderHelper;
@@ -18,7 +17,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.mrscauthd.boss_tools.ModInnet;
 
 public class AddonClientProxy
 {
@@ -32,8 +30,6 @@ public class AddonClientProxy
 
 	public void onClientSetup(FMLClientSetupEvent event)
 	{
-		ClientRegistry.bindTileEntityRenderer(ModInnet.FLAG.get(), FlagRenderer::new);
-		
 		ClientRegistry.bindTileEntityRenderer(AddonTiles.FUEL_LOADER.get(), FuelLoaderRenderer::new);
 		ClientRegistry.bindTileEntityRenderer(AddonTiles.GRAVITY_NORMALIZER.get(), GravityNormalizerRenderer::new);
 	}
