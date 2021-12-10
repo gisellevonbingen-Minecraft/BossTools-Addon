@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.client;
+package boss_tools_giselle_addon.client.uti;
 
 import javax.annotation.Nullable;
 

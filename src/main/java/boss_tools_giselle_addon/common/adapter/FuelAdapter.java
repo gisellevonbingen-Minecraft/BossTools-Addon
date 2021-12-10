@@ -1,5 +1,7 @@
 package boss_tools_giselle_addon.common.adapter;
 
+import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
+
 public abstract class FuelAdapter<T> extends AbstractAdapter<T>
 {
 	public FuelAdapter(T target)
@@ -7,7 +9,5 @@ public abstract class FuelAdapter<T> extends AbstractAdapter<T>
 		super(target);
 	}
 
-	public abstract int getFuelSlot();
-
-	public abstract boolean canInsertFuel();
+	public abstract int fill(int amount, FluidAction action);
 }

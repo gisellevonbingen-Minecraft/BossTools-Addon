@@ -2,7 +2,7 @@ package boss_tools_giselle_addon.client.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import boss_tools_giselle_addon.client.ItemStackRenderer;
+import boss_tools_giselle_addon.client.uti.ItemStackRenderer;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;

@@ -1,13 +1,11 @@
 package boss_tools_giselle_addon.common.block;
 
 import boss_tools_giselle_addon.common.tile.FuelLoaderTileEntity;
-import boss_tools_giselle_addon.common.util.AnalogOutputSignalUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.items.IItemHandlerModifiable;
 
 public class FuelLoaderBlock extends AbstractMachineBlock<FuelLoaderTileEntity>
 {
@@ -30,8 +28,7 @@ public class FuelLoaderBlock extends AbstractMachineBlock<FuelLoaderTileEntity>
 	@Override
 	public int getAnalogOutputSignal(BlockState state, World level, BlockPos pos)
 	{
-		IItemHandlerModifiable handler = this.getTileEntity(level, pos).getOutputItemHandler();
-		return AnalogOutputSignalUtils.getAnalogOutputSignal(handler);
+		return this.getTileEntity(level, pos).isActivated() ? 15 : 0;
 	}
 
 }

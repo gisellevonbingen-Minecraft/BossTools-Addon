@@ -8,15 +8,12 @@ import boss_tools_giselle_addon.common.adapter.FuelAdapter;
 import boss_tools_giselle_addon.common.adapter.FuelAdapterCreateEntityEvent;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.fluid.FluidUtil3;
-import boss_tools_giselle_addon.common.inventory.ItemHandlerHelper2;
 import boss_tools_giselle_addon.common.inventory.container.FuelLoaderContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -25,10 +22,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.RangedWrapper;
 import net.mrscauthd.boss_tools.ModInnet;
 import net.mrscauthd.boss_tools.events.Methodes;
@@ -44,13 +38,8 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 	public static final int SLOT_FLUID_SOURCE = 0;
 	public static final int SLOT_FLUID_SINK = 1;
 
-	public static final int SLOTS_INPUT = 6;
-	public static final int SLOTS_OUTPUT = 6;
-
 	private FluidTank fluidTank;
 	private IItemHandlerModifiable fluidItemHandler;
-	private IItemHandlerModifiable inputItemHandler;
-	private IItemHandlerModifiable outputItemHandler;
 
 	public FuelLoaderTileEntity()
 	{
@@ -76,14 +65,12 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 
 		IItemHandlerModifiable itemHandler = this.getItemHandler();
 		this.fluidItemHandler = new RangedWrapper(itemHandler, this.getSlotFluidStart(), this.getSlotFluidEnd());
-		this.inputItemHandler = new RangedWrapper(itemHandler, this.getSlotInputStart(), this.getSlotInputEnd());
-		this.outputItemHandler = new RangedWrapper(itemHandler, this.getSlotOutputStart(), this.getSlotOutputEnd());
 	}
 
 	@Override
 	protected int getInitialInventorySize()
 	{
-		return super.getInitialInventorySize() + this.getSlotsFluid() + this.getSlotsInput() + this.getSlotsOutput();
+		return super.getInitialInventorySize() + this.getSlotsFluid();
 	}
 
 	@Override
@@ -122,17 +109,6 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 	{
 		super.getSlotsForFace(direction, slots);
 		slots.add(this.getSlotFluidSource());
-
-		for (int i = this.getSlotInputStart(); i < this.getSlotInputEnd(); i++)
-		{
-			slots.add(i);
-		}
-
-		for (int i = this.getSlotOutputStart(); i < this.getSlotOutputEnd(); i++)
-		{
-			slots.add(i);
-		}
-
 	}
 
 	@Override
@@ -146,14 +122,6 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 		{
 			FluidStack fluidStack = this.getFluidTank().getFluid();
 			return FluidUtil2.canFill(stack, fluidStack.getFluid()) == true;
-		}
-		else if (this.getSlotInputStart() <= index && index < this.getSlotInputEnd())
-		{
-			return stack.getItem() == Items.BUCKET;
-		}
-		else if (this.getSlotOutputStart() <= index && index < this.getSlotOutputEnd())
-		{
-			return direction == null;
 		}
 
 		return super.onCanInsertItem(index, stack, direction);
@@ -171,14 +139,6 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 			FluidStack fluidStack = this.getFluidTank().getFluid();
 			return FluidUtil2.canFill(stack, fluidStack.getFluid()) == false;
 		}
-		else if (this.getSlotInputStart() <= index && index < this.getSlotInputEnd())
-		{
-			return direction == null;
-		}
-		else if (this.getSlotOutputStart() <= index && index < this.getSlotOutputEnd())
-		{
-			return true;
-		}
 
 		return super.canTakeItemThroughFace(index, stack, direction);
 	}
@@ -194,7 +154,13 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 	protected void tickProcessing()
 	{
 		this.processTank();
-		this.exchangeFuelItemAround();
+		boolean worked = this.exchangeFuelItemAround();
+
+		if (worked == true)
+		{
+			this.setProcessedInThisTick();
+		}
+
 	}
 
 	public void processTank()
@@ -281,73 +247,25 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 			return false;
 		}
 
-		IItemHandler _itemHandler = adapter.getTarget().getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null);
+		FluidTank fluidTank = this.getFluidTank();
+		FluidStack draining = fluidTank.getFluid();
 
-		if (_itemHandler instanceof IItemHandlerModifiable)
+		if (draining.isEmpty() == true)
 		{
-			IItemHandlerModifiable itemHandler = (IItemHandlerModifiable) _itemHandler;
-			int fuelSlot = adapter.getFuelSlot();
-			this.takeEmptyItem(adapter, itemHandler, fuelSlot);
-
-			if (adapter.canInsertFuel() == true)
-			{
-				this.giveFullitem(adapter, itemHandler, fuelSlot);
-			}
-
+			return false;
 		}
 
-		return false;
-	}
+		int filling = adapter.fill(draining.getAmount(), FluidAction.SIMULATE);
 
-	public void giveFullitem(FuelAdapter<? extends Entity> adapter, IItemHandlerModifiable itemHandler, int fuelSlot)
-	{
-		ItemStack stackInSlot = itemHandler.getStackInSlot(fuelSlot);
-
-		if (stackInSlot.isEmpty() == false)
+		if (filling <= 0)
 		{
-			return;
+			return false;
 		}
 
-		IFluidHandler fluidTank = this.getFluidTank();
+		fluidTank.drain(filling, FluidAction.EXECUTE);
+		adapter.fill(filling, FluidAction.EXECUTE);
 
-		for (int i = 0; i < fluidTank.getTanks(); i++)
-		{
-			FluidStack tankFluidStack = fluidTank.getFluidInTank(i);
-
-			if (tankFluidStack.isEmpty() == true)
-			{
-				continue;
-			}
-
-			Fluid tankFluid = tankFluidStack.getFluid();
-			FluidStack fluidStack = new FluidStack(tankFluid, FluidUtil2.BUCKET_SIZE);
-			Item bucket = Items.BUCKET;
-
-			IItemHandlerModifiable inputInventory = this.getInputItemHandler();
-			int inputSlot = ItemHandlerHelper2.indexOf(inputInventory, bucket);
-
-			if (inputSlot > -1 && fluidTank.drain(fluidStack, FluidAction.SIMULATE).getAmount() == fluidStack.getAmount())
-			{
-				inputInventory.extractItem(inputSlot, 1, false);
-				itemHandler.setStackInSlot(fuelSlot, new ItemStack(tankFluid.getBucket()));
-				fluidTank.drain(fluidStack, FluidAction.EXECUTE);
-				break;
-			}
-
-		}
-
-	}
-
-	public void takeEmptyItem(FuelAdapter<? extends Entity> adapter, IItemHandlerModifiable itemHandler, int fuelSlot)
-	{
-		ItemStack stackInSlot = itemHandler.getStackInSlot(fuelSlot);
-
-		if (FluidUtil3.canDrainStack(stackInSlot, this::testFluidStack) == false)
-		{
-			ItemStack remain = ItemHandlerHelper.insertItemStacked(this.getOutputItemHandler(), stackInSlot, false);
-			itemHandler.setStackInSlot(fuelSlot, remain);
-		}
-
+		return true;
 	}
 
 	public boolean testFluidStack(FluidStack fluidStack)
@@ -390,49 +308,9 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 		return this.getSlotFluidStart() + SLOT_FLUID_SINK;
 	}
 
-	public int getSlotInputStart()
-	{
-		return this.getSlotFluidEnd();
-	}
-
-	public int getSlotInputEnd()
-	{
-		return this.getSlotInputStart() + this.getSlotsInput();
-	}
-
-	public int getSlotsInput()
-	{
-		return SLOTS_INPUT;
-	}
-
-	public int getSlotOutputStart()
-	{
-		return this.getSlotInputEnd();
-	}
-
-	public int getSlotOutputEnd()
-	{
-		return this.getSlotOutputStart() + this.getSlotsOutput();
-	}
-
-	public int getSlotsOutput()
-	{
-		return SLOTS_OUTPUT;
-	}
-
 	public IItemHandlerModifiable getFluidItemHandler()
 	{
 		return this.fluidItemHandler;
-	}
-
-	public IItemHandlerModifiable getInputItemHandler()
-	{
-		return this.inputItemHandler;
-	}
-
-	public IItemHandlerModifiable getOutputItemHandler()
-	{
-		return this.outputItemHandler;
 	}
 
 }
