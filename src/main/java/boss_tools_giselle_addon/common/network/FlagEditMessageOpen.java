@@ -2,7 +2,7 @@ package boss_tools_giselle_addon.common.network;
 
 import javax.annotation.Nullable;
 
-import boss_tools_giselle_addon.client.uti.FlagEditClientUtils;
+import boss_tools_giselle_addon.client.util.FlagEditClientUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.mrscauthd.boss_tools.flag.FlagTileEntity;

@@ -2,7 +2,7 @@ package boss_tools_giselle_addon.client.renderer.tileentity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import boss_tools_giselle_addon.client.uti.RenderHelper;
+import boss_tools_giselle_addon.client.util.RenderHelper;
 import boss_tools_giselle_addon.common.tile.GravityNormalizerTileEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;

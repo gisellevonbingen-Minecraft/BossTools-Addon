@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.client.uti;
+package boss_tools_giselle_addon.client.util;
 
 import java.util.Map;
 
