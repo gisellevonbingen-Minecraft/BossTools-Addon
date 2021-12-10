@@ -1,25 +1,16 @@
 {
-   "replace":false,
-   "values":[
-      {
-         "id":"thermal:refined_fuel",
-         "required":false
-      },
-	  {
-         "id":"vehicle:fuelium",
-         "required":false
-      },
-	  {
-         "id":"forge:diesel",
-         "required":false
-      },
-	  {
-         "id":"forge:biodiesel",
-         "required":false
-      },
-	  {
-         "id":"forge:biofuel",
-         "required":false
-      }
-   ]
+	"replace": false,
+	"values": [
+		{
+			"id": "thermal:refined_fuel",
+			"required": false
+		},
+		{
+			"id": "vehicle:fuelium",
+			"required": false
+		},
+		"#forge:diesel",
+		"#forge:biodiesel",
+		"#forge:biofuel"
+	]
 }
