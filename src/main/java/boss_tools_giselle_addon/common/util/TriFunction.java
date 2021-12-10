@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.util;
+package boss_tools_giselle_addon.common.util;
 
 @FunctionalInterface
 public interface TriFunction<T, U, V, R>

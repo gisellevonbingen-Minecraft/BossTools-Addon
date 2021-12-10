@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import boss_tools_giselle_addon.BossToolsAddon;
-import boss_tools_giselle_addon.util.ReflectionUtils;
+import boss_tools_giselle_addon.common.util.ReflectionUtils;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.text.ILangEntry;
 import mekanism.common.content.gear.Modules;

@@ -6,7 +6,7 @@ import boss_tools_giselle_addon.common.compat.mekanism.gear.mekasuit.ModuleGravi
 import boss_tools_giselle_addon.common.compat.mekanism.gear.mekasuit.ModuleSpaceBreathingUnit;
 import boss_tools_giselle_addon.common.compat.mekanism.gear.mekasuit.ModuleSpaceFireProofUnit;
 import boss_tools_giselle_addon.common.compat.mekanism.gear.mekasuit.ModuleVenusAcidProofUnit;
-import boss_tools_giselle_addon.config.AddonConfigs;
+import boss_tools_giselle_addon.common.config.AddonConfigs;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.content.gear.Modules;
 import net.minecraft.entity.LivingEntity;

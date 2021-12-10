@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import boss_tools_giselle_addon.util.ReflectionUtils;
+import boss_tools_giselle_addon.common.util.ReflectionUtils;
 import mekanism.common.capabilities.chemical.item.RateLimitMultiTankGasHandler.GasTankSpec;
 import mekanism.common.item.gear.ItemMekaSuitArmor;
 

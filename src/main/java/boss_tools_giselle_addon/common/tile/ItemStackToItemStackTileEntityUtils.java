@@ -2,7 +2,7 @@ package boss_tools_giselle_addon.common.tile;
 
 import java.lang.reflect.Field;
 
-import boss_tools_giselle_addon.util.ReflectionUtils;
+import boss_tools_giselle_addon.common.util.ReflectionUtils;
 import net.mrscauthd.boss_tools.inventory.StackCacher;
 import net.mrscauthd.boss_tools.machines.tile.ItemStackToItemStackTileEntity;
 

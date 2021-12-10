@@ -1,6 +1,6 @@
 package boss_tools_giselle_addon.common.compat.mekanism.gear.mekasuit;
 
-import boss_tools_giselle_addon.config.AddonConfigs;
+import boss_tools_giselle_addon.common.config.AddonConfigs;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.content.gear.Modules.ModuleData;
 import mekanism.common.content.gear.mekasuit.ModuleMekaSuit;

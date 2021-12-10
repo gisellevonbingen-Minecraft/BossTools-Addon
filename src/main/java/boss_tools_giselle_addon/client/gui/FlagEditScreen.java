@@ -13,7 +13,7 @@ import boss_tools_giselle_addon.BossToolsAddon;
 import boss_tools_giselle_addon.client.SkullRenderUtils;
 import boss_tools_giselle_addon.common.network.AddonNetwork;
 import boss_tools_giselle_addon.common.network.FlagEditMessageSave;
-import boss_tools_giselle_addon.util.GameProfileUtils;
+import boss_tools_giselle_addon.common.util.GameProfileUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
