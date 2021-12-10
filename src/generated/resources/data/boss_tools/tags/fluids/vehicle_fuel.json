@@ -10,15 +10,15 @@
          "required":false
       },
 	  {
-         "id":"foreg:diesel",
+         "id":"forge:diesel",
          "required":false
       },
 	  {
-         "id":"foreg:biodiesel",
+         "id":"forge:biodiesel",
          "required":false
       },
 	  {
-         "id":"foreg:biofuel",
+         "id":"forge:biofuel",
          "required":false
       }
    ]

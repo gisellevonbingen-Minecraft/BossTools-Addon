@@ -45,7 +45,7 @@
   
   "jei.category.boss_tools_giselle_addon.rolling": "Compressor - Rolling",
   "jei.category.boss_tools_giselle_addon.extruding": "Compressor - Extruding",
-  "jei.info.boss_tools_giselle_addon.fuel_loader": "Internal fluid tank can receive '%2$s' tagged fluid.\nThen give filled bucket to 'Rover' or 'Rockets' within %1$s blocks.\nAnd take empty bucket.",
+  "jei.info.boss_tools_giselle_addon.fuel_loader": "Internal fluid tank can receive '%2$s' tagged fluid.\nThen give fuel to 'Rover' or 'Rockets' within %1$s blocks.",
   "jei.info.boss_tools_giselle_addon.gravity_normalizer": "Normalize entity's gravity like to overworld within range",
   
   "_eof": "eof"
