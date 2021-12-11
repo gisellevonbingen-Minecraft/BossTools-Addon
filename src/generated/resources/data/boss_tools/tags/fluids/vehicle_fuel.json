@@ -9,6 +9,10 @@
 			"id": "vehicle:fuelium",
 			"required": false
 		},
+		{
+			"id": "car:bio_diesel",
+			"required": false
+		},
 		"#forge:diesel",
 		"#forge:biodiesel",
 		"#forge:biofuel"
