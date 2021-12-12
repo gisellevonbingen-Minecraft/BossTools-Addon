@@ -36,9 +36,9 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 	}
 
 	@Override
-	public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
+	public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks)
 	{
-		super.render(matrix, mouseX, mouseY, partialTicks);
+		super.render(stack, mouseX, mouseY, partialTicks);
 		this.refreshChnageModeButtonText();
 
 		if (this.getChangeModeButton().isHovered() == true)
@@ -47,7 +47,7 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 			int direction = this.getCyclicDirection();
 			ICompressorMode cyclicMode = tileEntity.getCyclicMode(direction);
 			String text = direction > 0 ? "next" : "prev";
-			this.renderTooltip(matrix, new TranslationTextComponent(this.rtl("change." + text), cyclicMode.getText()), mouseX, mouseY);
+			this.renderTooltip(stack, new TranslationTextComponent(this.rtl("change." + text), cyclicMode.getText()), mouseX, mouseY);
 		}
 
 	}
@@ -59,12 +59,12 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 	}
 
 	@Override
-	protected void renderLabels(MatrixStack matrix, int mouseX, int mouseY)
+	protected void renderLabels(MatrixStack stack, int mouseX, int mouseY)
 	{
-		super.renderLabels(matrix, mouseX, mouseY);
+		super.renderLabels(stack, mouseX, mouseY);
 
 		ItemIconButton button = this.getChangeModeButton();
-		this.font.draw(matrix, this.getMenu().getTileEntity().getMode().getText(), button.x + button.getWidth() + 2 - this.leftPos, button.y + button.getHeight() - this.font.lineHeight - this.topPos, 4210752);
+		this.font.draw(stack, this.getMenu().getTileEntity().getMode().getText(), button.x + button.getWidth() + 2 - this.leftPos, button.y + button.getHeight() - this.font.lineHeight - this.topPos, 4210752);
 	}
 
 	public void refreshChnageModeButtonText()

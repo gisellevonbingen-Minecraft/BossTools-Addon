@@ -24,9 +24,9 @@ public class ItemIconButton extends Button
 	}
 
 	@Override
-	public void renderButton(MatrixStack matrix, int mouseX, int mouseY, float p_230431_4_)
+	public void renderButton(MatrixStack stack, int mouseX, int mouseY, float p_230431_4_)
 	{
-		super.renderButton(matrix, mouseX, mouseY, p_230431_4_);
+		super.renderButton(stack, mouseX, mouseY, p_230431_4_);
 		ItemStackRenderer.render(this.getItemStack(), this.x + (this.getWidth() - 16) / 2, this.y + (this.getHeight() - 16) / 2);
 	}
 

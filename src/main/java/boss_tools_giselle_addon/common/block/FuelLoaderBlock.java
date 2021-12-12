@@ -5,15 +5,15 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
 
 public class FuelLoaderBlock extends AbstractMachineBlock<FuelLoaderTileEntity>
 {
 	public FuelLoaderBlock(Properties properties)
 	{
-		super(properties.strength(3.0F).harvestTool(ToolType.PICKAXE));
+		super(properties);
 	}
 
+	@Override
 	public FuelLoaderTileEntity createTileEntity(BlockState state, IBlockReader level)
 	{
 		return new FuelLoaderTileEntity();

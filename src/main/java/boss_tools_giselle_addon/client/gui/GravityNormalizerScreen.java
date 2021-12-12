@@ -61,37 +61,37 @@ public class GravityNormalizerScreen extends AbstractMachineScreen<GravityNormal
 	}
 
 	@Override
-	protected void renderContents(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
+	protected void renderContents(MatrixStack stack, int mouseX, int mouseY, float partialTicks)
 	{
-		super.renderContents(matrix, mouseX, mouseY, partialTicks);
+		super.renderContents(stack, mouseX, mouseY, partialTicks);
 
 		GravityNormalizerTileEntity tileEntity = this.getMenu().getTileEntity();
-		this.renderEnergy(matrix, mouseX, mouseY, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, tileEntity.getPrimaryEnergyStorage());
+		this.renderEnergy(stack, mouseX, mouseY, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, tileEntity.getPrimaryEnergyStorage());
 	}
 
 	@Override
-	protected void renderBg(MatrixStack matrix, float partialTicks, int mouseX, int mouseY)
+	protected void renderBg(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
 	{
-		super.renderBg(matrix, partialTicks, mouseX, mouseY);
+		super.renderBg(stack, partialTicks, mouseX, mouseY);
 
 		this.minecraft.getTextureManager().bind(TEXTURE);
-		this.blit(matrix, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		this.blit(stack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 	}
 
 	@Override
-	protected void renderLabels(MatrixStack matrix, int mouseX, int mouseY)
+	protected void renderLabels(MatrixStack stack, int mouseX, int mouseY)
 	{
-		super.renderLabels(matrix, mouseX, mouseY);
+		super.renderLabels(stack, mouseX, mouseY);
 
-		matrix.pushPose();
+		stack.pushPose();
 		float usingScale = 0.8F;
-		matrix.scale(usingScale, usingScale, usingScale);
+		stack.scale(usingScale, usingScale, usingScale);
 		GravityNormalizerTileEntity tileEntity = this.getMenu().getTileEntity();
 		ITextComponent usingText = GaugeTextHelper.getUsingText(GaugeValueHelper.getEnergy(tileEntity.getEnergyPowerSystem().getPowerForOperation())).build();
 		int usingWidth = this.font.width(usingText);
 
-		this.font.draw(matrix, usingText, (int) ((this.imageWidth - 5) / usingScale) - usingWidth, (int) (this.inventoryLabelY / usingScale), 0x333333);
-		matrix.popPose();
+		this.font.draw(stack, usingText, (int) ((this.imageWidth - 5) / usingScale) - usingWidth, (int) (this.inventoryLabelY / usingScale), 0x333333);
+		stack.popPose();
 	}
 
 	@Override

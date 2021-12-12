@@ -27,22 +27,22 @@ public class ItemStackToItemStackScreen<C extends ItemStackToItemStackContainer<
 	}
 
 	@Override
-	protected void renderContents(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
+	protected void renderContents(MatrixStack stack, int mouseX, int mouseY, float partialTicks)
 	{
-		super.renderContents(matrix, mouseX, mouseY, partialTicks);
+		super.renderContents(stack, mouseX, mouseY, partialTicks);
 
 		ItemStackToItemStackTileEntity tileEntity = this.getMenu().getTileEntity();
-		this.renderEnergy(matrix, mouseX, mouseY, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, tileEntity.getPrimaryEnergyStorage());
-		GuiHelper.drawArrow(matrix, this.leftPos + ARROW_LEFT, this.topPos + ARROW_TOP, tileEntity.getTimerRatio());
+		this.renderEnergy(stack, mouseX, mouseY, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, tileEntity.getPrimaryEnergyStorage());
+		GuiHelper.drawArrow(stack, this.leftPos + ARROW_LEFT, this.topPos + ARROW_TOP, tileEntity.getTimerRatio());
 	}
 
 	@Override
-	protected void renderBg(MatrixStack matrix, float partialTicks, int mouseX, int mouseY)
+	protected void renderBg(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
 	{
-		super.renderBg(matrix, partialTicks, mouseX, mouseY);
+		super.renderBg(stack, partialTicks, mouseX, mouseY);
 
 		this.minecraft.getTextureManager().bind(TEXTURE);
-		this.blit(matrix, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		this.blit(stack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 	}
 
 }

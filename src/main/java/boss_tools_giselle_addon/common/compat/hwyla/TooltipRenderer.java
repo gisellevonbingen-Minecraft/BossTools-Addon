@@ -27,13 +27,13 @@ public class TooltipRenderer implements ITooltipRenderer
 	public void draw(CompoundNBT compound, ICommonAccessor accessor, int x, int y)
 	{
 		ListNBT list = HwylaPlugin.get(compound);
-		MatrixStack matrix = new MatrixStack();
+		MatrixStack stack = new MatrixStack();
 
 		for (int i = 0; i < list.size(); i++)
 		{
 			IGaugeValue value = GaugeValueSerializer.Serializer.deserialize(list.getCompound(i));
 			GaugeValueRenderer renderer = new GaugeValueRenderer(value);
-			renderer.render(matrix, x + 1, y);
+			renderer.render(stack, x + 1, y);
 			y += renderer.getHeight() + 1;
 		}
 

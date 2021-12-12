@@ -49,26 +49,26 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 		return guiHelper.createDrawable(BACKGROUND_LOCATION, 0, 0, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
 	}
 
-	public void draw(R recipe, MatrixStack matrix, double mouseX, double mouseY)
+	public void draw(R recipe, MatrixStack stack, double mouseX, double mouseY)
 	{
-		super.draw(recipe, matrix, mouseX, mouseY);
+		super.draw(recipe, stack, mouseX, mouseY);
 
-		this.drawArrow(recipe, matrix);
-		this.drawText(recipe, matrix);
+		this.drawArrow(recipe, stack);
+		this.drawText(recipe, stack);
 	}
 
-	public void drawArrow(R recipe, MatrixStack matrix)
+	public void drawArrow(R recipe, MatrixStack stack)
 	{
 		int cookTime = recipe.getCookTime();
 		int arrowLeft = this.getArrowLeft();
 		int arrowTop = this.getArrowTop();
-		this.cachedArrows.getUnchecked(Integer.valueOf(cookTime)).draw(matrix, arrowLeft, arrowTop);
+		this.cachedArrows.getUnchecked(Integer.valueOf(cookTime)).draw(stack, arrowLeft, arrowTop);
 	}
 
-	public void drawText(R recipe, MatrixStack matrix)
+	public void drawText(R recipe, MatrixStack stack)
 	{
 		int cookTime = recipe.getCookTime();
-		net.mrscauthd.boss_tools.jei.JeiPlugin.drawTextTime(matrix, this.getBackground(), cookTime);
+		net.mrscauthd.boss_tools.jei.JeiPlugin.drawTextTime(stack, this.getBackground(), cookTime);
 	}
 
 	@Override

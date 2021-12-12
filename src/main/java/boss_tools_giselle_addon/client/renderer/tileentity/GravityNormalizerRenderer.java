@@ -24,7 +24,7 @@ public class GravityNormalizerRenderer extends TileEntityRenderer<GravityNormali
 	}
 
 	@Override
-	public void render(GravityNormalizerTileEntity tileEntity, float partialTick, MatrixStack matrix, IRenderTypeBuffer renderer, int light, int overlayLight)
+	public void render(GravityNormalizerTileEntity tileEntity, float partialTick, MatrixStack stack, IRenderTypeBuffer renderer, int light, int overlayLight)
 	{
 		if (tileEntity.isWorkingAreaVisible() == true)
 		{
@@ -38,7 +38,7 @@ public class GravityNormalizerRenderer extends TileEntityRenderer<GravityNormali
 			int range = tileEntity.getRange();
 
 			AxisAlignedBB workingArea = tileEntity.getWorkingArea(BlockPos.ZERO, range);
-			RenderHelper.renderBox(matrix, renderer, workingArea, rl, gl, bl, r, g, b);
+			RenderHelper.renderBox(stack, renderer, workingArea, rl, gl, bl, r, g, b);
 		}
 
 	}

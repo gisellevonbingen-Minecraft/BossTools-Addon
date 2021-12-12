@@ -52,21 +52,21 @@ public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainer>
 	}
 
 	@Override
-	public void renderContents(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
+	public void renderContents(MatrixStack stack, int mouseX, int mouseY, float partialTicks)
 	{
-		super.renderContents(matrix, mouseX, mouseY, partialTicks);
+		super.renderContents(stack, mouseX, mouseY, partialTicks);
 
 		FuelLoaderTileEntity tileEntity = this.getMenu().getTileEntity();
-		this.renderTank(matrix, mouseX, mouseY, this.leftPos + TANK_LEFT, this.topPos + TANK_TOP, tileEntity.getFluidTank());
+		this.renderTank(stack, mouseX, mouseY, this.leftPos + TANK_LEFT, this.topPos + TANK_TOP, tileEntity.getFluidTank());
 	}
 
 	@Override
-	protected void renderBg(MatrixStack matrix, float partialTicks, int mouseX, int mouseY)
+	protected void renderBg(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
 	{
-		super.renderBg(matrix, partialTicks, mouseX, mouseY);
+		super.renderBg(stack, partialTicks, mouseX, mouseY);
 
 		this.minecraft.getTextureManager().bind(TEXTURE);
-		this.blit(matrix, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		this.blit(stack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 	}
 
 }

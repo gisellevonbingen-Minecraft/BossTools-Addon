@@ -24,7 +24,7 @@ public class FuelLoaderRenderer extends TileEntityRenderer<FuelLoaderTileEntity>
 	}
 
 	@Override
-	public void render(FuelLoaderTileEntity tileEntity, float partialTick, MatrixStack matrix, IRenderTypeBuffer renderer, int light, int overlayLight)
+	public void render(FuelLoaderTileEntity tileEntity, float partialTick, MatrixStack stack, IRenderTypeBuffer renderer, int light, int overlayLight)
 	{
 		if (tileEntity.isWorkingAreaVisible() == true)
 		{
@@ -38,7 +38,7 @@ public class FuelLoaderRenderer extends TileEntityRenderer<FuelLoaderTileEntity>
 			int range = tileEntity.getWorkingRange();
 
 			AxisAlignedBB workingArea = tileEntity.getWorkingArea(BlockPos.ZERO, range);
-			RenderHelper.renderBox(matrix, renderer, workingArea, rl, gl, bl, r, g, b);
+			RenderHelper.renderBox(stack, renderer, workingArea, rl, gl, bl, r, g, b);
 		}
 
 	}

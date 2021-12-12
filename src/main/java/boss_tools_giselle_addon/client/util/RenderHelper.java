@@ -22,9 +22,9 @@ public class RenderHelper
 	public static final ResourceLocation TILE_SURFACE = BossToolsAddon.rl("block/tile_surface");
 	private static TextureAtlasSprite atlass = null;
 
-	public static void renderBox(MatrixStack matrix, IRenderTypeBuffer buffer, AxisAlignedBB bounds, int lineR, int lineG, int lineB, int surfaceR, int surfaceG, int surfaceB)
+	public static void renderBox(MatrixStack stack, IRenderTypeBuffer buffer, AxisAlignedBB bounds, int lineR, int lineG, int lineB, int surfaceR, int surfaceG, int surfaceB)
 	{
-		Entry last = matrix.last();
+		Entry last = stack.last();
 		Matrix3f normal = last.normal();
 		Matrix4f matrix4f = last.pose();
 

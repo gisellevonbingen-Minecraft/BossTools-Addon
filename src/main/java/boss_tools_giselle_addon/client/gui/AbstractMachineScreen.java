@@ -110,14 +110,14 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 	}
 
 	@Override
-	public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
+	public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks)
 	{
-		this.renderBackground(matrix);
-		super.render(matrix, mouseX, mouseY, partialTicks);
+		this.renderBackground(stack);
+		super.render(stack, mouseX, mouseY, partialTicks);
 
 		RenderSystem.enableBlend();
-		this.renderContents(matrix, mouseX, mouseY, partialTicks);
-		this.renderTooltip(matrix, mouseX, mouseY);
+		this.renderContents(stack, mouseX, mouseY, partialTicks);
+		this.renderTooltip(stack, mouseX, mouseY);
 
 		if (this.hasWorkingArea() == true)
 		{
@@ -126,18 +126,18 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 
 	}
 
-	protected void renderContents(MatrixStack matrix, int mouseX, int mouseY, float partialTicks)
+	protected void renderContents(MatrixStack stack, int mouseX, int mouseY, float partialTicks)
 	{
 
 	}
 
 	@Override
-	protected void renderBg(MatrixStack matrix, float partialTicks, int mouseX, int mouseY)
+	protected void renderBg(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
 	{
 
 	}
 
-	protected void drawWorkingAreaText(MatrixStack matrix, @Nullable AxisAlignedBB workingArea, Widget left)
+	protected void drawWorkingAreaText(MatrixStack stack, @Nullable AxisAlignedBB workingArea, Widget left)
 	{
 		if (workingArea == null)
 		{
@@ -154,50 +154,50 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 		int workignAreaTop = -workingAreaHeight;
 		int workingAreaOffsetX = workingAreaLeft;
 		this.minecraft.getTextureManager().bind(BossToolsAddon.rl("textures/gui/workingarea_side.png"));
-		AbstractGui.blit(matrix, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
+		AbstractGui.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
 		this.minecraft.getTextureManager().bind(BossToolsAddon.rl("textures/gui/workingarea_middle.png"));
-		AbstractGui.blit(matrix, workingAreaOffsetX, workignAreaTop, 0, 0, workingAreaWidth, workingAreaHeight, workingAreaWidth, workingAreaHeight);
+		AbstractGui.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, workingAreaWidth, workingAreaHeight, workingAreaWidth, workingAreaHeight);
 		workingAreaOffsetX += workingAreaWidth;
 		this.minecraft.getTextureManager().bind(BossToolsAddon.rl("textures/gui/workingarea_side.png"));
-		AbstractGui.blit(matrix, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
+		AbstractGui.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
 
-		this.font.draw(matrix, workingAreaText, workingAreaLeft + sideWidth + sidePadding, workignAreaTop + 2, 0x303030);
+		this.font.draw(stack, workingAreaText, workingAreaLeft + sideWidth + sidePadding, workignAreaTop + 2, 0x303030);
 	}
 
 	@Override
-	protected void renderLabels(MatrixStack matrix, int mouseX, int mouseY)
+	protected void renderLabels(MatrixStack stack, int mouseX, int mouseY)
 	{
-		super.renderLabels(matrix, mouseX, mouseY);
+		super.renderLabels(stack, mouseX, mouseY);
 
 		if (this.hasWorkingArea() == true)
 		{
 			AxisAlignedBB workingArea = this.getWorkingArea();
-			this.drawWorkingAreaText(matrix, workingArea, this.getWorkingAreaVisibleButton());
+			this.drawWorkingAreaText(stack, workingArea, this.getWorkingAreaVisibleButton());
 		}
 
 	}
 
-	protected void renderEnergy(MatrixStack matrix, int mouseX, int mouseY, int left, int top, IEnergyStorage energyStorage)
+	protected void renderEnergy(MatrixStack stack, int mouseX, int mouseY, int left, int top, IEnergyStorage energyStorage)
 	{
-		GuiHelper.drawEnergy(matrix, left, top, energyStorage);
+		GuiHelper.drawEnergy(stack, left, top, energyStorage);
 
 		if (GuiHelper.isHover(GuiHelper.getEnergyBounds(left, top), mouseX, mouseY) == true)
 		{
-			this.renderTooltip(matrix, GaugeTextHelper.getStorageText(GaugeValueHelper.getEnergy(energyStorage)).build(), mouseX, mouseY);
+			this.renderTooltip(stack, GaugeTextHelper.getStorageText(GaugeValueHelper.getEnergy(energyStorage)).build(), mouseX, mouseY);
 		}
 
 	}
 
-	protected void renderTank(MatrixStack matrix, int mouseX, int mouseY, int left, int top, FluidTank tank)
+	protected void renderTank(MatrixStack stack, int mouseX, int mouseY, int left, int top, FluidTank tank)
 	{
 		FluidStack fluidInTank = tank.getFluid();
-		GuiHelper.drawFluidTank(matrix, left, top, fluidInTank, tank.getCapacity());
+		GuiHelper.drawFluidTank(stack, left, top, fluidInTank, tank.getCapacity());
 
 		if (GuiHelper.isHover(GuiHelper.getFluidTankBounds(left, top), mouseX, mouseY) == true)
 		{
-			this.renderTooltip(matrix, GaugeTextHelper.getStorageText(GaugeValueHelper.getFluid(tank)).build(), mouseX, mouseY);
+			this.renderTooltip(stack, GaugeTextHelper.getStorageText(GaugeValueHelper.getFluid(tank)).build(), mouseX, mouseY);
 		}
 
 	}
