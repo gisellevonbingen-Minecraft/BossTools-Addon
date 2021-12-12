@@ -26,9 +26,9 @@ public class GravityNormalizerScreen extends AbstractMachineScreen<GravityNormal
 	private Button workingAreaPlusButton;
 	private Button workingAreaMinusButton;
 
-	public GravityNormalizerScreen(GravityNormalizerContainer container, PlayerInventory inv, ITextComponent text)
+	public GravityNormalizerScreen(GravityNormalizerContainer container, PlayerInventory inventory, ITextComponent text)
 	{
-		super(container, inv, text);
+		super(container, inventory, text);
 		this.imageWidth = 176;
 		this.imageHeight = 166;
 		this.inventoryLabelY = this.imageHeight - 94;

@@ -65,9 +65,9 @@ public class FlagEditScreen extends Screen
 		this(tileEntity, language("title"));
 	}
 
-	public FlagEditScreen(FlagTileEntity tileEntity, ITextComponent title)
+	public FlagEditScreen(FlagTileEntity tileEntity, ITextComponent text)
 	{
-		super(title);
+		super(text);
 		this.tileEntity = tileEntity;
 		GameProfile gameProfile = tileEntity.getPlayerProfile();
 
@@ -319,7 +319,7 @@ public class FlagEditScreen extends Screen
 	@Nullable
 	public GameProfile getGameProfile()
 	{
-		return gameProfile;
+		return this.gameProfile;
 	}
 
 	public void setGameProfile(@Nullable GameProfile gameProfile)

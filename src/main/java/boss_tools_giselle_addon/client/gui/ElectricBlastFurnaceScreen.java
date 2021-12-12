@@ -6,9 +6,9 @@ import net.minecraft.util.text.ITextComponent;
 
 public class ElectricBlastFurnaceScreen extends ItemStackToItemStackScreen<ElectricBlastFurnaceContainer>
 {
-	public ElectricBlastFurnaceScreen(ElectricBlastFurnaceContainer container, PlayerInventory inv, ITextComponent text)
+	public ElectricBlastFurnaceScreen(ElectricBlastFurnaceContainer container, PlayerInventory inventory, ITextComponent text)
 	{
-		super(container, inv, text);
+		super(container, inventory, text);
 	}
 
 }

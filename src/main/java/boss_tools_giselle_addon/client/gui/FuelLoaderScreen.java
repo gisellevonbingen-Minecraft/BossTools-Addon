@@ -18,9 +18,9 @@ public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainer>
 	public static final int TANK_LEFT = 71;
 	public static final int TANK_TOP = 27;
 
-	public FuelLoaderScreen(FuelLoaderContainer container, PlayerInventory inv, ITextComponent text)
+	public FuelLoaderScreen(FuelLoaderContainer container, PlayerInventory inventory, ITextComponent text)
 	{
-		super(container, inv, text);
+		super(container, inventory, text);
 		this.imageWidth = 176;
 		this.imageHeight = 182;
 		this.inventoryLabelY = this.imageHeight - 94;
