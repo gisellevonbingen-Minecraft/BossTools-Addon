@@ -14,15 +14,15 @@
 			"required": false
 		},
 		{
-			"id": "#forge:diesel",
+			"id": "immersivepetroleum:diesel",
 			"required": false
 		},
 		{
-			"id": "#forge:biodiesel",
+			"id": "immersiveengineering:biodiesel",
 			"required": false
 		},
 		{
-			"id": "#forge:biofuel",
+			"id": "industrialforegoing:biofuel",
 			"required": false
 		}
 	]
