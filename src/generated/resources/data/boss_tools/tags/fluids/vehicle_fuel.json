@@ -13,8 +13,17 @@
 			"id": "car:bio_diesel",
 			"required": false
 		},
-		"#forge:diesel",
-		"#forge:biodiesel",
-		"#forge:biofuel"
+		{
+			"id": "#forge:diesel",
+			"required": false
+		},
+		{
+			"id": "#forge:biodiesel",
+			"required": false
+		},
+		{
+			"id": "#forge:biofuel",
+			"required": false
+		}
 	]
 }
