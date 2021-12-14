@@ -36,6 +36,8 @@ public abstract class RecipeCategoryRecipeType<T extends IRecipeType<? extends R
 	@Override
 	public void registerRecipes(IRecipeRegistration registration)
 	{
+		super.registerRecipes(registration);
+
 		Minecraft minecraft = Minecraft.getInstance();
 		ClientWorld level = minecraft.level;
 		RecipeManager recipeManager = level.getRecipeManager();
