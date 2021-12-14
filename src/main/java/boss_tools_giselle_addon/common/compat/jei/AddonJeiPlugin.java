@@ -64,7 +64,7 @@ public class AddonJeiPlugin implements IModPlugin
 	private List<RecipeCategory<?>> categoires;
 	private RecipeCategory<RollingRecipe> rollingCategory;
 	private RecipeCategory<ExtrudingRecipe> extrudingCategory;
-	private RecipeCategoryFuelLoader fuelLoader;
+	private RecipeCategoryFuelLoader fuelLoaderCategory;
 
 	private IDrawable fluidOverlay;
 
@@ -75,7 +75,7 @@ public class AddonJeiPlugin implements IModPlugin
 		this.categoires = new ArrayList<>();
 		this.categoires.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(RollingRecipe.class, AddonRecipes.ROLLING));
 		this.categoires.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(ExtrudingRecipe.class, AddonRecipes.EXTRUDING));
-		this.categoires.add(this.fuelLoader = new RecipeCategoryFuelLoader(Fluid.class));
+		this.categoires.add(this.fuelLoaderCategory = new RecipeCategoryFuelLoader(Fluid.class));
 
 		this.is2isRegistrations = new ArrayList<>();
 
@@ -194,7 +194,7 @@ public class AddonJeiPlugin implements IModPlugin
 
 	public RecipeCategoryFuelLoader getFuelLoaderCategory()
 	{
-		return this.fuelLoader;
+		return this.fuelLoaderCategory;
 	}
 
 	public IDrawable getFluidOverlay()
