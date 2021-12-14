@@ -20,7 +20,7 @@ import net.mrscauthd.boss_tools.gauge.GaugeValueSerializer;
 import net.mrscauthd.boss_tools.gauge.IGaugeValue;
 
 @WailaPlugin
-public class HwylaPlugin implements IWailaPlugin
+public class AddonHwylaPlugin implements IWailaPlugin
 {
 	public static final ResourceLocation TOOLTIP = BossToolsAddon.rl("hwlya_tooltip");
 	public static final ResourceLocation DATA_KEY = BossToolsAddon.rl("datakey");
@@ -51,13 +51,13 @@ public class HwylaPlugin implements IWailaPlugin
 
 	public static void apeendBody(List<ITextComponent> tooltip, CompoundNBT serverData)
 	{
-		ListNBT list = HwylaPlugin.get(serverData);
+		ListNBT list = AddonHwylaPlugin.get(serverData);
 
 		if (list.size() > 0)
 		{
 			CompoundNBT compound = new CompoundNBT();
-			HwylaPlugin.put(compound, list);
-			tooltip.add(new RenderableTextComponent(HwylaPlugin.TOOLTIP, compound));
+			AddonHwylaPlugin.put(compound, list);
+			tooltip.add(new RenderableTextComponent(AddonHwylaPlugin.TOOLTIP, compound));
 		}
 
 	}
@@ -65,13 +65,13 @@ public class HwylaPlugin implements IWailaPlugin
 	@Override
 	public void register(IRegistrar registrar)
 	{
-		registrar.registerBlockDataProvider(BlockDataProvider.INSTANCE, TileEntity.class);
-		registrar.registerComponentProvider(BlockDataProvider.INSTANCE, TooltipPosition.BODY, TileEntity.class);
+		registrar.registerBlockDataProvider(AddonBlockDataProvider.INSTANCE, TileEntity.class);
+		registrar.registerComponentProvider(AddonBlockDataProvider.INSTANCE, TooltipPosition.BODY, TileEntity.class);
 
-		registrar.registerEntityDataProvider(EntityDataProvider.INSTANCE, Entity.class);
-		registrar.registerComponentProvider(EntityDataProvider.INSTANCE, TooltipPosition.BODY, Entity.class);
+		registrar.registerEntityDataProvider(AddonEntityDataProvider.INSTANCE, Entity.class);
+		registrar.registerComponentProvider(AddonEntityDataProvider.INSTANCE, TooltipPosition.BODY, Entity.class);
 
-		registrar.registerTooltipRenderer(TOOLTIP, TooltipRenderer.INSTANCE);
+		registrar.registerTooltipRenderer(TOOLTIP, AddonTooltipRenderer.INSTANCE);
 	}
 
 }

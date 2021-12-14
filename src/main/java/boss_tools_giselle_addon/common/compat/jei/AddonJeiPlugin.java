@@ -23,39 +23,34 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.mrscauthd.boss_tools.ModInnet;
-import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipeType;
 import net.mrscauthd.boss_tools.jei.JeiPlugin.BlastingFurnaceJeiCategory;
 import net.mrscauthd.boss_tools.jei.JeiPlugin.CompressorJeiCategory;
 
 @mezz.jei.api.JeiPlugin
-public class JeiPlugin implements IModPlugin
+public class AddonJeiPlugin implements IModPlugin
 {
 	public static final String JEI_CATEGORY = "jei.category";
 	public static final String JEI_INFO = "jei.info";
 
-	private static JeiPlugin instance;
+	private static AddonJeiPlugin instance;
 
-	public static JeiPlugin instance()
+	public static AddonJeiPlugin instance()
 	{
 		return instance;
 	}
 
-	public static final ResourceLocation createUid(IRecipeType<?> recipeType)
+	public static final ResourceLocation createUid(ResourceLocation key)
 	{
-		ResourceLocation key = Registry.RECIPE_TYPE.getKey(recipeType);
 		return new ResourceLocation(key.getNamespace(), JEI_CATEGORY + "." + key.getPath());
 	}
 
-	public static final ITextComponent getCategoryTitle(IRecipeType<?> recipeType)
+	public static final ITextComponent getCategoryTitle(ResourceLocation key)
 	{
-		ResourceLocation key = Registry.RECIPE_TYPE.getKey(recipeType);
 		return new TranslationTextComponent(JEI_CATEGORY + "." + key.getNamespace() + "." + key.getPath());
 	}
 
@@ -63,17 +58,17 @@ public class JeiPlugin implements IModPlugin
 	private IItemStackToitemStackRegistration<ElectricBlastFurnaceScreen, ElectricBlastFurnaceContainer> electricBlastFurnace;
 	private IItemStackToitemStackRegistration<AdvancedCompressorScreen, AdvancedCompressorContainer> advancedCompressor;
 
-	private List<RecipeCategory<?, ?>> categoires;
-	private RecipeCategory<ItemStackToItemStackRecipeType<RollingRecipe>, RollingRecipe> rollingCategory;
-	private RecipeCategory<ItemStackToItemStackRecipeType<ExtrudingRecipe>, ExtrudingRecipe> extrudingCategory;
+	private List<RecipeCategory<?>> categoires;
+	private RecipeCategory<RollingRecipe> rollingCategory;
+	private RecipeCategory<ExtrudingRecipe> extrudingCategory;
 
-	public JeiPlugin()
+	public AddonJeiPlugin()
 	{
 		instance = this;
 
 		this.categoires = new ArrayList<>();
-		this.categoires.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(AddonRecipes.ROLLING, RollingRecipe.class));
-		this.categoires.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(AddonRecipes.EXTRUDING, ExtrudingRecipe.class));
+		this.categoires.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(RollingRecipe.class, AddonRecipes.ROLLING));
+		this.categoires.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(ExtrudingRecipe.class, AddonRecipes.EXTRUDING));
 
 		this.is2isRegistrations = new ArrayList<>();
 
@@ -99,7 +94,7 @@ public class JeiPlugin implements IModPlugin
 	{
 		IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
 
-		for (RecipeCategory<?, ?> recipeCategory : this.getCategoires())
+		for (RecipeCategory<?> recipeCategory : this.getCategoires())
 		{
 			recipeCategory.createGui(guiHelper);
 			registration.addRecipeCategories(recipeCategory);
@@ -140,7 +135,7 @@ public class JeiPlugin implements IModPlugin
 	@Override
 	public void registerRecipes(IRecipeRegistration registration)
 	{
-		for (RecipeCategory<?, ?> recipeCategory : this.getCategoires())
+		for (RecipeCategory<?> recipeCategory : this.getCategoires())
 		{
 			recipeCategory.registerRecipes(registration);
 		}
@@ -159,17 +154,17 @@ public class JeiPlugin implements IModPlugin
 		return this.is2isRegistrations;
 	}
 
-	public List<RecipeCategory<?, ?>> getCategoires()
+	public List<RecipeCategory<?>> getCategoires()
 	{
 		return Collections.unmodifiableList(this.categoires);
 	}
 
-	public RecipeCategory<ItemStackToItemStackRecipeType<RollingRecipe>, RollingRecipe> getRollingCategory()
+	public RecipeCategory<RollingRecipe> getRollingCategory()
 	{
 		return this.rollingCategory;
 	}
 
-	public RecipeCategory<ItemStackToItemStackRecipeType<ExtrudingRecipe>, ExtrudingRecipe> getExtrudingCategory()
+	public RecipeCategory<ExtrudingRecipe> getExtrudingCategory()
 	{
 		return this.extrudingCategory;
 	}

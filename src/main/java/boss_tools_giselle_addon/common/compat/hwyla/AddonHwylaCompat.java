@@ -3,7 +3,7 @@ package boss_tools_giselle_addon.common.compat.hwyla;
 import boss_tools_giselle_addon.common.compat.CompatibleMod;
 import net.minecraft.util.ResourceLocation;
 
-public class HwylaCompat extends CompatibleMod
+public class AddonHwylaCompat extends CompatibleMod
 {
 	public static final String MODID = "waila";
 

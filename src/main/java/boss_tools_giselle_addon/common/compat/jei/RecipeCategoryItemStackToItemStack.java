@@ -16,7 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipe;
 import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipeType;
 
-public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRecipeType<? extends R>, R extends ItemStackToItemStackRecipe> extends RecipeCategory<T, R>
+public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRecipeType<? extends R>, R extends ItemStackToItemStackRecipe> extends RecipeCategoryRecipeType<T, R>
 {
 	public static final ResourceLocation BACKGROUND_LOCATION = BossToolsAddon.rl("textures/jei/itemstack_to_itemstack.png");
 	public static final int BACKGROUND_HEIGHT = 84;
@@ -31,9 +31,9 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 	private LoadingCache<Integer, IDrawableAnimated> cachedArrows;
 	private IDrawable background;
 
-	public RecipeCategoryItemStackToItemStack(T recipeType, Class<? extends R> recipeClass)
+	public RecipeCategoryItemStackToItemStack(Class<? extends R> recipeClass, T recipeType)
 	{
-		super(recipeType, recipeClass);
+		super(recipeClass, recipeType);
 	}
 
 	@Override

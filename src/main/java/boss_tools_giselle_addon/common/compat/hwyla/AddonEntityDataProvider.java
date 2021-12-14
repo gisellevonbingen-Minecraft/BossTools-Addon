@@ -1,5 +1,6 @@
 package boss_tools_giselle_addon.common.compat.hwyla;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import boss_tools_giselle_addon.common.event.EntityGaugeValueFetchEvent;
@@ -13,25 +14,27 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.mrscauthd.boss_tools.gauge.IGaugeValue;
 
-public class EntityDataProvider implements IServerDataProvider<Entity>, IEntityComponentProvider
+public class AddonEntityDataProvider implements IServerDataProvider<Entity>, IEntityComponentProvider
 {
-
-	public static final EntityDataProvider INSTANCE = new EntityDataProvider();
+	public static final AddonEntityDataProvider INSTANCE = new AddonEntityDataProvider();
 
 	@Override
 	public void appendServerData(CompoundNBT data, ServerPlayerEntity player, World world, Entity entity)
 	{
+		List<IGaugeValue> list = new ArrayList<>();
 		EntityGaugeValueFetchEvent event = new EntityGaugeValueFetchEvent(entity);
 		MinecraftForge.EVENT_BUS.post(event);
-		HwylaPlugin.put(data, HwylaPlugin.write(event.getValues()));
+		list.addAll(event.getValues());
+		AddonHwylaPlugin.put(data, AddonHwylaPlugin.write(list));
 	}
 
 	@Override
 	public void appendBody(List<ITextComponent> tooltip, IEntityAccessor accessor, IPluginConfig config)
 	{
 		IEntityComponentProvider.super.appendBody(tooltip, accessor, config);
-		HwylaPlugin.apeendBody(tooltip, accessor.getServerData());
+		AddonHwylaPlugin.apeendBody(tooltip, accessor.getServerData());
 	}
 
 }

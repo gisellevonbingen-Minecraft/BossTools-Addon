@@ -12,21 +12,20 @@ import net.mrscauthd.boss_tools.gauge.GaugeValueRenderer;
 import net.mrscauthd.boss_tools.gauge.GaugeValueSerializer;
 import net.mrscauthd.boss_tools.gauge.IGaugeValue;
 
-public class TooltipRenderer implements ITooltipRenderer
+public class AddonTooltipRenderer implements ITooltipRenderer
 {
-
-	public static final TooltipRenderer INSTANCE = new TooltipRenderer();
+	public static final AddonTooltipRenderer INSTANCE = new AddonTooltipRenderer();
 
 	@Override
 	public Dimension getSize(CompoundNBT compound, ICommonAccessor accessor)
 	{
-		return new Dimension(102, 15 * HwylaPlugin.get(compound).size());
+		return new Dimension(102, 15 * AddonHwylaPlugin.get(compound).size());
 	}
 
 	@Override
 	public void draw(CompoundNBT compound, ICommonAccessor accessor, int x, int y)
 	{
-		ListNBT list = HwylaPlugin.get(compound);
+		ListNBT list = AddonHwylaPlugin.get(compound);
 		MatrixStack stack = new MatrixStack();
 
 		for (int i = 0; i < list.size(); i++)

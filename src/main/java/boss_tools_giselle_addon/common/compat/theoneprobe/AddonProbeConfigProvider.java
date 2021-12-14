@@ -9,18 +9,18 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
-public class ProbeConfigProvider implements IProbeConfigProvider
+public class AddonProbeConfigProvider implements IProbeConfigProvider
 {
-	public static final ProbeConfigProvider INSTANCE = new ProbeConfigProvider();
+	public static final AddonProbeConfigProvider INSTANCE = new AddonProbeConfigProvider();
 
 	@Override
-	public void getProbeConfig(IProbeConfig var1, PlayerEntity var2, World var3, Entity var4, IProbeHitEntityData var5)
+	public void getProbeConfig(IProbeConfig arg0, PlayerEntity arg1, World arg2, Entity arg3, IProbeHitEntityData arg4)
 	{
 
 	}
 
 	@Override
-	public void getProbeConfig(IProbeConfig var1, PlayerEntity var2, World var3, BlockState var4, IProbeHitData var5)
+	public void getProbeConfig(IProbeConfig arg0, PlayerEntity arg1, World arg2, BlockState arg3, IProbeHitData arg4)
 	{
 
 	}

@@ -7,7 +7,7 @@ import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-public class TOPCompat extends CompatibleMod
+public class AddonTOPCompat extends CompatibleMod
 {
 	public static final String MODID = "theoneprobe";
 
@@ -31,7 +31,6 @@ public class TOPCompat extends CompatibleMod
 
 	private void imcQueue(InterModEnqueueEvent event)
 	{
-		InterModComms.sendTo(MODID, "getTheOneProbe", ProbeInfoProvider::new);
+		InterModComms.sendTo(MODID, "getTheOneProbe", AddonTOPPlugin::new);
 	}
-
 }

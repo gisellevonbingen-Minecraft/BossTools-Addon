@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.mrscauthd.boss_tools.gauge.IGaugeValue;
 
-public class EntityGaugeValueFetchEvent extends EntityEvent
+public class EntityGaugeValueFetchEvent extends EntityEvent implements IGaugeValueFetchEvent
 {
 	private final List<IGaugeValue> values;
 
@@ -17,6 +17,7 @@ public class EntityGaugeValueFetchEvent extends EntityEvent
 		this.values = new ArrayList<>();
 	}
 
+	@Override
 	public List<IGaugeValue> getValues()
 	{
 		return this.values;
