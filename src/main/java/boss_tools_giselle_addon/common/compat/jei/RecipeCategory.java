@@ -43,7 +43,7 @@ public abstract class RecipeCategory<R> implements IRecipeCategory<R>
 	@Override
 	public String getTitle()
 	{
-		return null;
+		return this.getTitleAsTextComponent().getString();
 	}
 
 	@Override
