@@ -192,10 +192,15 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 
 	protected void renderTank(MatrixStack stack, int mouseX, int mouseY, int left, int top, FluidTank tank)
 	{
+		this.renderTank(stack, mouseX, mouseY, left, top, tank, true);
+	}
+	
+	protected void renderTank(MatrixStack stack, int mouseX, int mouseY, int left, int top, FluidTank tank, boolean renderTooltip)
+	{
 		FluidStack fluidInTank = tank.getFluid();
 		GuiHelper.drawFluidTank(stack, left, top, fluidInTank, tank.getCapacity());
 
-		if (GuiHelper.isHover(GuiHelper.getFluidTankBounds(left, top), mouseX, mouseY) == true)
+		if (renderTooltip == true && GuiHelper.isHover(GuiHelper.getFluidTankBounds(left, top), mouseX, mouseY) == true)
 		{
 			this.renderTooltip(stack, GaugeTextHelper.getStorageText(GaugeValueHelper.getFluid(tank)).build(), mouseX, mouseY);
 		}

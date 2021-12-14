@@ -11,19 +11,19 @@ import net.minecraft.util.ResourceLocation;
 
 public class ItemStackToitemStackRecipeTransferInfo<C extends ItemStackToItemStackContainer<C, ?>> implements IRecipeTransferInfo<C>
 {
-	private final Class<C> clazz;
+	private final Class<C> containerClass;
 	private final ResourceLocation uid;
 
-	public ItemStackToitemStackRecipeTransferInfo(Class<C> clazz, ResourceLocation uid)
+	public ItemStackToitemStackRecipeTransferInfo(Class<C> containerClass, ResourceLocation uid)
 	{
-		this.clazz = clazz;
+		this.containerClass = containerClass;
 		this.uid = uid;
 	}
 
 	@Override
 	public Class<C> getContainerClass()
 	{
-		return this.clazz;
+		return this.containerClass;
 	}
 
 	@Override

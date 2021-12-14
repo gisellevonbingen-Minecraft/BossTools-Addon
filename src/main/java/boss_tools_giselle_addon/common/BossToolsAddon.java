@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import boss_tools_giselle_addon.client.AddonClientProxy;
 import boss_tools_giselle_addon.common.block.AddonBlocks;
-import boss_tools_giselle_addon.common.compat.CompatibleManager;
+import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.item.AddonItems;
@@ -50,7 +50,7 @@ public class BossToolsAddon
 		forgeEventBus.register(EventListenerGravity.class);
 		forgeEventBus.register(EventListenerFlagEdit.class);
 
-		CompatibleManager.visit();
+		AddonCompatibleManager.visit();
 	}
 
 	public static ResourceLocation rl(String path)

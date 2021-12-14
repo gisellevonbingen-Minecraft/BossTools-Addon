@@ -1,41 +1,32 @@
 package boss_tools_giselle_addon.common.compat.jei;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import mezz.jei.api.registration.IGuiHandlerRegistration;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.IRecipeTransferRegistration;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 public abstract class RecipeCategory<R> implements IRecipeCategory<R>
 {
 	private final Class<? extends R> recipeClass;
-	private final ResourceLocation uid;
-
-	private ITextComponent titleTextComponent;
 
 	public RecipeCategory(Class<? extends R> recipeClass)
 	{
 		this.recipeClass = recipeClass;
-		this.uid = AddonJeiPlugin.createUid(this.getKey());
-
-		this.titleTextComponent = this.createTitle();
-	}
-
-	public abstract void registerRecipes(IRecipeRegistration registration);
-
-	public abstract ResourceLocation getKey();
-
-	protected ITextComponent createTitle()
-	{
-		return AddonJeiPlugin.getCategoryTitle(this.getKey());
 	}
 
 	@Override
-	public ResourceLocation getUid()
-	{
-		return this.uid;
-	}
+	public abstract IDrawable getBackground();
+
+	public abstract ResourceLocation getKey();
 
 	@Override
 	public Class<? extends R> getRecipeClass()
@@ -44,21 +35,21 @@ public abstract class RecipeCategory<R> implements IRecipeCategory<R>
 	}
 
 	@Override
-	public ITextComponent getTitleAsTextComponent()
+	public ResourceLocation getUid()
 	{
-		return this.titleTextComponent;
+		return AddonJeiPlugin.createUid(this.getKey());
 	}
 
 	@Override
 	public String getTitle()
 	{
-		return this.getTitleAsTextComponent().getString();
+		return null;
 	}
 
 	@Override
-	public IDrawable getBackground()
+	public ITextComponent getTitleAsTextComponent()
 	{
-		return null;
+		return AddonJeiPlugin.getCategoryTitle(this.getKey());
 	}
 
 	@Override
@@ -68,6 +59,37 @@ public abstract class RecipeCategory<R> implements IRecipeCategory<R>
 	}
 
 	public void createGui(IGuiHelper guiHelper)
+	{
+
+	}
+
+	public void registerRecipes(IRecipeRegistration registration)
+	{
+
+	}
+
+	public void addRecipeTransferHandler(IRecipeTransferRegistration registration)
+	{
+
+	}
+
+	public List<ItemStack> getRecipeCatalystItemStacks()
+	{
+		return new ArrayList<>();
+	}
+
+	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration)
+	{
+		ResourceLocation uid = this.getUid();
+
+		for (ItemStack itemStack : this.getRecipeCatalystItemStacks())
+		{
+			registration.addRecipeCatalyst(itemStack, uid);
+		}
+
+	}
+
+	public void registerGuiHandlers(IGuiHandlerRegistration registration)
 	{
 
 	}

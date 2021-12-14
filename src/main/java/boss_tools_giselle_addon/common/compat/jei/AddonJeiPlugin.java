@@ -16,18 +16,21 @@ import boss_tools_giselle_addon.common.item.crafting.ExtrudingRecipe;
 import boss_tools_giselle_addon.common.item.crafting.RollingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.mrscauthd.boss_tools.ModInnet;
+import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 import net.mrscauthd.boss_tools.jei.JeiPlugin.BlastingFurnaceJeiCategory;
 import net.mrscauthd.boss_tools.jei.JeiPlugin.CompressorJeiCategory;
 
@@ -61,6 +64,9 @@ public class AddonJeiPlugin implements IModPlugin
 	private List<RecipeCategory<?>> categoires;
 	private RecipeCategory<RollingRecipe> rollingCategory;
 	private RecipeCategory<ExtrudingRecipe> extrudingCategory;
+	private RecipeCategoryFuelLoader fuelLoader;
+
+	private IDrawable fluidOverlay;
 
 	public AddonJeiPlugin()
 	{
@@ -69,6 +75,7 @@ public class AddonJeiPlugin implements IModPlugin
 		this.categoires = new ArrayList<>();
 		this.categoires.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(RollingRecipe.class, AddonRecipes.ROLLING));
 		this.categoires.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(ExtrudingRecipe.class, AddonRecipes.EXTRUDING));
+		this.categoires.add(this.fuelLoader = new RecipeCategoryFuelLoader(Fluid.class));
 
 		this.is2isRegistrations = new ArrayList<>();
 
@@ -93,6 +100,7 @@ public class AddonJeiPlugin implements IModPlugin
 	public void registerCategories(IRecipeCategoryRegistration registration)
 	{
 		IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
+		this.fluidOverlay = guiHelper.drawableBuilder(GuiHelper.FLUID_TANK_PATH, 0, 0, GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT).setTextureSize(GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT).build();
 
 		for (RecipeCategory<?> recipeCategory : this.getCategoires())
 		{
@@ -105,6 +113,11 @@ public class AddonJeiPlugin implements IModPlugin
 	@Override
 	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration)
 	{
+		for (RecipeCategory<?> recipeCategory : this.getCategoires())
+		{
+			recipeCategory.addRecipeTransferHandler(registration);
+		}
+
 		for (IItemStackToitemStackRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
 		{
 			cr.addRecipeTransferHandler(registration);
@@ -115,6 +128,11 @@ public class AddonJeiPlugin implements IModPlugin
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration)
 	{
+		for (RecipeCategory<?> recipeCategory : this.getCategoires())
+		{
+			recipeCategory.registerRecipeCatalysts(registration);
+		}
+
 		for (IItemStackToitemStackRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
 		{
 			cr.registerRecipeCatalysts(registration);
@@ -125,6 +143,11 @@ public class AddonJeiPlugin implements IModPlugin
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration)
 	{
+		for (RecipeCategory<?> recipeCategory : this.getCategoires())
+		{
+			recipeCategory.registerGuiHandlers(registration);
+		}
+
 		for (IItemStackToitemStackRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
 		{
 			cr.registerGuiHandlers(registration);
@@ -167,6 +190,16 @@ public class AddonJeiPlugin implements IModPlugin
 	public RecipeCategory<ExtrudingRecipe> getExtrudingCategory()
 	{
 		return this.extrudingCategory;
+	}
+
+	public RecipeCategoryFuelLoader getFuelLoaderCategory()
+	{
+		return this.fuelLoader;
+	}
+
+	public IDrawable getFluidOverlay()
+	{
+		return this.fluidOverlay;
 	}
 
 }

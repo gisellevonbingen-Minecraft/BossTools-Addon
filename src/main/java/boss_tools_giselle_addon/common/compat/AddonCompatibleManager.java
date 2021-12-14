@@ -6,13 +6,15 @@ import java.util.List;
 
 import boss_tools_giselle_addon.common.compat.hwyla.AddonHwylaCompat;
 import boss_tools_giselle_addon.common.compat.jaopca.JaopcaCompat;
+import boss_tools_giselle_addon.common.compat.jei.AddonJeiCompat;
 import boss_tools_giselle_addon.common.compat.mekanism.MekanismCompat;
 import boss_tools_giselle_addon.common.compat.theoneprobe.AddonTOPCompat;
 import boss_tools_giselle_addon.common.compat.thermal.ThermalCompat;
 
-public class CompatibleManager
+public class AddonCompatibleManager
 {
 	public static final List<CompatibleMod> MODS;
+	public static final AddonJeiCompat JEI;
 	public static final MekanismCompat MEKANISM;
 	public static final ThermalCompat THERMAL;
 	public static final JaopcaCompat JAOPCA;
@@ -23,6 +25,7 @@ public class CompatibleManager
 	static
 	{
 		List<CompatibleMod> mods = new ArrayList<>();
+		mods.add(JEI = new AddonJeiCompat());
 		mods.add(MEKANISM = new MekanismCompat());
 		mods.add(THERMAL = new ThermalCompat());
 		mods.add(JAOPCA = new JaopcaCompat());

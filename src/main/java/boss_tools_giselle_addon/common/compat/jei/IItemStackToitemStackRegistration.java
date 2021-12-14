@@ -32,9 +32,9 @@ public interface IItemStackToitemStackRegistration<S extends ItemStackToItemStac
 	{
 		for (ItemStack itemStack : this.getItemstacks())
 		{
-			for (ResourceLocation category : this.getCategories())
+			for (ResourceLocation uid : this.getCategories())
 			{
-				registration.addRecipeCatalyst(itemStack, category);
+				registration.addRecipeCatalyst(itemStack, uid);
 			}
 
 		}
