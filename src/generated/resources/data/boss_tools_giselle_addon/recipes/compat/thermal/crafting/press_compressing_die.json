@@ -1,0 +1,25 @@
+{
+   "type":"minecraft:crafting_shaped",
+   "conditions":[
+      {
+         "type":"forge:mod_loaded",
+         "modid":"thermal_expansion"
+      }
+   ],
+   "result":{
+      "item":"boss_tools_giselle_addon:press_compressing_die"
+   },
+   "pattern":[
+      " P ",
+      "P#P",
+      " P "
+   ],
+   "key":{
+      "P":{
+         "tag":"forge:plates/invar"
+      },
+      "#":{
+         "item":"boss_tools:hammer"
+      }
+   }
+}

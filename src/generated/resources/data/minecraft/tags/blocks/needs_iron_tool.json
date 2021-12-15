@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "boss_tools_giselle_addon:fuel_loader",
+    "boss_tools_giselle_addon:electric_blast_furnace",
+    "boss_tools_giselle_addon:advanced_compressor",
+    "boss_tools_giselle_addon:gravity_normalizer"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+   "type":"boss_tools_giselle_addon:rolling",
+   "input":{
+      "ingredient":{
+         "tag":"forge:ingots/iron"
+      }
+   },
+   "output":{
+      "item":"boss_tools:iron_plate",
+      "count":1
+   },
+   "cookTime":200
+}

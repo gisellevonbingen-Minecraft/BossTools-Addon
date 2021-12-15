@@ -1,0 +1,29 @@
+{
+	"replace": false,
+	"values": [
+		{
+			"id": "thermal:refined_fuel",
+			"required": false
+		},
+		{
+			"id": "vehicle:fuelium",
+			"required": false
+		},
+		{
+			"id": "car:bio_diesel",
+			"required": false
+		},
+		{
+			"id": "immersivepetroleum:diesel",
+			"required": false
+		},
+		{
+			"id": "immersiveengineering:biodiesel",
+			"required": false
+		},
+		{
+			"id": "industrialforegoing:biofuel",
+			"required": false
+		}
+	]
+}

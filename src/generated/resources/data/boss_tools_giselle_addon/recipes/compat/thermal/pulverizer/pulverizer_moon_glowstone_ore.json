@@ -1,0 +1,18 @@
+{
+   "type":"thermal:pulverizer",
+   "conditions":[
+      {
+         "type":"forge:mod_loaded",
+         "modid":"thermal_expansion"
+      }
+   ],
+   "ingredient":{
+      "item":"boss_tools:moon_glowstone_ore"
+   },
+   "result":[
+      {
+         "item":"minecraft:glowstone_dust",
+         "count":4
+      }
+   ]
+}

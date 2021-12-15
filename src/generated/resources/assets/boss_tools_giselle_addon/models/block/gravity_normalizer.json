@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "down": "boss_tools_giselle_addon:block/machine_top",
+    "up": "boss_tools_giselle_addon:block/machine_top",
+    "north": "boss_tools_giselle_addon:block/gravity_normalizer",
+    "east": "boss_tools_giselle_addon:block/gravity_normalizer",
+    "south": "boss_tools_giselle_addon:block/gravity_normalizer",
+    "west": "boss_tools_giselle_addon:block/gravity_normalizer",
+    "particle": "boss_tools_giselle_addon:block/gravity_normalizer"
+  }
+}

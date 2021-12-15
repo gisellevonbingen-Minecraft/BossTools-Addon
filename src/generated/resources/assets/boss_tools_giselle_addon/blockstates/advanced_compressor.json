@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,lit=false": {
+      "model": "boss_tools_giselle_addon:block/advanced_compressor_false",
+      "y": 0
+    },
+    "facing=east,lit=false": {
+      "model": "boss_tools_giselle_addon:block/advanced_compressor_false",
+      "y": 90
+    },
+    "facing=south,lit=false": {
+      "model": "boss_tools_giselle_addon:block/advanced_compressor_false",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "boss_tools_giselle_addon:block/advanced_compressor_false",
+      "y": 270
+    },
+    "facing=north,lit=true": {
+      "model": "boss_tools_giselle_addon:block/advanced_compressor_true",
+      "y": 0
+    },
+    "facing=east,lit=true": {
+      "model": "boss_tools_giselle_addon:block/advanced_compressor_true",
+      "y": 90
+    },
+    "facing=south,lit=true": {
+      "model": "boss_tools_giselle_addon:block/advanced_compressor_true",
+      "y": 180
+    },
+    "facing=west,lit=true": {
+      "model": "boss_tools_giselle_addon:block/advanced_compressor_true",
+      "y": 270
+    }
+  }
+} 
