@@ -1,0 +1,35 @@
+{
+  "replace": false,
+  "values": [
+    "boss_tools:venus_coal_ore",
+    "boss_tools:mercury_iron_ore",
+    "boss_tools:moon_iron_ore",
+    "boss_tools:mars_ice_shard_ore",
+    "boss_tools:mars_iron_ore",
+    "boss_tools:moon_glowstone_ore",
+    "boss_tools:moon_cheese_ore",
+
+    "boss_tools:steel_block",
+    "boss_tools:desh_block",
+    "boss_tools:silicon_block",
+    "boss_tools:iron_plating_block",
+    "boss_tools:rusted_iron_pillar_block",
+    "boss_tools:rusted_iron_plating_block",
+    "boss_tools:blue_iron_plating_block",
+    "boss_tools:iron_mark_block",
+    "boss_tools:cracked_moon_bricks",
+    "boss_tools:cracked_moon_brick_slab",
+    "boss_tools:cracked_moon_brick_stairs",
+    "boss_tools:moon_bricks",
+    "boss_tools:moon_brick_slab",
+    "boss_tools:moon_brick_stairs",
+    "boss_tools:sky_stone",
+    "boss_tools:mars_stone",
+    "boss_tools:mercury_stone",
+    "boss_tools:moon_stone",
+    "boss_tools:mercury_cobblestone",
+    "boss_tools:venus_sandstone",
+    "boss_tools:venus_stone",
+    "boss_tools:infernal_spire_block"
+  ]
+}

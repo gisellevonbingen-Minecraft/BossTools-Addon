@@ -1,30 +1,28 @@
 modLoader="javafml"
-loaderVersion="[36,)"
-license="All rights reserved"
+loaderVersion="[39,)"
+license="Not specified"
+
 [[mods]]
-modId="boss_tools_giselle_addon"
-version="${file.jarVersion}"
-displayName="Space-BossTools: Giselle Addon"
-logoFile="examplemod.png"
-credits="gisellevonbingen"
-authors="gisellevonbingen"
-description=''''''
-[[dependencies.boss_tools_giselle_addon]]
-    modId="forge"
-    mandatory=true
-    versionRange="[36.2.4,)"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.boss_tools_giselle_addon]]
+modId="boss_tools"
+version="5.6"
+displayName="Space-BossTools"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/space-bosstools"
+logoFile="logo.png"
+authors="MrScautHD"
+description='''
+Fly to Other Planets and Beyond!
+'''
+
+[[dependencies.boss_tools]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,)"
+    versionRange="[1.18.1]"
     ordering="NONE"
     side="BOTH"
-[[dependencies.boss_tools_giselle_addon]]
-    modId="boss_tools"
+
+[[dependencies.boss_tools]]
+    modId="forge"
     mandatory=true
-    versionRange="[5.5,)"
-    ordering="AFTER"
+    versionRange="[39.0.0,]"
+    ordering="NONE"
     side="BOTH"
-    
