@@ -3,21 +3,21 @@ package boss_tools_giselle_addon.common.capability;
 import net.mrscauthd.boss_tools.capability.IOxygenStorageHolder;
 import net.mrscauthd.boss_tools.capability.OxygenStorage;
 
-public class OxygenCapacitorOxygenStorage extends OxygenStorage
+public class RatedOxygenStorage extends OxygenStorage
 {
 	private final int transfer;
 
-	public OxygenCapacitorOxygenStorage(IOxygenStorageHolder holder, int capacity)
+	public RatedOxygenStorage(IOxygenStorageHolder holder, int capacity)
 	{
 		this(holder, capacity, 0);
 	}
 
-	public OxygenCapacitorOxygenStorage(IOxygenStorageHolder holder, int capacity, int oxygen)
+	public RatedOxygenStorage(IOxygenStorageHolder holder, int capacity, int oxygen)
 	{
 		this(holder, capacity, oxygen, Integer.MAX_VALUE);
 	}
 
-	public OxygenCapacitorOxygenStorage(IOxygenStorageHolder holder, int capacity, int oxygen, int transfer)
+	public RatedOxygenStorage(IOxygenStorageHolder holder, int capacity, int oxygen, int transfer)
 	{
 		super(holder, capacity, oxygen);
 		this.transfer = transfer;

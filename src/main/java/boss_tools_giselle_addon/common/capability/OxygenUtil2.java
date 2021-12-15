@@ -13,7 +13,11 @@ public class OxygenUtil2
 {
 	public static <T> LazyOptional<T> getOxygenCapability(Capability<T> capability, Direction direction, IOxygenStorage oxygenStorage)
 	{
-		if (capability == CapabilityOxygen.OXYGEN)
+		if (capability == null)
+		{
+			return LazyOptional.empty();
+		}
+		else if (capability == CapabilityOxygen.OXYGEN)
 		{
 			return LazyOptional.of(() -> oxygenStorage).cast();
 		}
