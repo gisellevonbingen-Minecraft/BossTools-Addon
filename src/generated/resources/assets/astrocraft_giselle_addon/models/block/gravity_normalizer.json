@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "down": "astrocraft_giselle_addon:block/machine_top",
+    "up": "astrocraft_giselle_addon:block/machine_top",
+    "north": "astrocraft_giselle_addon:block/gravity_normalizer",
+    "east": "astrocraft_giselle_addon:block/gravity_normalizer",
+    "south": "astrocraft_giselle_addon:block/gravity_normalizer",
+    "west": "astrocraft_giselle_addon:block/gravity_normalizer",
+    "particle": "astrocraft_giselle_addon:block/gravity_normalizer"
+  }
+}

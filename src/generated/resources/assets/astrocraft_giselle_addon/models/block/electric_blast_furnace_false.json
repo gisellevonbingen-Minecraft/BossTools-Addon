@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "astrocraft_giselle_addon:block/machine_top2",
+    "up": "astrocraft_giselle_addon:block/machine_top2",
+    "north": "astrocraft_giselle_addon:block/electric_blast_furnace_false",
+    "east": "astrocraft_giselle_addon:block/machine_side",
+    "south": "astrocraft_giselle_addon:block/machine_side",
+    "west": "astrocraft_giselle_addon:block/machine_side",
+    "particle": "astrocraft_giselle_addon:block/electric_blast_furnace_false"
+  }
+} 

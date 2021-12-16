@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '1.0'
-group = 'gisellevonbingen.boss_tools_giselle_addon' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'gisellevonbingen.astrocraft_giselle_addon' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'AstroCraft-Addon_Giselle_Addon'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -56,7 +56,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                boss_tools_giselle_addon {
+                astrocraft_giselle_addon {
                     source sourceSets.main
                 }
             }
@@ -78,7 +78,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                boss_tools_giselle_addon {
+                astrocraft_giselle_addon {
                     source sourceSets.main
                 }
             }
@@ -100,10 +100,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the AstroCraft-Addon_Giselle_Addon-1.18.1 for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'boss_tools_giselle_addon', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'astrocraft_giselle_addon', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                boss_tools_giselle_addon {
+                astrocraft_giselle_addon {
                     source sourceSets.main
                 }
             }
@@ -144,7 +144,7 @@ dependencies {
     implementation fg.deobf("curse.maven:jade-324717:3551337")
 	
 	// Space-BossTools
-	implementation fg.deobf("net.mrscauthd:boss_tools:1.18.1-5.6")
+	implementation fg.deobf("net.mrscauthd:astrocraft:1.18.1-5.7")
 	
 }
 
@@ -152,7 +152,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "boss_tools_giselle_addon",
+                "Specification-Title"     : "astrocraft_giselle_addon",
                 "Specification-Vendor"    : "gisellevonbingen",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,

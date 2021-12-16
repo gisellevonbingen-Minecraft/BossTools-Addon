@@ -1,30 +1,30 @@
 modLoader="javafml"
-loaderVersion="[39,)"
+loaderVersion="[36,)"
 license="All rights reserved"
 [[mods]]
-modId="boss_tools_giselle_addon"
+modId="astrocraft_giselle_addon"
 version="${file.jarVersion}"
-displayName="Space-BossTools: Giselle Addon"
+displayName="AstroCraft: Giselle Addon"
 logoFile="examplemod.png"
 credits="gisellevonbingen"
 authors="gisellevonbingen"
 description=''''''
-[[dependencies.boss_tools_giselle_addon]]
+[[dependencies.astrocraft_giselle_addon]]
     modId="forge"
     mandatory=true
-    versionRange="[39.0.0,)"
+    versionRange="[36.2.4,)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.boss_tools_giselle_addon]]
+[[dependencies.astrocraft_giselle_addon]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.1,)"
+    versionRange="[1.16.5,)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.boss_tools_giselle_addon]]
-    modId="boss_tools"
+[[dependencies.astrocraft_giselle_addon]]
+    modId="astrocraft"
     mandatory=true
-    versionRange="[5.6,)"
+    versionRange="[5.5,)"
     ordering="AFTER"
     side="BOTH"
     

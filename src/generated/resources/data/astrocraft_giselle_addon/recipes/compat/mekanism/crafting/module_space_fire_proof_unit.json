@@ -1,0 +1,31 @@
+{
+   "type":"minecraft:crafting_shaped",
+   "conditions":[
+      {
+         "type":"forge:item_exists",
+         "item":"astrocraft_giselle_addon:module_space_fire_proof_unit"
+      }
+   ],
+   "result":{
+      "item":"astrocraft_giselle_addon:module_space_fire_proof_unit"
+   },
+   "pattern":[
+      "I#I",
+      "IAI",
+      "PPP"
+   ],
+   "key":{
+      "I":{
+         "tag":"forge:alloys/elite"
+      },
+      "A":{
+         "item":"mekanism:module_base"
+      },
+      "#":{
+         "tag":"astrocraft:compresseds/desh"
+      },
+      "P":{
+         "tag":"forge:pellets/polonium"
+      }
+   }
+}

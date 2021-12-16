@@ -1,0 +1,13 @@
+{
+   "type":"astrocraft_giselle_addon:rolling",
+   "input":{
+      "ingredient":{
+         "tag":"forge:ingots/iron"
+      }
+   },
+   "output":{
+      "item":"astrocraft:iron_plate",
+      "count":1
+   },
+   "cookTime":200
+}

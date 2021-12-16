@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "boss_tools_giselle_addon:fuel_loader",
-    "boss_tools_giselle_addon:electric_blast_furnace",
-    "boss_tools_giselle_addon:advanced_compressor",
-    "boss_tools_giselle_addon:gravity_normalizer"
+    "astrocraft_giselle_addon:fuel_loader",
+    "astrocraft_giselle_addon:electric_blast_furnace",
+    "astrocraft_giselle_addon:advanced_compressor",
+    "astrocraft_giselle_addon:gravity_normalizer"
   ]
 }
