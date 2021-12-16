@@ -4,7 +4,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
@@ -13,7 +13,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 public class AddonNetwork
 {
 	public static final String PROTOCOL_VERSION = "1";
-	public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(BossToolsAddon.rl("main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
+	public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(AstroCraftAddon.rl("main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 	private static int messageID;
 
 	public static void registerAll()

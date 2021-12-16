@@ -1,6 +1,6 @@
 package astrocraft_giselle_addon.common.block;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -9,7 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class AddonBlocks
 {
-	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Block.class, BossToolsAddon.MODID);
+	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Block.class, AstroCraftAddon.MODID);
 	public static final RegistryObject<FuelLoaderBlock> FUEL_LOADER = BLOCKS.register("fuel_loader", () -> new FuelLoaderBlock(createDefaultBlockProperties()));
 	public static final RegistryObject<ElectricBlastFurnaceBlock> ELECTRIC_BLAST_FURNACE = BLOCKS.register("electric_blast_furnace", () -> new ElectricBlastFurnaceBlock(createDefaultBlockProperties()));
 	public static final RegistryObject<AdvancedCompressorBlock> ADVANCED_COMPRESSOR = BLOCKS.register("advanced_compressor", () -> new AdvancedCompressorBlock(createDefaultBlockProperties()));

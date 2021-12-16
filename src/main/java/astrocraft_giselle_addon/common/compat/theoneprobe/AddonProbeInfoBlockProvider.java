@@ -3,7 +3,7 @@ package astrocraft_giselle_addon.common.compat.theoneprobe;
 import java.util.ArrayList;
 import java.util.List;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import astrocraft_giselle_addon.common.event.BlockGaugeValueFetchEvent;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
@@ -46,7 +46,7 @@ public class AddonProbeInfoBlockProvider implements IProbeInfoProvider
 	@Override
 	public ResourceLocation getID()
 	{
-		return BossToolsAddon.rl("top_block");
+		return AstroCraftAddon.rl("top_block");
 	}
 
 }

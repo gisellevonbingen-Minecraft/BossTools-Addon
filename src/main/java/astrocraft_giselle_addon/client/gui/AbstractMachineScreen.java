@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import astrocraft_giselle_addon.common.inventory.AbstractMachineContainerMenu;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
@@ -153,13 +153,13 @@ public class AbstractMachineScreen<M extends AbstractMachineContainerMenu<?, ?>>
 		int workingAreaLeft = left.x + left.getWidth() - this.leftPos;
 		int workignAreaTop = -workingAreaHeight;
 		int workingAreaOffsetX = workingAreaLeft;
-		RenderSystem.setShaderTexture(0, BossToolsAddon.rl("textures/gui/workingarea_side.png"));
+		RenderSystem.setShaderTexture(0, AstroCraftAddon.rl("textures/gui/workingarea_side.png"));
 		Screen.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
-		RenderSystem.setShaderTexture(0, BossToolsAddon.rl("textures/gui/workingarea_middle.png"));
+		RenderSystem.setShaderTexture(0, AstroCraftAddon.rl("textures/gui/workingarea_middle.png"));
 		Screen.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, workingAreaWidth, workingAreaHeight, workingAreaWidth, workingAreaHeight);
 		workingAreaOffsetX += workingAreaWidth;
-		RenderSystem.setShaderTexture(0, BossToolsAddon.rl("textures/gui/workingarea_side.png"));
+		RenderSystem.setShaderTexture(0, AstroCraftAddon.rl("textures/gui/workingarea_side.png"));
 		Screen.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
 
@@ -225,12 +225,12 @@ public class AbstractMachineScreen<M extends AbstractMachineContainerMenu<?, ?>>
 	protected String rtl(String path)
 	{
 		ResourceLocation registryName = this.getMenu().getBlockEntity().getType().getRegistryName();
-		return BossToolsAddon.tl("gui", registryName, path);
+		return AstroCraftAddon.tl("gui", registryName, path);
 	}
 
 	protected String ctl(String path)
 	{
-		return BossToolsAddon.tl("gui", path);
+		return AstroCraftAddon.tl("gui", path);
 	}
 
 }

@@ -1,6 +1,6 @@
 {
 
-  "itemGroup.astrocraft_giselle_addon_tab_main": "Space-BossTools: Giselle Addon",
+  "itemGroup.astrocraft_giselle_addon_tab_main": "AstroCraft: Giselle Addon",
   
   "block.astrocraft_giselle_addon.fuel_loader": "연료 적재기",
   "block.astrocraft_giselle_addon.electric_blast_furnace": "전기 용광로",
@@ -8,11 +8,11 @@
   "block.astrocraft_giselle_addon.gravity_normalizer": "중력 정규화 장치",
   
   "module.astrocraft_giselle_addon.space_breathing_unit": "우주 호흡 기구",
-  "description.astrocraft_giselle_addon.space_breathing_unit": "산소와 에너지를 소모하여, Space-BossTools 차원에서 호흡할 수 있습니다\n수중, 우천시 모듈에 산소가 충전됩니다",
+  "description.astrocraft_giselle_addon.space_breathing_unit": "산소와 에너지를 소모하여, AstroCraft 차원에서 호흡할 수 있습니다\n수중, 우천시 모듈에 산소가 충전됩니다",
   "module.astrocraft_giselle_addon.space_fire_proof_unit": "우주 내화 기구",
-  "description.astrocraft_giselle_addon.space_fire_proof_unit": "에너지를 소모하여, Space-BossTools 차원에서 자신에게 불이 붙지 않습니다",
+  "description.astrocraft_giselle_addon.space_fire_proof_unit": "에너지를 소모하여, AstroCraft 차원에서 자신에게 불이 붙지 않습니다",
   "module.astrocraft_giselle_addon.venus_acid_proof_unit": "우주 내산성 기구",
-  "description.astrocraft_giselle_addon.venus_acid_proof_unit": "에너지를 소모하여, Space-BossTools 차원에서 산성비 피해를 입지 않습니다",
+  "description.astrocraft_giselle_addon.venus_acid_proof_unit": "에너지를 소모하여, AstroCraft 차원에서 산성비 피해를 입지 않습니다",
   "module.astrocraft_giselle_addon.gravity_normalizing_unit": "중력 정규화 기구",
   "description.astrocraft_giselle_addon.gravity_normalizing_unit": "에너지를 소모하여, 중력을 오버월드 처럼 정규화합니다",
   

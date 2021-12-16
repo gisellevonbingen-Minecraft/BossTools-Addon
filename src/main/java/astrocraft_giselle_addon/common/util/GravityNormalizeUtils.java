@@ -1,6 +1,6 @@
 package astrocraft_giselle_addon.common.util;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,7 +10,7 @@ import net.mrscauthd.astrocraft.events.Gravity.GravityType;
 
 public class GravityNormalizeUtils
 {
-	public static final String NBT_KEY = BossToolsAddon.rl("gravitynormalizing").toString();
+	public static final String NBT_KEY = AstroCraftAddon.rl("gravitynormalizing").toString();
 	public static final String NBT_NORMALIZING_KEY = "normalizing";
 
 	public static void tryCancelGravity(EntityEvent e)

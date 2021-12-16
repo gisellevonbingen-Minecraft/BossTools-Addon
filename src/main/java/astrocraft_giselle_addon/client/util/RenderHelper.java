@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix3f;
 import com.mojang.math.Matrix4f;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import net.minecraft.client.GraphicsStatus;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -18,7 +18,7 @@ import net.minecraft.world.phys.AABB;
 
 public class RenderHelper
 {
-	public static final ResourceLocation TILE_SURFACE = BossToolsAddon.rl("block/tile_surface");
+	public static final ResourceLocation TILE_SURFACE = AstroCraftAddon.rl("block/tile_surface");
 	private static TextureAtlasSprite atlass = null;
 
 	public static void renderBox(PoseStack stack, MultiBufferSource buffer, AABB bounds, int lineR, int lineG, int lineB, int surfaceR, int surfaceG, int surfaceB)

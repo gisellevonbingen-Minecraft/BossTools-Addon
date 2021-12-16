@@ -7,9 +7,9 @@ import net.mrscauthd.astrocraft.entity.RocketTier1Entity;
 import net.mrscauthd.astrocraft.entity.RocketTier2Entity;
 import net.mrscauthd.astrocraft.entity.RocketTier3Entity;
 
-public class BossToolsRocketHelper
+public class AstroCraftRocketHelper
 {
-	public static boolean isBossToolsRocket(Entity entity)
+	public static boolean isAstroCraftRocket(Entity entity)
 	{
 		if (entity instanceof RocketTier1Entity)
 		{
@@ -130,7 +130,7 @@ public class BossToolsRocketHelper
 		return 300;
 	}
 
-	private BossToolsRocketHelper()
+	private AstroCraftRocketHelper()
 	{
 
 	}

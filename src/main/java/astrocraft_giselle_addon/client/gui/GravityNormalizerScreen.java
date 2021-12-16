@@ -3,7 +3,7 @@ package astrocraft_giselle_addon.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import astrocraft_giselle_addon.common.block.entity.GravityNormalizerBlockEntity;
 import astrocraft_giselle_addon.common.inventory.GravityNormalizerContainerMenu;
 import astrocraft_giselle_addon.common.network.AddonNetwork;
@@ -20,7 +20,7 @@ import net.mrscauthd.astrocraft.gauge.GaugeValueHelper;
 
 public class GravityNormalizerScreen extends AbstractMachineScreen<GravityNormalizerContainerMenu>
 {
-	public static final ResourceLocation TEXTURE = BossToolsAddon.rl("textures/gui/container/gravity_normalizer.png");
+	public static final ResourceLocation TEXTURE = AstroCraftAddon.rl("textures/gui/container/gravity_normalizer.png");
 	public static final int ENERGY_LEFT = 144;
 	public static final int ENERGY_TOP = 21;
 

@@ -6,7 +6,7 @@ import net.minecraft.world.entity.Entity;
 import net.mrscauthd.astrocraft.entity.RoverEntity;
 import net.mrscauthd.astrocraft.fluid.FluidUtil2;
 
-public class BossToolsRoverHelper
+public class AstroCraftRoverHelper
 {
 	public static int getFuelAmount(Entity entity)
 	{
@@ -37,7 +37,7 @@ public class BossToolsRoverHelper
 		return RoverEntity.FUEL_BUCKETS * FluidUtil2.BUCKET_SIZE;
 	}
 
-	private BossToolsRoverHelper()
+	private AstroCraftRoverHelper()
 	{
 
 	}

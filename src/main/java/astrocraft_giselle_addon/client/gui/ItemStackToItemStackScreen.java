@@ -3,7 +3,7 @@ package astrocraft_giselle_addon.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import astrocraft_giselle_addon.common.inventory.ItemStackToItemStackContainerMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +13,7 @@ import net.mrscauthd.astrocraft.machines.tile.ItemStackToItemStackBlockEntity;
 
 public class ItemStackToItemStackScreen<C extends ItemStackToItemStackContainerMenu<C, ?>> extends AbstractMachineScreen<C>
 {
-	public static final ResourceLocation TEXTURE = BossToolsAddon.rl("textures/gui/container/itemstack_to_itemstack.png");
+	public static final ResourceLocation TEXTURE = AstroCraftAddon.rl("textures/gui/container/itemstack_to_itemstack.png");
 	public static final int ENERGY_LEFT = 144;
 	public static final int ENERGY_TOP = 21;
 	public static final int ARROW_LEFT = 62;

@@ -3,7 +3,7 @@ package astrocraft_giselle_addon.common.compat.jei;
 import com.google.common.cache.LoadingCache;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -19,7 +19,7 @@ import net.mrscauthd.astrocraft.jei.JeiPlugin;
 
 public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRecipeType<? extends R>, R extends ItemStackToItemStackRecipe> extends RecipeCategoryRecipeType<T, R>
 {
-	public static final ResourceLocation BACKGROUND_LOCATION = BossToolsAddon.rl("textures/jei/itemstack_to_itemstack.png");
+	public static final ResourceLocation BACKGROUND_LOCATION = AstroCraftAddon.rl("textures/jei/itemstack_to_itemstack.png");
 	public static final int BACKGROUND_HEIGHT = 84;
 	public static final int BACKGROUND_WIDTH = 144;
 	public static final int ARROW_LEFT = 55;

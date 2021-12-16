@@ -3,7 +3,7 @@ package astrocraft_giselle_addon.common.compat.theoneprobe;
 import java.util.ArrayList;
 import java.util.List;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import astrocraft_giselle_addon.common.event.EntityGaugeValueFetchEvent;
 import mcjty.theoneprobe.api.IProbeHitEntityData;
 import mcjty.theoneprobe.api.IProbeInfo;
@@ -38,7 +38,7 @@ public class AddonProbeInfoEntityProvider implements IProbeInfoEntityProvider
 	@Override
 	public String getID()
 	{
-		return BossToolsAddon.rl("top_entity").toString();
+		return AstroCraftAddon.rl("top_entity").toString();
 	}
 
 }

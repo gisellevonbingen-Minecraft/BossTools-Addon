@@ -10,7 +10,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import astrocraft_giselle_addon.client.util.SkullRenderUtils;
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import astrocraft_giselle_addon.common.network.AddonNetwork;
 import astrocraft_giselle_addon.common.network.FlagEditMessageSave;
 import astrocraft_giselle_addon.common.util.GameProfileUtils;
@@ -34,12 +34,12 @@ public class FlagEditScreen extends Screen
 
 	public static ResourceLocation texture(String name)
 	{
-		return BossToolsAddon.rl("textures/gui/flag_edit_" + name + ".png");
+		return AstroCraftAddon.rl("textures/gui/flag_edit_" + name + ".png");
 	}
 
 	public static TranslatableComponent language(String key, Object... objects)
 	{
-		return new TranslatableComponent(BossToolsAddon.tl("gui", "flag_edit." + key), objects);
+		return new TranslatableComponent(AstroCraftAddon.tl("gui", "flag_edit." + key), objects);
 	}
 
 	private final FlagTileEntity blockEntity;

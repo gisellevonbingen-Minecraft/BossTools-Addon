@@ -1,6 +1,6 @@
 package astrocraft_giselle_addon.common.item.crafting;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.DeferredRegister;
@@ -11,7 +11,7 @@ import net.mrscauthd.astrocraft.crafting.ItemStackToItemStackRecipeType;
 
 public class AddonRecipes
 {
-	public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, BossToolsAddon.MODID);
+	public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, AstroCraftAddon.MODID);
 	
 	public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_ROLLING = RECIPE_SERIALIZERS.register("rolling", () -> new RollingRecipeSerializer());
 	public static final ItemStackToItemStackRecipeType<RollingRecipe> ROLLING = create(new ItemStackToItemStackRecipeType<>("rolling"));
@@ -21,7 +21,7 @@ public class AddonRecipes
 
 	private static <T extends AstroCraftRecipeType<?>> T create(T value)
 	{
-		Registry.register(Registry.RECIPE_TYPE, BossToolsAddon.rl(value.getName()), value);
+		Registry.register(Registry.RECIPE_TYPE, AstroCraftAddon.rl(value.getName()), value);
 		return value;
 	}
 

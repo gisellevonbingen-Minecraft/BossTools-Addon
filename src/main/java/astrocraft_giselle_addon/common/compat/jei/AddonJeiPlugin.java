@@ -8,7 +8,7 @@ import com.mojang.datafixers.util.Pair;
 
 import astrocraft_giselle_addon.client.gui.AdvancedCompressorScreen;
 import astrocraft_giselle_addon.client.gui.ElectricBlastFurnaceScreen;
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import astrocraft_giselle_addon.common.block.AddonBlocks;
 import astrocraft_giselle_addon.common.config.AddonConfigs;
 import astrocraft_giselle_addon.common.inventory.AdvancedCompressorContainerMenu;
@@ -97,7 +97,7 @@ public class AddonJeiPlugin implements IModPlugin
 	@Override
 	public ResourceLocation getPluginUid()
 	{
-		return BossToolsAddon.rl("jei");
+		return AstroCraftAddon.rl("jei");
 	}
 
 	@Override
@@ -173,7 +173,7 @@ public class AddonJeiPlugin implements IModPlugin
 
 	public void addIngredientInfo(IRecipeRegistration registration, ItemLike itemLike, Object... objects)
 	{
-		registration.addIngredientInfo(new ItemStack(itemLike), VanillaTypes.ITEM, new TranslatableComponent(BossToolsAddon.tl(JEI_INFO, itemLike.asItem().getRegistryName()), objects));
+		registration.addIngredientInfo(new ItemStack(itemLike), VanillaTypes.ITEM, new TranslatableComponent(AstroCraftAddon.tl(JEI_INFO, itemLike.asItem().getRegistryName()), objects));
 	}
 
 	public List<IItemStackToitemStackRegistration<?, ?>> getItemStackToItemStackRegistrations()

@@ -1,6 +1,6 @@
 package astrocraft_giselle_addon.common.inventory;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import astrocraft_giselle_addon.common.util.TriFunction;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,7 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class AddonMenuTypes
 {
-	public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.CONTAINERS, BossToolsAddon.MODID);
+	public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.CONTAINERS, AstroCraftAddon.MODID);
 	public static final RegistryObject<MenuType<FuelLoaderContainerMenu>> FUEL_LOADER = register("fuel_loader", FuelLoaderContainerMenu::new);
 	public static final RegistryObject<MenuType<ElectricBlastFurnaceContainerMenu>> ELECTRIC_BLAST_FURNACE = register("electric_blast_furnace", ElectricBlastFurnaceContainerMenu::new);
 	public static final RegistryObject<MenuType<AdvancedCompressorContainerMenu>> ADVANCED_COMPRESSOR = register("advanced_compressor", AdvancedCompressorContainerMenu::new);

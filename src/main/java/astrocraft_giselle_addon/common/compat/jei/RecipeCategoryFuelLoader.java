@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import astrocraft_giselle_addon.client.gui.FuelLoaderScreen;
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import astrocraft_giselle_addon.common.block.AddonBlocks;
 import astrocraft_giselle_addon.common.config.AddonConfigs;
 import mezz.jei.api.constants.VanillaTypes;
@@ -27,7 +27,7 @@ import net.mrscauthd.astrocraft.gui.helper.GuiHelper;
 
 public class RecipeCategoryFuelLoader extends RecipeCategory<Fluid>
 {
-	public static final ResourceLocation BACKGROUND_LOCATION = BossToolsAddon.rl("textures/jei/fuel_loader.png");
+	public static final ResourceLocation BACKGROUND_LOCATION = AstroCraftAddon.rl("textures/jei/fuel_loader.png");
 	public static final int BACKGROUND_WIDTH = 146;
 	public static final int BACKGROUND_HEIGHT = 84;
 	public static final int TANK_LEFT = 55;

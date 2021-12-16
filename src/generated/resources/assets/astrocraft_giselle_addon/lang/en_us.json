@@ -1,6 +1,6 @@
 {
 
-  "itemGroup.astrocraft_giselle_addon_tab_main": "Space-BossTools: Giselle Addon",
+  "itemGroup.astrocraft_giselle_addon_tab_main": "AstroCraft: Giselle Addon",
   
   "block.astrocraft_giselle_addon.fuel_loader": "Fuel Loader",
   "block.astrocraft_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
@@ -8,9 +8,9 @@
   "block.astrocraft_giselle_addon.gravity_normalizer": "Gravity Normalizer",
   
   "module.astrocraft_giselle_addon.space_breathing_unit": "Space Breathing Unit",
-  "description.astrocraft_giselle_addon.space_breathing_unit": "Consume oxygen and energy, can breath in Space-BossTools dimensions\nWill also fill this module with oxygen when necessary",
+  "description.astrocraft_giselle_addon.space_breathing_unit": "Consume oxygen and energy, can breath in AstroCraft dimensions\nWill also fill this module with oxygen when necessary",
   "module.astrocraft_giselle_addon.space_fire_proof_unit": "Space Fire Proof Unit",
-  "description.astrocraft_giselle_addon.space_fire_proof_unit": "Consume energy, don't set fire to player in Space-BossTools dimensions",
+  "description.astrocraft_giselle_addon.space_fire_proof_unit": "Consume energy, don't set fire to player in AstroCraft dimensions",
   "module.astrocraft_giselle_addon.venus_acid_proof_unit": "Venus Acid Proof Unit",
   "description.astrocraft_giselle_addon.venus_acid_proof_unit": "Consume energy, don't damage from venus acid rain",
   "module.astrocraft_giselle_addon.gravity_normalizing_unit": "Gravity Normalizing Unit",

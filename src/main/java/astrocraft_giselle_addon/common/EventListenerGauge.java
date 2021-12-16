@@ -1,7 +1,7 @@
 package astrocraft_giselle_addon.common;
 
-import astrocraft_giselle_addon.common.entity.BossToolsRocketHelper;
-import astrocraft_giselle_addon.common.entity.BossToolsRoverHelper;
+import astrocraft_giselle_addon.common.entity.AstroCraftRocketHelper;
+import astrocraft_giselle_addon.common.entity.AstroCraftRoverHelper;
 import astrocraft_giselle_addon.common.event.EntityGaugeValueFetchEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
@@ -19,14 +19,14 @@ public class EventListenerGauge
 
 		if (entity instanceof RoverEntity)
 		{
-			int amount = BossToolsRoverHelper.getFuelAmount(entity);
-			int capacity = BossToolsRoverHelper.getFuelCapacity(entity);
+			int amount = AstroCraftRoverHelper.getFuelAmount(entity);
+			int capacity = AstroCraftRoverHelper.getFuelCapacity(entity);
 			e.getValues().add(GaugeValueHelper.getFuel(amount, capacity));
 		}
-		else if (BossToolsRocketHelper.isBossToolsRocket(entity))
+		else if (AstroCraftRocketHelper.isAstroCraftRocket(entity))
 		{
-			int amount = BossToolsRocketHelper.getFuelAmount(entity);
-			int capacity = BossToolsRocketHelper.getFuelCapacity(entity);
+			int amount = AstroCraftRocketHelper.getFuelAmount(entity);
+			int capacity = AstroCraftRocketHelper.getFuelCapacity(entity);
 			e.getValues().add(new GaugeValueSimple(GaugeValueHelper.FUEL_NAME, (int) (amount / (capacity / 100.0D)), 100, (Component) null, "%").color(GaugeValueHelper.FUEL_COLOR));
 		}
 

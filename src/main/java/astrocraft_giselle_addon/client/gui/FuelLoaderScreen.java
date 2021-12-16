@@ -3,7 +3,7 @@ package astrocraft_giselle_addon.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import astrocraft_giselle_addon.common.BossToolsAddon;
+import astrocraft_giselle_addon.common.AstroCraftAddon;
 import astrocraft_giselle_addon.common.block.entity.FuelLoaderBlockEntity;
 import astrocraft_giselle_addon.common.compat.AddonCompatibleManager;
 import astrocraft_giselle_addon.common.inventory.FuelLoaderContainerMenu;
@@ -16,7 +16,7 @@ import net.minecraft.world.phys.AABB;
 
 public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainerMenu>
 {
-	public static final ResourceLocation TEXTURE = BossToolsAddon.rl("textures/gui/container/fuel_loader.png");
+	public static final ResourceLocation TEXTURE = AstroCraftAddon.rl("textures/gui/container/fuel_loader.png");
 	public static final int TANK_LEFT = 71;
 	public static final int TANK_TOP = 27;
 

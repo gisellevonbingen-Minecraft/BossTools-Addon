@@ -23,14 +23,14 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.mrscauthd.astrocraft.AstroCraftMod;
 
-@Mod(BossToolsAddon.MODID)
-public class BossToolsAddon
+@Mod(AstroCraftAddon.MODID)
+public class AstroCraftAddon
 {
 	public static final String PMODID = AstroCraftMod.MODID;
 	public static final String MODID = "astrocraft_giselle_addon";
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	public BossToolsAddon()
+	public AstroCraftAddon()
 	{
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AddonConfigs.CommonSpec);
 
