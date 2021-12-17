@@ -2,6 +2,7 @@ package boss_tools_giselle_addon.common.block;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.ToIntFunction;
 
 import boss_tools_giselle_addon.common.inventory.ItemHandlerHelper2;
 import net.minecraft.block.Block;
@@ -36,8 +37,27 @@ public abstract class AbstractMachineBlock<T extends AbstractMachineTileEntity> 
 
 	public AbstractMachineBlock(Properties properties)
 	{
-		super(properties);
+		super(properties.lightLevel(new ToIntFunction<BlockState>()
+		{
+			@Override
+			public int applyAsInt(BlockState state)
+			{
+				Block block = state.getBlock();
 
+				if (block instanceof AbstractMachineBlock<?>)
+				{
+					return ((AbstractMachineBlock<?>) block).getLightLevel(state);
+				}
+
+				return 0;
+			}
+		}));
+
+		this.registerDefaultState(this.buildDefaultState());
+	}
+
+	protected BlockState buildDefaultState()
+	{
 		BlockState any = this.stateDefinition.any();
 
 		if (this.useFacing() == true)
@@ -50,7 +70,7 @@ public abstract class AbstractMachineBlock<T extends AbstractMachineTileEntity> 
 			any = any.setValue(LIT, false);
 		}
 
-		this.registerDefaultState(any);
+		return any;
 	}
 
 	@Override
@@ -100,8 +120,7 @@ public abstract class AbstractMachineBlock<T extends AbstractMachineTileEntity> 
 
 	}
 
-	@Override
-	public int getLightValue(BlockState state, IBlockReader level, BlockPos pos)
+	protected int getLightLevel(BlockState state)
 	{
 		if (this.useLit() == true)
 		{
@@ -109,7 +128,7 @@ public abstract class AbstractMachineBlock<T extends AbstractMachineTileEntity> 
 		}
 		else
 		{
-			return super.getLightValue(state, level, pos);
+			return 0;
 		}
 
 	}
