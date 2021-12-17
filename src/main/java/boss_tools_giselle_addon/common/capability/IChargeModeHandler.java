@@ -13,9 +13,11 @@ public interface IChargeModeHandler
 		return Arrays.asList(ChargeMode.values());
 	}
 
-	public void setChargeMode(@Nullable IChargeMode mode);
-
 	@Nonnull
 	public IChargeMode getChargeMode();
+
+	public void setChargeMode(@Nullable IChargeMode mode);
+
+	public void setChanged();
 
 }

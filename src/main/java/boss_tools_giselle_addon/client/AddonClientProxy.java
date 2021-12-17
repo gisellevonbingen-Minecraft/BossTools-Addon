@@ -12,6 +12,7 @@ import boss_tools_giselle_addon.common.tile.AddonTiles;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -22,10 +23,14 @@ public class AddonClientProxy
 {
 	public AddonClientProxy()
 	{
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-		bus.addListener(this::onClientSetup);
-		bus.addListener(this::onAtlasPreStitch);
-		bus.addGenericListener(ContainerType.class, this::registerContainer);
+		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
+		fml_bus.addListener(this::onAtlasPreStitch);
+		fml_bus.addListener(this::onClientSetup);
+		fml_bus.addGenericListener(ContainerType.class, this::registerContainer);
+
+		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+		forgeEventBus.register(EventListenerRenderSpaceSuitOverlay.class);
+		forgeEventBus.register(EventListenerRenderOxygenCanOverlay.class);
 	}
 
 	public void onClientSetup(FMLClientSetupEvent event)

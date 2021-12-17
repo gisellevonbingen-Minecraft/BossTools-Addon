@@ -14,7 +14,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 public enum ChargeMode implements IChargeMode
 {
 	NONE(BossToolsAddon.rl("none"), e -> Collections.emptyList()),
-	EQUIPMENTS(BossToolsAddon.rl("equipments"), Entity::getArmorSlots),
+	ARMORS(BossToolsAddon.rl("armors"), Entity::getArmorSlots),
 	ALL(BossToolsAddon.rl("all"), e -> e.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).lazyMap(ItemHandlerHelper2::getStacks).orElse(NonNullList.withSize(0, ItemStack.EMPTY))),
 	//
 	;

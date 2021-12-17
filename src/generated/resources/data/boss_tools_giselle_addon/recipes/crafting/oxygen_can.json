@@ -1,0 +1,19 @@
+{
+   "type":"minecraft:crafting_shaped",
+   "result":{
+      "item":"boss_tools_giselle_addon:oxygen_can"
+   },
+   "pattern":[
+      " P ",
+      "PGP",
+      " P "
+   ],
+   "key":{
+      "P":{
+         "tag":"forge:plates/iron"
+      },
+      "G":{
+         "item":"boss_tools:oxygen_gear"
+      }
+   }
+} 

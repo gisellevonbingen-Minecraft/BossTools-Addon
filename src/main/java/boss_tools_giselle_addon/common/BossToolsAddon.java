@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import boss_tools_giselle_addon.client.AddonClientProxy;
 import boss_tools_giselle_addon.common.block.AddonBlocks;
 import boss_tools_giselle_addon.common.capability.CapabilityChargeModeHandler;
+import boss_tools_giselle_addon.common.capability.CapabilityOxygenCharger;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
@@ -58,10 +59,8 @@ public class BossToolsAddon
 
 	public static void init(FMLCommonSetupEvent event)
 	{
-		event.enqueueWork(() ->
-		{
-			CapabilityChargeModeHandler.register();
-		});
+		CapabilityChargeModeHandler.register();
+		CapabilityOxygenCharger.register();
 	}
 
 	public static ResourceLocation rl(String path)

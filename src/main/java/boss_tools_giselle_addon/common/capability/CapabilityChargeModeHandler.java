@@ -84,20 +84,7 @@ public class CapabilityChargeModeHandler
 				instance.setChargeMode(CapabilityChargeModeHandler.readNBT(instance, nbt));
 			}
 
-		}, () -> new IChargeModeHandler()
-		{
-			@Override
-			public void setChargeMode(IChargeMode mode)
-			{
-
-			}
-
-			@Override
-			public IChargeMode getChargeMode()
-			{
-				return ChargeMode.NONE;
-			}
-		});
+		}, ChargeModeHandlerEmpty::new);
 	}
 
 	private CapabilityChargeModeHandler()

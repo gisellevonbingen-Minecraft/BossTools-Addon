@@ -1,8 +1,5 @@
 package boss_tools_giselle_addon.common.capability;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.util.NBTUtils;
 import net.minecraft.item.ItemStack;
@@ -11,40 +8,58 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-import net.mrscauthd.boss_tools.capability.CapabilityOxygen;
 import net.mrscauthd.boss_tools.capability.IOxygenStorage;
 import net.mrscauthd.boss_tools.capability.IOxygenStorageHolder;
 
-public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygenStorageHolder, IChargeModeHandler
+public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygenStorageHolder
 {
 	public static final String KEY_NBT = BossToolsAddon.rl("oxygen_capacitor_capability").toString();
-	public static final String KEY_OXYGEN_STORAGE = "oxygenStorage";
-	public static final String KEY_CHARGE_MODE = "chargemode";
+	public static final String KEY_OXYGEN_STORAGE = "oxygenstorage";
+	public static final String KEY_OXYGEN_CHARGER = "oxygencharger";
 
 	private final ItemStack itemStack;
 	private final IOxygenStorage oxygenStorage;
+	private final IOxygenCharger oxygenCharger;
 
 	public OxygenCanCapabilityProvider(ItemStack itemStack, int capacity, int transfer)
 	{
 		this.itemStack = itemStack;
 		this.oxygenStorage = new RatedOxygenStorage(this, capacity, 0, transfer);
-	}
-
-	public IOxygenStorage readOxygen(IOxygenStorage oxygenStorage)
-	{
-		Capability<IOxygenStorage> oxygen = CapabilityOxygen.OXYGEN;
-
-		if (oxygen != null)
+		this.oxygenCharger = new OxygenChargerWrapper()
 		{
-			oxygen.readNBT(oxygenStorage, null, this.getTag().get(KEY_OXYGEN_STORAGE));
-		}
+			@Override
+			public void setChanged()
+			{
+				super.setChanged();
+				OxygenCanCapabilityProvider.this.writeOxygenCharger(this);
+			}
 
-		return oxygenStorage;
+			@Override
+			public IOxygenStorage getOxygenStorage()
+			{
+				return OxygenCanCapabilityProvider.this.getOxygenStorage();
+			}
+		};
 	}
 
-	public void writeOxygen(IOxygenStorage storage)
+	public <T extends IOxygenStorage> T readOxygenStorage(T oxygenStorage)
 	{
-		this.getOrCreateTag().put(KEY_OXYGEN_STORAGE, CapabilityOxygen.OXYGEN.writeNBT(storage, null));
+		return CapabilityOxygenUtils.readNBT(oxygenStorage, this.getTag().get(KEY_OXYGEN_STORAGE));
+	}
+
+	public void writeOxygenStorage(IOxygenStorage storage)
+	{
+		this.getOrCreateTag().put(KEY_OXYGEN_STORAGE, CapabilityOxygenUtils.writeNBT(storage));
+	}
+
+	public <T extends IOxygenCharger> T readOxygenCharger(T oxygenCharger)
+	{
+		return CapabilityOxygenCharger.readNBT(oxygenCharger, this.getTag().get(KEY_OXYGEN_CHARGER));
+	}
+
+	public void writeOxygenCharger(IOxygenCharger charger)
+	{
+		this.getOrCreateTag().put(KEY_OXYGEN_CHARGER, CapabilityOxygenCharger.writeNBT(charger));
 	}
 
 	public CompoundNBT getTag()
@@ -72,9 +87,13 @@ public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygen
 			return oxygenCapability;
 		}
 
-		if (capability == CapabilityChargeModeHandler.CHARGE_MODE_HANDLER)
+		if (capability == CapabilityOxygenCharger.OXYGEN_CHARGER)
 		{
-			return LazyOptional.of(() -> this).cast();
+			return LazyOptional.of(this::getOxygenCharger).cast();
+		}
+		else if (capability == CapabilityChargeModeHandler.CHARGE_MODE_HANDLER)
+		{
+			return LazyOptional.of(this::getOxygenCharger).cast();
 		}
 
 		return LazyOptional.empty();
@@ -83,20 +102,7 @@ public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygen
 	@Override
 	public void onOxygenChanged(IOxygenStorage storage, int delta)
 	{
-		this.writeOxygen(storage);
-	}
-
-	@Override
-	public void setChargeMode(@Nullable IChargeMode mode)
-	{
-		this.getOrCreateTag().put(KEY_CHARGE_MODE, CapabilityChargeModeHandler.writeNBT(mode));
-	}
-
-	@Override
-	@Nonnull
-	public IChargeMode getChargeMode()
-	{
-		return CapabilityChargeModeHandler.readNBT(this.getAvailableChargeModes(), this.getTag().get(KEY_CHARGE_MODE));
+		this.writeOxygenStorage(storage);
 	}
 
 	public final ItemStack getItemStack()
@@ -106,6 +112,12 @@ public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygen
 
 	public final IOxygenStorage getOxygenStorage()
 	{
-		return this.readOxygen(this.oxygenStorage);
+		return this.readOxygenStorage(this.oxygenStorage);
 	}
+
+	public final IOxygenCharger getOxygenCharger()
+	{
+		return this.readOxygenCharger(this.oxygenCharger);
+	}
+
 }

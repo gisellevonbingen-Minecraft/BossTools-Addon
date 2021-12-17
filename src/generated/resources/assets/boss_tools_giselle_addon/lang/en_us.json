@@ -22,7 +22,8 @@
   "item.boss_tools_giselle_addon.press_compressing_die": "Compressing Die",
   "item.jaopca.boss_tools_compresseds": "Compressed %s",
   
-  "description.boss_tools_giselle_addon.oxygen_can.charge_mode": "Charge Mode: %s",
+  "description.boss_tools_giselle_addon.charge_mode": "Charge Mode",
+  "description.boss_tools_giselle_addon.gauge_visible": "HUD",
   
   "container.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
   "container.boss_tools_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
@@ -33,8 +34,8 @@
   "gui.boss_tools_giselle_addon.workingarea.show": "Show",
   "gui.boss_tools_giselle_addon.workingarea.hide": "Hide",
   
-  "gui.boss_tools_giselle_addon.advanced_compressor.change.next": "Next: %s",
-  "gui.boss_tools_giselle_addon.advanced_compressor.change.prev": "Prev: %s",
+  "gui.boss_tools_giselle_addon.advanced_compressor.change.next": "Next",
+  "gui.boss_tools_giselle_addon.advanced_compressor.change.prev": "Prev",
   
   "gui.boss_tools_giselle_addon.flag_edit.title": "Edit Flag",
   "gui.boss_tools_giselle_addon.flag_edit.verify": "Verify",
@@ -47,8 +48,11 @@
   "compressormode.boss_tools_giselle_addon.extruding": "Extruding",
   
   "chargemode.boss_tools_giselle_addon.none": "Disabled",
-  "chargemode.boss_tools_giselle_addon.equipments": "All Equipments",
+  "chargemode.boss_tools_giselle_addon.armors": "All Armor",
   "chargemode.boss_tools_giselle_addon.all": "All Inventory",
+  
+  "visible.boss_tools_giselle_addon.true": "Visible",
+  "visible.boss_tools_giselle_addon.false": "Invisible",
   
   "jei.category.boss_tools_giselle_addon.rolling": "Compressor - Rolling",
   "jei.category.boss_tools_giselle_addon.extruding": "Compressor - Extruding",
