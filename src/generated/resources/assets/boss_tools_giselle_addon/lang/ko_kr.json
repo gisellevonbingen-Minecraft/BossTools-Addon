@@ -51,9 +51,6 @@
   "chargemode.boss_tools_giselle_addon.armors": "모든 갑옷",
   "chargemode.boss_tools_giselle_addon.all": "인벤토리 전체",
   
-  "visible.boss_tools_giselle_addon.true": "표시",
-  "visible.boss_tools_giselle_addon.false": "미표시",
-  
   "jei.category.boss_tools_giselle_addon.rolling": "압축기 - 압연",
   "jei.category.boss_tools_giselle_addon.extruding": "압축기 - 압출",
   "jei.category.boss_tools_giselle_addon.fuel_loader": "연료 적재기",

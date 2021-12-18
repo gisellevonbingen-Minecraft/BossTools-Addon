@@ -51,9 +51,6 @@
   "chargemode.boss_tools_giselle_addon.armors": "All Armor",
   "chargemode.boss_tools_giselle_addon.all": "All Inventory",
   
-  "visible.boss_tools_giselle_addon.true": "Visible",
-  "visible.boss_tools_giselle_addon.false": "Invisible",
-  
   "jei.category.boss_tools_giselle_addon.rolling": "Compressor - Rolling",
   "jei.category.boss_tools_giselle_addon.extruding": "Compressor - Extruding",
   "jei.category.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
