@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"result": {
+		"item": "astrocraft_giselle_addon:oxygen_can"
+	},
+	"ingredients": [
+		{
+			"item": "astrocraft_giselle_addon:oxygen_can"
+		}
+	]
+}

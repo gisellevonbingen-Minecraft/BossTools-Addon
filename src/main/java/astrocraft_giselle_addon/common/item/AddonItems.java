@@ -18,6 +18,8 @@ public class AddonItems
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Item.class, AstroCraftAddon.MODID);
 	public static final Map<RegistryObject<Block>, RegistryObject<BlockItem>> BLOCKS = new HashMap<>();
 
+	public static final RegistryObject<OxygenCanItem> OXYGEN_CAN = ITEMS.register("oxygen_can", () -> new OxygenCanItem(new Item.Properties().tab(AddonTabs.tab_main)));
+
 	static
 	{
 		for (RegistryObject<Block> blockRegistry : AddonBlocks.BLOCKS.getEntries())

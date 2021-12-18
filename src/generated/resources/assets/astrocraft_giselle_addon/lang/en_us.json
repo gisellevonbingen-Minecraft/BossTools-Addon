@@ -18,8 +18,12 @@
  
   "description.astrocraft_giselle_addon.instead_gravity_normalizing_unit": "Can use instead of Gravity Normalizing Unit",
  
+  "item.astrocraft_giselle_addon.oxygen_can": "Oxygen Can",
   "item.astrocraft_giselle_addon.press_compressing_die": "Compressing Die",
   "item.jaopca.astrocraft_compresseds": "Compressed %s",
+  
+  "description.astrocraft_giselle_addon.charge_mode": "Charge Mode",
+  "description.astrocraft_giselle_addon.gauge_visible": "HUD",
   
   "container.astrocraft_giselle_addon.fuel_loader": "Fuel Loader",
   "container.astrocraft_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
@@ -30,8 +34,8 @@
   "gui.astrocraft_giselle_addon.workingarea.show": "Show",
   "gui.astrocraft_giselle_addon.workingarea.hide": "Hide",
   
-  "gui.astrocraft_giselle_addon.advanced_compressor.change.next": "Next: %s",
-  "gui.astrocraft_giselle_addon.advanced_compressor.change.prev": "Prev: %s",
+  "gui.astrocraft_giselle_addon.advanced_compressor.change.next": "Next",
+  "gui.astrocraft_giselle_addon.advanced_compressor.change.prev": "Prev",
   
   "gui.astrocraft_giselle_addon.flag_edit.title": "Edit Flag",
   "gui.astrocraft_giselle_addon.flag_edit.verify": "Verify",
@@ -42,6 +46,10 @@
   "compressormode.astrocraft.compressing": "Compressing",
   "compressormode.astrocraft_giselle_addon.rolling": "Rolling",
   "compressormode.astrocraft_giselle_addon.extruding": "Extruding",
+  
+  "chargemode.astrocraft_giselle_addon.none": "Disabled",
+  "chargemode.astrocraft_giselle_addon.armors": "All Armor",
+  "chargemode.astrocraft_giselle_addon.all": "All Inventory",
   
   "jei.category.astrocraft_giselle_addon.rolling": "Compressor - Rolling",
   "jei.category.astrocraft_giselle_addon.extruding": "Compressor - Extruding",

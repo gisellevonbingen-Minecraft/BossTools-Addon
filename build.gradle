@@ -146,6 +146,9 @@ dependencies {
 	// Space-BossTools
 	implementation fg.deobf("net.mrscauthd:astrocraft:1.18.1-5.7")
 	
+	// Curios
+    compileOnly fg.deobf("curse.maven:curios-309927:3567300:api")
+    runtimeOnly fg.deobf("curse.maven:curios-309927:3567300")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

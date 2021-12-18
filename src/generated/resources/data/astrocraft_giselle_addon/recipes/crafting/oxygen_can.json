@@ -1,0 +1,19 @@
+{
+   "type":"minecraft:crafting_shaped",
+   "result":{
+      "item":"astrocraft_giselle_addon:oxygen_can"
+   },
+   "pattern":[
+      " P ",
+      "PGP",
+      " P "
+   ],
+   "key":{
+      "P":{
+         "tag":"forge:plates/iron"
+      },
+      "G":{
+         "item":"astrocraft:oxygen_gear"
+      }
+   }
+} 
