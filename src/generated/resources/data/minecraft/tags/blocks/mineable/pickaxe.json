@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "astrocraft_giselle_addon:fuel_loader",
-    "astrocraft_giselle_addon:electric_blast_furnace",
-    "astrocraft_giselle_addon:advanced_compressor",
-    "astrocraft_giselle_addon:gravity_normalizer"
+    "beyond_earth_giselle_addon:fuel_loader",
+    "beyond_earth_giselle_addon:electric_blast_furnace",
+    "beyond_earth_giselle_addon:advanced_compressor",
+    "beyond_earth_giselle_addon:gravity_normalizer"
   ]
 }

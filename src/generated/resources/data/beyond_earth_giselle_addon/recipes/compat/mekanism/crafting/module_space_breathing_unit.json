@@ -1,0 +1,31 @@
+{
+   "type":"minecraft:crafting_shaped",
+   "conditions":[
+      {
+         "type":"forge:item_exists",
+         "item":"beyond_earth_giselle_addon:module_space_breathing_unit"
+      }
+   ],
+   "result":{
+      "item":"beyond_earth_giselle_addon:module_space_breathing_unit"
+   },
+   "pattern":[
+      "I#I",
+      "IAI",
+      "PPP"
+   ],
+   "key":{
+      "I":{
+         "tag":"forge:alloys/advanced"
+      },
+      "A":{
+         "item":"mekanism:module_base"
+      },
+      "#":{
+         "item":"beyond_earth:space_suit"
+      },
+      "P":{
+         "item":"mekanism:hdpe_sheet"
+      }
+   }
+}

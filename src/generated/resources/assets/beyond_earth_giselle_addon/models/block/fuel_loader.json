@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "down": "beyond_earth_giselle_addon:block/machine_top",
+    "up": "beyond_earth_giselle_addon:block/machine_top",
+    "north": "beyond_earth_giselle_addon:block/fuel_loader",
+    "east": "beyond_earth_giselle_addon:block/fuel_loader",
+    "south": "beyond_earth_giselle_addon:block/fuel_loader",
+    "west": "beyond_earth_giselle_addon:block/fuel_loader",
+    "particle": "beyond_earth_giselle_addon:block/fuel_loader"
+  }
+}

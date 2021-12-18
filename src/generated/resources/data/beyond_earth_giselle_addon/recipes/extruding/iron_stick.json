@@ -1,0 +1,13 @@
+{
+   "type":"beyond_earth_giselle_addon:extruding",
+   "input":{
+      "ingredient":{
+         "tag":"forge:ingots/iron"
+      }
+   },
+   "output":{
+      "item":"beyond_earth:iron_stick",
+      "count":2
+   },
+   "cookTime":50
+}

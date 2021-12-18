@@ -1,0 +1,22 @@
+{
+  "type": "thermal:pulverizer",
+  "ingredient": {
+    "value": [
+      {
+        "item": "beyond_earth:venus_sandstone"
+      }
+    ]
+  },
+  "result": [
+    {
+      "item": "beyond_earth:venus_sand",
+      "count": 2
+    }
+  ],
+  "conditions":[
+    {
+      "type":"forge:mod_loaded",
+      "modid":"thermal_expansion"
+    }
+  ]
+}

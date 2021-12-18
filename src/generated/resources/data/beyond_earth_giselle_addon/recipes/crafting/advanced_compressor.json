@@ -1,0 +1,22 @@
+{
+   "type":"minecraft:crafting_shaped",
+   "result":{
+      "item":"beyond_earth_giselle_addon:advanced_compressor"
+   },
+   "pattern":[
+      " S ",
+      "SCS",
+      " R "
+   ],
+   "key":{
+      "S":{
+         "tag":"beyond_earth:compresseds/steel"
+      },
+      "C":{
+         "item":"beyond_earth:compressor"
+      },
+      "R":{
+         "item": "minecraft:redstone"
+      }
+   }
+} 

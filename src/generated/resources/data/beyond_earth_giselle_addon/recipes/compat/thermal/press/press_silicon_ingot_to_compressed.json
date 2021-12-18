@@ -1,0 +1,23 @@
+{
+  "type": "thermal:press",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/silicon"
+    },
+    {
+      "item": "beyond_earth_giselle_addon:press_compressing_die"
+    }
+  ],
+  "result": [
+    {
+      "item": "beyond_earth:compressed_silicon"
+    }
+  ],
+  "energy": 2400,
+  "conditions":[
+    {
+      "type":"forge:mod_loaded",
+      "modid":"thermal_expansion"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+
+  "itemGroup.beyond_earth_giselle_addon_tab_main": "AstroCraft: Giselle Addon",
+  
+  "block.beyond_earth_giselle_addon.fuel_loader": "Fuel Loader",
+  "block.beyond_earth_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
+  "block.beyond_earth_giselle_addon.advanced_compressor": "Advanced Compressor",
+  "block.beyond_earth_giselle_addon.gravity_normalizer": "Gravity Normalizer",
+  
+  "module.beyond_earth_giselle_addon.space_breathing_unit": "Space Breathing Unit",
+  "description.beyond_earth_giselle_addon.space_breathing_unit": "Consume oxygen and energy, can breath in AstroCraft dimensions\nWill also fill this module with oxygen when necessary",
+  "module.beyond_earth_giselle_addon.space_fire_proof_unit": "Space Fire Proof Unit",
+  "description.beyond_earth_giselle_addon.space_fire_proof_unit": "Consume energy, don't set fire to player in AstroCraft dimensions",
+  "module.beyond_earth_giselle_addon.venus_acid_proof_unit": "Venus Acid Proof Unit",
+  "description.beyond_earth_giselle_addon.venus_acid_proof_unit": "Consume energy, don't damage from venus acid rain",
+  "module.beyond_earth_giselle_addon.gravity_normalizing_unit": "Gravity Normalizing Unit",
+  "description.beyond_earth_giselle_addon.gravity_normalizing_unit": "Consume energy, Normalize gravity like in overworld",
+ 
+  "description.beyond_earth_giselle_addon.instead_gravity_normalizing_unit": "Can use instead of Gravity Normalizing Unit",
+ 
+  "item.beyond_earth_giselle_addon.oxygen_can": "Oxygen Can",
+  "item.beyond_earth_giselle_addon.press_compressing_die": "Compressing Die",
+  "item.jaopca.beyond_earth_compresseds": "Compressed %s",
+  
+  "description.beyond_earth_giselle_addon.charge_mode": "Charge Mode",
+  "description.beyond_earth_giselle_addon.gauge_visible": "HUD",
+  
+  "container.beyond_earth_giselle_addon.fuel_loader": "Fuel Loader",
+  "container.beyond_earth_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
+  "container.beyond_earth_giselle_addon.advanced_compressor": "Advanced Compressor",
+  "container.beyond_earth_giselle_addon.gravity_normalizer": "Gravity Normalizer",
+  
+  "gui.beyond_earth_giselle_addon.workingarea.text": "Working Area: %1$sx%2$sx%3$s",
+  "gui.beyond_earth_giselle_addon.workingarea.show": "Show",
+  "gui.beyond_earth_giselle_addon.workingarea.hide": "Hide",
+  
+  "gui.beyond_earth_giselle_addon.advanced_compressor.change.next": "Next",
+  "gui.beyond_earth_giselle_addon.advanced_compressor.change.prev": "Prev",
+  
+  "gui.beyond_earth_giselle_addon.flag_edit.title": "Edit Flag",
+  "gui.beyond_earth_giselle_addon.flag_edit.verify": "Verify",
+  "gui.beyond_earth_giselle_addon.flag_edit.verifying": "Verifying",
+  "gui.beyond_earth_giselle_addon.flag_edit.save": "Save",
+  "gui.beyond_earth_giselle_addon.flag_edit.warning": "※ warning: second layer will not render",
+  
+  "compressormode.beyond_earth.compressing": "Compressing",
+  "compressormode.beyond_earth_giselle_addon.rolling": "Rolling",
+  "compressormode.beyond_earth_giselle_addon.extruding": "Extruding",
+  
+  "chargemode.beyond_earth_giselle_addon.none": "Disabled",
+  "chargemode.beyond_earth_giselle_addon.armors": "All Armor",
+  "chargemode.beyond_earth_giselle_addon.all": "All Inventory",
+  
+  "jei.category.beyond_earth_giselle_addon.rolling": "Compressor - Rolling",
+  "jei.category.beyond_earth_giselle_addon.extruding": "Compressor - Extruding",
+  "jei.category.beyond_earth_giselle_addon.fuel_loader": "Fuel Loader",
+  "jei.info.beyond_earth_giselle_addon.fuel_loader": "Internal fluid tank can receive '%2$s' tagged fluid.\nThen give fuel to 'Rover' or 'Rockets' within %1$s blocks.",
+  "jei.info.beyond_earth_giselle_addon.gravity_normalizer": "Normalize entity's gravity like to overworld within range",
+  
+  "_eof": "eof"
+}
