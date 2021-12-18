@@ -128,6 +128,10 @@ dependencies {
     
 	// JAOPCA
 	compileOnly fg.deobf("thelm:jaopca:1.16.5-3.4.1.15:api")
+	
+	// Curios
+    compileOnly fg.deobf("curse.maven:curios-309927:3456953:api")
+    runtimeOnly fg.deobf("curse.maven:curios-309927:3456953")
 }
 
 jar {

@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 
 import boss_tools_giselle_addon.client.AddonClientProxy;
 import boss_tools_giselle_addon.common.block.AddonBlocks;
+import boss_tools_giselle_addon.common.capability.CapabilityChargeModeHandler;
+import boss_tools_giselle_addon.common.capability.CapabilityOxygenCharger;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
@@ -20,6 +22,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.mrscauthd.boss_tools.BossToolsMod;
 
@@ -35,6 +38,7 @@ public class BossToolsAddon
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AddonConfigs.CommonSpec);
 
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
+		fml_bus.addListener(BossToolsAddon::init);
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);
 		AddonRecipes.RECIPE_SERIALIZERS.register(fml_bus);
@@ -51,6 +55,12 @@ public class BossToolsAddon
 		forgeEventBus.register(EventListenerFlagEdit.class);
 
 		AddonCompatibleManager.visit();
+	}
+
+	public static void init(FMLCommonSetupEvent event)
+	{
+		CapabilityChargeModeHandler.register();
+		CapabilityOxygenCharger.register();
 	}
 
 	public static ResourceLocation rl(String path)

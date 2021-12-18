@@ -18,8 +18,12 @@
   
   "description.boss_tools_giselle_addon.instead_gravity_normalizing_unit": "중력 정규화 기구를 대신할 수 있습니다",
  
+  "item.boss_tools_giselle_addon.oxygen_can": "산소 캔",
   "item.boss_tools_giselle_addon.press_compressing_die": "Compressing Die",
   "item.jaopca.boss_tools_compresseds": "압축 %s",
+  
+  "description.boss_tools_giselle_addon.charge_mode": "충전 모드",
+  "description.boss_tools_giselle_addon.gauge_visible": "HUD",
   
   "container.boss_tools_giselle_addon.fuel_loader": "연료 적재기",
   "container.boss_tools_giselle_addon.electric_blast_furnace": "전기 용광로",
@@ -30,8 +34,8 @@
   "gui.boss_tools_giselle_addon.workingarea.show": "표시",
   "gui.boss_tools_giselle_addon.workingarea.hide": "숨김",
   
-  "gui.boss_tools_giselle_addon.advanced_compressor.change.next": "다음: %s",
-  "gui.boss_tools_giselle_addon.advanced_compressor.change.prev": "이전: %s",
+  "gui.boss_tools_giselle_addon.advanced_compressor.change.next": "다음",
+  "gui.boss_tools_giselle_addon.advanced_compressor.change.prev": "이전",
   
   "gui.boss_tools_giselle_addon.flag_edit.title": "깃발 편집",
   "gui.boss_tools_giselle_addon.flag_edit.verify": "확인",
@@ -42,6 +46,10 @@
   "compressormode.boss_tools.compressing": "압축",
   "compressormode.boss_tools_giselle_addon.rolling": "압연",
   "compressormode.boss_tools_giselle_addon.extruding": "압출",
+  
+  "chargemode.boss_tools_giselle_addon.none": "비활성화",
+  "chargemode.boss_tools_giselle_addon.armors": "모든 갑옷",
+  "chargemode.boss_tools_giselle_addon.all": "인벤토리 전체",
   
   "jei.category.boss_tools_giselle_addon.rolling": "압축기 - 압연",
   "jei.category.boss_tools_giselle_addon.extruding": "압축기 - 압출",

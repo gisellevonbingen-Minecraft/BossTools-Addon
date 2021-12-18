@@ -47,7 +47,7 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 			int direction = this.getCyclicDirection();
 			ICompressorMode cyclicMode = tileEntity.getCyclicMode(direction);
 			String text = direction > 0 ? "next" : "prev";
-			this.renderTooltip(stack, new TranslationTextComponent(this.rtl("change." + text), cyclicMode.getText()), mouseX, mouseY);
+			this.renderTooltip(stack, new TranslationTextComponent(this.rtl("change." + text)).append(": ").append(cyclicMode.getText()), mouseX, mouseY);
 		}
 
 	}

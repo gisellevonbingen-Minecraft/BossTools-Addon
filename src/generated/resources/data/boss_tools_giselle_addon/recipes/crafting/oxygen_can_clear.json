@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"result": {
+		"item": "boss_tools_giselle_addon:oxygen_can"
+	},
+	"ingredients": [
+		{
+			"item": "boss_tools_giselle_addon:oxygen_can"
+		}
+	]
+}

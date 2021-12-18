@@ -18,7 +18,7 @@ public class AddonItems
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Item.class, BossToolsAddon.MODID);
 	public static final Map<RegistryObject<Block>, RegistryObject<BlockItem>> BLOCKS = new HashMap<>();
 
-	public static final RegistryObject<OxygenBombe> OXYGEN_BOMBE = ITEMS.register("oxygen_bombe", () -> new OxygenBombe(new Item.Properties().tab(AddonTabs.tab_main)));
+	public static final RegistryObject<OxygenCanItem> OXYGEN_CAN = ITEMS.register("oxygen_can", () -> new OxygenCanItem(new Item.Properties().tab(AddonTabs.tab_main)));
 
 	static
 	{
