@@ -105,7 +105,7 @@ public class OxygenCanItem extends Item
 	{
 		super.inventoryTick(stack, world, entity, slot, selected);
 
-		if (world.isClientSide == false)
+		if (world.isClientSide() == false)
 		{
 			inventoryTick(entity, stack);
 		}
@@ -150,12 +150,6 @@ public class OxygenCanItem extends Item
 					targetOxygenStorage.receiveOxygen(receiving, false);
 					transfer -= receiving;
 
-					if (entity instanceof PlayerEntity)
-					{
-						PlayerEntity player = (PlayerEntity) entity;
-						player.inventoryMenu.broadcastChanges();
-					}
-
 					if (transfer <= 0)
 					{
 						break;
@@ -187,13 +181,13 @@ public class OxygenCanItem extends Item
 	@Override
 	public double getDurabilityForDisplay(ItemStack stack)
 	{
-		return 1.0D - stack.getCapability(CapabilityOxygen.OXYGEN).map(IOxygenStorage::getOxygenStoredRatio).orElse(0.0D);
+		return 1.0D - stack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).lazyMap(IOxygenCharger::getOxygenStorage).map(IOxygenStorage::getOxygenStoredRatio).orElse(0.0D);
 	}
 
 	@Override
 	public boolean showDurabilityBar(ItemStack stack)
 	{
-		return stack.getCapability(CapabilityOxygen.OXYGEN).isPresent();
+		return stack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).isPresent();
 	}
 
 	@Override

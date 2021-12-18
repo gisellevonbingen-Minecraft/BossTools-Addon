@@ -38,6 +38,11 @@ public class EventListenerRenderOxygenCanOverlay
 
 		for (ItemStack stack : itemStacks)
 		{
+			if (stack.isEmpty() == true)
+			{
+				continue;
+			}
+
 			IOxygenCharger oxygenCharger = stack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).orElse(null);
 
 			if (oxygenCharger != null && oxygenCharger.getChargeMode() != ChargeMode.NONE)
