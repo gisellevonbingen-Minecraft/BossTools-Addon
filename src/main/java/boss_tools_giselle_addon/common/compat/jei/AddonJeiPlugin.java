@@ -15,6 +15,7 @@ import boss_tools_giselle_addon.common.item.crafting.AddonRecipes;
 import boss_tools_giselle_addon.common.item.crafting.ExtrudingRecipe;
 import boss_tools_giselle_addon.common.item.crafting.RollingRecipe;
 import mezz.jei.api.IModPlugin;
+import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -80,6 +81,7 @@ public class AddonJeiPlugin implements IModPlugin
 		this.is2isRegistrations = new ArrayList<>();
 
 		this.is2isRegistrations.add(this.electricBlastFurnace = new ItemStackToItemStackRegistration<>(ElectricBlastFurnaceScreen.class, ElectricBlastFurnaceContainer.class));
+		this.electricBlastFurnace.getCategories().add(VanillaRecipeCategoryUid.BLASTING);
 		this.electricBlastFurnace.getCategories().add(BlastingFurnaceJeiCategory.Uid);
 		this.electricBlastFurnace.getItemstacks().add(new ItemStack(AddonBlocks.ELECTRIC_BLAST_FURNACE.get()));
 

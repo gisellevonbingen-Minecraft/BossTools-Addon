@@ -1,0 +1,22 @@
+{
+   "type":"minecraft:crafting_shaped",
+   "result":{
+      "item":"boss_tools_giselle_addon:electric_blast_furnace"
+   },
+   "pattern":[
+      " S ",
+      "SFS",
+      " R "
+   ],
+   "key":{
+      "S":{
+         "tag":"forge:ingots/steel"
+      },
+      "F":{
+         "item":"minecraft:blast_furnace"
+      },
+      "R":{
+         "item": "minecraft:redstone"
+      }
+   }
+} 
