@@ -7,6 +7,7 @@ import boss_tools_giselle_addon.common.capability.ChargeMode;
 import boss_tools_giselle_addon.common.capability.IChargeMode;
 import boss_tools_giselle_addon.common.capability.IOxygenCharger;
 import boss_tools_giselle_addon.common.capability.OxygenCanCapabilityProvider;
+import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.util.TranslationUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -107,12 +108,12 @@ public class OxygenCanItem extends Item
 
 		if (world.isClientSide() == false)
 		{
-			inventoryTick(entity, stack);
+			transferToItems(entity, stack);
 		}
 
 	}
 
-	public static void inventoryTick(Entity entity, ItemStack stack)
+	public static void transferToItems(Entity entity, ItemStack stack)
 	{
 		if (entity == null || stack == null)
 		{
@@ -128,7 +129,12 @@ public class OxygenCanItem extends Item
 
 		IOxygenStorage oxygenStorage = oxygenCharger.getOxygenStorage();
 		Iterable<ItemStack> itemStacks = oxygenCharger.getChargeMode().getItemStacks(entity);
-		int transfer = 256;
+		int transfer = AddonConfigs.Common.items.oxygenCan_OxygenTransfer.get();
+
+		if (transfer <= 0)
+		{
+			return;
+		}
 
 		for (ItemStack itemStack : itemStacks)
 		{

@@ -6,12 +6,12 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class AddonConfigs
 {
-	public static final CommonConfig Common;
+	public static final ConfigCommon Common;
 	public static final ForgeConfigSpec CommonSpec;
 
 	static
 	{
-		Pair<CommonConfig, ForgeConfigSpec> common = new ForgeConfigSpec.Builder().configure(CommonConfig::new);
+		Pair<ConfigCommon, ForgeConfigSpec> common = new ForgeConfigSpec.Builder().configure(ConfigCommon::new);
 		Common = common.getLeft();
 		CommonSpec = common.getRight();
 	}

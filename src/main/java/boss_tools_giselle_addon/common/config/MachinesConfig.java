@@ -3,7 +3,7 @@ package boss_tools_giselle_addon.common.config;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
-public class ConfigMachines
+public class MachinesConfig
 {
 	public final ConfigValue<Integer> fuelLoader_capacity;
 	public final ConfigValue<Integer> fuelLoader_transfer;
@@ -12,7 +12,7 @@ public class ConfigMachines
 	public final ConfigValue<Integer> gravityNormalizer_energyUsingBase;
 	public final ConfigValue<Integer> gravityNormalizer_energyUsingPerRange;
 
-	public ConfigMachines(ForgeConfigSpec.Builder builder)
+	public MachinesConfig(ForgeConfigSpec.Builder builder)
 	{
 		builder.push("fuel_loader");
 
