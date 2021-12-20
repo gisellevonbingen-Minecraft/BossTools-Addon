@@ -4,19 +4,19 @@
       "item":"boss_tools_giselle_addon:electric_blast_furnace"
    },
    "pattern":[
-      " S ",
-      "SFS",
+      " b ",
+      "bFb",
       " R "
    ],
    "key":{
-      "S":{
-         "tag":"forge:ingots/steel"
+      "b":{
+         "tag":"forge:ingots/brick"
       },
       "F":{
          "item":"minecraft:blast_furnace"
       },
       "R":{
-         "item": "minecraft:redstone"
+         "item":"minecraft:redstone"
       }
    }
 } 

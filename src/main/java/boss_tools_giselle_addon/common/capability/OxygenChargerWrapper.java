@@ -20,8 +20,12 @@ public abstract class OxygenChargerWrapper implements IOxygenCharger
 	@Override
 	public void setChargeMode(IChargeMode mode)
 	{
-		this.mode = mode != null ? mode : ChargeMode.NONE;
-		this.setChanged();
+		if (this.getChargeMode() != mode)
+		{
+			this.mode = mode != null ? mode : ChargeMode.NONE;
+			this.setChanged();
+		}
+
 	}
 
 	@Override

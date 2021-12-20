@@ -4,16 +4,16 @@
       "item":"boss_tools_giselle_addon:oxygen_can"
    },
    "pattern":[
-      " P ",
-      "PGP",
-      " P "
+      " R ",
+      "P P",
+      "PPP"
    ],
    "key":{
+      "R":{
+         "tag":"forge:rods/iron"
+      },
       "P":{
          "tag":"forge:plates/iron"
-      },
-      "G":{
-         "item":"boss_tools:oxygen_gear"
       }
    }
 } 
