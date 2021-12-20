@@ -7,6 +7,8 @@ import beyond_earth_giselle_addon.common.capability.ChargeMode;
 import beyond_earth_giselle_addon.common.capability.IChargeMode;
 import beyond_earth_giselle_addon.common.capability.IOxygenCharger;
 import beyond_earth_giselle_addon.common.capability.OxygenCanCapabilityProvider;
+import beyond_earth_giselle_addon.common.config.AddonConfigs;
+import beyond_earth_giselle_addon.common.config.ItemsConfig;
 import beyond_earth_giselle_addon.common.util.TranslationUtils;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -108,12 +110,12 @@ public class OxygenCanItem extends Item
 
 		if (level.isClientSide() == false)
 		{
-			inventoryTick(entity, stack);
+			transferToItems(entity, stack);
 		}
 
 	}
 
-	public static void inventoryTick(Entity entity, ItemStack stack)
+	public static void transferToItems(Entity entity, ItemStack stack)
 	{
 		if (entity == null || stack == null)
 		{
@@ -129,7 +131,12 @@ public class OxygenCanItem extends Item
 
 		IOxygenStorage oxygenStorage = oxygenCharger.getOxygenStorage();
 		Iterable<ItemStack> itemStacks = oxygenCharger.getChargeMode().getItemStacks(entity);
-		int transfer = 256;
+		int transfer = AddonConfigs.Common.items.oxygenCan_OxygenTransfer.get();
+
+		if (transfer <= 0)
+		{
+			return;
+		}
 
 		for (ItemStack itemStack : itemStacks)
 		{
@@ -202,7 +209,10 @@ public class OxygenCanItem extends Item
 	@Override
 	public OxygenCanCapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag)
 	{
-		return new OxygenCanCapabilityProvider(stack, 24000, 256);
+		ItemsConfig config = AddonConfigs.Common.items;
+		int capacity = config.oxygenCan_OxygenCapacity.get();
+		int transfer = config.oxygenCan_OxygenTransfer.get();
+		return new OxygenCanCapabilityProvider(stack, capacity, transfer);
 	}
 
 }

@@ -3,7 +3,7 @@ package beyond_earth_giselle_addon.common.config;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
-public class ConfigMekanism
+public class MekanismConfig
 {
 	public final ConfigValue<Integer> mekaSuitHelmet_OxygenCapacity;
 	public final ConfigValue<Integer> mekaSuitHelmet_OxygenTransfer;
@@ -20,7 +20,7 @@ public class ConfigMekanism
 	public final ConfigValue<Boolean> moduleGravitationalModulating_normalizable;
 	public final ConfigValue<Integer> moduleGravitationalModulating_energyUsing;
 
-	public ConfigMekanism(ForgeConfigSpec.Builder builder)
+	public MekanismConfig(ForgeConfigSpec.Builder builder)
 	{
 		builder.push("mekasuit_helmet");
 		this.mekaSuitHelmet_OxygenCapacity = builder.define("oxygenCapacity", 48000);

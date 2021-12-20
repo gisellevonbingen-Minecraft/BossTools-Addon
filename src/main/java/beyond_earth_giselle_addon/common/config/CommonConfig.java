@@ -4,20 +4,26 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class CommonConfig
 {
-	public final ConfigMachines machines;
+	public final ItemsConfig items;
 
-	public final ConfigMekanism mekanism;
+	public final MachinesConfig machines;
+
+	public final MekanismConfig mekanism;
 
 	public CommonConfig(ForgeConfigSpec.Builder builder)
 	{
+		builder.push("items");
+		this.items = new ItemsConfig(builder);
+		builder.pop();
+
 		builder.push("machines");
-		this.machines = new ConfigMachines(builder);
+		this.machines = new MachinesConfig(builder);
 		builder.pop();
 
 		builder.push("compats");
 
 		builder.push("mekanism");
-		this.mekanism = new ConfigMekanism(builder);
+		this.mekanism = new MekanismConfig(builder);
 		builder.pop();
 
 		builder.pop();
