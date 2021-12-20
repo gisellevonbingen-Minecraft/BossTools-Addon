@@ -22,8 +22,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.mrscauthd.boss_tools.capability.CapabilityOxygen;
 import net.mrscauthd.boss_tools.capability.IOxygenStorage;
+import net.mrscauthd.boss_tools.capability.OxygenUtil;
 import net.mrscauthd.boss_tools.gauge.GaugeTextHelper;
 
 public class OxygenCanItem extends Item
@@ -95,7 +95,7 @@ public class OxygenCanItem extends Item
 			IChargeMode nextMode = modes.get(nextIndex);
 			oxygenCharger.setChargeMode(nextMode);
 
-			player.sendMessage(TranslationUtils.descriptionChargeMode(nextMode), null);
+			player.sendMessage(TranslationUtils.descriptionChargeMode(nextMode), player.getUUID());
 		}
 
 		return ActionResult.pass(stack);
@@ -143,7 +143,7 @@ public class OxygenCanItem extends Item
 				continue;
 			}
 
-			IOxygenStorage targetOxygenStorage = itemStack.getCapability(CapabilityOxygen.OXYGEN).orElse(null);
+			IOxygenStorage targetOxygenStorage = OxygenUtil.getItemStackOxygenStorage(itemStack);
 
 			if (targetOxygenStorage != null)
 			{
