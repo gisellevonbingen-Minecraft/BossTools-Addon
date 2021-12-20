@@ -28,7 +28,7 @@ import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 public class RecipeCategoryFuelLoader extends RecipeCategory<Fluid>
 {
 	public static final ResourceLocation BACKGROUND_LOCATION = BossToolsAddon.rl("textures/jei/fuel_loader.png");
-	public static final int BACKGROUND_WIDTH = 146;
+	public static final int BACKGROUND_WIDTH = 144;
 	public static final int BACKGROUND_HEIGHT = 84;
 	public static final int TANK_LEFT = 55;
 	public static final int TANK_TOP = 18;
