@@ -24,8 +24,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.mrscauthd.beyond_earth.capability.CapabilityOxygen;
 import net.mrscauthd.beyond_earth.capability.IOxygenStorage;
+import net.mrscauthd.beyond_earth.capability.OxygenUtil;
 import net.mrscauthd.beyond_earth.gauge.GaugeTextHelper;
 
 public class OxygenCanItem extends Item
@@ -97,7 +97,7 @@ public class OxygenCanItem extends Item
 			IChargeMode nextMode = modes.get(nextIndex);
 			oxygenCharger.setChargeMode(nextMode);
 
-			player.sendMessage(TranslationUtils.descriptionChargeMode(nextMode), null);
+			player.sendMessage(TranslationUtils.descriptionChargeMode(nextMode), player.getUUID());
 		}
 
 		return InteractionResultHolder.pass(stack);
@@ -145,7 +145,7 @@ public class OxygenCanItem extends Item
 				continue;
 			}
 
-			IOxygenStorage targetOxygenStorage = itemStack.getCapability(CapabilityOxygen.OXYGEN).orElse(null);
+			IOxygenStorage targetOxygenStorage = OxygenUtil.getItemStackOxygenStorage(itemStack);
 
 			if (targetOxygenStorage != null)
 			{

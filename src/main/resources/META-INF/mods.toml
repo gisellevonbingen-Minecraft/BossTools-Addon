@@ -27,4 +27,10 @@ description=''''''
     versionRange="[5.5,)"
     ordering="AFTER"
     side="BOTH"
+[[dependencies.beyond_earth_giselle_addon]]
+    modId="mekanism"
+    mandatory=false
+    versionRange="[10.0.20,)"
+    ordering="AFTER"
+    side="BOTH"
     
