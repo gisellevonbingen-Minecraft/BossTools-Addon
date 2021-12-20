@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import com.mojang.datafixers.util.Pair;
 
 import beyond_earth_giselle_addon.client.gui.ItemStackToItemStackScreen;
 import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainerMenu;
@@ -18,7 +15,6 @@ import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
 import net.mrscauthd.beyond_earth.gauge.GaugeTextHelper;
 import net.mrscauthd.beyond_earth.gui.helper.GuiHelper;
 import net.mrscauthd.beyond_earth.machines.tile.ItemStackToItemStackBlockEntity;
@@ -30,7 +26,7 @@ public abstract class ItemStackToItemStackGuiContainerHandler<S extends ItemStac
 
 	}
 
-	public abstract List<Pair<ResourceLocation, Class<? extends ItemStackToItemStackRecipe>>> getCategories(T tileEntity);
+	public abstract List<ResourceLocation> getCategories(T tileEntity);
 
 	@Override
 	public Collection<IGuiClickableArea> getGuiClickableAreas(S containerScreen, double mouseX, double mouseY)
@@ -48,7 +44,7 @@ public abstract class ItemStackToItemStackGuiContainerHandler<S extends ItemStac
 			@Override
 			public void onClick(IFocusFactory focusFactory, IRecipesGui recipesGui)
 			{
-				recipesGui.showCategories(getCategories(blockEntity).stream().map(Pair::getFirst).collect(Collectors.toList()));
+				recipesGui.showCategories(getCategories(blockEntity));
 			}
 
 			@Override

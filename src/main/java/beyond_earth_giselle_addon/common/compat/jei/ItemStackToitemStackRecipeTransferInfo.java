@@ -13,13 +13,11 @@ import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
 public class ItemStackToitemStackRecipeTransferInfo<C extends ItemStackToItemStackContainerMenu<C, ?>> implements IRecipeTransferInfo<C, ItemStackToItemStackRecipe>
 {
 	private final Class<C> containerClass;
-	private final Class<ItemStackToItemStackRecipe> recipeClass;
 	private final ResourceLocation uid;
 
-	public ItemStackToitemStackRecipeTransferInfo(Class<C> containerClass, Class<ItemStackToItemStackRecipe> recipeClass, ResourceLocation uid)
+	public ItemStackToitemStackRecipeTransferInfo(Class<C> containerClass, ResourceLocation uid)
 	{
 		this.containerClass = containerClass;
-		this.recipeClass = recipeClass;
 		this.uid = uid;
 	}
 
@@ -32,7 +30,7 @@ public class ItemStackToitemStackRecipeTransferInfo<C extends ItemStackToItemSta
 	@Override
 	public Class<ItemStackToItemStackRecipe> getRecipeClass()
 	{
-		return this.recipeClass;
+		return ItemStackToItemStackRecipe.class;
 	}
 
 	@Override

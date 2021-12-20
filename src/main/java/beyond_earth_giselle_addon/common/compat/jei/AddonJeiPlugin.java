@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.mojang.datafixers.util.Pair;
-
 import beyond_earth_giselle_addon.client.gui.AdvancedCompressorScreen;
 import beyond_earth_giselle_addon.client.gui.ElectricBlastFurnaceScreen;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
@@ -17,6 +15,7 @@ import beyond_earth_giselle_addon.common.item.crafting.AddonRecipes;
 import beyond_earth_giselle_addon.common.item.crafting.ExtrudingRecipe;
 import beyond_earth_giselle_addon.common.item.crafting.RollingRecipe;
 import mezz.jei.api.IModPlugin;
+import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -32,10 +31,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 import net.mrscauthd.beyond_earth.ModInnet;
-import net.mrscauthd.beyond_earth.crafting.BlastingRecipe;
-import net.mrscauthd.beyond_earth.crafting.CompressingRecipe;
 import net.mrscauthd.beyond_earth.gui.helper.GuiHelper;
-import net.mrscauthd.beyond_earth.jei.JeiPlugin.BlastingFurnaceJeiCategory;
 import net.mrscauthd.beyond_earth.jei.JeiPlugin.CompressorJeiCategory;
 
 @mezz.jei.api.JeiPlugin
@@ -84,13 +80,13 @@ public class AddonJeiPlugin implements IModPlugin
 		this.is2isRegistrations = new ArrayList<>();
 
 		this.is2isRegistrations.add(this.electricBlastFurnace = new ItemStackToItemStackRegistration<>(ElectricBlastFurnaceScreen.class, ElectricBlastFurnaceContainerMenu.class));
-		this.electricBlastFurnace.getCategories().add(Pair.of(BlastingFurnaceJeiCategory.Uid, BlastingRecipe.class));
+		this.electricBlastFurnace.getCategories().add(VanillaRecipeCategoryUid.BLASTING);
 		this.electricBlastFurnace.getItemstacks().add(new ItemStack(AddonBlocks.ELECTRIC_BLAST_FURNACE.get()));
 
 		this.is2isRegistrations.add(this.advancedCompressor = new ItemStackToItemStackRegistration<>(AdvancedCompressorScreen.class, AdvancedCompressorContainerMenu.class));
-		this.advancedCompressor.getCategories().add(Pair.of(CompressorJeiCategory.Uid, CompressingRecipe.class));
-		this.advancedCompressor.getCategories().add(Pair.of(this.getRollingCategory().getUid(), RollingRecipe.class));
-		this.advancedCompressor.getCategories().add(Pair.of(this.getExtrudingCategory().getUid(), ExtrudingRecipe.class));
+		this.advancedCompressor.getCategories().add(CompressorJeiCategory.Uid);
+		this.advancedCompressor.getCategories().add(this.getRollingCategory().getUid());
+		this.advancedCompressor.getCategories().add(this.getExtrudingCategory().getUid());
 		this.advancedCompressor.getItemstacks().add(new ItemStack(AddonBlocks.ADVANCED_COMPRESSOR.get()));
 	}
 

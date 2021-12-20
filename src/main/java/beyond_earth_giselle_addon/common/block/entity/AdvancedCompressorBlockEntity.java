@@ -103,7 +103,7 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 
 		this.getTileData().putString(KEY_MODE, key.toString());
 		this.resetTimer();
-		ItemStackToItemStackTileEntityUtils.getItemStackCache(this).set(ItemStack.EMPTY);
+		ItemStackToItemStackTileEntityUtils.getItemStackCacher(this).set(ItemStack.EMPTY);
 		this.setChanged();
 	}
 

@@ -2,8 +2,6 @@ package beyond_earth_giselle_addon.common.compat.jei;
 
 import java.util.List;
 
-import com.mojang.datafixers.util.Pair;
-
 import beyond_earth_giselle_addon.client.gui.ItemStackToItemStackScreen;
 import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainerMenu;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
@@ -12,7 +10,6 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
 
 public interface IItemStackToitemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ?>>
 {
@@ -20,7 +17,7 @@ public interface IItemStackToitemStackRegistration<S extends ItemStackToItemStac
 
 	public List<ItemStack> getItemstacks();
 
-	public List<Pair<ResourceLocation, Class<? extends ItemStackToItemStackRecipe>>> getCategories();
+	public List<ResourceLocation> getCategories();
 
 	public Class<S> getScreenClass();
 
@@ -35,25 +32,22 @@ public interface IItemStackToitemStackRegistration<S extends ItemStackToItemStac
 	{
 		for (ItemStack itemStack : this.getItemstacks())
 		{
-			for (Pair<ResourceLocation, Class<? extends ItemStackToItemStackRecipe>> tuple : this.getCategories())
+			for (ResourceLocation category : this.getCategories())
 			{
-				registration.addRecipeCatalyst(itemStack, tuple.getFirst());
+				registration.addRecipeCatalyst(itemStack, category);
 			}
 
 		}
 
 	}
 
-	@SuppressWarnings("unchecked")
 	public default void addRecipeTransferHandler(IRecipeTransferRegistration registration)
 	{
 		Class<C> containerClass = this.getContainerClass();
 
-		for (Pair<ResourceLocation, Class<? extends ItemStackToItemStackRecipe>> tuple : this.getCategories())
+		for (ResourceLocation category : this.getCategories())
 		{
-			ResourceLocation uid = tuple.getFirst();
-			Class<? extends ItemStackToItemStackRecipe> recipeClass = tuple.getSecond();
-			registration.addRecipeTransferHandler(new ItemStackToitemStackRecipeTransferInfo<C>(containerClass, (Class<ItemStackToItemStackRecipe>) recipeClass, uid));
+			registration.addRecipeTransferHandler(new ItemStackToitemStackRecipeTransferInfo<C>(containerClass, category));
 		}
 
 	}

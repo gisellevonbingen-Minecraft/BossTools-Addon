@@ -14,7 +14,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
-import net.mrscauthd.beyond_earth.compat.waila.WailaPlugin;
 import net.mrscauthd.beyond_earth.gauge.IGaugeValue;
 
 public class AddonEntityDataProvider implements IServerDataProvider<Entity>, IEntityComponentProvider
@@ -28,13 +27,13 @@ public class AddonEntityDataProvider implements IServerDataProvider<Entity>, IEn
 		EntityGaugeValueFetchEvent event = new EntityGaugeValueFetchEvent(entity);
 		MinecraftForge.EVENT_BUS.post(event);
 		list.addAll(event.getValues());
-		WailaPlugin.put(data, WailaPlugin.write(list));
+		AddonWailaPlugin.put(data, AddonWailaPlugin.write(list));
 	}
 
 	@Override
 	public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config)
 	{
-
+		AddonWailaPlugin.appendTooltip(tooltip, accessor.getServerData());
 	}
 
 }

@@ -3,14 +3,11 @@ package beyond_earth_giselle_addon.common.compat.jei;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mojang.datafixers.util.Pair;
-
 import beyond_earth_giselle_addon.client.gui.ItemStackToItemStackScreen;
 import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainerMenu;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
 import net.mrscauthd.beyond_earth.machines.tile.ItemStackToItemStackBlockEntity;
 
 public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ? extends T>, T extends ItemStackToItemStackBlockEntity> implements IItemStackToitemStackRegistration<S, C>
@@ -18,14 +15,14 @@ public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScre
 	private Class<S> screenClass;
 	private Class<C> containerClass;
 	private final List<ItemStack> itemstacks;
-	private final List<Pair<ResourceLocation, Class<? extends ItemStackToItemStackRecipe>>> categories;
+	private final List<ResourceLocation> categories;
 
 	public ItemStackToItemStackRegistration(Class<S> screenClass, Class<C> containerClass)
 	{
 		this.screenClass = screenClass;
 		this.containerClass = containerClass;
 		this.itemstacks = new ArrayList<ItemStack>();
-		this.categories = new ArrayList<Pair<ResourceLocation, Class<? extends ItemStackToItemStackRecipe>>>();
+		this.categories = new ArrayList<ResourceLocation>();
 	}
 
 	public IGuiContainerHandler<S> createContainerHandler()
@@ -33,7 +30,7 @@ public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScre
 		return new ItemStackToItemStackGuiContainerHandler<S, C, T>()
 		{
 			@Override
-			public List<Pair<ResourceLocation, Class<? extends ItemStackToItemStackRecipe>>> getCategories(T tileEntity)
+			public List<ResourceLocation> getCategories(T tileEntity)
 			{
 				return ItemStackToItemStackRegistration.this.getCategories(tileEntity);
 			}
@@ -41,7 +38,7 @@ public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScre
 		};
 	}
 
-	protected List<Pair<ResourceLocation, Class<? extends ItemStackToItemStackRecipe>>> getCategories(T tileEntity)
+	protected List<ResourceLocation> getCategories(T tileEntity)
 	{
 		return this.getCategories();
 	}
@@ -61,7 +58,7 @@ public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScre
 		return this.itemstacks;
 	}
 
-	public List<Pair<ResourceLocation, Class<? extends ItemStackToItemStackRecipe>>> getCategories()
+	public List<ResourceLocation> getCategories()
 	{
 		return this.categories;
 	}

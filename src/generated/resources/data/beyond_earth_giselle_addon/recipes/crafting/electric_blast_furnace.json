@@ -13,7 +13,7 @@
          "tag":"forge:ingots/steel"
       },
       "F":{
-         "item":"beyond_earth:blast_furnace"
+         "item":"minecraft:blast_furnace"
       },
       "R":{
          "item": "minecraft:redstone"
