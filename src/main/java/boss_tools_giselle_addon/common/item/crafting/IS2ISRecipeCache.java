@@ -28,6 +28,11 @@ public class IS2ISRecipeCache
 		caches = new HashMap<>();
 	}
 
+	public static void clearCaches()
+	{
+		caches.clear();
+	}
+
 	public static List<IS2ISRecipeType<? extends IRecipeType<? extends IRecipe<IInventory>>, ? extends IRecipe<IInventory>>> getTypes()
 	{
 		return Collections.unmodifiableList(types);
