@@ -49,6 +49,7 @@ public class BeyondEarthAddon
 		forgeEventBus.register(EventListenerGauge.class);
 		forgeEventBus.register(EventListenerGravity.class);
 		forgeEventBus.register(EventListenerFlagEdit.class);
+		forgeEventBus.register(EventListenerReload.class);
 
 		AddonCompatibleManager.visit();
 	}

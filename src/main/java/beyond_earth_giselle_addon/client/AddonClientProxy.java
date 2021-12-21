@@ -28,6 +28,7 @@ public class AddonClientProxy {
 		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 		forgeEventBus.register(EventListenerRenderSpaceSuitOverlay.class);
 		forgeEventBus.register(EventListenerRenderOxygenCanOverlay.class);
+		forgeEventBus.register(EventListenerQuitWorld.class);
 	}
 
 	public void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
