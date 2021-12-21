@@ -1,6 +1,6 @@
 {
 
-  "itemGroup.beyond_earth_giselle_addon_tab_main": "AstroCraft: Giselle Addon",
+  "itemGroup.beyond_earth_giselle_addon_tab_main": "Beyond Earth: Giselle Addon",
   
   "block.beyond_earth_giselle_addon.fuel_loader": "연료 적재기",
   "block.beyond_earth_giselle_addon.electric_blast_furnace": "전기 용광로",
@@ -8,11 +8,11 @@
   "block.beyond_earth_giselle_addon.gravity_normalizer": "중력 정규화 장치",
   
   "module.beyond_earth_giselle_addon.space_breathing_unit": "우주 호흡 기구",
-  "description.beyond_earth_giselle_addon.space_breathing_unit": "산소와 에너지를 소모하여, AstroCraft 차원에서 호흡할 수 있습니다\n수중, 우천시 모듈에 산소가 충전됩니다",
+  "description.beyond_earth_giselle_addon.space_breathing_unit": "산소와 에너지를 소모하여, Beyond Earth 차원에서 호흡할 수 있습니다\n수중, 우천시 모듈에 산소가 충전됩니다",
   "module.beyond_earth_giselle_addon.space_fire_proof_unit": "우주 내화 기구",
-  "description.beyond_earth_giselle_addon.space_fire_proof_unit": "에너지를 소모하여, AstroCraft 차원에서 자신에게 불이 붙지 않습니다",
+  "description.beyond_earth_giselle_addon.space_fire_proof_unit": "에너지를 소모하여, Beyond Earth 차원에서 자신에게 불이 붙지 않습니다",
   "module.beyond_earth_giselle_addon.venus_acid_proof_unit": "우주 내산성 기구",
-  "description.beyond_earth_giselle_addon.venus_acid_proof_unit": "에너지를 소모하여, AstroCraft 차원에서 산성비 피해를 입지 않습니다",
+  "description.beyond_earth_giselle_addon.venus_acid_proof_unit": "에너지를 소모하여, Beyond Earth 차원에서 산성비 피해를 입지 않습니다",
   "module.beyond_earth_giselle_addon.gravity_normalizing_unit": "중력 정규화 기구",
   "description.beyond_earth_giselle_addon.gravity_normalizing_unit": "에너지를 소모하여, 중력을 오버월드 처럼 정규화합니다",
   
@@ -40,7 +40,6 @@
   "gui.beyond_earth_giselle_addon.flag_edit.verify": "확인",
   "gui.beyond_earth_giselle_addon.flag_edit.verifying": "확인중",
   "gui.beyond_earth_giselle_addon.flag_edit.save": "저장",
-  "gui.beyond_earth_giselle_addon.flag_edit.warning": "※ 경고: 두 번째 레이어는 렌더링되지 않습니다",
   
   "compressormode.beyond_earth.compressing": "압축",
   "compressormode.beyond_earth_giselle_addon.rolling": "압연",

@@ -30,7 +30,6 @@ public class FlagEditScreen extends Screen
 	public static final Component VERIFY = language("verify");
 	public static final Component VERIFYING = language("verifying");
 	public static final Component SAVE = language("save");
-	public static final Component WARNING = language("warning");
 
 	public static ResourceLocation texture(String name)
 	{
@@ -95,7 +94,7 @@ public class FlagEditScreen extends Screen
 		int buttonWidth = 40;
 		int buttonHeight = 20;
 		this.verityButton = this.addRenderableWidget(new Button(this.leftPos + imageWidth - buttonWidth - 10, this.topPos + 25, buttonWidth, buttonHeight, VERIFY, this::performClick));
-		this.saveButton = this.addRenderableWidget(new Button(this.verityButton.x, this.topPos + imageHeight - buttonHeight - this.font.lineHeight - 10, this.verityButton.getWidth(), this.verityButton.getHeight(), SAVE, this::performClick));
+		this.saveButton = this.addRenderableWidget(new Button(this.verityButton.x, this.topPos + imageHeight - buttonHeight - 10, this.verityButton.getWidth(), this.verityButton.getHeight(), SAVE, this::performClick));
 
 		EditBox prevValueTestFie = this.getValueTextField();
 		int valueTextLeft = this.leftPos + 10;
@@ -147,18 +146,7 @@ public class FlagEditScreen extends Screen
 		super.render(stack, mouseX, mouseY, partialTicks);
 		this.renderSkull(stack, mouseX, mouseY, partialTicks);
 
-		int x = this.getLeftPos() + 10;
-		Button saveButton = this.getSaveButton();
-
-		this.font.draw(stack, TITLE, x, this.getTopPos() + 10, 0xFF404040);
-
-		stack.pushPose();
-		int warningWidth = this.font.width(WARNING);
-		float warningScale = Math.min((float) (this.getLeftPos() + this.getImageWidth() - 10 - x) / warningWidth, 1.0F);
-		stack.scale(warningScale, warningScale, warningScale);
-		int warningY = ((this.getTopPos() + this.getImageHeight()) + (saveButton.y + saveButton.getHeight()) - this.font.lineHeight) / 2;
-		this.font.draw(stack, WARNING, x / warningScale, warningY / warningScale, 0xFF404040);
-		stack.popPose();
+		this.font.draw(stack, TITLE, this.getLeftPos() + 10, this.getTopPos() + 10, 0xFF404040);
 
 		if (this.isWillClose() == true)
 		{

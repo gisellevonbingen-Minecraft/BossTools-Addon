@@ -24,7 +24,7 @@ public class EventListenerFuelAdapter
 		{
 			e.setAdapter(new FuelAdapterBeyondEarthRover(target));
 		}
-		else if (BeyondEarthRocketHelper.isAstroCraftRocket(target))
+		else if (BeyondEarthRocketHelper.isBeyondEarthRocket(target))
 		{
 			e.setAdapter(new FuelAdapterBeyondEarthRocket(target));
 		}

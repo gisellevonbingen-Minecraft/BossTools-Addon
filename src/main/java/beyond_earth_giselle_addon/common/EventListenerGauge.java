@@ -23,7 +23,7 @@ public class EventListenerGauge
 			int capacity = BeyondEarthRoverHelper.getFuelCapacity(entity);
 			e.getValues().add(GaugeValueHelper.getFuel(amount, capacity));
 		}
-		else if (BeyondEarthRocketHelper.isAstroCraftRocket(entity))
+		else if (BeyondEarthRocketHelper.isBeyondEarthRocket(entity))
 		{
 			int amount = BeyondEarthRocketHelper.getFuelAmount(entity);
 			int capacity = BeyondEarthRocketHelper.getFuelCapacity(entity);

@@ -15,7 +15,7 @@ apply plugin: 'maven-publish'
 
 version = '1.0'
 group = 'gisellevonbingen.beyond_earth_giselle_addon' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'Beyond-Earth-Giselle-Addon'
+archivesBaseName = 'Beyond-Earth-Giselle-Addon-1.18.1'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -99,7 +99,7 @@ minecraft {
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
 
-            // Specify the AstroCraft-Addon_Giselle_Addon-1.18.1 for data generation, where to output the resulting resource, and where to look for existing resources.
+            // Specify the Beyond-Earth-Addon_Giselle_Addon-1.18.1 for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', 'beyond_earth_giselle_addon', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
@@ -143,7 +143,7 @@ dependencies {
     // Jade
     implementation fg.deobf("curse.maven:jade-324717:3551337")
 	
-	// Space-BossTools
+	// Beyond Earth
 	implementation fg.deobf("net.mrscauthd:beyond_earth:1.18.1-5.7")
 	
 	// Curios

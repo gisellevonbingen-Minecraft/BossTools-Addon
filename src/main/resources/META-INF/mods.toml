@@ -1,10 +1,10 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[39,)"
 license="All rights reserved"
 [[mods]]
 modId="beyond_earth_giselle_addon"
 version="${file.jarVersion}"
-displayName="AstroCraft: Giselle Addon"
+displayName="Beyond Earth: Giselle Addon"
 logoFile="examplemod.png"
 credits="gisellevonbingen"
 authors="gisellevonbingen"
@@ -12,19 +12,19 @@ description=''''''
 [[dependencies.beyond_earth_giselle_addon]]
     modId="forge"
     mandatory=true
-    versionRange="[36.2.4,)"
+    versionRange="[39.0.5,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.beyond_earth_giselle_addon]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,)"
+    versionRange="[1.18.1,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.beyond_earth_giselle_addon]]
     modId="beyond_earth"
     mandatory=true
-    versionRange="[5.5,)"
+    versionRange="[5.7,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.beyond_earth_giselle_addon]]

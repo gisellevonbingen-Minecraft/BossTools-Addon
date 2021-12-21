@@ -9,7 +9,7 @@ import net.mrscauthd.beyond_earth.entity.RocketTier3Entity;
 
 public class BeyondEarthRocketHelper
 {
-	public static boolean isAstroCraftRocket(Entity entity)
+	public static boolean isBeyondEarthRocket(Entity entity)
 	{
 		if (entity instanceof RocketTier1Entity)
 		{
