@@ -9,9 +9,9 @@ import net.minecraft.world.level.Level;
 import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
 import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipeType;
 
-public class IS2ISRecipeTypeBossTools extends IS2ISRecipeType<ItemStackToItemStackRecipeType<ItemStackToItemStackRecipe>, ItemStackToItemStackRecipe>
+public class IS2ISRecipeTypeBeyondEarth extends IS2ISRecipeType<ItemStackToItemStackRecipeType<ItemStackToItemStackRecipe>, ItemStackToItemStackRecipe>
 {
-	public IS2ISRecipeTypeBossTools()
+	public IS2ISRecipeTypeBeyondEarth()
 	{
 
 	}

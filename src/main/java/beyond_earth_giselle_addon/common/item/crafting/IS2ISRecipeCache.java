@@ -22,7 +22,7 @@ public class IS2ISRecipeCache
 	static
 	{
 		types = new ArrayList<>();
-		addType(new IS2ISRecipeTypeBossTools());
+		addType(new IS2ISRecipeTypeBeyondEarth());
 		addType(new IS2ISRecipeTypeMinecraftBlasting());
 
 		caches = new HashMap<>();
