@@ -115,8 +115,8 @@ dependencies {
     runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")
 	
     // Tinkers Contruct
-    implementation fg.deobf("curse.maven:mantle-74924:3482897")
-    implementation fg.deobf("curse.maven:tinkers-construct-74072:3482903")
+    implementation fg.deobf("curse.maven:mantle-74924:3576386")
+    implementation fg.deobf("curse.maven:tinkers-construct-74072:3576393")
     
     // Thermal Expansion
     implementation fg.deobf("curse.maven:cofh-core-69162:3407019")
