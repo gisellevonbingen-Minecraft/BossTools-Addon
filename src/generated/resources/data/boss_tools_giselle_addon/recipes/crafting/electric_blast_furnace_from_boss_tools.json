@@ -16,7 +16,7 @@
          "item":"boss_tools:blast_furnace"
       },
       "R":{
-         "item": "minecraft:redstone"
+         "tag": "forge:dusts/redstone"
       }
    }
 } 

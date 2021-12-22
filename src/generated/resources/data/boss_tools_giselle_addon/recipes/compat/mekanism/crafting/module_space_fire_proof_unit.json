@@ -16,7 +16,7 @@
    ],
    "key":{
       "I":{
-         "tag":"forge:alloys/elite"
+         "tag":"mekanism:alloys/reinforced"
       },
       "A":{
          "item":"mekanism:module_base"
