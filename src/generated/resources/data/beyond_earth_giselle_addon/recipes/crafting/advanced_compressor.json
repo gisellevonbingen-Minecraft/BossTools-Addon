@@ -16,7 +16,7 @@
          "item":"beyond_earth:compressor"
       },
       "R":{
-         "item": "minecraft:redstone"
+         "tag": "forge:dusts/redstone"
       }
    }
 } 

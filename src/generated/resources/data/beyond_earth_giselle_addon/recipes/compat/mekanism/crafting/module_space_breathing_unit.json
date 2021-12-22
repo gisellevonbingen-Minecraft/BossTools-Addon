@@ -16,7 +16,7 @@
    ],
    "key":{
       "I":{
-         "tag":"forge:alloys/advanced"
+         "tag":"mekanism:alloys/infused"
       },
       "A":{
          "item":"mekanism:module_base"

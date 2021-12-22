@@ -16,7 +16,7 @@
          "item":"minecraft:blast_furnace"
       },
       "R":{
-         "item":"minecraft:redstone"
+         "tag": "forge:dusts/redstone"
       }
    }
 } 
