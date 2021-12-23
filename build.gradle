@@ -106,6 +106,9 @@ dependencies {
 	// JEI
     compileOnly fg.deobf("mezz.jei:jei-${mezz_jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${mezz_jei_version}")
+    
+    // JER
+    implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:3545538")
 	
 	// Mekanism
     compileOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")
