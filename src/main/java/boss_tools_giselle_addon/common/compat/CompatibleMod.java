@@ -3,28 +3,41 @@ package boss_tools_giselle_addon.common.compat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.ModList;
 
-public abstract class CompatibleMod {
-
+public abstract class CompatibleMod
+{
 	private boolean isLoaded;
 
 	public abstract String getModID();
 
-	public void tryLoad() {
-		if (ModList.get().isLoaded(this.getModID())) {
+	protected abstract void onLoad();
+
+	public void tryLoad()
+	{
+		if (ModList.get().isLoaded(this.getModID()) == true)
+		{
 			this.isLoaded = true;
 
-			this.onLoad();
+			try
+			{
+				this.onLoad();
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+
 		}
 
 	}
 
-	protected abstract void onLoad();
-
-	public boolean isLoaded() {
+	public boolean isLoaded()
+	{
 		return this.isLoaded;
 	}
 
-	public ResourceLocation getLocation(String path) {
+	public ResourceLocation getLocation(String path)
+	{
 		return new ResourceLocation(this.getModID(), path);
 	}
+
 }

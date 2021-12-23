@@ -1,21 +1,23 @@
-package boss_tools_giselle_addon.common.compat.mekanism.gear.mekasuit;
+package boss_tools_giselle_addon.common.compat.mekanism.gear;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
-import boss_tools_giselle_addon.common.compat.mekanism.gear.ModulesHelper;
+import boss_tools_giselle_addon.common.compat.mekanism.AddonModuleHelper;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import mekanism.api.Action;
+import mekanism.api.MekanismAPI;
 import mekanism.api.chemical.gas.Gas;
 import mekanism.api.chemical.gas.GasStack;
 import mekanism.api.chemical.gas.IGasHandler;
+import mekanism.api.gear.ICustomModule;
+import mekanism.api.gear.IHUDElement;
+import mekanism.api.gear.IModule;
+import mekanism.api.gear.config.ModuleConfigItemCreator;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.capabilities.Capabilities;
-import mekanism.common.content.gear.HUDElement;
-import mekanism.common.content.gear.Modules.ModuleData;
-import mekanism.common.content.gear.mekasuit.ModuleMekaSuit;
 import mekanism.common.item.gear.ItemMekaSuitArmor;
 import mekanism.common.registries.MekanismGases;
 import mekanism.common.util.MekanismUtils;
@@ -29,7 +31,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
-public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
+public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreathingUnit>
 {
 	private static final String OXYGEN_LIFE_KEY = "oxygenLife";
 
@@ -39,12 +41,17 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 	private long oxygenUsing = 0;
 	private long oxygenDuration = 0;
 	private FloatingLong energyUsing;
-
-	@Override
-	public void init(ModuleData<?> data, ItemStack container)
+	
+	public ModuleSpaceBreathingUnit()
 	{
-		super.init(data, container);
 
+	}
+	
+	@Override
+	public void init(IModule<ModuleSpaceBreathingUnit> module, ModuleConfigItemCreator configItemCreator)
+	{
+		ICustomModule.super.init(module, configItemCreator);
+		
 		this.maxProduceRate = AddonConfigs.Common.mekanism.moduleSpaceBreathing_maxProduceRate.get();
 		this.oxygenUsing = AddonConfigs.Common.mekanism.moduleSpaceBreathing_oxygenUsing.get();
 		this.oxygenDuration = AddonConfigs.Common.mekanism.moduleSpaceBreathing_oxygenDuration.get();
@@ -56,15 +63,15 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 	 * @param entity
 	 * @return whether provided oxygen to entity
 	 */
-	public boolean provideOxygen(LivingEntity entity)
+	public boolean provideOxygen(IModule<ModuleSpaceBreathingUnit> module, LivingEntity entity)
 	{
-		if (this.getOxygenLife() > 0)
+		if (this.getOxygenLife(module) > 0)
 		{
 			return true;
 		}
-		else if (this.useResources(entity) == true)
+		else if (this.useResources(module, entity) == true)
 		{
-			this.setOxygenLife(this.getOxygenDuration());
+			this.setOxygenLife(module, this.getOxygenDuration());
 			return true;
 		}
 		else
@@ -73,34 +80,34 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 		}
 
 	}
-
+	
 	@Override
-	protected void tickServer(PlayerEntity player)
+	public void tickServer(IModule<ModuleSpaceBreathingUnit> module, PlayerEntity player)
 	{
-		super.tickServer(player);
-
-		this.produceOxygen(player);
-		this.reduceOxygenLife();
+		ICustomModule.super.tickServer(module, player);
+		
+		this.produceOxygen(module, player);
+		this.reduceOxygenLife(module);
 	}
 
-	private void reduceOxygenLife()
+	private void reduceOxygenLife(IModule<ModuleSpaceBreathingUnit> module)
 	{
-		long oxygenLife = this.getOxygenLife();
+		long oxygenLife = this.getOxygenLife(module);
 
 		if (oxygenLife > 0)
 		{
-			this.setOxygenLife(oxygenLife - 1);
+			this.setOxygenLife(module, oxygenLife - 1);
 		}
 
 	}
 
-	private void produceOxygen(PlayerEntity player)
+	private void produceOxygen(IModule<ModuleSpaceBreathingUnit> module, PlayerEntity player)
 	{
 		long productionRate = getProduceRate(player);
 
 		if (productionRate > 0)
 		{
-			ItemStack chestStack = this.getContainer();
+			ItemStack chestStack = module.getContainer();
 			IGasHandler chestCapability = chestStack.getCapability(Capabilities.GAS_HANDLER_CAPABILITY).orElse(null);
 
 			if (chestCapability != null)
@@ -130,9 +137,9 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 		return 0L;
 	}
 
-	public boolean useResources(LivingEntity entity)
+	public boolean useResources(IModule<ModuleSpaceBreathingUnit> module,LivingEntity entity)
 	{
-		ItemStack container = this.getContainer();
+		ItemStack container = module.getContainer();
 		IGasHandler gasHandlerItem = container.getCapability(Capabilities.GAS_HANDLER_CAPABILITY).orElse(null);
 		GasStack usingOxygen = new GasStack(this.getGas(), this.getOxygenUsing());
 
@@ -140,10 +147,10 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 		{
 			FloatingLong energyUsing = this.getEnergyUsing();
 
-			if (this.canUseEnergy(entity, energyUsing) == true)
+			if (module.canUseEnergy(entity, energyUsing) == true)
 			{
 				gasHandlerItem.extractChemical(usingOxygen, Action.EXECUTE);
-				this.useEnergy(entity, energyUsing);
+				module.useEnergy(entity, energyUsing);
 				return true;
 			}
 
@@ -153,21 +160,21 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 	}
 
 	@Override
-	public void addHUDElements(List<HUDElement> list)
+	public void addHUDElements(IModule<ModuleSpaceBreathingUnit> module, PlayerEntity player, Consumer<IHUDElement> hudElementAdder)
 	{
-		super.addHUDElements(list);
+		ICustomModule.super.addHUDElements(module, player, hudElementAdder);
 
-		if (this.isEnabled() == false)
+		if (module.isEnabled() == false)
 		{
 			return;
 		}
 
-		ItemStack container = this.getContainer();
+		ItemStack container = module.getContainer();
 		Gas gas = this.getGas();
 		GasStack stored = ((ItemMekaSuitArmor) container.getItem()).getContainedGas(container, gas);
 		long capacity = this.getGasCapacity(container, gas);
 		double ratio = StorageUtils.getRatio(stored.getAmount(), capacity);
-		list.add(HUDElement.percent(ICON, ratio));
+		hudElementAdder.accept(MekanismAPI.getModuleHelper().hudElementPercent(ICON, ratio));
 	}
 
 	public Gas getGas()
@@ -216,15 +223,15 @@ public class ModuleSpaceBreathingUnit extends ModuleMekaSuit
 		return this.energyUsing;
 	}
 
-	public long getOxygenLife()
+	public long getOxygenLife(IModule<ModuleSpaceBreathingUnit> module)
 	{
-		CompoundNBT compound = ModulesHelper.getCustomTag(this, this.getContainer());
+		CompoundNBT compound = AddonModuleHelper.getCustomTag(module, module.getContainer());
 		return compound != null ? compound.getLong(OXYGEN_LIFE_KEY) : 0L;
 	}
 
-	public void setOxygenLife(long oxygenLife)
+	public void setOxygenLife(IModule<ModuleSpaceBreathingUnit> module, long oxygenLife)
 	{
-		CompoundNBT compound = ModulesHelper.getOrCreateCustomTag(this, this.getContainer());
+		CompoundNBT compound = AddonModuleHelper.getOrCreateCustomTag(module, module.getContainer());
 		compound.putLong(OXYGEN_LIFE_KEY, Math.max(oxygenLife, 0L));
 	}
 
