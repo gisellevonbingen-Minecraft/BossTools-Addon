@@ -55,5 +55,10 @@
   "jei.info.beyond_earth_giselle_addon.fuel_loader": "Internal fluid tank can receive '%2$s' tagged fluid.\nThen give fuel to 'Rover' or 'Rockets' within %1$s blocks.",
   "jei.info.beyond_earth_giselle_addon.gravity_normalizer": "Normalize entity's gravity like to overworld within range",
   
+  "jer.dim.beyond_earth:moon": "Beyond Earth: Moon",
+  "jer.dim.beyond_earth:mars": "Beyond Earth: Mars",
+  "jer.dim.beyond_earth:mercury": "Beyond Earth: Mercury",
+  "jer.dim.beyond_earth:venus": "Beyond Earth: Venus",
+  
   "_eof": "eof"
 }

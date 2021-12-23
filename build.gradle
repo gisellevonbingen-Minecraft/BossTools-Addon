@@ -137,6 +137,9 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.0.41:api")
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.0.41")
 
+    // JER
+    implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:3575590")
+	
     // The One Probe
     implementation fg.deobf("curse.maven:the-one-probe-245211:3550084")
     
@@ -146,6 +149,9 @@ dependencies {
 	// Beyond Earth
 	implementation fg.deobf("net.mrscauthd:beyond_earth:1.18.1-5.7")
 	
+	// Refined Storage
+    compileOnly fg.deobf("curse.maven:refined-storage-243076:3569563")
+    
 	// Curios
     compileOnly fg.deobf("curse.maven:curios-309927:3567300:api")
     runtimeOnly fg.deobf("curse.maven:curios-309927:3567300")
