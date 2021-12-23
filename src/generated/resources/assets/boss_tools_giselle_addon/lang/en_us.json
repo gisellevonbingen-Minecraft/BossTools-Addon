@@ -56,5 +56,10 @@
   "jei.info.boss_tools_giselle_addon.fuel_loader": "Internal fluid tank can receive '%2$s' tagged fluid.\nThen give fuel to 'Rover' or 'Rockets' within %1$s blocks.",
   "jei.info.boss_tools_giselle_addon.gravity_normalizer": "Normalize entity's gravity like to overworld within range",
   
+  "jer.dim.boss_tools:moon": "Space-BossTools: Moon",
+  "jer.dim.boss_tools:mars": "Space-BossTools: Mars",
+  "jer.dim.boss_tools:mercury": "Space-BossTools: Mercury",
+  "jer.dim.boss_tools:venus": "Space-BossTools: Venus",
+  
   "_eof": "eof"
 }
