@@ -8,7 +8,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-public class MekanismCompat extends CompatibleMod
+public class AddonMekanismCompat extends CompatibleMod
 {
 	public static final String MODID = "mekanism";
 
@@ -27,12 +27,13 @@ public class MekanismCompat extends CompatibleMod
 	protected void onLoad()
 	{
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
+		AddonMekanismModules.MODULES.register(fml_bus);
 		AddonMekanismItems.ITEMS.register(fml_bus);
-		fml_bus.register(new FMLEventListener());
+		fml_bus.register(new AddonMekanismFMLEventListener());
 
-		MinecraftForge.EVENT_BUS.register(new CommonEventListener());
+		MinecraftForge.EVENT_BUS.register(new AddonMekanismCommonEventListener());
 
-		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> MekanismCompatClient::new);
+		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonMekanismCompatClient::new);
 	}
 
 }

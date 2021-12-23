@@ -2,18 +2,17 @@ package boss_tools_giselle_addon.common.compat.mekanism;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
-import mekanism.client.MekKeyHandler;
-import mekanism.client.MekanismKeyHandler;
-import mekanism.common.content.gear.Modules;
+import mekanism.client.key.MekKeyHandler;
+import mekanism.client.key.MekanismKeyHandler;
 import mekanism.common.registries.MekanismItems;
 import net.minecraft.item.Item;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class ClientEventHandler
+public class AddonMekanismClientEventListener
 {
-	public ClientEventHandler()
+	public AddonMekanismClientEventListener()
 	{
 
 	}
@@ -23,9 +22,9 @@ public class ClientEventHandler
 	{
 		Item item = e.getItemStack().getItem();
 
-		if (MekKeyHandler.isKeyDown(MekanismKeyHandler.detailsKey) == false && AddonConfigs.Common.mekanism.moduleGravitationalModulating_normalizable.get() == true)
+		if (MekKeyHandler.isKeyPressed(MekanismKeyHandler.detailsKey) == false && AddonConfigs.Common.mekanism.moduleGravitationalModulating_normalizable.get() == true)
 		{
-			if (item == MekanismItems.MODULES.get(Modules.GRAVITATIONAL_MODULATING_UNIT).get())
+			if (item == MekanismItems.MODULE_GRAVITATIONAL_MODULATING.get())
 			{
 				e.getToolTip().add(new TranslationTextComponent(BossToolsAddon.tl("description", "instead_gravity_normalizing_unit")));
 			}
