@@ -91,13 +91,14 @@ public class AddonJerCompat extends CompatibleMod
 		register(restriction, BossToolsAddon.prl("venus_diamond_ore"), Items.DIAMOND);
 	}
 
-	public static void register(Restriction restriction, ResourceLocation worldGenRegistryName, Item...silkTouchItems)
+	public static void register(Restriction restriction, ResourceLocation worldGenRegistryName, Item... silkTouchItems)
 	{
 		try
 		{
 			IWorldGenRegistry jer_registry = JERAPI.getInstance().getWorldGenRegistry();
 			Registry<ConfiguredFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_FEATURE;
-			WorldGenBuilder builder = new WorldGenBuilder(restriction).featureConfig(registry.get(worldGenRegistryName));
+			OreGenBuilder builder = new OreGenBuilder().featureConfig(registry.get(worldGenRegistryName).config);
+			builder.restriction = restriction;
 			builder.silkTouch = silkTouchItems.length > 0;
 			Arrays.stream(silkTouchItems).map(ItemStack::new).map(LootDrop::new).forEach(builder.drops::add);
 			builder.register(jer_registry);
