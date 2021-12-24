@@ -19,6 +19,9 @@ public class AddonRecipes
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_EXTRUDING = RECIPE_SERIALIZERS.register("extruding", () -> new ExtrudingRecipeSerializer());
 	public static final ItemStackToItemStackRecipeType<ExtrudingRecipe> EXTRUDING = create(new ItemStackToItemStackRecipeType<>("extruding"));
 
+	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING = RECIPE_SERIALIZERS.register("alien_trading", () -> new AlienTradingRecipeSerializer());
+	public static final BossToolsRecipeType<AlienTradingRecipe> ALIEN_TRADING = create(new BossToolsRecipeType<>("alien_trading"));
+
 	private static <T extends BossToolsRecipeType<?>> T create(T value)
 	{
 		Registry.register(Registry.RECIPE_TYPE, BossToolsAddon.rl(value.getName()), value);

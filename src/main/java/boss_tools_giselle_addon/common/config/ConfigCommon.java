@@ -8,6 +8,8 @@ public class ConfigCommon
 
 	public final MachinesConfig machines;
 
+	public final ContentConfig contents;
+
 	public final MekanismConfig mekanism;
 
 	public ConfigCommon(ForgeConfigSpec.Builder builder)
@@ -18,6 +20,10 @@ public class ConfigCommon
 
 		builder.push("machines");
 		this.machines = new MachinesConfig(builder);
+		builder.pop();
+
+		builder.push("contents");
+		this.contents = new ContentConfig(builder);
 		builder.pop();
 
 		builder.push("compats");
