@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "experience": 1,
+  "cookingtime": 100,
+  "ingredient": {
+    "item": "boss_tools:mars_silicon_ore"
+  },
+  "result": {
+    "item": "boss_tools:silicon_ingot"
+  }
+}
