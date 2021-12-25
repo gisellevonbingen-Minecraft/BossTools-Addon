@@ -6,7 +6,6 @@ import javax.annotation.Nonnull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import jeresources.jei.villager.VillagerCategory;
 import jeresources.reference.Resources;
 import jeresources.util.Font;
 import jeresources.util.RenderHelper;
@@ -15,7 +14,6 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IFocus;
 import mezz.jei.api.recipe.category.extensions.IRecipeCategoryExtension;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.ItemStack;
 import net.mrscauthd.beyond_earth.entity.alien.AlienEntity;
 
