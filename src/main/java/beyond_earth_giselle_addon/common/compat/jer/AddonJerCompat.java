@@ -64,30 +64,30 @@ public class AddonJerCompat extends CompatibleMod
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("moon"));
 		register(restriction, BeyondEarthAddon.prl("moon_cheese_ore"));
 		register(restriction, BeyondEarthAddon.prl("soul_soil"), Items.GLOWSTONE_DUST);
-		register(restriction, BeyondEarthAddon.prl("moon_iron_ore"));
-		register(restriction, BeyondEarthAddon.prl("moon_desh_ore"));
+		register(restriction, BeyondEarthAddon.prl("moon_iron_ore"), Items.RAW_IRON);
+		register(restriction, BeyondEarthAddon.prl("moon_desh_ore"), ModInnet.RAW_DESH.get());
 	}
 
 	public static void registerMars()
 	{
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("mars"));
 		register(restriction, BeyondEarthAddon.prl("mars_ice_shard_ore"), ModInnet.ICE_SHARD.get());
-		register(restriction, BeyondEarthAddon.prl("mars_iron_ore"));
+		register(restriction, BeyondEarthAddon.prl("mars_iron_ore"), Items.RAW_IRON);
 		register(restriction, BeyondEarthAddon.prl("mars_diamond_ore"), Items.DIAMOND);
-		register(restriction, BeyondEarthAddon.prl("mars_silicon_ore"));
+		register(restriction, BeyondEarthAddon.prl("mars_silicon_ore"), ModInnet.RAW_SILICON.get());
 	}
 
 	public static void registerMercury()
 	{
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("mercury"));
-		register(restriction, BeyondEarthAddon.prl("mercury_iron_ore"));
+		register(restriction, BeyondEarthAddon.prl("mercury_iron_ore"), Items.RAW_IRON);
 	}
 
 	public static void registerVenus()
 	{
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("venus"));
 		register(restriction, BeyondEarthAddon.prl("venus_coal_ore"), Items.COAL);
-		register(restriction, BeyondEarthAddon.prl("venus_gold_ore"));
+		register(restriction, BeyondEarthAddon.prl("venus_gold_ore"), Items.RAW_GOLD);
 		register(restriction, BeyondEarthAddon.prl("venus_diamond_ore"), Items.DIAMOND);
 	}
 
