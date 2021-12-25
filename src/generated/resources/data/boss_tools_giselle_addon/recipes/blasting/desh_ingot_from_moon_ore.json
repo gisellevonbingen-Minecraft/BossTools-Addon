@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "experience": 1,
+  "cookingtime": 100,
+  "ingredient": {
+    "item": "boss_tools:moon_desh_ore"
+  },
+  "result": {
+    "item": "boss_tools:desh_ingot"
+  }
+}
