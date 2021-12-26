@@ -24,7 +24,7 @@ description=''''''
 [[dependencies.beyond_earth_giselle_addon]]
     modId="beyond_earth"
     mandatory=true
-    versionRange="[5.7,)"
+    versionRange="[5.9,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.beyond_earth_giselle_addon]]
