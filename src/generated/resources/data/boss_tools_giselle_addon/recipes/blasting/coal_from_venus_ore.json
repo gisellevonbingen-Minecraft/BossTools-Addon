@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "experience": 0.1,
+  "cookingtime": 100,
+  "ingredient": {
+    "item": "boss_tools:venus_coal_ore"
+  },
+  "result": {
+    "item": "minecraft:coal"
+  }
+}
