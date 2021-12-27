@@ -1,0 +1,44 @@
+{
+  "type": "forge:conditional",
+  "conditions":[
+    {
+      "type":"forge:mod_loaded",
+      "modid":"industrialforegoing"
+    }
+  ],
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "item": "boss_tools:mars_ice_shard_ore",
+          "type": "forge:item_exists"
+        }
+      ],
+      "recipe": {
+        "output": {
+          "item": "boss_tools:mars_ice_shard_ore"
+        },
+        "rarity": [
+          {
+            "whitelist": {
+              "type": "minecraft:worldgen/biome",
+              "values": [
+                "boss_tools:mars",
+				"boss_tools:mars_ice_spike"
+              ]
+			},
+            "blacklist": {},
+            "depth_min": 0,
+            "depth_max": 64,
+            "weight": 10
+          }
+        ],
+        "pointer": 0,
+        "catalyst": {
+          "item": "industrialforegoing:laser_lens0"
+        },
+        "type": "industrialforegoing:laser_drill_ore"
+      }
+    }
+  ]
+}

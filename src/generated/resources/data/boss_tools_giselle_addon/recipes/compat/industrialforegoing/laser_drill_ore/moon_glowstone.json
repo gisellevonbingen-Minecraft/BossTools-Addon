@@ -1,0 +1,43 @@
+{
+  "type": "forge:conditional",
+  "conditions":[
+    {
+      "type":"forge:mod_loaded",
+      "modid":"industrialforegoing"
+    }
+  ],
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "item": "boss_tools:moon_glowstone_ore",
+          "type": "forge:item_exists"
+        }
+      ],
+      "recipe": {
+        "output": {
+          "item": "boss_tools:moon_glowstone_ore"
+        },
+        "rarity": [
+          {
+            "whitelist": {
+              "type": "minecraft:worldgen/biome",
+              "values": [
+                "boss_tools:moon"
+              ]
+			},
+            "blacklist": {},
+            "depth_min": 0,
+            "depth_max": 50,
+            "weight": 10
+          }
+        ],
+        "pointer": 0,
+        "catalyst": {
+          "item": "industrialforegoing:laser_lens4"
+        },
+        "type": "industrialforegoing:laser_drill_ore"
+      }
+    }
+  ]
+}
