@@ -8,6 +8,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
+import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.inventory.container.AbstractMachineContainer;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -202,7 +203,11 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 
 		if (renderTooltip == true && GuiHelper.isHover(GuiHelper.getFluidTankBounds(left, top), mouseX, mouseY) == true)
 		{
-			this.renderTooltip(stack, GaugeTextHelper.getStorageText(GaugeValueHelper.getFluid(tank)).build(), mouseX, mouseY);
+			if (renderTooltip = AddonCompatibleManager.JEI.isLoaded() == false)
+			{
+				this.renderTooltip(stack, GaugeTextHelper.getStorageText(GaugeValueHelper.getFluid(tank)).build(), mouseX, mouseY);
+			}
+
 		}
 
 	}
