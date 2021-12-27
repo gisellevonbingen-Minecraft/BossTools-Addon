@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
+import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -38,21 +39,29 @@ public class AddonJeiPluginJer implements IModPlugin
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registration)
 	{
-		registration.addRecipeCategories(new AlienCategory());
+		if (AddonCompatibleManager.JER.isLoaded() == true)
+		{
+			registration.addRecipeCategories(new AlienCategory());
+		}
+
 	}
 
 	@Override
 	public void registerRecipes(IRecipeRegistration registration)
 	{
-		List<AlienWrapper> list = new ArrayList<>();
-
-		for (Entry<VillagerProfession, Int2ObjectMap<ItemListing[]>> entry : AlienTrade.TRADES.entrySet())
+		if (AddonCompatibleManager.JER.isLoaded() == true)
 		{
-			AlienEntry alienEntry = new AlienEntry(entry.getKey(), entry.getValue());
-			list.add(new AlienWrapper(alienEntry));
+			List<AlienWrapper> list = new ArrayList<>();
+
+			for (Entry<VillagerProfession, Int2ObjectMap<ItemListing[]>> entry : AlienTrade.TRADES.entrySet())
+			{
+				AlienEntry alienEntry = new AlienEntry(entry.getKey(), entry.getValue());
+				list.add(new AlienWrapper(alienEntry));
+			}
+
+			registration.addRecipes(list, AlienCategory.Uid);
 		}
 
-		registration.addRecipes(list, AlienCategory.Uid);
 	}
 
 }
