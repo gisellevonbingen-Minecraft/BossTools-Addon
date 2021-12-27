@@ -8,6 +8,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
+import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.inventory.AbstractMachineContainerMenu;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
@@ -202,7 +203,11 @@ public class AbstractMachineScreen<M extends AbstractMachineContainerMenu<?, ?>>
 
 		if (renderTooltip == true && GuiHelper.isHover(GuiHelper.getFluidTankBounds(left, top), mouseX, mouseY) == true)
 		{
-			this.renderTooltip(stack, GaugeTextHelper.getStorageText(GaugeValueHelper.getFluid(tank)).build(), mouseX, mouseY);
+			if (renderTooltip = AddonCompatibleManager.JEI.isLoaded() == false)
+			{
+				this.renderTooltip(stack, GaugeTextHelper.getStorageText(GaugeValueHelper.getFluid(tank)).build(), mouseX, mouseY);
+			}
+
 		}
 
 	}

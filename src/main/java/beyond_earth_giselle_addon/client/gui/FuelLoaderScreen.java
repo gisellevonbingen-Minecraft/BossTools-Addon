@@ -5,7 +5,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.block.entity.FuelLoaderBlockEntity;
-import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.inventory.FuelLoaderContainerMenu;
 import beyond_earth_giselle_addon.common.network.AddonNetwork;
 import beyond_earth_giselle_addon.common.network.FuelLoaderMessageWorkingAreaVisible;
@@ -58,9 +57,8 @@ public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainerM
 	{
 		super.renderContents(stack, mouseX, mouseY, partialTicks);
 
-		boolean renderTooltip = AddonCompatibleManager.JEI.isLoaded() == false;
 		FuelLoaderBlockEntity blockEntity = this.getMenu().getBlockEntity();
-		this.renderTank(stack, mouseX, mouseY, this.leftPos + TANK_LEFT, this.topPos + TANK_TOP, blockEntity.getFluidTank(), renderTooltip);
+		this.renderTank(stack, mouseX, mouseY, this.leftPos + TANK_LEFT, this.topPos + TANK_TOP, blockEntity.getFluidTank());
 	}
 
 	@Override
