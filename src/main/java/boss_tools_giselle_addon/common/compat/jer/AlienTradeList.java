@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import mezz.jei.api.recipe.IFocus;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
 import net.mrscauthd.boss_tools.entity.alien.AlienTrade;
@@ -29,7 +30,7 @@ public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 
 	public List<ItemStack> getCostBs()
 	{
-		return this.stream().map(Trade::getMinCostB).filter(itemStack -> !itemStack.isEmpty()).collect(Collectors.toList());
+		return this.stream().map(Trade::getMinCostB).map(itemStack -> itemStack.isEmpty() ? new ItemStack(Items.BARRIER) : itemStack).collect(Collectors.toList());
 	}
 
 	public List<ItemStack> getResults()
