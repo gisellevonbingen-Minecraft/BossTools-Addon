@@ -25,7 +25,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.RangedWrapper;
-import net.mrscauthd.beyond_earth.ModInnet;
+import net.mrscauthd.beyond_earth.ModInit;
 import net.mrscauthd.beyond_earth.events.Methodes;
 import net.mrscauthd.beyond_earth.fluid.FluidUtil2;
 import net.mrscauthd.beyond_earth.machines.tile.AbstractMachineBlockEntity;
@@ -262,7 +262,7 @@ public class FuelLoaderBlockEntity extends AbstractMachineBlockEntity
 
 	public boolean testFluid(Fluid fluid)
 	{
-		return Methodes.tagCheck(fluid, ModInnet.FLUID_VEHICLE_FUEL_TAG);
+		return Methodes.tagCheck(fluid, ModInit.FLUID_VEHICLE_FUEL_TAG);
 	}
 
 	public FluidTank getFluidTank()

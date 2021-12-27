@@ -11,7 +11,7 @@ import jeresources.compatibility.CompatBase;
 import mezz.jei.api.recipe.IFocus;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.ItemStack;
-import net.mrscauthd.beyond_earth.ModInnet;
+import net.mrscauthd.beyond_earth.ModInit;
 import net.mrscauthd.beyond_earth.entity.alien.AlienEntity;
 import net.mrscauthd.beyond_earth.entity.alien.AlienTrade;
 
@@ -104,7 +104,7 @@ public class AlienEntry
 	
 	public AlienEntity getAlienEntity()
 	{
-		AlienEntity alienEntity = (AlienEntity) ModInnet.ALIEN.get().create(CompatBase.getLevel());
+		AlienEntity alienEntity = (AlienEntity) ModInit.ALIEN.get().create(CompatBase.getLevel());
 		alienEntity.setVillagerData(alienEntity.getVillagerData().setProfession(this.getProfession()));
 		return alienEntity;
 	}

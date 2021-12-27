@@ -21,7 +21,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.mrscauthd.beyond_earth.ModInnet;
+import net.mrscauthd.beyond_earth.ModInit;
 
 public class AddonJerCompat extends CompatibleMod
 {
@@ -65,16 +65,16 @@ public class AddonJerCompat extends CompatibleMod
 		register(restriction, BeyondEarthAddon.prl("moon_cheese_ore"));
 		register(restriction, BeyondEarthAddon.prl("soul_soil"), Items.GLOWSTONE_DUST);
 		register(restriction, BeyondEarthAddon.prl("moon_iron_ore"), Items.RAW_IRON);
-		register(restriction, BeyondEarthAddon.prl("moon_desh_ore"), ModInnet.RAW_DESH.get());
+		register(restriction, BeyondEarthAddon.prl("moon_desh_ore"), ModInit.RAW_DESH.get());
 	}
 
 	public static void registerMars()
 	{
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("mars"));
-		register(restriction, BeyondEarthAddon.prl("mars_ice_shard_ore"), ModInnet.ICE_SHARD.get());
+		register(restriction, BeyondEarthAddon.prl("mars_ice_shard_ore"), ModInit.ICE_SHARD.get());
 		register(restriction, BeyondEarthAddon.prl("mars_iron_ore"), Items.RAW_IRON);
 		register(restriction, BeyondEarthAddon.prl("mars_diamond_ore"), Items.DIAMOND);
-		register(restriction, BeyondEarthAddon.prl("mars_silicon_ore"), ModInnet.RAW_SILICON.get());
+		register(restriction, BeyondEarthAddon.prl("mars_silicon_ore"), ModInit.RAW_SILICON.get());
 	}
 
 	public static void registerMercury()

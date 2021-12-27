@@ -20,7 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.mrscauthd.beyond_earth.ModInnet;
+import net.mrscauthd.beyond_earth.ModInit;
 import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeTypes;
 import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipeType;
 import net.mrscauthd.beyond_earth.machines.tile.ItemStackToItemStackBlockEntity;
@@ -148,9 +148,9 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 
 	public enum CompressorMode implements ICompressorMode
 	{
-		COMPRESSING(BeyondEarthRecipeTypes.COMPRESSING, () -> new ItemStack(ModInnet.COMPRESSED_STEEL.get())),
-		ROLLING(AddonRecipes.ROLLING, () -> new ItemStack(ModInnet.IRON_PLATE.get())),
-		EXTRUDING(AddonRecipes.EXTRUDING, () -> new ItemStack(ModInnet.IRON_STICK.get())),
+		COMPRESSING(BeyondEarthRecipeTypes.COMPRESSING, () -> new ItemStack(ModInit.COMPRESSED_STEEL.get())),
+		ROLLING(AddonRecipes.ROLLING, () -> new ItemStack(ModInit.IRON_PLATE.get())),
+		EXTRUDING(AddonRecipes.EXTRUDING, () -> new ItemStack(ModInit.IRON_STICK.get())),
 		// EOL
 		;
 

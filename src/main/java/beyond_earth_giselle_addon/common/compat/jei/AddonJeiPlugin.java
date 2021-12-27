@@ -30,7 +30,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
-import net.mrscauthd.beyond_earth.ModInnet;
+import net.mrscauthd.beyond_earth.ModInit;
 import net.mrscauthd.beyond_earth.gui.helper.GuiHelper;
 import net.mrscauthd.beyond_earth.jei.JeiPlugin.CompressorJeiCategory;
 
@@ -163,7 +163,7 @@ public class AddonJeiPlugin implements IModPlugin
 			recipeCategory.registerRecipes(registration);
 		}
 
-		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get(), AddonConfigs.Common.machines.fuelLoader_range.get(), ModInnet.FLUID_VEHICLE_FUEL_TAG.toString());
+		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get(), AddonConfigs.Common.machines.fuelLoader_range.get(), ModInit.FLUID_VEHICLE_FUEL_TAG.toString());
 		this.addIngredientInfo(registration, AddonBlocks.GRAVITY_NORMALIZER.get());
 	}
 

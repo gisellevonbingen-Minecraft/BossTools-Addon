@@ -12,7 +12,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.beyond_earth.ModInnet;
+import net.mrscauthd.beyond_earth.ModInit;
 
 public class EventListenerRenderSpaceSuitOverlay
 {
@@ -26,7 +26,7 @@ public class EventListenerRenderSpaceSuitOverlay
 			ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
 			Item chestItem = chest.getItem();
 
-			if (chestItem == ModInnet.SPACE_SUIT.get() || chestItem == ModInnet.NETHERITE_SPACE_SUIT.get())
+			if (chestItem == ModInit.SPACE_SUIT.get() || chestItem == ModInit.NETHERITE_SPACE_SUIT.get())
 			{
 				RenderSpaceSuitOverlayEvent event = new RenderSpaceSuitOverlayEvent(parent);
 				MinecraftForge.EVENT_BUS.post(event);
