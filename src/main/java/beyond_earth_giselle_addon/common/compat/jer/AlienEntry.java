@@ -101,12 +101,22 @@ public class AlienEntry
 				levels.add(i);
 		return levels;
 	}
-	
+
 	public AlienEntity getAlienEntity()
 	{
 		AlienEntity alienEntity = (AlienEntity) ModInit.ALIEN.get().create(CompatBase.getLevel());
 		alienEntity.setVillagerData(alienEntity.getVillagerData().setProfession(this.getProfession()));
 		return alienEntity;
+	}
+
+	public List<ItemStack> getPois()
+	{
+		return this.profession.getJobPoiType().getBlockStates().stream().map(blockstate -> new ItemStack(blockstate.getBlock())).collect(Collectors.toList());
+	}
+
+	public boolean hasPois()
+	{
+		return !this.profession.getJobPoiType().getBlockStates().isEmpty();
 	}
 
 }

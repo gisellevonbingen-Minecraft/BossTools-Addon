@@ -28,7 +28,7 @@ public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 
 	public AlienCategory()
 	{
-        super(JEIConfig.getJeiHelpers().getGuiHelper().createDrawable(Resources.Gui.Jei.TABS, 0, 0, 16, 16));
+		super(JEIConfig.getJeiHelpers().getGuiHelper().createDrawable(Resources.Gui.Jei.TABS, 0, 0, 16, 16));
 	}
 
 	@Nonnull
@@ -64,6 +64,12 @@ public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 		IFocus<ItemStack> focus = recipeLayout.getFocus(VanillaTypes.ITEM);
 		recipeWrapper.setFocus(focus);
 
+		if (recipeWrapper.hasPois() == true)
+		{
+			recipeLayout.getItemStacks().init(0, true, 49, 18);
+			recipeLayout.getItemStacks().set(0, recipeWrapper.getPois());
+		}
+
 		int y = Y_ITEM_DISTANCE * (6 - recipeWrapper.getPossibleLevels(focus).size()) / 2;
 		for (int i = 0; i < recipeWrapper.getPossibleLevels(focus).size(); i++)
 		{
@@ -81,5 +87,7 @@ public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 			recipeLayout.getItemStacks().set(3 * i + 3, tradeList.getResults());
 			i++;
 		}
+
 	}
+
 }
