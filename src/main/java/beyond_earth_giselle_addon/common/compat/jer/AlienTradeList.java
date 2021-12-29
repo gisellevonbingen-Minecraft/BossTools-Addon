@@ -30,7 +30,18 @@ public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 
 	public List<ItemStack> getCostBs()
 	{
-		return this.stream().map(Trade::getMinCostB).map(itemStack -> itemStack.isEmpty() ? new ItemStack(Items.BARRIER) : itemStack).collect(Collectors.toList());
+		List<ItemStack> costBs = this.stream().map(Trade::getMinCostB).collect(Collectors.toList());
+		return costBs.stream().anyMatch(ItemStack::isEmpty) ? orElseBarrier(costBs) : costBs;
+	}
+
+	private List<ItemStack> orElseBarrier(List<ItemStack> costBs)
+	{
+		return costBs.stream().map(AlienTradeList::orElseBarrier).collect(Collectors.toList());
+	}
+
+	public static ItemStack orElseBarrier(ItemStack is)
+	{
+		return is.isEmpty() ? new ItemStack(Items.BARRIER) : is;
 	}
 
 	public List<ItemStack> getResults()
