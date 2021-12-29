@@ -70,6 +70,7 @@ public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 		@SuppressWarnings("unchecked")
 		IFocus<ItemStack> focus = (IFocus<ItemStack>) recipeLayout.getFocus();
 		recipeWrapper.setFocus(focus);
+
 		int y = Y_ITEM_DISTANCE * (6 - recipeWrapper.getPossibleLevels(focus).size()) / 2;
 		for (int i = 0; i < recipeWrapper.getPossibleLevels(focus).size(); i++)
 		{
@@ -87,5 +88,7 @@ public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 			recipeLayout.getItemStacks().set(3 * i + 2, tradeList.getResults());
 			i++;
 		}
+
 	}
+
 }
