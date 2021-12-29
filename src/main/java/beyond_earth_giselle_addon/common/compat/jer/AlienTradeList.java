@@ -1,5 +1,6 @@
 package beyond_earth_giselle_addon.common.compat.jer;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -31,7 +32,7 @@ public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 	public List<ItemStack> getCostBs()
 	{
 		List<ItemStack> costBs = this.stream().map(Trade::getMinCostB).collect(Collectors.toList());
-		return costBs.stream().anyMatch(ItemStack::isEmpty) ? orElseBarrier(costBs) : costBs;
+		return costBs.stream().allMatch(ItemStack::isEmpty) ? new ArrayList<>() : orElseBarrier(costBs);
 	}
 
 	private List<ItemStack> orElseBarrier(List<ItemStack> costBs)
