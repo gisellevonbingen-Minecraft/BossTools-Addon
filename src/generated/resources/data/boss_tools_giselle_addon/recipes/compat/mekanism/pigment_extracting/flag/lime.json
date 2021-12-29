@@ -1,0 +1,12 @@
+{
+	"type": "mekanism:pigment_extracting",
+	"input": {
+		"ingredient": {
+			"item": "boss_tools:flag_lime"
+		}
+	},
+	"output": {
+		"pigment": "mekanism:lime",
+		"amount": 256
+	}
+}

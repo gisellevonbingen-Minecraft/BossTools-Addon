@@ -1,0 +1,12 @@
+{
+	"type": "mekanism:pigment_extracting",
+	"input": {
+		"ingredient": {
+			"item": "boss_tools:flag"
+		}
+	},
+	"output": {
+		"pigment": "mekanism:white",
+		"amount": 256
+	}
+}
