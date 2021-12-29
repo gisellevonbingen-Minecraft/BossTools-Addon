@@ -1,5 +1,11 @@
 {
 	"type": "mekanism:pigment_extracting",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "mekanism"
+		}
+	],
 	"input": {
 		"ingredient": {
 			"item": "boss_tools:flag_orange"
