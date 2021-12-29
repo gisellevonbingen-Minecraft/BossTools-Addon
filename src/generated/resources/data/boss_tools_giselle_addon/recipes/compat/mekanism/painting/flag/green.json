@@ -1,0 +1,21 @@
+{
+	"type": "mekanism:painting",
+	"itemInput": {
+		"ingredient": {
+			"type": "mekanism:without",
+			"base": {
+				"tag": "boss_tools:flags"
+			},
+			"without": {
+				"item": "boss_tools:flag_green"
+			}
+		}
+	},
+	"chemicalInput": {
+		"amount": 256,
+		"pigment": "mekanism:green"
+	},
+	"output": {
+		"item": "boss_tools:flag_green"
+	}
+}
