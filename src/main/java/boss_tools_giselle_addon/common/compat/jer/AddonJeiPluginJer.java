@@ -51,14 +51,20 @@ public class AddonJeiPluginJer implements IModPlugin
 	{
 		if (AddonCompatibleManager.JER.isLoaded() == true)
 		{
-			Int2ObjectMap<ITrade[]> values = entry.getValue();
+			List<AlienWrapper> list = new ArrayList<>();
 
-			if (values.values().stream().mapToInt(r -> r.length).sum() > 0)
+			for (Entry<VillagerProfession, Int2ObjectMap<ITrade[]>> entry : AlienTrade.VILLAGER_DEFAULT_TRADES.entrySet())
 			{
-				AlienEntry alienEntry = new AlienEntry(entry.getKey(), values);
-				list.add(new AlienWrapper(alienEntry));
+				Int2ObjectMap<ITrade[]> values = entry.getValue();
+
+				if (values.values().stream().mapToInt(r -> r.length).sum() > 0)
+				{
+					AlienEntry alienEntry = new AlienEntry(entry.getKey(), values);
+					list.add(new AlienWrapper(alienEntry));
+				}
+
 			}
-			
+
 			registration.addRecipes(list, AlienCategory.Uid);
 		}
 
