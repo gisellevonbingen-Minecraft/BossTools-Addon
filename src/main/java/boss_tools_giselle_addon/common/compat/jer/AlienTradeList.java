@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import mezz.jei.api.recipe.IFocus;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.mrscauthd.boss_tools.entity.alien.AlienTrade;
 
 public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
@@ -42,7 +44,14 @@ public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 
 	public static ItemStack orElseBarrier(ItemStack is)
 	{
-		return is.isEmpty() ? new ItemStack(Items.BARRIER) : is;
+		return is.isEmpty() ? getNotNeededItem() : is;
+	}
+
+	public static ItemStack getNotNeededItem()
+	{
+		ItemStack itemStack = new ItemStack(Items.BARRIER);
+		itemStack.setHoverName(new TranslationTextComponent(BossToolsAddon.tl(AddonJerCompat.LANGPREFIX + ".text", AlienCategory.KEY, "notneeded")));
+		return itemStack;
 	}
 
 	public List<ItemStack> getResults()

@@ -57,6 +57,7 @@
   "jei.info.boss_tools_giselle_addon.gravity_normalizer": "Normalize entity's gravity like to overworld within range",
   
   "jei.category.boss_tools_giselle_addon.alien_trading": "Alien Trades",
+  "jer.text.boss_tools_giselle_addon.alien_trading.notneeded": "Not Needed",
   "jer.dim.boss_tools:moon": "Space-BossTools: Moon",
   "jer.dim.boss_tools:mars": "Space-BossTools: Mars",
   "jer.dim.boss_tools:mercury": "Space-BossTools: Mercury",
