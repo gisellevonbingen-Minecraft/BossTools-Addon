@@ -3,7 +3,6 @@ package boss_tools_giselle_addon.client.gui;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
-import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.inventory.container.FuelLoaderContainer;
 import boss_tools_giselle_addon.common.network.AddonNetwork;
 import boss_tools_giselle_addon.common.network.FuelLoaderMessageWorkingAreaVisible;
@@ -57,9 +56,8 @@ public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainer>
 	{
 		super.renderContents(stack, mouseX, mouseY, partialTicks);
 
-		boolean renderTooltip = AddonCompatibleManager.JEI.isLoaded() == false;
 		FuelLoaderTileEntity tileEntity = this.getMenu().getTileEntity();
-		this.renderTank(stack, mouseX, mouseY, this.leftPos + TANK_LEFT, this.topPos + TANK_TOP, tileEntity.getFluidTank(), renderTooltip);
+		this.renderTank(stack, mouseX, mouseY, this.leftPos + TANK_LEFT, this.topPos + TANK_TOP, tileEntity.getFluidTank());
 	}
 
 	@Override

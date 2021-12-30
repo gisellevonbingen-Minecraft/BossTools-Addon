@@ -1,0 +1,27 @@
+{
+	"type": "mekanism:painting",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "mekanism"
+		}
+	],
+	"itemInput": {
+		"ingredient": {
+			"type": "mekanism:without",
+			"base": {
+				"tag": "boss_tools:flags"
+			},
+			"without": {
+				"item": "boss_tools:flag_brown"
+			}
+		}
+	},
+	"chemicalInput": {
+		"amount": 256,
+		"pigment": "mekanism:brown"
+	},
+	"output": {
+		"item": "boss_tools:flag_brown"
+	}
+}

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
+import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -38,15 +39,17 @@ public class AddonJeiPluginJer implements IModPlugin
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registration)
 	{
-		registration.addRecipeCategories(new AlienCategory());
+		if (AddonCompatibleManager.JER.isLoaded() == true)
+		{
+			registration.addRecipeCategories(new AlienCategory());
+		}
+
 	}
 
 	@Override
 	public void registerRecipes(IRecipeRegistration registration)
 	{
-		List<AlienWrapper> list = new ArrayList<>();
-
-		for (Entry<VillagerProfession, Int2ObjectMap<ITrade[]>> entry : AlienTrade.VILLAGER_DEFAULT_TRADES.entrySet())
+		if (AddonCompatibleManager.JER.isLoaded() == true)
 		{
 			Int2ObjectMap<ITrade[]> values = entry.getValue();
 
@@ -55,10 +58,10 @@ public class AddonJeiPluginJer implements IModPlugin
 				AlienEntry alienEntry = new AlienEntry(entry.getKey(), values);
 				list.add(new AlienWrapper(alienEntry));
 			}
-
+			
+			registration.addRecipes(list, AlienCategory.Uid);
 		}
 
-		registration.addRecipes(list, AlienCategory.Uid);
 	}
 
 }

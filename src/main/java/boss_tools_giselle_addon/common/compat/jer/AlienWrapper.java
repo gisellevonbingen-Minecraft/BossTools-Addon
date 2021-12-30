@@ -64,11 +64,14 @@ public class AlienWrapper implements IRecipeCategoryExtension
 
 		int y = AlienCategory.Y_ITEM_DISTANCE * (6 - getPossibleLevels(focus).size()) / 2;
 		int i;
+
 		for (i = 0; i < getPossibleLevels(focus).size(); i++)
 		{
 			RenderHelper.drawTexture(matrixStack, 130, y + i * AlienCategory.Y_ITEM_DISTANCE, 0, 120, 20, 20, Resources.Gui.Jei.VILLAGER.getResource());
 		}
+
 		i = 0;
+
 		for (int level : getPossibleLevels(focus))
 		{
 			Font.normal.print(matrixStack, "lv. " + (level + 1), 72, y + i++ * AlienCategory.Y_ITEM_DISTANCE + 6);
@@ -76,4 +79,5 @@ public class AlienWrapper implements IRecipeCategoryExtension
 
 		Font.normal.print(matrixStack, TranslationHelper.translateAndFormat(entry.getDisplayName()), 10, 25);
 	}
+
 }
