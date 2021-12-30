@@ -26,6 +26,7 @@ import net.mrscauthd.beyond_earth.ModInit;
 public class AddonJerCompat extends CompatibleMod
 {
 	public static final String MODID = "jeresources";
+	public static final String LANGPREFIX = "jer";
 
 	public static ResourceLocation rl(String path)
 	{

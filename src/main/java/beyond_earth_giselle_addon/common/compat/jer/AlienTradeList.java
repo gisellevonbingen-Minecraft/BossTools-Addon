@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import mezz.jei.api.recipe.IFocus;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -42,7 +44,14 @@ public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 
 	public static ItemStack orElseBarrier(ItemStack is)
 	{
-		return is.isEmpty() ? new ItemStack(Items.BARRIER) : is;
+		return is.isEmpty() ? getNotNeededItem() : is;
+	}
+
+	public static ItemStack getNotNeededItem()
+	{
+		ItemStack itemStack = new ItemStack(Items.BARRIER);
+		itemStack.setHoverName(new TranslatableComponent(BeyondEarthAddon.tl(AddonJerCompat.LANGPREFIX + ".text", AlienCategory.KEY, "notneeded")));
+		return itemStack;
 	}
 
 	public List<ItemStack> getResults()
