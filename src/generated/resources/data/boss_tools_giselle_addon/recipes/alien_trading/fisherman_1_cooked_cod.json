@@ -1,0 +1,17 @@
+{
+	"type": "boss_tools_giselle_addon:alien_trading_itemstack",
+	"job": "minecraft:fisherman",
+	"level": 1,
+	"xp": 1,
+	"costA": {
+		"item": "minecraft:emerald"
+	},
+	"costB": {
+		"item": "minecraft:cod",
+		"count": 6
+	},
+	"result": {
+		"item": "minecraft:cooked_cod",
+		"count": 6
+	}
+}

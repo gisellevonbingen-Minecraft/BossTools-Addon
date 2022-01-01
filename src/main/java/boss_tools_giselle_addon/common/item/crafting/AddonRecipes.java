@@ -25,6 +25,9 @@ public class AddonRecipes
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_ENCHANTEDBOOK = RECIPE_SERIALIZERS.register("alien_trading_enchantedbook", () -> new AlienTradingRecipeEnchantedBook.Serializer());
 	public static final AlienTradingRecipeType<AlienTradingRecipeEnchantedBook> ALIEN_TRADING_ENCHANTEDBOOK = create(new AlienTradingRecipeType<>("alien_trading_enchantedbook"));
 
+	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_ENCHANTEDITEM = RECIPE_SERIALIZERS.register("alien_trading_enchanteditem", () -> new AlienTradingRecipeEnchantedItem.Serializer());
+	public static final AlienTradingRecipeType<AlienTradingRecipeEnchantedItem> ALIEN_TRADING_ENCHANTEDITEM = create(new AlienTradingRecipeType<>("alien_trading_enchanteditem"));
+
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_MAP = RECIPE_SERIALIZERS.register("alien_trading_map", () -> new AlienTradingRecipeMap.Serializer());
 	public static final AlienTradingRecipeType<AlienTradingRecipeMap> ALIEN_TRADING_MAP = create(new AlienTradingRecipeType<>("alien_trading_map"));
 
