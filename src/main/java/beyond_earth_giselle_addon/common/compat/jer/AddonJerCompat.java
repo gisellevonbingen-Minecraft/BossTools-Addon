@@ -72,7 +72,6 @@ public class AddonJerCompat extends CompatibleMod
 	public static void registerMars()
 	{
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("mars"));
-		register(restriction, BeyondEarthAddon.prl("mars_ice_shard_ore"), ModInit.ICE_SHARD.get());
 		register(restriction, BeyondEarthAddon.prl("mars_iron_ore"), Items.RAW_IRON);
 		register(restriction, BeyondEarthAddon.prl("mars_diamond_ore"), Items.DIAMOND);
 		register(restriction, BeyondEarthAddon.prl("mars_silicon_ore"), ModInit.RAW_SILICON.get());
