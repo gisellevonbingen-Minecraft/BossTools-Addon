@@ -1,0 +1,13 @@
+{
+	"type": "boss_tools_giselle_addon:alien_trading_itemstack",
+	"job": "minecraft:fletcher",
+	"level": 3,
+	"xp": 20,
+	"costA": {
+		"item": "minecraft:string",
+		"count": 14
+	},
+	"result": {
+		"item": "minecraft:emerald"
+	}
+}

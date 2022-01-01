@@ -23,9 +23,9 @@ public class AlienTradingRecipeEnchantedItem extends AlienTradingRecipe
 	private int levelBase = 5;
 	private int levelRange = 15;
 
-	private int costBase = 5;
+	private int costBase = 0;
 	private int costBaseLevelMultiplier = 1;
-	private int costRangeBase = 15;
+	private int costRangeBase = 0;
 	private int costRangeLevelMultiplier = 0;
 
 	private ItemStack costA;
@@ -112,12 +112,6 @@ public class AlienTradingRecipeEnchantedItem extends AlienTradingRecipe
 		return Triple.of(costA, costB, result);
 	}
 
-	@Override
-	public IRecipeSerializer<?> getSerializer()
-	{
-		return AddonRecipes.RECIPE_SERIALIZER_ALIEN_TRADING_ENCHANTEDITEM.get();
-	}
-
 	public int getLevelBase()
 	{
 		return this.levelBase;
@@ -161,6 +155,12 @@ public class AlienTradingRecipeEnchantedItem extends AlienTradingRecipe
 	public ItemStack getResultBase()
 	{
 		return result.copy();
+	}
+
+	@Override
+	public IRecipeSerializer<?> getSerializer()
+	{
+		return AddonRecipes.RECIPE_SERIALIZER_ALIEN_TRADING_ENCHANTEDITEM.get();
 	}
 
 	@Override

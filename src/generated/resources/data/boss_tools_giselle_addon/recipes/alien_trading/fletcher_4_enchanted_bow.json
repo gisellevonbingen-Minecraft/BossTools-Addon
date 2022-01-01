@@ -1,14 +1,13 @@
 {
 	"type": "boss_tools_giselle_addon:alien_trading_enchanteditem",
-	"job": "minecraft:fisherman",
-	"level": 3,
-	"xp": 10,
-	"priceMultiplier": 0.2,
+	"job": "minecraft:fletcher",
+	"level": 4,
+	"xp": 15,
 	"costA": {
 		"item": "minecraft:emerald"
 	},
-	"costBase": 3,
+	"costBase": 2,
 	"result": {
-		"item": "minecraft:fishing_rod"
+		"item": "minecraft:bow"
 	}
 }

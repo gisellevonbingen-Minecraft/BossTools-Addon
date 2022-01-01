@@ -106,12 +106,6 @@ public class AlienTradingRecipeEnchantedBook extends AlienTradingRecipe
 		return Triple.of(costA, this.getCostB(), itemstack);
 	}
 
-	@Override
-	public IRecipeSerializer<?> getSerializer()
-	{
-		return AddonRecipes.RECIPE_SERIALIZER_ALIEN_TRADING_ENCHANTEDBOOK.get();
-	}
-
 	public int getCostBase()
 	{
 		return this.costBase;
@@ -145,6 +139,12 @@ public class AlienTradingRecipeEnchantedBook extends AlienTradingRecipe
 	public ItemStack getCostB()
 	{
 		return this.costB.copy();
+	}
+
+	@Override
+	public IRecipeSerializer<?> getSerializer()
+	{
+		return AddonRecipes.RECIPE_SERIALIZER_ALIEN_TRADING_ENCHANTEDBOOK.get();
 	}
 
 	@Override
