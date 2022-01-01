@@ -24,7 +24,7 @@ public class AlienTradingRecipeEnchantedItem extends AlienTradingRecipe
 	private int levelRange = 15;
 
 	private int costBase = 5;
-	private int costBaseLevelMultiplier = 0;
+	private int costBaseLevelMultiplier = 1;
 	private int costRangeBase = 15;
 	private int costRangeLevelMultiplier = 0;
 
@@ -89,9 +89,6 @@ public class AlienTradingRecipeEnchantedItem extends AlienTradingRecipe
 	@Override
 	public Triple<ItemStack, ItemStack, ItemStack> getTrade(Entity trader, Random rand)
 	{
-		ItemStack costABase = this.getCostA();
-		ItemStack costB = this.getCostB();
-
 		int level = this.getLevelBase();
 		int bound1 = this.getLevelRange();
 
@@ -100,7 +97,7 @@ public class AlienTradingRecipeEnchantedItem extends AlienTradingRecipe
 			level += rand.nextInt(bound1);
 		}
 
-		int cost = Math.min(this.getCostBase() + level * this.getCostBaseLevelMultiplier(), costABase.getMaxStackSize());
+		int cost = this.getCostBase() + level * this.getCostBaseLevelMultiplier();
 		int bound2 = this.getCostRangeBase() + level * this.getCostRangeLevelMultiplier();
 
 		if (bound2 > 0)
@@ -108,8 +105,9 @@ public class AlienTradingRecipeEnchantedItem extends AlienTradingRecipe
 			cost += rand.nextInt(bound2);
 		}
 
-		ItemStack costA = new ItemStack(Items.EMERALD, cost);
-
+		ItemStack costA = this.getCostA().copy();
+		costA.setCount(Math.min(cost, costA.getMaxStackSize()));
+		ItemStack costB = this.getCostB();
 		ItemStack result = EnchantmentHelper.enchantItem(rand, this.getResultBase(), level, false);
 		return Triple.of(costA, costB, result);
 	}
