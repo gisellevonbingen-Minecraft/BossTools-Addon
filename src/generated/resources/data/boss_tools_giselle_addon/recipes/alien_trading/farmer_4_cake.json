@@ -1,0 +1,12 @@
+{
+	"type": "boss_tools_giselle_addon:alien_trading_itemstack",
+	"job": "minecraft:farmer",
+	"level": 4,
+	"xp": 15,
+	"costA": {
+		"item": "minecraft:emerald"
+	},
+	"result": {
+		"item": "minecraft:cake"
+	}
+}

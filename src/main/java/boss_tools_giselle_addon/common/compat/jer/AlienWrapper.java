@@ -80,4 +80,10 @@ public class AlienWrapper implements IRecipeCategoryExtension
 		Font.normal.print(matrixStack, TranslationHelper.translateAndFormat(entry.getDisplayName()), 10, 25);
 	}
 
+	@Override
+	public String toString()
+	{
+		return this.entry.toString();
+	}
+
 }

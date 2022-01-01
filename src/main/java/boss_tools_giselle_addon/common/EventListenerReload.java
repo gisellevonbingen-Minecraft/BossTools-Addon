@@ -1,6 +1,6 @@
 package boss_tools_giselle_addon.common;
 
-import boss_tools_giselle_addon.common.content.AddonAlienTrade;
+import boss_tools_giselle_addon.common.content.alien.AddonAlienTrade;
 import boss_tools_giselle_addon.common.resources.ReloadListener;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;

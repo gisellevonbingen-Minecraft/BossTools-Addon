@@ -19,8 +19,14 @@ public class AddonRecipes
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_EXTRUDING = RECIPE_SERIALIZERS.register("extruding", () -> new ExtrudingRecipeSerializer());
 	public static final ItemStackToItemStackRecipeType<ExtrudingRecipe> EXTRUDING = create(new ItemStackToItemStackRecipeType<>("extruding"));
 
-	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING = RECIPE_SERIALIZERS.register("alien_trading", () -> new AlienTradingRecipeSerializer());
-	public static final BossToolsRecipeType<AlienTradingRecipe> ALIEN_TRADING = create(new BossToolsRecipeType<>("alien_trading"));
+	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_ITEMSTACK = RECIPE_SERIALIZERS.register("alien_trading_itemstack", () -> new AlienTradingRecipeItemStack.Serializer());
+	public static final AlienTradingRecipeType<AlienTradingRecipeItemStack> ALIEN_TRADING_ITEMSTACK = create(new AlienTradingRecipeType<>("alien_trading_itemstack"));
+
+	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_ENCHANTEDBOOK = RECIPE_SERIALIZERS.register("alien_trading_enchantedbook", () -> new AlienTradingRecipeEnchantedBook.Serializer());
+	public static final AlienTradingRecipeType<AlienTradingRecipeEnchantedBook> ALIEN_TRADING_ENCHANTEDBOOK = create(new AlienTradingRecipeType<>("alien_trading_enchantedbook"));
+
+	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_MAP = RECIPE_SERIALIZERS.register("alien_trading_map", () -> new AlienTradingRecipeMap.Serializer());
+	public static final AlienTradingRecipeType<AlienTradingRecipeMap> ALIEN_TRADING_MAP = create(new AlienTradingRecipeType<>("alien_trading_map"));
 
 	private static <T extends BossToolsRecipeType<?>> T create(T value)
 	{
