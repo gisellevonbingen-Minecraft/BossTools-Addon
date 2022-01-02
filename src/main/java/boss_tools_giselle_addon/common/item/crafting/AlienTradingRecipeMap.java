@@ -17,7 +17,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -62,33 +61,25 @@ public class AlienTradingRecipeMap extends AlienTradingRecipeItemStackBase
 	public ItemStack getResult(Entity trader, Random rand)
 	{
 		World level = trader.level;
+		Structure<?> structure = ForgeRegistries.STRUCTURE_FEATURES.getValue(this.getStructureName());
+		ItemStack itemstack = new ItemStack(Items.FILLED_MAP);
 
 		if (level instanceof ServerWorld)
 		{
 			ServerWorld serverWorld = (ServerWorld) level;
-			Structure<?> structure = ForgeRegistries.STRUCTURE_FEATURES.getValue(this.getStructureName());
 			BlockPos blockpos = serverWorld.findNearestMapFeature(structure, trader.blockPosition(), 100, true);
 
 			if (blockpos != null)
 			{
-				ItemStack itemstack = FilledMapItem.create(level, blockpos.getX(), blockpos.getZ(), (byte) 2, true, true);
-				itemstack.setHoverName((ITextComponent) new TranslationTextComponent("filled_map." + structure.getFeatureName().toLowerCase(Locale.ROOT)));
-				FilledMapItem.renderBiomePreviewMap(serverWorld, itemstack);
+				itemstack = FilledMapItem.create(level, blockpos.getX(), blockpos.getZ(), (byte) 2, true, true);
 				MapData.addTargetDecoration(itemstack, blockpos, "+", this.getMapDecorationType());
-
-				return itemstack;
-			}
-			else
-			{
-				return new ItemStack(Items.MAP);
 			}
 
-		}
-		else
-		{
-			return new ItemStack(Items.MAP);
+			FilledMapItem.renderBiomePreviewMap(serverWorld, itemstack);
 		}
 
+		itemstack.setHoverName(new TranslationTextComponent("filled_map." + structure.getFeatureName().toLowerCase(Locale.ROOT)));
+		return itemstack;
 	}
 
 	public ResourceLocation getStructureName()
