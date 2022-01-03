@@ -1,5 +1,5 @@
 {
-	"type": "boss_tools_giselle_addon:alien_trading_itemstack",
+	"type": "boss_tools_giselle_addon:alien_trading_enchanteditem",
 	"job": "minecraft:armorer",
 	"level": 5,
 	"xp": 30,
