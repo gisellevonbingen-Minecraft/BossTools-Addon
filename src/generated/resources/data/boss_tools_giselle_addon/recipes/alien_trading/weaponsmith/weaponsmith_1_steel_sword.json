@@ -1,0 +1,12 @@
+{
+	"type": "boss_tools_giselle_addon:alien_trading_itemstack",
+	"job": "minecraft:weaponsmith",
+	"level": 1,
+	"xp": 2,
+	"costA": {
+		"item": "boss_tools:steel_sword"
+	},
+	"result": {
+		"item": "minecraft:emerald"
+	}
+}
