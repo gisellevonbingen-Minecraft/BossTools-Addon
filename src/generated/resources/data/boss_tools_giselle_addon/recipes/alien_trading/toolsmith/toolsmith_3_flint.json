@@ -1,10 +1,11 @@
 {
 	"type": "boss_tools_giselle_addon:alien_trading_itemstack",
-	"job": "minecraft:armorer",
+	"job": "minecraft:toolsmith",
 	"level": 3,
 	"xp": 20,
 	"costA": {
-		"item": "minecraft:diamond"
+		"item": "minecraft:flint",
+		"count": 30
 	},
 	"result": {
 		"item": "minecraft:emerald"

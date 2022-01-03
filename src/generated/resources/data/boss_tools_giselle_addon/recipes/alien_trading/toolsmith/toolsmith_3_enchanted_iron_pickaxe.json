@@ -1,14 +1,14 @@
 {
 	"type": "boss_tools_giselle_addon:alien_trading_enchanteditem",
-	"job": "minecraft:armorer",
-	"level": 5,
-	"xp": 30,
+	"job": "minecraft:toolsmith",
+	"level": 3,
+	"xp": 10,
 	"priceMultiplier": 0.2,
 	"costA": {
 		"item": "minecraft:emerald"
 	},
-	"costBase": 8,
+	"costBase": 3,
 	"result": {
-		"item": "minecraft:diamond_helmet"
+		"item": "minecraft:iron_pickaxe"
 	}
 }
