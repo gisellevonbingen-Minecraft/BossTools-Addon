@@ -1,0 +1,12 @@
+{
+	"type": "boss_tools_giselle_addon:alien_trading_itemstack",
+	"job": "minecraft:mason",
+	"level": 5,
+	"xp": 30,
+	"costA": {
+		"item": "minecraft:emerald"
+	},
+	"result": {
+		"item": "minecraft:quartz_pillar"
+	}
+}
