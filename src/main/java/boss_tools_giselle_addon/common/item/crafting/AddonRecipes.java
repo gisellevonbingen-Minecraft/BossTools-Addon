@@ -34,6 +34,9 @@ public class AddonRecipes
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_POTIONEDITEM = RECIPE_SERIALIZERS.register("alien_trading_potioneditem", () -> new AlienTradingRecipePotionedItem.Serializer());
 	public static final AlienTradingRecipeType<AlienTradingRecipePotionedItem> ALIEN_TRADING_POTIONEDITEM = create(new AlienTradingRecipeType<>("alien_trading_potioneditem"));
 
+	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_DYEDITEM = RECIPE_SERIALIZERS.register("alien_trading_dyeditem", () -> new AlienTradingRecipeDyedItem.Serializer());
+	public static final AlienTradingRecipeType<AlienTradingRecipeDyedItem> ALIEN_TRADING_DYEDITEM = create(new AlienTradingRecipeType<>("alien_trading_dyeditem"));
+
 	private static <T extends BossToolsRecipeType<?>> T create(T value)
 	{
 		Registry.register(Registry.RECIPE_TYPE, BossToolsAddon.rl(value.getName()), value);

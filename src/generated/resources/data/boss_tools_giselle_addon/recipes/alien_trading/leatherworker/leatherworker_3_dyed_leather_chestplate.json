@@ -1,0 +1,13 @@
+{
+	"type": "boss_tools_giselle_addon:alien_trading_dyeditem",
+	"job": "minecraft:leatherworker",
+	"level": 3,
+	"xp": 10,
+	"costA": {
+		"item": "minecraft:emerald",
+		"count": 7
+	},
+	"result": {
+		"item": "minecraft:leather_chestplate"
+	}
+}

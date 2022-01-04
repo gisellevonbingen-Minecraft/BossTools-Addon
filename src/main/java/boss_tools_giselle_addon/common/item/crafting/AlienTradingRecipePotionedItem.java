@@ -14,54 +14,40 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionBrewing;
 import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.mrscauthd.boss_tools.crafting.BossToolsRecipeSerializer;
 
-public class AlienTradingRecipePotionedItem extends AlienTradingRecipeItemStackBase
+public class AlienTradingRecipePotionedItem extends AlienTradingRecipeItemStack
 {
-	private ItemStack result;
-
 	public AlienTradingRecipePotionedItem(ResourceLocation id, JsonObject json)
 	{
 		super(id, json);
-
-		this.result = CraftingHelper.getItemStack(JSONUtils.getAsJsonObject(json, "result"), true);
 	}
 
 	public AlienTradingRecipePotionedItem(ResourceLocation id, PacketBuffer buffer)
 	{
 		super(id, buffer);
-
-		this.result = buffer.readItem();
 	}
 
 	@Override
 	public void write(PacketBuffer buffer)
 	{
 		super.write(buffer);
-
-		buffer.writeItem(this.result);
 	}
 
 	@Override
 	public ItemStack getResult(Entity trader, Random rand)
 	{
+		ItemStack result = super.getResult(trader, rand);
 		List<Potion> potions = ForgeRegistries.POTION_TYPES.getValues().stream().filter(this::testPotion).collect(Collectors.toList());
 		Potion potion = potions.get(rand.nextInt(potions.size()));
-		return PotionUtils.setPotion(this.getResultBase().copy(), potion);
+		return PotionUtils.setPotion(result, potion);
 	}
 
 	public boolean testPotion(Potion potion)
 	{
 		return !potion.getEffects().isEmpty() && PotionBrewing.isBrewablePotion(potion);
-	}
-
-	public ItemStack getResultBase()
-	{
-		return result.copy();
 	}
 
 	@Override
