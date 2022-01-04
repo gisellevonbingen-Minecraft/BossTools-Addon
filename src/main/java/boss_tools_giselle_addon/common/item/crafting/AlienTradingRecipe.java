@@ -14,6 +14,7 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.mrscauthd.boss_tools.crafting.BossToolsRecipe;
+import net.mrscauthd.boss_tools.entity.alien.AlienTrade;
 
 public abstract class AlienTradingRecipe extends BossToolsRecipe
 {
@@ -30,7 +31,7 @@ public abstract class AlienTradingRecipe extends BossToolsRecipe
 		this.job = ForgeRegistries.PROFESSIONS.getValue(new ResourceLocation(JSONUtils.getAsString(json, "job")));
 		this.level = JSONUtils.getAsInt(json, "level");
 		this.xp = JSONUtils.getAsInt(json, "xp");
-		this.maxUses = JSONUtils.getAsInt(json, "maxUses", 9999999);
+		this.maxUses = JSONUtils.getAsInt(json, "maxUses", AlienTrade.maxUseIn);
 		this.priceMultiplier = JSONUtils.getAsFloat(json, "priceMultiplier", 0.05F);
 	}
 

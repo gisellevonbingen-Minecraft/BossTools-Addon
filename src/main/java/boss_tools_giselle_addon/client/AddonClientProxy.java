@@ -7,10 +7,12 @@ import boss_tools_giselle_addon.client.gui.GravityNormalizerScreen;
 import boss_tools_giselle_addon.client.renderer.tileentity.FuelLoaderRenderer;
 import boss_tools_giselle_addon.client.renderer.tileentity.GravityNormalizerRenderer;
 import boss_tools_giselle_addon.client.util.RenderHelper;
+import boss_tools_giselle_addon.common.content.alien.AddonAlienTrade;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.tile.AddonTiles;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -32,6 +34,7 @@ public class AddonClientProxy
 		forgeEventBus.register(EventListenerRenderSpaceSuitOverlay.class);
 		forgeEventBus.register(EventListenerRenderOxygenCanOverlay.class);
 		forgeEventBus.register(EventListenerQuitWorld.class);
+		forgeEventBus.addListener(this::onRecipesUpdated);
 	}
 
 	public void onClientSetup(FMLClientSetupEvent event)
@@ -51,6 +54,11 @@ public class AddonClientProxy
 	public void onAtlasPreStitch(TextureStitchEvent.Pre event)
 	{
 		event.addSprite(RenderHelper.TILE_SURFACE);
+	}
+
+	public void onRecipesUpdated(RecipesUpdatedEvent event)
+	{
+		AddonAlienTrade.registerTrades(event.getRecipeManager());
 	}
 
 }

@@ -28,11 +28,6 @@ import net.mrscauthd.boss_tools.entity.alien.AlienTrade.ITrade;
 @SuppressWarnings("deprecation")
 public class AddonAlienTrade implements ITrade
 {
-	public static void initialize()
-	{
-
-	}
-
 	public static void registerTrades(RecipeManager recipeManager)
 	{
 		Map<VillagerProfession, Int2ObjectMap<List<ITrade>>> jobMap = new HashMap<>();

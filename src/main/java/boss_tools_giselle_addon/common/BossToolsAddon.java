@@ -9,7 +9,6 @@ import boss_tools_giselle_addon.common.capability.CapabilityChargeModeHandler;
 import boss_tools_giselle_addon.common.capability.CapabilityOxygenCharger;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
-import boss_tools_giselle_addon.common.content.alien.AddonAlienTrade;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.item.AddonItems;
 import boss_tools_giselle_addon.common.item.crafting.AddonRecipes;
@@ -63,7 +62,6 @@ public class BossToolsAddon
 	{
 		CapabilityChargeModeHandler.register();
 		CapabilityOxygenCharger.register();
-		AddonAlienTrade.initialize();
 	}
 
 	public static ResourceLocation rl(String path)

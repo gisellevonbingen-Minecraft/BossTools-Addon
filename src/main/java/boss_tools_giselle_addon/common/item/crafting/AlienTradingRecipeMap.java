@@ -3,10 +3,9 @@ package boss_tools_giselle_addon.common.item.crafting;
 import java.util.Locale;
 import java.util.Random;
 
-import org.apache.commons.lang3.EnumUtils;
-
 import com.google.gson.JsonObject;
 
+import boss_tools_giselle_addon.common.util.EnumUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.FilledMapItem;
 import net.minecraft.item.ItemStack;
@@ -37,7 +36,7 @@ public class AlienTradingRecipeMap extends AlienTradingRecipeItemStackBase
 
 		JsonObject result = JSONUtils.getAsJsonObject(json, "result");
 		this.structureName = new ResourceLocation(JSONUtils.getAsString(result, "structureName"));
-		this.mapDecorationType = EnumUtils.getEnumIgnoreCase(MapDecoration.Type.class, JSONUtils.getAsString(result, "mapDecorationType"));
+		this.mapDecorationType = EnumUtils.valueOfIgnoreCase(MapDecoration.Type.class, JSONUtils.getAsString(result, "mapDecorationType"));
 	}
 
 	public AlienTradingRecipeMap(ResourceLocation id, PacketBuffer buffer)
