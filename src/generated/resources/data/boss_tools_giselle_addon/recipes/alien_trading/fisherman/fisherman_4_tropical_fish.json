@@ -1,0 +1,13 @@
+{
+	"type": "boss_tools_giselle_addon:alien_trading_itemstack",
+	"job": "minecraft:fisherman",
+	"level": 4,
+	"xp": 30,
+	"costA": {
+		"item": "minecraft:tropical_fish",
+		"count": 6
+	},
+	"result": {
+		"item": "minecraft:emerald"
+	}
+}

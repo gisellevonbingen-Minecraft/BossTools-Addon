@@ -1,0 +1,13 @@
+{
+	"type": "boss_tools_giselle_addon:alien_trading_enchanteditem",
+	"job": "minecraft:fletcher",
+	"level": 4,
+	"xp": 15,
+	"costA": {
+		"item": "minecraft:emerald"
+	},
+	"costBase": 2,
+	"result": {
+		"item": "minecraft:bow"
+	}
+}

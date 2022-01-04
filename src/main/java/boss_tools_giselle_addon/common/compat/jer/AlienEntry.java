@@ -109,4 +109,10 @@ public class AlienEntry
 		return alienEntity;
 	}
 
+	@Override
+	public String toString()
+	{
+		return this.getName();
+	}
+
 }
