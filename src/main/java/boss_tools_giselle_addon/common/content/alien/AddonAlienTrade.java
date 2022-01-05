@@ -18,14 +18,10 @@ import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.resources.IResourceManager;
-import net.minecraft.resources.IResourceManagerReloadListener;
-import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.mrscauthd.boss_tools.entity.alien.AlienTrade;
 import net.mrscauthd.boss_tools.entity.alien.AlienTrade.ITrade;
 
-@SuppressWarnings("deprecation")
 public class AddonAlienTrade implements ITrade
 {
 	public static void registerTrades(RecipeManager recipeManager)
@@ -65,22 +61,6 @@ public class AddonAlienTrade implements ITrade
 			}
 
 		}
-
-	}
-
-	public static void addReloadListener(AddReloadListenerEvent event)
-	{
-		RecipeManager recipeManager = event.getDataPackRegistries().getRecipeManager();
-
-		event.addListener(new IResourceManagerReloadListener()
-		{
-			@Override
-			public void onResourceManagerReload(IResourceManager resourceManager)
-			{
-				AddonAlienTrade.registerTrades(recipeManager);
-			}
-
-		});
 
 	}
 
