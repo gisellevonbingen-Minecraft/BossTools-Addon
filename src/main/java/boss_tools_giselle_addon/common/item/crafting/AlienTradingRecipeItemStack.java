@@ -2,6 +2,8 @@ package boss_tools_giselle_addon.common.item.crafting;
 
 import java.util.Random;
 
+import org.apache.commons.lang3.tuple.Triple;
+
 import com.google.gson.JsonObject;
 
 import net.minecraft.entity.Entity;
@@ -41,6 +43,11 @@ public class AlienTradingRecipeItemStack extends AlienTradingRecipeItemStackBase
 	}
 
 	@Override
+	public Triple<ItemStack, ItemStack, ItemStack> getTrade(Entity trader, Random rand)
+	{
+		return Triple.of(this.getCostA(), this.getCostB(), this.getResult(trader, rand));
+	}
+
 	public ItemStack getResult(Entity trader, Random rand)
 	{
 		return this.result.copy();

@@ -3,6 +3,8 @@ package boss_tools_giselle_addon.common.item.crafting;
 import java.util.Locale;
 import java.util.Random;
 
+import org.apache.commons.lang3.tuple.Triple;
+
 import com.google.gson.JsonObject;
 
 import boss_tools_giselle_addon.common.util.EnumUtils;
@@ -57,7 +59,7 @@ public class AlienTradingRecipeMap extends AlienTradingRecipeItemStackBase
 	}
 
 	@Override
-	public ItemStack getResult(Entity trader, Random rand)
+	public Triple<ItemStack, ItemStack, ItemStack> getTrade(Entity trader, Random rand)
 	{
 		World level = trader.level;
 		Structure<?> structure = ForgeRegistries.STRUCTURE_FEATURES.getValue(this.getStructureName());
@@ -78,7 +80,7 @@ public class AlienTradingRecipeMap extends AlienTradingRecipeItemStackBase
 		}
 
 		itemstack.setHoverName(new TranslationTextComponent("filled_map." + structure.getFeatureName().toLowerCase(Locale.ROOT)));
-		return itemstack;
+		return Triple.of(this.getCostA(), this.getCostB(), itemstack);
 	}
 
 	public ResourceLocation getStructureName()
