@@ -56,7 +56,12 @@ public class AddonJeiPluginJer implements IModPlugin
 			for (Entry<VillagerProfession, Int2ObjectMap<ItemListing[]>> entry : AlienTrade.TRADES.entrySet())
 			{
 				AlienEntry alienEntry = new AlienEntry(entry.getKey(), entry.getValue());
-				list.add(new AlienWrapper(alienEntry));
+
+				if (alienEntry.tradeList.isEmpty() == false)
+				{
+					list.add(new AlienWrapper(alienEntry));
+				}
+
 			}
 
 			registration.addRecipes(list, AlienCategory.Uid);
