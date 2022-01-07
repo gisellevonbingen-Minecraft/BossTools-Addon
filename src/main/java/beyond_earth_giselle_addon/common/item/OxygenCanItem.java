@@ -24,8 +24,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.mrscauthd.beyond_earth.capability.IOxygenStorage;
-import net.mrscauthd.beyond_earth.capability.OxygenUtil;
+import net.mrscauthd.beyond_earth.capability.oxygen.IOxygenStorage;
+import net.mrscauthd.beyond_earth.capability.oxygen.OxygenUtil;
 import net.mrscauthd.beyond_earth.gauge.GaugeTextHelper;
 
 public class OxygenCanItem extends Item

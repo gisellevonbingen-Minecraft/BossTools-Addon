@@ -22,7 +22,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.mrscauthd.beyond_earth.ModInit;
-import net.mrscauthd.beyond_earth.events.Methodes;
+import net.mrscauthd.beyond_earth.events.Methods;
 import net.mrscauthd.beyond_earth.gui.helper.GuiHelper;
 
 public class RecipeCategoryFuelLoader extends RecipeCategory<Fluid>
@@ -76,7 +76,7 @@ public class RecipeCategoryFuelLoader extends RecipeCategory<Fluid>
 
 	public boolean testFluid(Fluid fluid)
 	{
-		return Methodes.tagCheck(fluid, ModInit.FLUID_VEHICLE_FUEL_TAG) && fluid.isSource(fluid.defaultFluidState());
+		return Methods.tagCheck(fluid, ModInit.FLUID_VEHICLE_FUEL_TAG) && fluid.isSource(fluid.defaultFluidState());
 	}
 
 	@Override

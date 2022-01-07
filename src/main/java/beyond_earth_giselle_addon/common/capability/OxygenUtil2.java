@@ -3,8 +3,8 @@ package beyond_earth_giselle_addon.common.capability;
 import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.mrscauthd.beyond_earth.capability.CapabilityOxygen;
-import net.mrscauthd.beyond_earth.capability.IOxygenStorage;
+import net.mrscauthd.beyond_earth.capability.oxygen.CapabilityOxygen;
+import net.mrscauthd.beyond_earth.capability.oxygen.IOxygenStorage;
 
 public class OxygenUtil2
 {
