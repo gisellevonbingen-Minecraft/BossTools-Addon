@@ -11,7 +11,8 @@ public class MekanismConfig
 	public final ConfigValue<Integer> moduleSpaceBreathing_maxProduceRate;
 	public final ConfigValue<Integer> moduleSpaceBreathing_oxygenUsing;
 	public final ConfigValue<Integer> moduleSpaceBreathing_oxygenDuration;
-	public final ConfigValue<Integer> moduleSpaceBreathing_energyUsing;
+	public final ConfigValue<Integer> moduleSpaceBreathing_energyUsingProvide;
+	public final ConfigValue<Integer> moduleSpaceBreathing_energyUsingProduce;
 
 	public final ConfigValue<Integer> moduleSpaceFireProof_energyUsing;
 	public final ConfigValue<Integer> moduleVenusAcidProof_energyUsing;
@@ -35,7 +36,9 @@ public class MekanismConfig
 		builder.comment("Duration of provided oxygen (oxygen provide interval)");
 		this.moduleSpaceBreathing_oxygenDuration = builder.define("oxygenDuration", 4);
 		builder.comment("Energy usage when provide Space-BossTools oxygen to player in space");
-		this.moduleSpaceBreathing_energyUsing = builder.define("energyUsing", 10);
+		this.moduleSpaceBreathing_energyUsingProvide = builder.define("energyUsing", 10);
+		builder.comment("Energy usage when produce Mekanism oxygen to player in water, rain");
+		this.moduleSpaceBreathing_energyUsingProduce = builder.define("energyUsingProduce", 10);
 		builder.pop();
 
 		builder.push("module_space_fire_proof_unit");

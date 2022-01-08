@@ -40,22 +40,24 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 	private long maxProduceRate = 0;
 	private long oxygenUsing = 0;
 	private long oxygenDuration = 0;
-	private FloatingLong energyUsing;
-	
+	private FloatingLong energyUsingProvide;
+	private FloatingLong energyUsingProduce;
+
 	public ModuleSpaceBreathingUnit()
 	{
 
 	}
-	
+
 	@Override
 	public void init(IModule<ModuleSpaceBreathingUnit> module, ModuleConfigItemCreator configItemCreator)
 	{
 		ICustomModule.super.init(module, configItemCreator);
-		
+
 		this.maxProduceRate = AddonConfigs.Common.mekanism.moduleSpaceBreathing_maxProduceRate.get();
 		this.oxygenUsing = AddonConfigs.Common.mekanism.moduleSpaceBreathing_oxygenUsing.get();
 		this.oxygenDuration = AddonConfigs.Common.mekanism.moduleSpaceBreathing_oxygenDuration.get();
-		this.energyUsing = FloatingLong.create(AddonConfigs.Common.mekanism.moduleSpaceBreathing_energyUsing.get());
+		this.energyUsingProvide = FloatingLong.create(AddonConfigs.Common.mekanism.moduleSpaceBreathing_energyUsingProvide.get());
+		this.energyUsingProduce = FloatingLong.create(AddonConfigs.Common.mekanism.moduleSpaceBreathing_energyUsingProduce.get());
 	}
 
 	/**
@@ -80,12 +82,12 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 		}
 
 	}
-	
+
 	@Override
 	public void tickServer(IModule<ModuleSpaceBreathingUnit> module, PlayerEntity player)
 	{
 		ICustomModule.super.tickServer(module, player);
-		
+
 		this.produceOxygen(module, player);
 		this.reduceOxygenLife(module);
 	}
@@ -105,16 +107,42 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 	{
 		long productionRate = getProduceRate(player);
 
-		if (productionRate > 0)
+		if (productionRate == 0)
 		{
-			ItemStack chestStack = module.getContainer();
-			IGasHandler chestCapability = chestStack.getCapability(Capabilities.GAS_HANDLER_CAPABILITY).orElse(null);
+			return;
+		}
+		
+		long productionRateFirst = productionRate;
+		FloatingLong energyUsing = this.getEnergyUsingProvide();
+		
+		if (module.canUseEnergy(player, energyUsing) == true)
+		{
+			int airSupply = player.getAirSupply();
+			int airFill = (int) Math.min(productionRate, player.getMaxAirSupply() - airSupply);
 
-			if (chestCapability != null)
+			if (airFill > 0)
 			{
-				chestCapability.insertChemical(MekanismGases.OXYGEN.getStack(productionRate), Action.EXECUTE);
+				player.setAirSupply(airSupply + airFill);
+				productionRate -= airFill;
 			}
 
+			if (productionRate > 0)
+			{
+				ItemStack chestStack = module.getContainer();
+				IGasHandler chestCapability = chestStack.getCapability(Capabilities.GAS_HANDLER_CAPABILITY).orElse(null);
+
+				if (chestCapability != null)
+				{
+					GasStack remain = chestCapability.insertChemical(MekanismGases.OXYGEN.getStack(productionRate), Action.EXECUTE);
+					productionRate = remain.getAmount();
+				}
+
+			}
+
+			long oxygenUsed = productionRateFirst - productionRate;
+			long oxygenUsedRatio = oxygenUsed / productionRateFirst;
+			FloatingLong multiply = energyUsing.multiply(oxygenUsedRatio);
+			module.useEnergy(player, multiply);
 		}
 
 	}
@@ -137,7 +165,7 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 		return 0L;
 	}
 
-	public boolean useResources(IModule<ModuleSpaceBreathingUnit> module,LivingEntity entity)
+	public boolean useResources(IModule<ModuleSpaceBreathingUnit> module, LivingEntity entity)
 	{
 		ItemStack container = module.getContainer();
 		IGasHandler gasHandlerItem = container.getCapability(Capabilities.GAS_HANDLER_CAPABILITY).orElse(null);
@@ -145,7 +173,7 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 
 		if (gasHandlerItem != null && gasHandlerItem.extractChemical(usingOxygen, Action.SIMULATE).getAmount() >= usingOxygen.getAmount())
 		{
-			FloatingLong energyUsing = this.getEnergyUsing();
+			FloatingLong energyUsing = this.getEnergyUsingProvide();
 
 			if (module.canUseEnergy(entity, energyUsing) == true)
 			{
@@ -218,9 +246,14 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 		return this.oxygenDuration;
 	}
 
-	public FloatingLong getEnergyUsing()
+	public FloatingLong getEnergyUsingProvide()
 	{
-		return this.energyUsing;
+		return this.energyUsingProvide;
+	}
+
+	public FloatingLong getEnergyUsingProduce()
+	{
+		return energyUsingProduce;
 	}
 
 	public long getOxygenLife(IModule<ModuleSpaceBreathingUnit> module)
