@@ -32,8 +32,8 @@ public class ItemStackToItemStackScreen<C extends ItemStackToItemStackContainer<
 		super.renderContents(stack, mouseX, mouseY, partialTicks);
 
 		ItemStackToItemStackTileEntity tileEntity = this.getMenu().getTileEntity();
-		this.renderEnergy(stack, mouseX, mouseY, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, tileEntity.getPrimaryEnergyStorage());
 		GuiHelper.drawArrow(stack, this.leftPos + ARROW_LEFT, this.topPos + ARROW_TOP, tileEntity.getTimerRatio());
+		this.renderEnergy(stack, mouseX, mouseY, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, tileEntity.getPrimaryEnergyStorage());
 	}
 
 	@Override
