@@ -2,7 +2,7 @@
   "type": "thermal:press",
   "ingredients": [
     {
-      "tag": "forge:ingots/silicon"
+      "tag": "forge:ingots/ostrum"
     },
     {
       "item": "beyond_earth_giselle_addon:press_compressing_die"
@@ -10,7 +10,7 @@
   ],
   "result": [
     {
-      "item": "beyond_earth:compressed_silicon"
+      "item": "beyond_earth:compressed_ostrum"
     }
   ],
   "energy": 2400,
