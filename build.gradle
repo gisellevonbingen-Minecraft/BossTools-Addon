@@ -108,7 +108,7 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${mezz_jei_version}")
     
     // JER
-    implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:3545538")
+    implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:3066754")
 	
 	// Mekanism
     compileOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")
@@ -122,9 +122,9 @@ dependencies {
     implementation fg.deobf("curse.maven:tinkers-construct-74072:3576393")
     
     // Thermal Expansion
-    implementation fg.deobf("curse.maven:cofh-core-69162:3407019")
-    implementation fg.deobf("curse.maven:thermal-foundation-222880:3412300")
-    implementation fg.deobf("curse.maven:thermal-expansion-69163:3404884")
+    implementation fg.deobf("curse.maven:cofh-core-69162:3556973")
+    implementation fg.deobf("curse.maven:thermal-foundation-222880:3556953")
+    implementation fg.deobf("curse.maven:thermal-expansion-69163:3556990")
     
 	// Refined Storage
     compileOnly fg.deobf("curse.maven:refined-storage-243076:3400575")
@@ -133,8 +133,8 @@ dependencies {
 	compileOnly fg.deobf("thelm:jaopca:1.16.5-3.4.1.15:api")
 	
 	// Curios
-    compileOnly fg.deobf("curse.maven:curios-309927:3456953:api")
-    runtimeOnly fg.deobf("curse.maven:curios-309927:3456953")
+    compileOnly fg.deobf("curse.maven:curios-309927:3598943:api")
+    runtimeOnly fg.deobf("curse.maven:curios-309927:3598943")
 }
 
 jar {
