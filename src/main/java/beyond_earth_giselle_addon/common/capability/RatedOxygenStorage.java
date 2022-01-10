@@ -1,7 +1,7 @@
 package beyond_earth_giselle_addon.common.capability;
 
-import net.mrscauthd.beyond_earth.capability.IOxygenStorageHolder;
-import net.mrscauthd.beyond_earth.capability.OxygenStorage;
+import net.mrscauthd.beyond_earth.capability.oxygen.IOxygenStorageHolder;
+import net.mrscauthd.beyond_earth.capability.oxygen.OxygenStorage;
 
 public class RatedOxygenStorage extends OxygenStorage
 {

@@ -1,6 +1,6 @@
 package beyond_earth_giselle_addon.common.capability;
 
-import net.mrscauthd.beyond_earth.capability.IOxygenStorage;
+import net.mrscauthd.beyond_earth.capability.oxygen.IOxygenStorage;
 
 public class OxygenChargerEmpty extends ChargeModeHandlerEmpty implements IOxygenCharger
 {
