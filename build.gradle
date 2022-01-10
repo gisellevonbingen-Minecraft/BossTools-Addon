@@ -134,8 +134,8 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.18.1-39.0.5'
 
     // JEI
-    compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.0.41:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.0.41")
+    compileOnly fg.deobf("mezz.jei:jei-${mezz_jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mezz_jei_version}")
 
     // JER
     implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:3575590")
@@ -144,7 +144,7 @@ dependencies {
     implementation fg.deobf("curse.maven:the-one-probe-245211:3550084")
     
     // Jade
-    implementation fg.deobf("curse.maven:jade-324717:3551337")
+    implementation fg.deobf("curse.maven:jade-324717:3564963")
 	
 	// Beyond Earth
 	implementation fg.deobf("net.mrscauthd:beyond_earth:1.18.1-5.9")
@@ -153,8 +153,8 @@ dependencies {
     compileOnly fg.deobf("curse.maven:refined-storage-243076:3569563")
     
 	// Curios
-    compileOnly fg.deobf("curse.maven:curios-309927:3567300:api")
-    runtimeOnly fg.deobf("curse.maven:curios-309927:3567300")
+    compileOnly fg.deobf("curse.maven:curios-309927:3600023:api")
+    runtimeOnly fg.deobf("curse.maven:curios-309927:3600023")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
