@@ -74,7 +74,7 @@ public class AddonJerCompat extends CompatibleMod
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("mars"));
 		register(restriction, BeyondEarthAddon.prl("mars_iron_ore"), Items.RAW_IRON);
 		register(restriction, BeyondEarthAddon.prl("mars_diamond_ore"), Items.DIAMOND);
-		register(restriction, BeyondEarthAddon.prl("mars_silicon_ore"), ModInit.RAW_SILICON.get());
+		register(restriction, BeyondEarthAddon.prl("mars_ostrum_ore"), ModInit.RAW_OSTRUM.get());
 	}
 
 	public static void registerMercury()

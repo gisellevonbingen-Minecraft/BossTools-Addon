@@ -12,8 +12,8 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
 import net.mrscauthd.beyond_earth.entity.alien.AlienTrade;
-import net.mrscauthd.beyond_earth.entity.alien.AlienTrade.ItemListing;
 
 @mezz.jei.api.JeiPlugin
 public class AddonJeiPluginJer implements IModPlugin

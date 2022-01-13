@@ -11,7 +11,7 @@
       "conditions": [
         {
           "value": {
-            "tag": "forge:ores/silicon",
+            "tag": "forge:ores/ostrum",
             "type": "forge:tag_empty"
           },
           "type": "forge:not"
@@ -19,7 +19,7 @@
       ],
       "recipe": {
         "output": {
-          "tag": "forge:ores/silicon"
+          "tag": "forge:ores/ostrum"
         },
         "rarity": [
           {

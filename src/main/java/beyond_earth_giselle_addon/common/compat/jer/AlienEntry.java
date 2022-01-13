@@ -10,28 +10,28 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import jeresources.compatibility.CompatBase;
 import mezz.jei.api.recipe.IFocus;
 import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
 import net.minecraft.world.item.ItemStack;
 import net.mrscauthd.beyond_earth.ModInit;
 import net.mrscauthd.beyond_earth.entity.alien.AlienEntity;
-import net.mrscauthd.beyond_earth.entity.alien.AlienTrade;
 
 public class AlienEntry
 {
 	protected final List<AlienTradeList> tradeList;
 	protected final VillagerProfession profession;
 
-	public AlienEntry(VillagerProfession profession, Int2ObjectMap<AlienTrade.ItemListing[]> tradesLists)
+	public AlienEntry(VillagerProfession profession, Int2ObjectMap<ItemListing[]> tradesLists)
 	{
 		this.profession = profession;
 		this.tradeList = new LinkedList<>();
 		addItemListingLists(tradesLists);
 	}
 
-	public void addItemListingLists(Int2ObjectMap<AlienTrade.ItemListing[]> tradesLists)
+	public void addItemListingLists(Int2ObjectMap<ItemListing[]> tradesLists)
 	{
 		for (int i = 1; i < tradesLists.size() + 1; i++)
 		{
-			AlienTrade.ItemListing[] levelList = tradesLists.get(i);
+			ItemListing[] levelList = tradesLists.get(i);
 			AlienTradeList trades = this.tradeList.size() > i ? this.tradeList.get(i) : new AlienTradeList(this);
 			trades.addItemListingList(levelList);
 			this.tradeList.add(trades);

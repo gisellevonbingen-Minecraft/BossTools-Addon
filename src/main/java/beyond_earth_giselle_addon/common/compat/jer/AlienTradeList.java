@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import mezz.jei.api.recipe.IFocus;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
-import net.mrscauthd.beyond_earth.entity.alien.AlienTrade;
 
 public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 {
@@ -89,7 +89,7 @@ public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 		}
 	}
 
-	private void addMerchantRecipe(MerchantOffers merchantOffers, AlienTrade.ItemListing trade, Random rand)
+	private void addMerchantRecipe(MerchantOffers merchantOffers, ItemListing trade, Random rand)
 	{
 		MerchantOffer offer = trade.getOffer(villagerEntry.getAlienEntity(), rand);
 		if (offer != null)
@@ -98,9 +98,9 @@ public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 		}
 	}
 
-	public void addItemListingList(AlienTrade.ItemListing[] tradeList)
+	public void addItemListingList(ItemListing[] tradeList)
 	{
-		for (AlienTrade.ItemListing trade : tradeList)
+		for (ItemListing trade : tradeList)
 		{
 			MerchantOffers tempList = new MerchantOffers();
 			Random rand = new Random();

@@ -11,8 +11,10 @@ import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.inventory.AddonMenuTypes;
 import beyond_earth_giselle_addon.common.item.AddonItems;
 import beyond_earth_giselle_addon.common.item.crafting.AddonRecipes;
+import beyond_earth_giselle_addon.common.item.crafting.IS2ISRecipeCache;
 import beyond_earth_giselle_addon.common.network.AddonNetwork;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -52,6 +54,11 @@ public class BeyondEarthAddon
 		forgeEventBus.register(EventListenerReload.class);
 
 		AddonCompatibleManager.visit();
+	}
+
+	public static void resetRecipeCaches(RecipeManager recipeManager)
+	{
+		IS2ISRecipeCache.clearCaches();
 	}
 
 	public static ResourceLocation rl(String path)

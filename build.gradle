@@ -147,7 +147,7 @@ dependencies {
     implementation fg.deobf("curse.maven:jade-324717:3564963")
 	
 	// Beyond Earth
-	implementation fg.deobf("net.mrscauthd:beyond_earth:1.18.1-5.9")
+	implementation fg.deobf("net.mrscauthd:beyond_earth:1.18.1-6.0")
 	
 	// Refined Storage
     compileOnly fg.deobf("curse.maven:refined-storage-243076:3569563")
