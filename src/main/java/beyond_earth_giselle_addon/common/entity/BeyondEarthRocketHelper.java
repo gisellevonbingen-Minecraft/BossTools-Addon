@@ -6,6 +6,7 @@ import net.minecraft.world.entity.Entity;
 import net.mrscauthd.beyond_earth.entity.RocketTier1Entity;
 import net.mrscauthd.beyond_earth.entity.RocketTier2Entity;
 import net.mrscauthd.beyond_earth.entity.RocketTier3Entity;
+import net.mrscauthd.beyond_earth.entity.RocketTier4Entity;
 
 public class BeyondEarthRocketHelper
 {
@@ -20,6 +21,10 @@ public class BeyondEarthRocketHelper
 			return true;
 		}
 		else if (entity instanceof RocketTier3Entity)
+		{
+			return true;
+		}
+		else if (entity instanceof RocketTier4Entity)
 		{
 			return true;
 		}
@@ -43,6 +48,10 @@ public class BeyondEarthRocketHelper
 		{
 			return entityData.get(RocketTier3Entity.BUCKETS);
 		}
+		else if (entity instanceof RocketTier4Entity)
+		{
+			return entityData.get(RocketTier4Entity.BUCKETS);
+		}
 
 		return 0;
 	}
@@ -64,6 +73,10 @@ public class BeyondEarthRocketHelper
 		{
 			entityData.set(RocketTier3Entity.BUCKETS, buckets);
 		}
+		else if (entity instanceof RocketTier4Entity)
+		{
+			entityData.set(RocketTier4Entity.BUCKETS, buckets);
+		}
 
 	}
 
@@ -80,6 +93,10 @@ public class BeyondEarthRocketHelper
 		else if (entity instanceof RocketTier3Entity)
 		{
 			return RocketTier3Entity.FUEL_BUCKETS;
+		}
+		else if (entity instanceof RocketTier4Entity)
+		{
+			return RocketTier4Entity.FUEL_BUCKETS;
 		}
 
 		return 0;
@@ -101,6 +118,10 @@ public class BeyondEarthRocketHelper
 		{
 			return entityData.get(RocketTier3Entity.FUEL);
 		}
+		else if (entity instanceof RocketTier4Entity)
+		{
+			return entityData.get(RocketTier4Entity.FUEL);
+		}
 
 		return 0;
 	}
@@ -121,6 +142,10 @@ public class BeyondEarthRocketHelper
 		else if (entity instanceof RocketTier3Entity)
 		{
 			entityData.set(RocketTier3Entity.FUEL, fuel);
+		}
+		else if (entity instanceof RocketTier4Entity)
+		{
+			entityData.set(RocketTier4Entity.FUEL, fuel);
 		}
 
 	}
