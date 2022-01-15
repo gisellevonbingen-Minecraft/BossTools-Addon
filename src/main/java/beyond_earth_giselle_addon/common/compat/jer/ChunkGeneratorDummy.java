@@ -45,7 +45,7 @@ public class ChunkGeneratorDummy extends ChunkGenerator
 	@Override
 	public void applyCarvers(WorldGenRegion p_187691_, long p_187692_, BiomeManager p_187693_, StructureFeatureManager p_187694_, ChunkAccess p_187695_, Carving p_187696_)
 	{
-		// TODO Auto-generated method stub
+
 	}
 
 	@Override
