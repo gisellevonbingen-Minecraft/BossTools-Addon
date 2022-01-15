@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#boss_tools:engines/iron",
+    "#boss_tools:engines/golden",
+    "#boss_tools:engines/diamond"
+  ]
+}
