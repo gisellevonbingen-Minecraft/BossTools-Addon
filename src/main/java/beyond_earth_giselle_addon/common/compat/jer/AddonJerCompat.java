@@ -110,6 +110,11 @@ public class AddonJerCompat extends CompatibleMod
 		register(restriction, BeyondEarthAddon.prl("glacio_copper_ore"), Items.RAW_COPPER);
 		register(restriction, BeyondEarthAddon.prl("glacio_iron_ore"), Items.RAW_IRON);
 		register(restriction, BeyondEarthAddon.prl("glacio_lapis_ore"), new ItemStack(Items.LAPIS_LAZULI, 4));
+
+		register(restriction, BeyondEarthAddon.prl("deepslate_coal_ore"), Items.COAL);
+		register(restriction, BeyondEarthAddon.prl("deepslate_copper_ore"), Items.RAW_COPPER);
+		register(restriction, BeyondEarthAddon.prl("deepslate_iron_ore"), Items.RAW_IRON);
+		register(restriction, BeyondEarthAddon.prl("deepslate_lapis_ore"), new ItemStack(Items.LAPIS_LAZULI, 4));
 	}
 
 	public static void register(Restriction restriction, ResourceLocation worldGenRegistryName)
