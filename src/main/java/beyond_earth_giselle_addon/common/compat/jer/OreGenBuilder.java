@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import jeresources.api.IWorldGenRegistry;
 import jeresources.api.distributions.DistributionBase;
+import jeresources.api.distributions.DistributionCustom;
 import jeresources.api.drop.LootDrop;
 import jeresources.api.restrictions.Restriction;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -52,10 +53,20 @@ public class OreGenBuilder
 
 	public void register(IWorldGenRegistry registry)
 	{
-		for (DistributionShape shape : this.distributionShapes)
+		List<DistributionShape> distributionShapes = this.distributionShapes;
+
+		if (distributionShapes.size() == 0)
 		{
-			DistributionBase distribution = shape.build(this);
-			registry.register(this.getItemStack(), distribution, this.restriction, this.silkTouch, this.drops.toArray(new LootDrop[0]));
+			registry.register(this.getItemStack(), new DistributionCustom(new float[0]), this.restriction, this.silkTouch, this.drops.toArray(new LootDrop[0]));
+		}
+		else
+		{
+			for (DistributionShape shape : distributionShapes)
+			{
+				DistributionBase distribution = shape.build(this);
+				registry.register(this.getItemStack(), distribution, this.restriction, this.silkTouch, this.drops.toArray(new LootDrop[0]));
+			}
+
 		}
 
 	}

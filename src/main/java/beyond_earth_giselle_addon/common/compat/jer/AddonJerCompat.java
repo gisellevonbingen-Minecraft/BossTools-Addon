@@ -1,6 +1,7 @@
 package beyond_earth_giselle_addon.common.compat.jer;
 
 import java.util.Arrays;
+import java.util.function.Supplier;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.compat.CompatibleMod;
@@ -16,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -71,18 +73,18 @@ public class AddonJerCompat extends CompatibleMod
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("moon"));
 		register(restriction, BeyondEarthAddon.prl("moon_cheese_ore"));
 		register(restriction, BeyondEarthAddon.prl("soul_soil"), Items.GLOWSTONE_DUST);
-		register(restriction, BeyondEarthAddon.prl("moon_ice_shard_ore"));
+		register(restriction, BeyondEarthAddon.prl("moon_ice_shard_ore"), ModInit.ICE_SHARD);
 		register(restriction, BeyondEarthAddon.prl("moon_iron_ore"), Items.RAW_IRON);
-		register(restriction, BeyondEarthAddon.prl("moon_desh_ore"), ModInit.RAW_DESH.get());
+		register(restriction, BeyondEarthAddon.prl("moon_desh_ore"), ModInit.RAW_DESH);
 	}
 
 	public static void registerMars()
 	{
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("mars"));
-		register(restriction, BeyondEarthAddon.prl("mars_ice_shard_ore"));
+		register(restriction, BeyondEarthAddon.prl("mars_ice_shard_ore"), ModInit.ICE_SHARD);
 		register(restriction, BeyondEarthAddon.prl("mars_iron_ore"), Items.RAW_IRON);
 		register(restriction, BeyondEarthAddon.prl("mars_diamond_ore"), Items.DIAMOND);
-		register(restriction, BeyondEarthAddon.prl("mars_ostrum_ore"), ModInit.RAW_OSTRUM.get());
+		register(restriction, BeyondEarthAddon.prl("mars_ostrum_ore"), ModInit.RAW_OSTRUM);
 	}
 
 	public static void registerMercury()
@@ -97,30 +99,58 @@ public class AddonJerCompat extends CompatibleMod
 		register(restriction, BeyondEarthAddon.prl("venus_coal_ore"), Items.COAL);
 		register(restriction, BeyondEarthAddon.prl("venus_gold_ore"), Items.RAW_GOLD);
 		register(restriction, BeyondEarthAddon.prl("venus_diamond_ore"), Items.DIAMOND);
+		register(restriction, BeyondEarthAddon.prl("venus_calorite_ore"), ModInit.RAW_CALORITE);
 	}
 
 	public static void registerGlacio()
 	{
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("glacio"));
-		register(restriction, BeyondEarthAddon.prl("glacio_ice_shard_ore"));
+		register(restriction, BeyondEarthAddon.prl("glacio_ice_shard_ore"), ModInit.ICE_SHARD);
 		register(restriction, BeyondEarthAddon.prl("glacio_coal_ore"), Items.COAL);
 		register(restriction, BeyondEarthAddon.prl("glacio_copper_ore"), Items.RAW_COPPER);
 		register(restriction, BeyondEarthAddon.prl("glacio_iron_ore"), Items.RAW_IRON);
-		register(restriction, BeyondEarthAddon.prl("glacio_lapis_oreglacio_lapis_ore"), Items.LAPIS_LAZULI);
+		register(restriction, BeyondEarthAddon.prl("glacio_lapis_ore"), new ItemStack(Items.LAPIS_LAZULI, 4));
 	}
 
-	public static void register(Restriction restriction, ResourceLocation worldGenRegistryName, Item... silkTouchItems)
+	public static void register(Restriction restriction, ResourceLocation worldGenRegistryName)
+	{
+		register(restriction, worldGenRegistryName, new ItemStack[0]);
+	}
+
+	@SafeVarargs
+	public static void register(Restriction restriction, ResourceLocation worldGenRegistryName, Supplier<Item>... silkTouchItems)
+	{
+		register(restriction, worldGenRegistryName, Arrays.stream(silkTouchItems).map(Supplier::get).toArray(ItemLike[]::new));
+	}
+
+	public static void register(Restriction restriction, ResourceLocation worldGenRegistryName, ItemLike... silkTouchItems)
+	{
+		register(restriction, worldGenRegistryName, Arrays.stream(silkTouchItems).map(ItemStack::new).toArray(ItemStack[]::new));
+	}
+
+	public static void register(Restriction restriction, ResourceLocation worldGenRegistryName, ItemStack... silkTouchItems)
+	{
+		register(restriction, worldGenRegistryName, Arrays.stream(silkTouchItems).map(LootDrop::new).toArray(LootDrop[]::new));
+	}
+
+	public static void register(Restriction restriction, ResourceLocation worldGenRegistryName, LootDrop... silkTouchItems)
 	{
 		try
 		{
-			IWorldGenRegistry jer_registry = JERAPI.getInstance().getWorldGenRegistry();
 			Registry<PlacedFeature> registry = BuiltinRegistries.PLACED_FEATURE;
 			PlacedFeature placedFeature = registry.get(worldGenRegistryName);
-			OreGenBuilder builder = new OreGenBuilder().placedFeature(placedFeature);
-			builder.restriction = restriction;
-			builder.silkTouch = silkTouchItems.length > 0;
-			Arrays.stream(silkTouchItems).map(ItemStack::new).map(LootDrop::new).forEach(builder.drops::add);
-			builder.register(jer_registry);
+
+			if (placedFeature != null)
+			{
+				OreGenBuilder builder = new OreGenBuilder().placedFeature(placedFeature);
+				builder.restriction = restriction;
+				builder.silkTouch = silkTouchItems.length > 0;
+				Arrays.stream(silkTouchItems).forEach(builder.drops::add);
+
+				IWorldGenRegistry jer_registry = JERAPI.getInstance().getWorldGenRegistry();
+				builder.register(jer_registry);
+			}
+
 		}
 		catch (Exception e)
 		{
