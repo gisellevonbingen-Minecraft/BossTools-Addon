@@ -119,6 +119,10 @@ repositories {
 		url "https://dvs1.progwml6.com/files/maven"
 	}
     maven {
+    	name "REI"
+    	url "https://maven.shedaniel.me"
+    }
+    maven {
         url = "https://www.cursemaven.com"
     }
 	maven {
@@ -133,6 +137,9 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.18.1-39.0.10'
 
+    //REI
+    //compileOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:7.1.390")
+    
     // JEI
     compileOnly fg.deobf("mezz.jei:jei-${mezz_jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${mezz_jei_version}")

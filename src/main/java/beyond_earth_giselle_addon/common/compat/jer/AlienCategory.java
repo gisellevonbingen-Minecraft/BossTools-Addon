@@ -5,11 +5,11 @@ import javax.annotation.Nonnull;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.compat.jei.AddonJeiPlugin;
 import jeresources.jei.BlankJEIRecipeCategory;
-import jeresources.jei.JEIConfig;
 import jeresources.reference.Resources;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IFocus;
 import net.minecraft.network.chat.Component;
@@ -26,9 +26,9 @@ public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 	protected static final int X_ITEM_RESULT = 150;
 	protected static final int Y_ITEM_DISTANCE = 22;
 
-	public AlienCategory()
+	public AlienCategory(IGuiHelper guiHelper)
 	{
-		super(JEIConfig.getJeiHelpers().getGuiHelper().createDrawable(Resources.Gui.Jei.TABS, 0, 0, 16, 16));
+		super(guiHelper.createDrawable(Resources.Gui.Jei.TABS, 0, 0, 16, 16));
 	}
 
 	@Nonnull
