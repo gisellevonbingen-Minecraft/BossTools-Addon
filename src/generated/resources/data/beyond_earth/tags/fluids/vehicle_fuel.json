@@ -24,6 +24,14 @@
 		{
 			"id": "industrialforegoing:biofuel",
 			"required": false
+		},
+		{
+			"id": "pneumaticcraft:diesel",
+			"required": false
+		},
+		{
+			"id": "pneumaticcraft:biodiesel",
+			"required": false
 		}
 	]
 }
