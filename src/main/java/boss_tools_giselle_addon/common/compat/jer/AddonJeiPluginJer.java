@@ -8,6 +8,7 @@ import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import mezz.jei.api.IModPlugin;
+import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
@@ -41,7 +42,8 @@ public class AddonJeiPluginJer implements IModPlugin
 	{
 		if (AddonCompatibleManager.JER.isLoaded() == true)
 		{
-			registration.addRecipeCategories(new AlienCategory());
+			IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
+			registration.addRecipeCategories(new AlienCategory(guiHelper));
 		}
 
 	}
