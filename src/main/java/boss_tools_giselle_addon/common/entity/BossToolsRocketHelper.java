@@ -71,7 +71,7 @@ public class BossToolsRocketHelper
 	{
 		if (entity instanceof RocketTier1Entity)
 		{
-			return 1;
+			return RocketTier1Entity.FUEL_BUCKETS;
 		}
 		else if (entity instanceof RocketTier2Entity)
 		{
