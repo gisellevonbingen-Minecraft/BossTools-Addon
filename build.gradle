@@ -90,52 +90,52 @@ repositories {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.21'
-	
-	// Mixin
+
+    // Mixin
     annotationProcessor 'org.spongepowered:mixin:0.8:processor'
-  
-	// The One Probe
-	implementation fg.deobf("curse.maven:the-one-probe-245211:3319255")
-  
-	// Hwyla
-	implementation fg.deobf("curse.maven:hwyla-253449:3033593")
-  
-	// Space-BossTools
-	implementation fg.deobf("net.mrscauthd:boss_tools:1.16.5-5.5")
-	
-	// REI
-	// implementation fg.deobf("curse.maven:roughly-enough-items-310111:3614685")
-	
-	// JEI
+
+    // The One Probe
+    implementation fg.deobf("curse.maven:the-one-probe-245211:3319255")
+
+    // Hwyla
+    implementation fg.deobf("curse.maven:hwyla-253449:3033593")
+
+    // Space-BossTools
+    implementation fg.deobf("net.mrscauthd:boss_tools:1.16.5-5.5")
+
+    // REI
+    // implementation fg.deobf("curse.maven:roughly-enough-items-310111:3614685")
+
+    // JEI
     compileOnly fg.deobf("mezz.jei:jei-${mezz_jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${mezz_jei_version}")
-    
+
     // JER
     implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:3066754")
-	
-	// Mekanism
+
+    // Mekanism
     compileOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")
     runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")
     runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:additions")
     runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")
     runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")
-	
+
     // Tinkers Contruct
     implementation fg.deobf("curse.maven:mantle-74924:3576386")
     implementation fg.deobf("curse.maven:tinkers-construct-74072:3576393")
-    
+
     // Thermal Expansion
     implementation fg.deobf("curse.maven:cofh-core-69162:3556973")
     implementation fg.deobf("curse.maven:thermal-foundation-222880:3556953")
     implementation fg.deobf("curse.maven:thermal-expansion-69163:3556990")
-    
-	// Refined Storage
+
+    // Refined Storage
     compileOnly fg.deobf("curse.maven:refined-storage-243076:3400575")
-    
-	// JAOPCA
-	compileOnly fg.deobf("thelm:jaopca:1.16.5-3.4.1.15:api")
-	
-	// Curios
+
+    // JAOPCA
+    compileOnly fg.deobf("thelm:jaopca:1.16.5-3.4.1.15:api")
+
+    // Curios
     compileOnly fg.deobf("curse.maven:curios-309927:3598943:api")
     runtimeOnly fg.deobf("curse.maven:curios-309927:3598943")
 }
