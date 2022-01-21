@@ -7,11 +7,9 @@ import java.util.stream.Collectors;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import jeresources.compatibility.CompatBase;
 import mezz.jei.api.recipe.IFocus;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.item.ItemStack;
-import net.mrscauthd.boss_tools.ModInnet;
 import net.mrscauthd.boss_tools.entity.alien.AlienEntity;
 import net.mrscauthd.boss_tools.entity.alien.AlienTrade;
 
@@ -19,12 +17,14 @@ public class AlienEntry
 {
 	protected final List<AlienTradeList> tradeList;
 	protected final VillagerProfession profession;
+	protected final AlienEntity alienEntity;
 
-	public AlienEntry(VillagerProfession profession, Int2ObjectMap<AlienTrade.ITrade[]> tradesLists)
+	public AlienEntry(VillagerProfession profession, Int2ObjectMap<AlienTrade.ITrade[]> tradesLists, AlienEntity alienEntity)
 	{
 		this.profession = profession;
 		this.tradeList = new LinkedList<>();
-		addITradeLists(tradesLists);
+		this.alienEntity = alienEntity;
+		this.addITradeLists(tradesLists);
 	}
 
 	public void addITradeLists(Int2ObjectMap<AlienTrade.ITrade[]> tradesLists)
@@ -104,9 +104,7 @@ public class AlienEntry
 
 	public AlienEntity getAlienEntity()
 	{
-		AlienEntity alienEntity = (AlienEntity) ModInnet.ALIEN.get().create(CompatBase.getWorld());
-		alienEntity.setVillagerData(alienEntity.getVillagerData().setProfession(this.getProfession()));
-		return alienEntity;
+		return this.alienEntity;
 	}
 
 	@Override

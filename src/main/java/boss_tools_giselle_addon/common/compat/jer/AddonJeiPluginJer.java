@@ -7,12 +7,15 @@ import java.util.Map.Entry;
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import jeresources.compatibility.CompatBase;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.util.ResourceLocation;
+import net.mrscauthd.boss_tools.ModInnet;
+import net.mrscauthd.boss_tools.entity.alien.AlienEntity;
 import net.mrscauthd.boss_tools.entity.alien.AlienTrade;
 import net.mrscauthd.boss_tools.entity.alien.AlienTrade.ITrade;
 
@@ -57,12 +60,20 @@ public class AddonJeiPluginJer implements IModPlugin
 
 			for (Entry<VillagerProfession, Int2ObjectMap<ITrade[]>> entry : AlienTrade.VILLAGER_DEFAULT_TRADES.entrySet())
 			{
+				VillagerProfession villagerProfession = entry.getKey();
 				Int2ObjectMap<ITrade[]> values = entry.getValue();
 
 				if (values.values().stream().mapToInt(r -> r.length).sum() > 0)
 				{
-					AlienEntry alienEntry = new AlienEntry(entry.getKey(), values);
-					list.add(new AlienWrapper(alienEntry));
+					AlienEntity alienEntity = (AlienEntity) ModInnet.ALIEN.get().create(CompatBase.getWorld());
+					alienEntity.setVillagerData(alienEntity.getVillagerData().setProfession(villagerProfession));
+					AlienEntry alienEntry = new AlienEntry(villagerProfession, values, alienEntity);
+
+					if (alienEntry.tradeList.isEmpty() == false)
+					{
+						list.add(new AlienWrapper(alienEntry));
+					}
+
 				}
 
 			}
