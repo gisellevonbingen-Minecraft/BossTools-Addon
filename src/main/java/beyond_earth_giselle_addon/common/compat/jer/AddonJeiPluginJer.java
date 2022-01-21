@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import jeresources.compatibility.CompatBase;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -14,6 +15,8 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
+import net.mrscauthd.beyond_earth.ModInit;
+import net.mrscauthd.beyond_earth.entity.alien.AlienEntity;
 import net.mrscauthd.beyond_earth.entity.alien.AlienTrade;
 
 @mezz.jei.api.JeiPlugin
@@ -57,11 +60,20 @@ public class AddonJeiPluginJer implements IModPlugin
 
 			for (Entry<VillagerProfession, Int2ObjectMap<ItemListing[]>> entry : AlienTrade.TRADES.entrySet())
 			{
-				AlienEntry alienEntry = new AlienEntry(entry.getKey(), entry.getValue());
+				VillagerProfession villagerProfession = entry.getKey();
+				Int2ObjectMap<ItemListing[]> values = entry.getValue();
 
-				if (alienEntry.tradeList.isEmpty() == false)
+				if (values.values().stream().mapToInt(r -> r.length).sum() > 0)
 				{
-					list.add(new AlienWrapper(alienEntry));
+					AlienEntity alienEntity = (AlienEntity) ModInit.ALIEN.get().create(CompatBase.getLevel());
+					alienEntity.setVillagerData(alienEntity.getVillagerData().setProfession(villagerProfession));
+					AlienEntry alienEntry = new AlienEntry(villagerProfession, values, alienEntity);
+
+					if (alienEntry.tradeList.isEmpty() == false)
+					{
+						list.add(new AlienWrapper(alienEntry));
+					}
+
 				}
 
 			}

@@ -7,24 +7,24 @@ import java.util.stream.Collectors;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import jeresources.compatibility.CompatBase;
 import mezz.jei.api.recipe.IFocus;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
 import net.minecraft.world.item.ItemStack;
-import net.mrscauthd.beyond_earth.ModInit;
 import net.mrscauthd.beyond_earth.entity.alien.AlienEntity;
 
 public class AlienEntry
 {
 	protected final List<AlienTradeList> tradeList;
 	protected final VillagerProfession profession;
+	protected final AlienEntity alienEntity;
 
-	public AlienEntry(VillagerProfession profession, Int2ObjectMap<ItemListing[]> tradesLists)
+	public AlienEntry(VillagerProfession profession, Int2ObjectMap<ItemListing[]> tradesLists, AlienEntity alienEntity)
 	{
 		this.profession = profession;
 		this.tradeList = new LinkedList<>();
-		addItemListingLists(tradesLists);
+		this.alienEntity = alienEntity;
+		this.addItemListingLists(tradesLists);
 	}
 
 	public void addItemListingLists(Int2ObjectMap<ItemListing[]> tradesLists)
@@ -104,9 +104,13 @@ public class AlienEntry
 
 	public AlienEntity getAlienEntity()
 	{
-		AlienEntity alienEntity = (AlienEntity) ModInit.ALIEN.get().create(CompatBase.getLevel());
-		alienEntity.setVillagerData(alienEntity.getVillagerData().setProfession(this.getProfession()));
-		return alienEntity;
+		return this.alienEntity;
+	}
+
+	@Override
+	public String toString()
+	{
+		return this.getName();
 	}
 
 	public List<ItemStack> getPois()
