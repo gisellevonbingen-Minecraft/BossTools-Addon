@@ -47,6 +47,7 @@ public class BeyondEarthAddon
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
 
 		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+		forgeEventBus.register(EventListenerCommand.class);
 		forgeEventBus.register(EventListenerFuelAdapter.class);
 		forgeEventBus.register(EventListenerGauge.class);
 		forgeEventBus.register(EventListenerGravity.class);
