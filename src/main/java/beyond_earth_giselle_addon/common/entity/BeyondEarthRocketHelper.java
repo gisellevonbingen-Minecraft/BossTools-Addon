@@ -1,8 +1,14 @@
 package beyond_earth_giselle_addon.common.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraftforge.registries.RegistryObject;
+import net.mrscauthd.beyond_earth.ModInit;
 import net.mrscauthd.beyond_earth.entity.RocketTier1Entity;
 import net.mrscauthd.beyond_earth.entity.RocketTier2Entity;
 import net.mrscauthd.beyond_earth.entity.RocketTier3Entity;
@@ -10,6 +16,17 @@ import net.mrscauthd.beyond_earth.entity.RocketTier4Entity;
 
 public class BeyondEarthRocketHelper
 {
+	private static final List<RegistryObject<? extends EntityType<?>>> types;
+
+	static
+	{
+		types = new ArrayList<>();
+		types.add(ModInit.TIER_1_ROCKET);
+		types.add(ModInit.TIER_2_ROCKET);
+		types.add(ModInit.TIER_3_ROCKET);
+		types.add(ModInit.TIER_4_ROCKET);
+	}
+
 	public static boolean isBeyondEarthRocket(Entity entity)
 	{
 		if (entity instanceof RocketTier1Entity)
@@ -27,6 +44,25 @@ public class BeyondEarthRocketHelper
 		else if (entity instanceof RocketTier4Entity)
 		{
 			return true;
+		}
+
+		return false;
+	}
+
+	public static EntityType<?>[] getBeyondEarthRocketTypes()
+	{
+		return types.stream().map(RegistryObject::get).toArray(EntityType<?>[]::new);
+	}
+
+	public static boolean isBeyondEarthRocket(EntityType<?> type)
+	{
+		for (EntityType<?> entityType : getBeyondEarthRocketTypes())
+		{
+			if (entityType == type)
+			{
+				return true;
+			}
+
 		}
 
 		return false;
@@ -84,19 +120,19 @@ public class BeyondEarthRocketHelper
 	{
 		if (entity instanceof RocketTier1Entity)
 		{
-			return RocketTier1Entity.FUEL_BUCKETS;
+			return 1;
 		}
 		else if (entity instanceof RocketTier2Entity)
 		{
-			return RocketTier2Entity.FUEL_BUCKETS;
+			return 3;
 		}
 		else if (entity instanceof RocketTier3Entity)
 		{
-			return RocketTier3Entity.FUEL_BUCKETS;
+			return 3;
 		}
 		else if (entity instanceof RocketTier4Entity)
 		{
-			return RocketTier4Entity.FUEL_BUCKETS;
+			return 3;
 		}
 
 		return 0;
