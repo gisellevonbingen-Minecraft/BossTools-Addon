@@ -1,6 +1,7 @@
-package boss_tools_giselle_addon.common.util;
+package boss_tools_giselle_addon.common.content.gravitynormalizing;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
+import boss_tools_giselle_addon.common.util.NBTUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -10,7 +11,7 @@ import net.mrscauthd.boss_tools.events.Gravity.GravityType;
 
 public class GravityNormalizeUtils
 {
-	public static final String NBT_KEY = BossToolsAddon.rl("gravitynormalizing").toString();
+	public static final String NBT_KEY = BossToolsAddon.rl("gravity_normalizing").toString();
 	public static final String NBT_NORMALIZING_KEY = "normalizing";
 
 	public static void tryCancelGravity(EntityEvent e)
