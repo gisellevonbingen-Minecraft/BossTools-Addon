@@ -72,7 +72,7 @@ public class AddonJerCompat extends CompatibleMod
 	{
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("moon"));
 		register(restriction, BeyondEarthAddon.prl("moon_cheese_ore"));
-		register(restriction, BeyondEarthAddon.prl("soul_soil"), Items.GLOWSTONE_DUST);
+		register(restriction, BeyondEarthAddon.prl("soul_soil"));
 		register(restriction, BeyondEarthAddon.prl("moon_ice_shard_ore"), ModInit.ICE_SHARD);
 		register(restriction, BeyondEarthAddon.prl("moon_iron_ore"), Items.RAW_IRON);
 		register(restriction, BeyondEarthAddon.prl("moon_desh_ore"), ModInit.RAW_DESH);
