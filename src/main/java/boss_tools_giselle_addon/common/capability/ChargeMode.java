@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.function.Function;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
-import boss_tools_giselle_addon.common.inventory.ItemHandlerHelper2;
+import boss_tools_giselle_addon.common.inventory.ItemHandlerHelper3;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -15,7 +15,7 @@ public enum ChargeMode implements IChargeMode
 {
 	NONE(BossToolsAddon.rl("none"), e -> Collections.emptyList()),
 	ARMORS(BossToolsAddon.rl("armors"), Entity::getArmorSlots),
-	ALL(BossToolsAddon.rl("all"), e -> e.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).lazyMap(ItemHandlerHelper2::getStacks).orElse(NonNullList.withSize(0, ItemStack.EMPTY))),
+	ALL(BossToolsAddon.rl("all"), e -> e.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).lazyMap(ItemHandlerHelper3::getStacks).orElse(NonNullList.withSize(0, ItemStack.EMPTY))),
 	//
 	;
 

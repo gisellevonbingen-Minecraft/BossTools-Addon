@@ -10,6 +10,10 @@ import boss_tools_giselle_addon.common.capability.CapabilityOxygenCharger;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.content.alien.AddonAlienTrade;
+import boss_tools_giselle_addon.common.content.flag.EventListenerFlagEdit;
+import boss_tools_giselle_addon.common.content.fuel.EventListenerFuelAdapter;
+import boss_tools_giselle_addon.common.content.fuel.EventListenerFuelGauge;
+import boss_tools_giselle_addon.common.content.gravitynormalizing.EventListenerGravityNormalizing;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.item.AddonItems;
 import boss_tools_giselle_addon.common.item.crafting.AddonRecipes;
@@ -53,8 +57,8 @@ public class BossToolsAddon
 
 		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 		forgeEventBus.register(EventListenerFuelAdapter.class);
-		forgeEventBus.register(EventListenerGauge.class);
-		forgeEventBus.register(EventListenerGravity.class);
+		forgeEventBus.register(EventListenerFuelGauge.class);
+		forgeEventBus.register(EventListenerGravityNormalizing.class);
 		forgeEventBus.register(EventListenerFlagEdit.class);
 		forgeEventBus.register(EventListenerReload.class);
 
