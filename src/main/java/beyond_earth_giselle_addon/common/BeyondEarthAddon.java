@@ -8,6 +8,10 @@ import beyond_earth_giselle_addon.common.block.AddonBlocks;
 import beyond_earth_giselle_addon.common.block.entity.AddonBlockEntities;
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
+import beyond_earth_giselle_addon.common.content.flag.EventListenerFlagEdit;
+import beyond_earth_giselle_addon.common.content.fuel.EventListenerFuelAdapter;
+import beyond_earth_giselle_addon.common.content.fuel.EventListenerFuelGauge;
+import beyond_earth_giselle_addon.common.content.gravitynormalizing.EventListenerGravityNormalizing;
 import beyond_earth_giselle_addon.common.inventory.AddonMenuTypes;
 import beyond_earth_giselle_addon.common.item.AddonItems;
 import beyond_earth_giselle_addon.common.item.crafting.AddonRecipes;
@@ -48,8 +52,8 @@ public class BeyondEarthAddon
 
 		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 		forgeEventBus.register(EventListenerFuelAdapter.class);
-		forgeEventBus.register(EventListenerGauge.class);
-		forgeEventBus.register(EventListenerGravity.class);
+		forgeEventBus.register(EventListenerFuelGauge.class);
+		forgeEventBus.register(EventListenerGravityNormalizing.class);
 		forgeEventBus.register(EventListenerFlagEdit.class);
 		forgeEventBus.register(EventListenerReload.class);
 

@@ -1,4 +1,4 @@
-package beyond_earth_giselle_addon.common;
+package beyond_earth_giselle_addon.common.content.flag;
 
 import beyond_earth_giselle_addon.common.network.AddonNetwork;
 import beyond_earth_giselle_addon.common.network.FlagEditMessageOpen;

@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.function.Function;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import beyond_earth_giselle_addon.common.inventory.ItemHandlerHelper2;
+import beyond_earth_giselle_addon.common.inventory.ItemHandlerHelper3;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -15,7 +15,7 @@ public enum ChargeMode implements IChargeMode
 {
 	NONE(BeyondEarthAddon.rl("none"), e -> Collections.emptyList()),
 	ARMORS(BeyondEarthAddon.rl("armors"), Entity::getArmorSlots),
-	ALL(BeyondEarthAddon.rl("all"), e -> e.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).lazyMap(ItemHandlerHelper2::getStacks).orElse(NonNullList.withSize(0, ItemStack.EMPTY))),
+	ALL(BeyondEarthAddon.rl("all"), e -> e.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).lazyMap(ItemHandlerHelper3::getStacks).orElse(NonNullList.withSize(0, ItemStack.EMPTY))),
 	//
 	;
 

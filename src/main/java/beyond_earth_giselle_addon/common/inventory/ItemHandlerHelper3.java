@@ -6,7 +6,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-public class ItemHandlerHelper2
+public class ItemHandlerHelper3
 {
 	public static int indexOf(IItemHandler itemHandler, Item item)
 	{
@@ -58,7 +58,7 @@ public class ItemHandlerHelper2
 		return list;
 	}
 
-	private ItemHandlerHelper2()
+	private ItemHandlerHelper3()
 	{
 
 	}

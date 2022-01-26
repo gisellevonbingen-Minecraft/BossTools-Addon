@@ -1,4 +1,4 @@
-package beyond_earth_giselle_addon.common;
+package beyond_earth_giselle_addon.common.content.fuel;
 
 import beyond_earth_giselle_addon.common.entity.BeyondEarthRocketHelper;
 import beyond_earth_giselle_addon.common.entity.BeyondEarthRoverHelper;
@@ -10,7 +10,7 @@ import net.mrscauthd.beyond_earth.entity.RoverEntity;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueHelper;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueSimple;
 
-public class EventListenerGauge
+public class EventListenerFuelGauge
 {
 	@SubscribeEvent
 	public static void onEntityGaugeValueFetch(EntityGaugeValueFetchEvent e)

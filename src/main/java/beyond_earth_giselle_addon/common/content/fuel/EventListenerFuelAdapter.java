@@ -1,4 +1,4 @@
-package beyond_earth_giselle_addon.common;
+package beyond_earth_giselle_addon.common.content.fuel;
 
 import beyond_earth_giselle_addon.common.adapter.FuelAdapterBeyondEarthRocket;
 import beyond_earth_giselle_addon.common.adapter.FuelAdapterBeyondEarthRover;
