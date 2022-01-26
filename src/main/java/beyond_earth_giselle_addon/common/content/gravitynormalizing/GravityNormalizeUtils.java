@@ -1,6 +1,7 @@
-package beyond_earth_giselle_addon.common.util;
+package beyond_earth_giselle_addon.common.content.gravitynormalizing;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
+import beyond_earth_giselle_addon.common.util.NBTUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,7 +11,7 @@ import net.mrscauthd.beyond_earth.events.Gravity.GravityType;
 
 public class GravityNormalizeUtils
 {
-	public static final String NBT_KEY = BeyondEarthAddon.rl("gravitynormalizing").toString();
+	public static final String NBT_KEY = BeyondEarthAddon.rl("gravity_normalizing").toString();
 	public static final String NBT_NORMALIZING_KEY = "normalizing";
 
 	public static void tryCancelGravity(EntityEvent e)
