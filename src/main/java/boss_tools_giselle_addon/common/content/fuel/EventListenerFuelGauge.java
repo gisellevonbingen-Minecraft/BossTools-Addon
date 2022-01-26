@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.common;
+package boss_tools_giselle_addon.common.content.fuel;
 
 import boss_tools_giselle_addon.common.entity.BossToolsRocketHelper;
 import boss_tools_giselle_addon.common.entity.BossToolsRoverHelper;
@@ -10,7 +10,7 @@ import net.mrscauthd.boss_tools.entity.RoverEntity;
 import net.mrscauthd.boss_tools.gauge.GaugeValueHelper;
 import net.mrscauthd.boss_tools.gauge.GaugeValueSimple;
 
-public class EventListenerGauge
+public class EventListenerFuelGauge
 {
 	@SubscribeEvent
 	public static void onEntityGaugeValueFetch(EntityGaugeValueFetchEvent e)

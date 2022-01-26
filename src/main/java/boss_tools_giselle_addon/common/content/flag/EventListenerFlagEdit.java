@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.common;
+package boss_tools_giselle_addon.common.content.flag;
 
 import com.mojang.authlib.GameProfile;
 

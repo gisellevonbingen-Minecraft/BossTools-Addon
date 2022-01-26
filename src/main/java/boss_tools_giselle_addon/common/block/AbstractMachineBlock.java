@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.ToIntFunction;
 
-import boss_tools_giselle_addon.common.inventory.ItemHandlerHelper2;
+import boss_tools_giselle_addon.common.inventory.ItemHandlerHelper3;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -152,7 +152,7 @@ public abstract class AbstractMachineBlock<T extends AbstractMachineTileEntity> 
 
 			if (tileEntity != null)
 			{
-				NonNullList<ItemStack> stacks = ItemHandlerHelper2.getStacks(tileEntity.getItemHandler());
+				NonNullList<ItemStack> stacks = ItemHandlerHelper3.getStacks(tileEntity.getItemHandler());
 				InventoryHelper.dropContents(level, pos, stacks);
 			}
 

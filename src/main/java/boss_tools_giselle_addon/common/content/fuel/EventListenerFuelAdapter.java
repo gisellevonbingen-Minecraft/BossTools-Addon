@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.common;
+package boss_tools_giselle_addon.common.content.fuel;
 
 import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsRocket;
 import boss_tools_giselle_addon.common.adapter.FuelAdapterBossToolsRover;
