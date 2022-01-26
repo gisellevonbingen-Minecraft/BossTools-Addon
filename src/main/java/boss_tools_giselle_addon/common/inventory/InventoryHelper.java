@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
+import boss_tools_giselle_addon.common.compat.curios.CuriosHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import top.theillusivec4.curios.api.CuriosApi;
 
 public class InventoryHelper
 {
@@ -49,17 +48,11 @@ public class InventoryHelper
 
 		if (AddonCompatibleManager.CURIOS.isLoaded() == true)
 		{
-			IItemHandlerModifiable curiosItemHandler = CuriosApi.getCuriosHelper().getEquippedCurios(entity).orElse(null);
-
-			if (curiosItemHandler != null)
+			for (ItemStack stack : CuriosHelper.getEquippedCurios(entity))
 			{
-				for (ItemStack stack : ItemHandlerHelper2.getStacks(curiosItemHandler))
+				if (stack.isEmpty() == false)
 				{
-					if (stack.isEmpty() == false)
-					{
-						list.add(stack);
-					}
-
+					list.add(stack);
 				}
 
 			}
