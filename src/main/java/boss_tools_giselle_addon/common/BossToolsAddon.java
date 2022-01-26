@@ -10,6 +10,8 @@ import boss_tools_giselle_addon.common.capability.CapabilityOxygenCharger;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.content.alien.AddonAlienTrade;
+import boss_tools_giselle_addon.common.content.spacebreathing.EventListenerSpaceBreathing;
+import boss_tools_giselle_addon.common.enchantment.AddonEnchantments;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.item.AddonItems;
 import boss_tools_giselle_addon.common.item.crafting.AddonRecipes;
@@ -44,6 +46,7 @@ public class BossToolsAddon
 		fml_bus.addListener(BossToolsAddon::init);
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);
+		AddonEnchantments.ENCHANTMENTS.register(fml_bus);
 		AddonRecipes.RECIPE_SERIALIZERS.register(fml_bus);
 		AddonTiles.TILES.register(fml_bus);
 		AddonContainers.CONTAINERS.register(fml_bus);
@@ -57,6 +60,7 @@ public class BossToolsAddon
 		forgeEventBus.register(EventListenerGravity.class);
 		forgeEventBus.register(EventListenerFlagEdit.class);
 		forgeEventBus.register(EventListenerReload.class);
+		forgeEventBus.register(EventListenerSpaceBreathing.class);
 
 		AddonCompatibleManager.visit();
 	}

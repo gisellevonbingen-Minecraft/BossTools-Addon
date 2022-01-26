@@ -32,13 +32,13 @@ public class GravityNormalizeUtils
 
 	public static void setNormalizing(Entity entity, boolean normalzing)
 	{
-		CompoundNBT compound = NBTUtils.getOrCreateTag(entity.getPersistentData(), NBT_KEY);
+		CompoundNBT compound = NBTUtils.getOrCreateTag(entity, NBT_KEY);
 		compound.putBoolean(NBT_NORMALIZING_KEY, normalzing);
 	}
 
 	public static boolean isNormalizing(Entity entity)
 	{
-		return NBTUtils.getTag(entity.getPersistentData(), NBT_KEY).getBoolean(NBT_NORMALIZING_KEY);
+		return NBTUtils.getTag(entity, NBT_KEY).getBoolean(NBT_NORMALIZING_KEY);
 	}
 
 	public static void resetNormalizingWithCheckType(GravityType type, LivingEntity entity)

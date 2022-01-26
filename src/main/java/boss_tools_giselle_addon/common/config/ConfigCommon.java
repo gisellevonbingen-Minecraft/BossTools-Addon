@@ -6,6 +6,8 @@ public class ConfigCommon
 {
 	public final ItemsConfig items;
 
+	public final EnchantmentsConfig enchantments;
+
 	public final MachinesConfig machines;
 
 	public final MekanismConfig mekanism;
@@ -18,6 +20,10 @@ public class ConfigCommon
 
 		builder.push("machines");
 		this.machines = new MachinesConfig(builder);
+		builder.pop();
+
+		builder.push("enchantments");
+		this.enchantments = new EnchantmentsConfig(builder);
 		builder.pop();
 
 		builder.push("compats");
