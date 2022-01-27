@@ -40,17 +40,11 @@ public class SpaceOxygenProofUtils extends ProofAbstractUtils
 	@SubscribeEvent
 	public void onLivingAttack(LivingAttackEvent e)
 	{
-		LivingEntity entity = e.getEntityLiving();
-
-		if (e.isCanceled() == true)
+		if (e.getSource() != ModInnet.DAMAGE_SOURCE_OXYGEN)
 		{
 			return;
 		}
-		else if (e.getSource() != ModInnet.DAMAGE_SOURCE_OXYGEN)
-		{
-			return;
-		}
-		else if (this.tryProvideProof(entity) == true)
+		else if (this.tryProvideProof(e, true) == true)
 		{
 			e.setCanceled(true);
 		}

@@ -39,11 +39,7 @@ public class VenusAcidProofUtils extends ProofAbstractUtils
 	@SubscribeEvent
 	public void onLivingSetVenusRain(LivingSetVenusRainEvent e)
 	{
-		if (e.isCanceled() == true)
-		{
-			return;
-		}
-		else if (this.tryProvideProof(e.getEntityLiving()) == true)
+		if (this.tryProvideProof(e, true) == true)
 		{
 			e.setCanceled(true);
 		}

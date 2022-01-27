@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.common.inventory;
+package boss_tools_giselle_addon.common.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,22 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public class InventoryHelper
+public class LivingEntityHelper
 {
+	public static boolean isPlayingMode(LivingEntity entity)
+	{
+		if (entity instanceof PlayerEntity)
+		{
+			PlayerEntity player = (PlayerEntity) entity;
+			return player.isCreative() == false && player.isSpectator() == false;
+		}
+		else
+		{
+			return true;
+		}
+
+	}
+
 	public static List<ItemStack> getInventoryStacks(LivingEntity entity)
 	{
 		List<ItemStack> list = new ArrayList<>();
@@ -62,7 +76,7 @@ public class InventoryHelper
 		return list;
 	}
 
-	private InventoryHelper()
+	private LivingEntityHelper()
 	{
 
 	}

@@ -38,7 +38,11 @@ public class ItemEnergyDurabilityUtils
 			{
 				if (simulate == false)
 				{
-					stack.hurt(damage, random, player);
+					if (player == null || player.level.isClientSide() == false)
+					{
+						stack.hurt(damage, random, player);
+					}
+
 				}
 
 				return true;

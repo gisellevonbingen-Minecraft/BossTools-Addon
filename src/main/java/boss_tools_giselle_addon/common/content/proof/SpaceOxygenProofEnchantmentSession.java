@@ -6,7 +6,7 @@ import boss_tools_giselle_addon.common.capability.CapabilityOxygenCharger;
 import boss_tools_giselle_addon.common.capability.IOxygenCharger;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.enchantment.EnchantmentEnergyOrDurability;
-import boss_tools_giselle_addon.common.inventory.InventoryHelper;
+import boss_tools_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.mrscauthd.boss_tools.capability.IOxygenStorage;
@@ -20,7 +20,7 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 		super(entity, enchantment);
 
 		int oxygenUsing = this.getOxygenUsing();
-		ItemStack oxygenCan = InventoryHelper.getInventoryStacks(entity).stream().filter(is ->
+		ItemStack oxygenCan = LivingEntityHelper.getInventoryStacks(entity).stream().filter(is ->
 		{
 			IOxygenCharger oxygenCharger = is.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).orElse(null);
 

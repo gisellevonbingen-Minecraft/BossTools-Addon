@@ -18,6 +18,17 @@ public class SpaceGravityProofUtils extends ProofAbstractUtils
 	}
 
 	@Override
+	public boolean tryProvideProof(LivingEntity entity)
+	{
+		if (GravityNormalizeUtils.isNormalizing(entity) == true)
+		{
+			return true;
+		}
+
+		return super.tryProvideProof(entity);
+	}
+
+	@Override
 	public String getNBTKey()
 	{
 		return NBT_KEY;
@@ -26,11 +37,11 @@ public class SpaceGravityProofUtils extends ProofAbstractUtils
 	@Override
 	public LivingProofEvent createEvent(LivingEntity entity)
 	{
-		return new LivingVenusAcidProofEvent(entity);
+		return new LivingSpaceGravityProofEvent(entity);
 	}
 
 	@SubscribeEvent
-	public void onProofEnchantment(LivingVenusAcidProofEvent e)
+	public void onProofEnchantment(LivingSpaceGravityProofEvent e)
 	{
 		LivingEntity entity = e.getEntityLiving();
 		ProofSession session = new SpaceGravityProofEnchantmentSession(entity, AddonEnchantments.GRAVITY_NORMALIZING.get());
@@ -40,19 +51,9 @@ public class SpaceGravityProofUtils extends ProofAbstractUtils
 	@SubscribeEvent
 	public void onLivingGravity(LivingGravityEvent e)
 	{
-		if (e.isCanceled() == true)
+		if (this.tryProvideProof(e, false) == true)
 		{
-			return;
-		}
-		else
-		{
-			LivingEntity entity = e.getEntityLiving();
-
-			if (this.tryProvideProof(entity) == true)
-			{
-				GravityNormalizeUtils.setNormalizing(entity, true);
-			}
-
+			GravityNormalizeUtils.setNormalizing(e.getEntityLiving(), true);
 		}
 
 	}

@@ -14,19 +14,19 @@ public class SpaceGravityProofEnchantmentSession extends ProofEnchantmentSession
 	@Override
 	public int getEnergyUsing()
 	{
-		return AddonConfigs.Common.enchantments.space_gravity_proof_energyUsing.get();
+		return AddonConfigs.Common.enchantments.gravity_normalizing_energyUsing.get();
 	}
 
 	@Override
 	public int getDurabilityUsing()
 	{
-		return AddonConfigs.Common.enchantments.space_gravity_proof_durabilityUsing.get();
+		return AddonConfigs.Common.enchantments.gravity_normalizing_durabilityUsing.get();
 	}
 
 	@Override
 	public int getProofDuration()
 	{
-		return AddonConfigs.Common.enchantments.space_gravity_proof_proofDuration.get();
+		return AddonConfigs.Common.enchantments.gravity_normalizing_proofDuration.get();
 	}
 
 }

@@ -5,6 +5,7 @@ import com.mojang.datafixers.util.Pair;
 import boss_tools_giselle_addon.common.enchantment.EnchantmentEnergyOrDurability;
 import boss_tools_giselle_addon.common.enchantment.EnchantmentHelper2;
 import boss_tools_giselle_addon.common.util.ItemEnergyDurabilityUtils;
+import boss_tools_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -36,18 +37,20 @@ public abstract class ProofEnchantmentSession extends ProofSession
 			return false;
 		}
 
+		LivingEntity entity = this.getEntity();
 		int energyUsing = this.getEnergyUsing();
 		int durabilityUsing = this.getDurabilityUsing();
 
-		if (ItemEnergyDurabilityUtils.extractEnergyOrDurability(enchantedItem, energyUsing, durabilityUsing, true, null, null) == false)
+		if (LivingEntityHelper.isPlayingMode(entity) == true)
 		{
-			return false;
-		}
-		else
-		{
-			return super.canProvide();
+			if (ItemEnergyDurabilityUtils.extractEnergyOrDurability(enchantedItem, energyUsing, durabilityUsing, true, null, null) == false)
+			{
+				return false;
+			}
+
 		}
 
+		return super.canProvide();
 	}
 
 	@Override
@@ -56,23 +59,16 @@ public abstract class ProofEnchantmentSession extends ProofSession
 		super.onProvide();
 
 		LivingEntity entity = this.getEntity();
-		ServerPlayerEntity player = null;
 
-		if (entity instanceof ServerPlayerEntity)
+		if (LivingEntityHelper.isPlayingMode(entity) == true)
 		{
-			player = (ServerPlayerEntity) entity;
-
-			if (player.abilities.instabuild == true)
-			{
-				return;
-			}
-
+			ServerPlayerEntity player = entity instanceof ServerPlayerEntity ? (ServerPlayerEntity) entity : null;
+			ItemStack enchantedItem = this.getEnchantedItem();
+			int energyUsing = this.getEnergyUsing();
+			int durabilityUsing = this.getDurabilityUsing();
+			ItemEnergyDurabilityUtils.extractEnergyOrDurability(enchantedItem, energyUsing, durabilityUsing, false, entity.getRandom(), player);
 		}
 
-		ItemStack enchantedItem = this.getEnchantedItem();
-		int energyUsing = this.getEnergyUsing();
-		int durabilityUsing = this.getDurabilityUsing();
-		ItemEnergyDurabilityUtils.extractEnergyOrDurability(enchantedItem, energyUsing, durabilityUsing, false, entity.getRandom(), player);
 	}
 
 	public EnchantmentEnergyOrDurability getEnchantment()
