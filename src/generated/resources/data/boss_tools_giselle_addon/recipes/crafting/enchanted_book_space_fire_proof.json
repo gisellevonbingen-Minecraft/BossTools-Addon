@@ -1,0 +1,30 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"item": "minecraft:enchanted_book",
+		"nbt": {
+			"StoredEnchantments": [
+				{
+					"id": "boss_tools_giselle_addon:space_fire_proof",
+					"lvl": 1
+				}
+			]
+		}
+	},
+	"pattern": [
+		"R#R",
+		"RBR",
+		"RRR"
+	],
+	"key": {
+		"B": {
+			"item": "minecraft:book"
+		},
+		"#": {
+			"tag": "boss_tools:compresseds/desh"
+		},
+		"R": {
+			"item": "boss_tools:mercury_stone"
+		}
+	}
+}

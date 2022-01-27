@@ -1,0 +1,30 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"result": {
+		"item": "minecraft:enchanted_book",
+		"nbt": {
+			"StoredEnchantments": [
+				{
+					"id": "boss_tools_giselle_addon:gravity_normalizing",
+					"lvl": 1
+				}
+			]
+		}
+	},
+	"pattern": [
+		"R#R",
+		"RBR",
+		"RRR"
+	],
+	"key": {
+		"B": {
+			"item": "minecraft:book"
+		},
+		"#": {
+			"item": "boss_tools:space_boots"
+		},
+		"R": {
+			"item": "boss_tools:mars_stone"
+		}
+	}
+}

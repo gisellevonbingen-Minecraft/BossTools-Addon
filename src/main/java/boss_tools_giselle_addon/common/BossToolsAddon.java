@@ -14,6 +14,8 @@ import boss_tools_giselle_addon.common.content.flag.EventListenerFlagEdit;
 import boss_tools_giselle_addon.common.content.fuel.EventListenerFuelAdapter;
 import boss_tools_giselle_addon.common.content.fuel.EventListenerFuelGauge;
 import boss_tools_giselle_addon.common.content.gravitynormalizing.EventListenerGravityNormalizing;
+import boss_tools_giselle_addon.common.content.proof.ProofAbstractUtils;
+import boss_tools_giselle_addon.common.enchantment.AddonEnchantments;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.item.AddonItems;
 import boss_tools_giselle_addon.common.item.crafting.AddonRecipes;
@@ -48,6 +50,7 @@ public class BossToolsAddon
 		fml_bus.addListener(BossToolsAddon::init);
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);
+		AddonEnchantments.ENCHANTMENTS.register(fml_bus);
 		AddonRecipes.RECIPE_SERIALIZERS.register(fml_bus);
 		AddonTiles.TILES.register(fml_bus);
 		AddonContainers.CONTAINERS.register(fml_bus);
@@ -61,6 +64,7 @@ public class BossToolsAddon
 		forgeEventBus.register(EventListenerGravityNormalizing.class);
 		forgeEventBus.register(EventListenerFlagEdit.class);
 		forgeEventBus.register(EventListenerReload.class);
+		ProofAbstractUtils.register(forgeEventBus);
 
 		AddonCompatibleManager.visit();
 	}
