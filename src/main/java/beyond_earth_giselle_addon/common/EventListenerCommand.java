@@ -1,6 +1,6 @@
 package beyond_earth_giselle_addon.common;
 
-import beyond_earth_giselle_addon.common.commands.AddonCommand;
+import beyond_earth_giselle_addon.common.command.AddonCommand;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 

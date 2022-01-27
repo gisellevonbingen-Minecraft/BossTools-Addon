@@ -1,4 +1,4 @@
-package beyond_earth_giselle_addon.common.commands;
+package beyond_earth_giselle_addon.common.command;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
