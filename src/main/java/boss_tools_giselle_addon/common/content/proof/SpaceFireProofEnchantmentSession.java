@@ -1,11 +1,10 @@
-package boss_tools_giselle_addon.common.content.proof.fire;
+package boss_tools_giselle_addon.common.content.proof;
 
 import boss_tools_giselle_addon.common.config.AddonConfigs;
-import boss_tools_giselle_addon.common.content.proof.SpaceProofEnchantmentSession;
 import boss_tools_giselle_addon.common.enchantment.EnchantmentEnergyOrDurability;
 import net.minecraft.entity.LivingEntity;
 
-public class SpaceFireProofEnchantmentSession extends SpaceProofEnchantmentSession
+public class SpaceFireProofEnchantmentSession extends ProofEnchantmentSession
 {
 	public SpaceFireProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyOrDurability enchantment)
 	{

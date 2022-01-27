@@ -14,7 +14,7 @@ import boss_tools_giselle_addon.common.content.flag.EventListenerFlagEdit;
 import boss_tools_giselle_addon.common.content.fuel.EventListenerFuelAdapter;
 import boss_tools_giselle_addon.common.content.fuel.EventListenerFuelGauge;
 import boss_tools_giselle_addon.common.content.gravitynormalizing.EventListenerGravityNormalizing;
-import boss_tools_giselle_addon.common.content.proof.AbstractSpaceProofUtils;
+import boss_tools_giselle_addon.common.content.proof.ProofAbstractUtils;
 import boss_tools_giselle_addon.common.enchantment.AddonEnchantments;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
 import boss_tools_giselle_addon.common.item.AddonItems;
@@ -64,7 +64,7 @@ public class BossToolsAddon
 		forgeEventBus.register(EventListenerGravityNormalizing.class);
 		forgeEventBus.register(EventListenerFlagEdit.class);
 		forgeEventBus.register(EventListenerReload.class);
-		AbstractSpaceProofUtils.register(forgeEventBus);
+		ProofAbstractUtils.register(forgeEventBus);
 
 		AddonCompatibleManager.visit();
 	}

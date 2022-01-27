@@ -1,19 +1,17 @@
-package boss_tools_giselle_addon.common.content.proof.oxygen;
+package boss_tools_giselle_addon.common.content.proof;
 
 import com.google.common.collect.Iterables;
 
 import boss_tools_giselle_addon.common.capability.CapabilityOxygenCharger;
 import boss_tools_giselle_addon.common.capability.IOxygenCharger;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
-import boss_tools_giselle_addon.common.content.proof.SpaceProofEnchantmentSession;
 import boss_tools_giselle_addon.common.enchantment.EnchantmentEnergyOrDurability;
 import boss_tools_giselle_addon.common.inventory.InventoryHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.mrscauthd.boss_tools.capability.CapabilityOxygen;
 import net.mrscauthd.boss_tools.capability.IOxygenStorage;
 
-public class SpaceOxygenProofEnchantmentSession extends SpaceProofEnchantmentSession
+public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 {
 	private IOxygenStorage oxygenStorage;
 
@@ -21,12 +19,23 @@ public class SpaceOxygenProofEnchantmentSession extends SpaceProofEnchantmentSes
 	{
 		super(entity, enchantment);
 
+		int oxygenUsing = this.getOxygenUsing();
 		ItemStack oxygenCan = InventoryHelper.getInventoryStacks(entity).stream().filter(is ->
 		{
 			IOxygenCharger oxygenCharger = is.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).orElse(null);
-			return oxygenCharger != null && Iterables.contains(oxygenCharger.getChargeMode().getItemStacks(entity), this.getEnchantedItem());
+
+			if (oxygenCharger != null && Iterables.contains(oxygenCharger.getChargeMode().getItemStacks(entity), this.getEnchantedItem()))
+			{
+				IOxygenStorage oxygenStorage = oxygenCharger.getOxygenStorage();
+				return oxygenStorage.extractOxygen(oxygenUsing, true) == oxygenUsing;
+			}
+			else
+			{
+				return false;
+			}
+
 		}).findFirst().orElse(ItemStack.EMPTY);
-		this.oxygenStorage = oxygenCan.getCapability(CapabilityOxygen.OXYGEN).orElse(null);
+		this.oxygenStorage = oxygenCan.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).lazyMap(IOxygenCharger::getOxygenStorage).orElse(null);
 	}
 
 	@Override

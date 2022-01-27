@@ -2,11 +2,11 @@ package boss_tools_giselle_addon.common.content.proof;
 
 import net.minecraft.entity.LivingEntity;
 
-public abstract class SpaceProofSession
+public abstract class ProofSession
 {
 	private LivingEntity entity;
 
-	public SpaceProofSession(LivingEntity entity)
+	public ProofSession(LivingEntity entity)
 	{
 		this.entity = entity;
 	}

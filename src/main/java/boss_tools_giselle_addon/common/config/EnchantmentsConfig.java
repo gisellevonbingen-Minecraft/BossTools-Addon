@@ -9,6 +9,10 @@ public class EnchantmentsConfig
 	public final ConfigValue<Integer> space_breathing_durabilityUsing;
 	public final ConfigValue<Integer> space_breathing_proofDuration;
 
+	public final ConfigValue<Integer> space_gravity_proof_energyUsing;
+	public final ConfigValue<Integer> space_gravity_proof_durabilityUsing;
+	public final ConfigValue<Integer> space_gravity_proof_proofDuration;
+
 	public final ConfigValue<Integer> space_fire_proof_energyUsing;
 	public final ConfigValue<Integer> space_fire_proof_durabilityUsing;
 	public final ConfigValue<Integer> space_fire_proof_proofDuration;
@@ -23,6 +27,12 @@ public class EnchantmentsConfig
 		this.space_breathing_energyUsing = builder.define("energyUsing", 10);
 		this.space_breathing_durabilityUsing = builder.define("durabilityUsing", 1);
 		this.space_breathing_proofDuration = builder.define("proofDuration", 20);
+		builder.pop();
+
+		builder.push("space_gravity_proof");
+		this.space_gravity_proof_energyUsing = builder.define("energyUsing", 10);
+		this.space_gravity_proof_durabilityUsing = builder.define("durabilityUsing", 1);
+		this.space_gravity_proof_proofDuration = builder.define("proofDuration", 20);
 		builder.pop();
 
 		builder.push("space_fire_proof");

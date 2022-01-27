@@ -6,19 +6,19 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventListener;
 
-public abstract class LivingSpaceProofEvent extends LivingEvent
+public abstract class LivingProofEvent extends LivingEvent
 {
-	public static <E extends LivingSpaceProofEvent> E postUntilDuration(E event)
+	public static <E extends LivingProofEvent> E postUntilDuration(E event)
 	{
-		MinecraftForge.EVENT_BUS.post(event, LivingSpaceProofEvent::dispatch);
+		MinecraftForge.EVENT_BUS.post(event, LivingProofEvent::dispatch);
 		return event;
 	}
 
 	public static void dispatch(IEventListener listener, Event event)
 	{
-		if (event instanceof LivingSpaceProofEvent)
+		if (event instanceof LivingProofEvent)
 		{
-			LivingSpaceProofEvent event2 = (LivingSpaceProofEvent) event;
+			LivingProofEvent event2 = (LivingProofEvent) event;
 
 			if (event2.getProofDuration() > 0)
 			{
@@ -32,7 +32,7 @@ public abstract class LivingSpaceProofEvent extends LivingEvent
 
 	private int proofDuration;
 
-	public LivingSpaceProofEvent(LivingEntity entity)
+	public LivingProofEvent(LivingEntity entity)
 	{
 		super(entity);
 	}

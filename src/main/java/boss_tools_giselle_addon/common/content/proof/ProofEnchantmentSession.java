@@ -9,13 +9,13 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 
-public abstract class SpaceProofEnchantmentSession extends SpaceProofSession
+public abstract class ProofEnchantmentSession extends ProofSession
 {
 	private EnchantmentEnergyOrDurability enchantment;
 	private ItemStack enchantedItem;
 	private int enchantLevel;
 
-	public SpaceProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyOrDurability enchantment)
+	public ProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyOrDurability enchantment)
 	{
 		super(entity);
 		this.enchantment = enchantment;
@@ -55,11 +55,23 @@ public abstract class SpaceProofEnchantmentSession extends SpaceProofSession
 	{
 		super.onProvide();
 
+		LivingEntity entity = this.getEntity();
+		ServerPlayerEntity player = null;
+
+		if (entity instanceof ServerPlayerEntity)
+		{
+			player = (ServerPlayerEntity) entity;
+
+			if (player.abilities.instabuild == true)
+			{
+				return;
+			}
+
+		}
+
 		ItemStack enchantedItem = this.getEnchantedItem();
 		int energyUsing = this.getEnergyUsing();
 		int durabilityUsing = this.getDurabilityUsing();
-		LivingEntity entity = this.getEntity();
-		ServerPlayerEntity player = (entity instanceof ServerPlayerEntity) ? (ServerPlayerEntity) entity : null;
 		ItemEnergyDurabilityUtils.extractEnergyOrDurability(enchantedItem, energyUsing, durabilityUsing, false, entity.getRandom(), player);
 	}
 

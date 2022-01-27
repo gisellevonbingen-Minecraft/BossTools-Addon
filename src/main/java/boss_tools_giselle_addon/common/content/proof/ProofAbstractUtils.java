@@ -1,7 +1,5 @@
 package boss_tools_giselle_addon.common.content.proof;
 
-import boss_tools_giselle_addon.common.content.proof.fire.SpaceFireProofUtils;
-import boss_tools_giselle_addon.common.content.proof.oxygen.SpaceOxygenProofUtils;
 import boss_tools_giselle_addon.common.util.NBTUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -9,17 +7,19 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public abstract class AbstractSpaceProofUtils
+public abstract class ProofAbstractUtils
 {
 	public static final String NBT_PROOF_DURATION_KEY = "proof_duration";
 
 	public static void register(IEventBus bus)
 	{
-		bus.register(SpaceFireProofUtils.INSTANCE);
 		bus.register(SpaceOxygenProofUtils.INSTANCE);
+		bus.register(SpaceGravityProofUtils.INSTANCE);
+		bus.register(SpaceFireProofUtils.INSTANCE);
+		bus.register(VenusAcidProofUtils.INSTANCE);
 	}
 
-	public AbstractSpaceProofUtils()
+	public ProofAbstractUtils()
 	{
 
 	}
@@ -77,15 +77,15 @@ public abstract class AbstractSpaceProofUtils
 
 	}
 
-	public abstract LivingSpaceProofEvent createEvent(LivingEntity entity);
+	public abstract LivingProofEvent createEvent(LivingEntity entity);
 
 	public boolean tryProvideProofEvent(LivingEntity entity)
 	{
-		LivingSpaceProofEvent event = this.createEvent(entity);
+		LivingProofEvent event = this.createEvent(entity);
 
 		if (event != null)
 		{
-			LivingSpaceProofEvent.postUntilDuration(event);
+			LivingProofEvent.postUntilDuration(event);
 			int proofDuration = event.getProofDuration();
 
 			if (proofDuration > 0)
