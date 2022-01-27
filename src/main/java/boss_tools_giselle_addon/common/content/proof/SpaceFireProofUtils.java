@@ -39,7 +39,7 @@ public class SpaceFireProofUtils extends ProofAbstractUtils
 	@SubscribeEvent
 	public void onLivingSetFireInHotPlanet(LivingSetFireInHotPlanetEvent e)
 	{
-		if (this.tryProvideProof(e, true) == true)
+		if (this.tryProvideProof(e) == true)
 		{
 			e.setCanceled(true);
 		}

@@ -44,7 +44,7 @@ public class SpaceOxygenProofUtils extends ProofAbstractUtils
 		{
 			return;
 		}
-		else if (this.tryProvideProof(e, true) == true)
+		else if (this.tryProvideProof(e) == true)
 		{
 			e.setCanceled(true);
 		}

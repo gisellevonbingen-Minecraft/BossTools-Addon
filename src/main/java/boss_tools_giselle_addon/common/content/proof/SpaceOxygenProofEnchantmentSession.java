@@ -19,23 +19,31 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 	{
 		super(entity, enchantment);
 
-		int oxygenUsing = this.getOxygenUsing();
-		ItemStack oxygenCan = LivingEntityHelper.getInventoryStacks(entity).stream().filter(is ->
+		if (LivingEntityHelper.isPlayingMode(entity) == true)
 		{
-			IOxygenCharger oxygenCharger = is.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).orElse(null);
-
-			if (oxygenCharger != null && Iterables.contains(oxygenCharger.getChargeMode().getItemStacks(entity), this.getEnchantedItem()))
+			int oxygenUsing = this.getOxygenUsing();
+			ItemStack oxygenCan = LivingEntityHelper.getInventoryStacks(entity).stream().filter(is ->
 			{
-				IOxygenStorage oxygenStorage = oxygenCharger.getOxygenStorage();
-				return oxygenStorage.extractOxygen(oxygenUsing, true) == oxygenUsing;
-			}
-			else
-			{
-				return false;
-			}
+				IOxygenCharger oxygenCharger = is.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).orElse(null);
 
-		}).findFirst().orElse(ItemStack.EMPTY);
-		this.oxygenStorage = oxygenCan.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).lazyMap(IOxygenCharger::getOxygenStorage).orElse(null);
+				if (oxygenCharger != null && Iterables.contains(oxygenCharger.getChargeMode().getItemStacks(entity), this.getEnchantedItem()))
+				{
+					IOxygenStorage oxygenStorage = oxygenCharger.getOxygenStorage();
+					return oxygenStorage.extractOxygen(oxygenUsing, true) == oxygenUsing;
+				}
+				else
+				{
+					return false;
+				}
+
+			}).findFirst().orElse(ItemStack.EMPTY);
+			this.oxygenStorage = oxygenCan.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).lazyMap(IOxygenCharger::getOxygenStorage).orElse(null);
+		}
+		else
+		{
+			this.oxygenStorage = null;
+		}
+
 	}
 
 	@Override
@@ -43,10 +51,15 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 	{
 		IOxygenStorage oxygenStorage = this.getOxygenStorage();
 		int oxygenUsing = this.getOxygenUsing();
+		LivingEntity entity = this.getEntity();
 
-		if (oxygenStorage == null || oxygenStorage.extractOxygen(oxygenUsing, true) < oxygenUsing)
+		if (LivingEntityHelper.isPlayingMode(entity) == true)
 		{
-			return false;
+			if (oxygenStorage == null || oxygenStorage.extractOxygen(oxygenUsing, true) < oxygenUsing)
+			{
+				return false;
+			}
+
 		}
 
 		return super.canProvide();

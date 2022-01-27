@@ -51,7 +51,7 @@ public class SpaceGravityProofUtils extends ProofAbstractUtils
 	@SubscribeEvent
 	public void onLivingGravity(LivingGravityEvent e)
 	{
-		if (this.tryProvideProof(e, false) == true)
+		if (this.tryProvideProof(e) == true)
 		{
 			GravityNormalizeUtils.setNormalizing(e.getEntityLiving(), true);
 		}

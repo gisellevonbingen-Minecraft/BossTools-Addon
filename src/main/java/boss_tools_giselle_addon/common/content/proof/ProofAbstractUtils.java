@@ -55,7 +55,7 @@ public abstract class ProofAbstractUtils
 		compound.putLong(NBT_PROOF_DURATION_KEY, Math.max(proofDuration, 0));
 	}
 
-	public boolean tryProvideProof(LivingEvent e, boolean serverOnly)
+	public boolean tryProvideProof(LivingEvent e)
 	{
 		LivingEntity entity = e.getEntityLiving();
 
