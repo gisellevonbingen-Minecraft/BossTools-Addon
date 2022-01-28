@@ -19,7 +19,6 @@ import mekanism.api.gear.IModule;
 import mekanism.api.gear.config.ModuleConfigItemCreator;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.capabilities.Capabilities;
-import mekanism.common.item.gear.ItemMekaSuitArmor;
 import mekanism.common.registries.MekanismGases;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.StorageUtils;
@@ -31,6 +30,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.mrscauthd.boss_tools.gauge.IGaugeValue;
 
 public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreathingUnit>
 {
@@ -167,11 +167,9 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 			return;
 		}
 
-		ItemStack container = module.getContainer();
-		Gas gas = this.getGas();
-		GasStack stored = ((ItemMekaSuitArmor) container.getItem()).getContainedGas(container, gas);
-		long capacity = this.getGasCapacity(container, gas);
-		double ratio = StorageUtils.getRatio(stored.getAmount(), capacity);
+		IGaugeValue gauge = OxygenChargerUtils.getInventoryOxygenChargerStorage(player);
+		int capacity = gauge.getCapacity();
+		double ratio = capacity > 0 ? StorageUtils.getRatio(gauge.getAmount(), capacity) : 0.0D;
 		hudElementAdder.accept(MekanismAPI.getModuleHelper().hudElementPercent(ICON, ratio));
 	}
 
