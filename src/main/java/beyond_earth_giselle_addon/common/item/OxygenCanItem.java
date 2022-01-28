@@ -2,11 +2,11 @@ package beyond_earth_giselle_addon.common.item;
 
 import java.util.List;
 
-import beyond_earth_giselle_addon.common.capability.CapabilityOxygenCharger;
 import beyond_earth_giselle_addon.common.capability.ChargeMode;
 import beyond_earth_giselle_addon.common.capability.IChargeMode;
 import beyond_earth_giselle_addon.common.capability.IOxygenCharger;
 import beyond_earth_giselle_addon.common.capability.OxygenCanCapabilityProvider;
+import beyond_earth_giselle_addon.common.capability.OxygenChargerUtils;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.config.ItemsConfig;
 import beyond_earth_giselle_addon.common.util.TranslationUtils;
@@ -67,7 +67,7 @@ public class OxygenCanItem extends Item
 	@Override
 	public boolean isFoil(ItemStack stack)
 	{
-		IOxygenCharger oxygenCharger = stack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).orElse(null);
+		IOxygenCharger oxygenCharger = OxygenChargerUtils.getOxygenCharger(stack);
 
 		if (oxygenCharger != null && oxygenCharger.getOxygenStorage().extractOxygen(1, true) > 0 && oxygenCharger.getChargeMode() != ChargeMode.NONE)
 		{
@@ -87,7 +87,7 @@ public class OxygenCanItem extends Item
 			return InteractionResultHolder.pass(stack);
 		}
 
-		IOxygenCharger oxygenCharger = stack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).orElse(null);
+		IOxygenCharger oxygenCharger = OxygenChargerUtils.getOxygenCharger(stack);
 
 		if (oxygenCharger != null && player.isShiftKeyDown() == false)
 		{
@@ -122,7 +122,7 @@ public class OxygenCanItem extends Item
 			return;
 		}
 
-		IOxygenCharger oxygenCharger = stack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).orElse(null);
+		IOxygenCharger oxygenCharger = OxygenChargerUtils.getOxygenCharger(stack);
 
 		if (oxygenCharger == null)
 		{
@@ -140,7 +140,7 @@ public class OxygenCanItem extends Item
 
 		for (ItemStack itemStack : itemStacks)
 		{
-			if (itemStack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).isPresent() == true)
+			if (OxygenChargerUtils.getOxygenCharger(itemStack) != null)
 			{
 				continue;
 			}
@@ -176,7 +176,7 @@ public class OxygenCanItem extends Item
 	{
 		super.appendHoverText(stack, level, tooltip, flag);
 
-		IOxygenCharger oxygenCharger = stack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).orElse(null);
+		IOxygenCharger oxygenCharger = OxygenChargerUtils.getOxygenCharger(stack);
 
 		if (oxygenCharger != null)
 		{
@@ -189,20 +189,21 @@ public class OxygenCanItem extends Item
 	@Override
 	public boolean isBarVisible(ItemStack stack)
 	{
-		return stack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).isPresent();
+		return OxygenChargerUtils.getOxygenCharger(stack) != null;
 	}
 
 	@Override
 	public int getBarWidth(ItemStack stack)
 	{
-		double ratio = stack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).lazyMap(IOxygenCharger::getOxygenStorage).map(IOxygenStorage::getOxygenStoredRatio).orElse(0.0D);
-		int maxDamage = 13;
-		return (int) (ratio * maxDamage);
+		IOxygenCharger oxygenCharger = OxygenChargerUtils.getOxygenCharger(stack);
+		double ratio = oxygenCharger != null ? oxygenCharger.getOxygenStorage().getOxygenStoredRatio() : 0.0D;
+		return (int) (ratio * 13);
 	}
 
 	public int getBarColor(ItemStack stack)
 	{
-		double ratio = stack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).lazyMap(IOxygenCharger::getOxygenStorage).map(IOxygenStorage::getOxygenStoredRatio).orElse(0.0D);
+		IOxygenCharger oxygenCharger = OxygenChargerUtils.getOxygenCharger(stack);
+		double ratio = oxygenCharger != null ? oxygenCharger.getOxygenStorage().getOxygenStoredRatio() : 0.0D;
 		return Mth.hsvToRgb((float) (ratio / 3.0F), 1.0F, 1.0F);
 	}
 

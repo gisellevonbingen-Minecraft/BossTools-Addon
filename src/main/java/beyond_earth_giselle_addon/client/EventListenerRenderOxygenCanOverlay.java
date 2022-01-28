@@ -3,9 +3,9 @@ package beyond_earth_giselle_addon.client;
 import java.util.ArrayList;
 import java.util.List;
 
-import beyond_earth_giselle_addon.common.capability.CapabilityOxygenCharger;
 import beyond_earth_giselle_addon.common.capability.ChargeMode;
 import beyond_earth_giselle_addon.common.capability.IOxygenCharger;
+import beyond_earth_giselle_addon.common.capability.OxygenChargerUtils;
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.compat.curios.CuriosHelper;
 import beyond_earth_giselle_addon.common.item.AddonItems;
@@ -42,7 +42,7 @@ public class EventListenerRenderOxygenCanOverlay
 				continue;
 			}
 
-			IOxygenCharger oxygenCharger = stack.getCapability(CapabilityOxygenCharger.OXYGEN_CHARGER).orElse(null);
+			IOxygenCharger oxygenCharger = OxygenChargerUtils.getOxygenCharger(stack);
 
 			if (oxygenCharger != null && oxygenCharger.getChargeMode() != ChargeMode.NONE)
 			{
