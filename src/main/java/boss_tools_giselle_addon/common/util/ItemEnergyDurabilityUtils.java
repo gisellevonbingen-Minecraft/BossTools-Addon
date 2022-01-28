@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -11,7 +12,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 
 public class ItemEnergyDurabilityUtils
 {
-	public static boolean extractEnergyOrDurability(ItemStack stack, int energy, int damage, boolean simulate, Random random, @Nullable ServerPlayerEntity player)
+	public static boolean extractEnergyOrDurability(ItemStack stack, int energy, int damage, boolean simulate, Random random, @Nullable LivingEntity entity)
 	{
 		IEnergyStorage energyStorage = stack.getCapability(CapabilityEnergy.ENERGY).orElse(null);
 
@@ -38,9 +39,11 @@ public class ItemEnergyDurabilityUtils
 			{
 				if (simulate == false)
 				{
-					if (player == null || player.level.isClientSide() == false)
+					ServerPlayerEntity serverPlayer = (entity instanceof ServerPlayerEntity) ? (ServerPlayerEntity) entity : null;
+
+					if (entity == null || serverPlayer != null)
 					{
-						stack.hurt(damage, random, player);
+						stack.hurt(damage, random, serverPlayer);
 					}
 
 				}

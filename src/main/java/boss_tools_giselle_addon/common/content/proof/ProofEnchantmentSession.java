@@ -7,7 +7,6 @@ import boss_tools_giselle_addon.common.enchantment.EnchantmentHelper2;
 import boss_tools_giselle_addon.common.util.ItemEnergyDurabilityUtils;
 import boss_tools_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 
 public abstract class ProofEnchantmentSession extends ProofSession
@@ -62,11 +61,10 @@ public abstract class ProofEnchantmentSession extends ProofSession
 
 		if (LivingEntityHelper.isPlayingMode(entity) == true)
 		{
-			ServerPlayerEntity player = entity instanceof ServerPlayerEntity ? (ServerPlayerEntity) entity : null;
 			ItemStack enchantedItem = this.getEnchantedItem();
 			int energyUsing = this.getEnergyUsing();
 			int durabilityUsing = this.getDurabilityUsing();
-			ItemEnergyDurabilityUtils.extractEnergyOrDurability(enchantedItem, energyUsing, durabilityUsing, false, entity.getRandom(), player);
+			ItemEnergyDurabilityUtils.extractEnergyOrDurability(enchantedItem, energyUsing, durabilityUsing, false, entity.getRandom(), entity);
 		}
 
 	}
