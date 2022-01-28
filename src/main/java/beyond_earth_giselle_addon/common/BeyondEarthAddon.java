@@ -11,7 +11,7 @@ import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.content.flag.EventListenerFlagEdit;
 import beyond_earth_giselle_addon.common.content.fuel.EventListenerFuelAdapter;
 import beyond_earth_giselle_addon.common.content.fuel.EventListenerFuelGauge;
-import beyond_earth_giselle_addon.common.content.gravitynormalizing.EventListenerGravityNormalizing;
+import beyond_earth_giselle_addon.common.content.gravity.EventListenerGravityNormalizing;
 import beyond_earth_giselle_addon.common.content.proof.ProofAbstractUtils;
 import beyond_earth_giselle_addon.common.enchantment.AddonEnchantments;
 import beyond_earth_giselle_addon.common.inventory.AddonMenuTypes;

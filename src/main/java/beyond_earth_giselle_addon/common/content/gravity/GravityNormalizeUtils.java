@@ -1,4 +1,4 @@
-package beyond_earth_giselle_addon.common.content.gravitynormalizing;
+package beyond_earth_giselle_addon.common.content.gravity;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.util.NBTUtils;

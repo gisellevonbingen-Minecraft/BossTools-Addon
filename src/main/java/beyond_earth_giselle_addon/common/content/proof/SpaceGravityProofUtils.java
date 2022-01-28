@@ -1,7 +1,7 @@
 package beyond_earth_giselle_addon.common.content.proof;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import beyond_earth_giselle_addon.common.content.gravitynormalizing.GravityNormalizeUtils;
+import beyond_earth_giselle_addon.common.content.gravity.GravityNormalizeUtils;
 import beyond_earth_giselle_addon.common.enchantment.AddonEnchantments;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

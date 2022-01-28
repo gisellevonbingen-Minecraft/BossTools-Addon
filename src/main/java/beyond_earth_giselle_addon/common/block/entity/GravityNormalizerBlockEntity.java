@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
-import beyond_earth_giselle_addon.common.content.gravitynormalizing.GravityNormalizeUtils;
+import beyond_earth_giselle_addon.common.content.gravity.GravityNormalizeUtils;
 import beyond_earth_giselle_addon.common.inventory.GravityNormalizerContainerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
