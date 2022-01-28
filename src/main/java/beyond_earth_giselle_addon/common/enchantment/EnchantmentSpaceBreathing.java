@@ -6,7 +6,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.mrscauthd.beyond_earth.ModInit;
 
-public class EnchantmentSpaceBreathing extends EnchantmentEnergyOrDurability
+public class EnchantmentSpaceBreathing extends EnchantmentEnergyStorage
 {
 	protected EnchantmentSpaceBreathing()
 	{

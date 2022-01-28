@@ -1,14 +1,14 @@
 package beyond_earth_giselle_addon.common.enchantment;
 
-import beyond_earth_giselle_addon.common.util.ItemEnergyDurabilityUtils;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraftforge.energy.CapabilityEnergy;
 
-public class EnchantmentEnergyOrDurability extends Enchantment
+public class EnchantmentEnergyStorage extends Enchantment
 {
-	protected EnchantmentEnergyOrDurability(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots)
+	protected EnchantmentEnergyStorage(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots)
 	{
 		super(rarity, category, slots);
 	}
@@ -26,12 +26,11 @@ public class EnchantmentEnergyOrDurability extends Enchantment
 		{
 			return false;
 		}
-		else if (ItemEnergyDurabilityUtils.extractEnergyOrDurability(stack, 0, 0, true, null, null) == false)
+		else
 		{
-			return false;
+			return stack.getCapability(CapabilityEnergy.ENERGY).isPresent();
 		}
 
-		return true;
 	}
 
 	@Override

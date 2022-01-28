@@ -3,7 +3,7 @@ package beyond_earth_giselle_addon.common.content.proof;
 import beyond_earth_giselle_addon.common.capability.IOxygenCharger;
 import beyond_earth_giselle_addon.common.capability.OxygenChargerUtils;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
-import beyond_earth_giselle_addon.common.enchantment.EnchantmentEnergyOrDurability;
+import beyond_earth_giselle_addon.common.enchantment.EnchantmentEnergyStorage;
 import beyond_earth_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -13,7 +13,7 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 {
 	private IOxygenStorage oxygenStorage;
 
-	public SpaceOxygenProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyOrDurability enchantment)
+	public SpaceOxygenProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyStorage enchantment)
 	{
 		super(entity, enchantment);
 
@@ -67,15 +67,9 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 	}
 
 	@Override
-	public int getDurabilityUsing()
-	{
-		return AddonConfigs.Common.enchantments.space_breathing_durabilityUsing.get();
-	}
-
-	@Override
 	public int getProofDuration()
 	{
-		return AddonConfigs.Common.enchantments.space_breathing_proofDuration.get();
+		return AddonConfigs.Common.enchantments.space_breathing_oxygenDuration.get();
 	}
 
 	public IOxygenStorage getOxygenStorage()

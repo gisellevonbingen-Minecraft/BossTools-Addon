@@ -1,12 +1,12 @@
 package beyond_earth_giselle_addon.common.content.proof;
 
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
-import beyond_earth_giselle_addon.common.enchantment.EnchantmentEnergyOrDurability;
+import beyond_earth_giselle_addon.common.enchantment.EnchantmentEnergyStorage;
 import net.minecraft.world.entity.LivingEntity;
 
 public class VenusAcidProofEnchantmentSession extends ProofEnchantmentSession
 {
-	public VenusAcidProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyOrDurability enchantment)
+	public VenusAcidProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyStorage enchantment)
 	{
 		super(entity, enchantment);
 	}
@@ -15,18 +15,6 @@ public class VenusAcidProofEnchantmentSession extends ProofEnchantmentSession
 	public int getEnergyUsing()
 	{
 		return AddonConfigs.Common.enchantments.venus_acid_proof_energyUsing.get();
-	}
-
-	@Override
-	public int getDurabilityUsing()
-	{
-		return AddonConfigs.Common.enchantments.venus_acid_proof_durabilityUsing.get();
-	}
-
-	@Override
-	public int getProofDuration()
-	{
-		return AddonConfigs.Common.enchantments.venus_acid_proof_proofDuration.get();
 	}
 
 }

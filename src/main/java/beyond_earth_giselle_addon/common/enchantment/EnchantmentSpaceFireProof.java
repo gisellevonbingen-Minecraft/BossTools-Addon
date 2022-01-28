@@ -6,7 +6,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.mrscauthd.beyond_earth.ModInit;
 
-public class EnchantmentSpaceFireProof extends EnchantmentEnergyOrDurability
+public class EnchantmentSpaceFireProof extends EnchantmentEnergyStorage
 {
 	protected EnchantmentSpaceFireProof()
 	{
