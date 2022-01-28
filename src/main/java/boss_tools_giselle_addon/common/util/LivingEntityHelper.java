@@ -25,7 +25,7 @@ public class LivingEntityHelper
 		}
 
 	}
-
+	
 	public static List<ItemStack> getInventoryStacks(LivingEntity entity)
 	{
 		List<ItemStack> list = new ArrayList<>();
