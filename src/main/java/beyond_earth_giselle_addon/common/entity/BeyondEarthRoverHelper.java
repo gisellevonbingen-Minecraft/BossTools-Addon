@@ -8,6 +8,8 @@ import net.mrscauthd.beyond_earth.fluid.FluidUtil2;
 
 public class BeyondEarthRoverHelper
 {
+	public static final int FUEL_BUCKET_MULTIPLIER = 2;
+
 	public static int getFuelAmount(Entity entity)
 	{
 		SynchedEntityData entityData = entity.getEntityData();
@@ -34,7 +36,7 @@ public class BeyondEarthRoverHelper
 
 	public static int getFuelCapacity(Entity entity)
 	{
-		return RoverEntity.FUEL_BUCKETS * FluidUtil2.BUCKET_SIZE;
+		return RoverEntity.FUEL_BUCKETS * FluidUtil2.BUCKET_SIZE * FUEL_BUCKET_MULTIPLIER;
 	}
 
 	private BeyondEarthRoverHelper()
