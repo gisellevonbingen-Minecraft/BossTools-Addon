@@ -13,7 +13,7 @@ import boss_tools_giselle_addon.common.content.alien.AddonAlienTrade;
 import boss_tools_giselle_addon.common.content.flag.EventListenerFlagEdit;
 import boss_tools_giselle_addon.common.content.fuel.EventListenerFuelAdapter;
 import boss_tools_giselle_addon.common.content.fuel.EventListenerFuelGauge;
-import boss_tools_giselle_addon.common.content.gravitynormalizing.EventListenerGravityNormalizing;
+import boss_tools_giselle_addon.common.content.gravity.EventListenerGravityNormalizing;
 import boss_tools_giselle_addon.common.content.proof.ProofAbstractUtils;
 import boss_tools_giselle_addon.common.enchantment.AddonEnchantments;
 import boss_tools_giselle_addon.common.inventory.container.AddonContainers;

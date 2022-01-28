@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.common.content.gravitynormalizing;
+package boss_tools_giselle_addon.common.content.gravity;
 
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.mrscauthd.boss_tools.events.forgeevents.ItemGravityEvent;
