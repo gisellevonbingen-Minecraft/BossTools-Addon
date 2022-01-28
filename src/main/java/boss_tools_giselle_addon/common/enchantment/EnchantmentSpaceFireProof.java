@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.mrscauthd.boss_tools.ModInnet;
 
-public class EnchantmentSpaceFireProof extends EnchantmentEnergyOrDurability
+public class EnchantmentSpaceFireProof extends EnchantmentEnergyStorage
 {
 	protected EnchantmentSpaceFireProof()
 	{

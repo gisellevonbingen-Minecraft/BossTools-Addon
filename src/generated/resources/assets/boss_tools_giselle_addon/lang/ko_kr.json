@@ -25,13 +25,13 @@
   "description.boss_tools_giselle_addon.charge_mode": "충전 모드",
   
   "enchantment.boss_tools_giselle_addon.space_breathing": "우주 호흡성",
-  "enchantment.boss_tools_giselle_addon.space_breathing.desc": "Space-BossTools 차원에서 호흡할 수 있습니다\n갑옷의 에너지 혹은 내구도를 소모합니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
+  "enchantment.boss_tools_giselle_addon.space_breathing.desc": "Space-BossTools 차원에서 호흡할 수 있습니다\n갑옷의 에너지를 소모합니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
   "enchantment.boss_tools_giselle_addon.gravity_normalizing": "중력 정규화",
-  "enchantment.boss_tools_giselle_addon.gravity_normalizing.desc": "Space-BossTools 차원에서 중력을 오버월드 처럼 정규화합니다\n갑옷의 에너지 혹은 내구도를 소모합니다",
+  "enchantment.boss_tools_giselle_addon.gravity_normalizing.desc": "Space-BossTools 차원에서 중력을 오버월드 처럼 정규화합니다\n갑옷의 에너지를 소모합니다",
   "enchantment.boss_tools_giselle_addon.space_fire_proof": "우주 내화성",
-  "enchantment.boss_tools_giselle_addon.space_fire_proof.desc": "Space-BossTools 차원에서 자신에게 불이 붙지 않습니다\n갑옷의 에너지 혹은 내구도를 소모합니다",
+  "enchantment.boss_tools_giselle_addon.space_fire_proof.desc": "Space-BossTools 차원에서 자신에게 불이 붙지 않습니다\n갑옷의 에너지를 소모합니다",
   "enchantment.boss_tools_giselle_addon.venus_acid_proof": "우주 내산성",
-  "enchantment.boss_tools_giselle_addon.venus_acid_proof.desc": "Space-BossTools 차원에서 산성비 피해를 입지 않습니다\n갑옷의 에너지 혹은 내구도를 소모합니다",
+  "enchantment.boss_tools_giselle_addon.venus_acid_proof.desc": "Space-BossTools 차원에서 산성비 피해를 입지 않습니다\n갑옷의 에너지를 소모합니다",
   
   "container.boss_tools_giselle_addon.fuel_loader": "연료 적재기",
   "container.boss_tools_giselle_addon.electric_blast_furnace": "전기 용광로",

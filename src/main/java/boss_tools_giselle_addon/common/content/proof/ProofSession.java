@@ -23,7 +23,7 @@ public abstract class ProofSession
 
 	public int getProofDuration()
 	{
-		return 0;
+		return 1;
 	}
 
 	public int provide()

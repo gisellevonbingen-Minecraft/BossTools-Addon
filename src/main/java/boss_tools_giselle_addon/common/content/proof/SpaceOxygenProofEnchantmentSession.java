@@ -3,7 +3,7 @@ package boss_tools_giselle_addon.common.content.proof;
 import boss_tools_giselle_addon.common.capability.IOxygenCharger;
 import boss_tools_giselle_addon.common.capability.OxygenChargerUtils;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
-import boss_tools_giselle_addon.common.enchantment.EnchantmentEnergyOrDurability;
+import boss_tools_giselle_addon.common.enchantment.EnchantmentEnergyStorage;
 import boss_tools_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -13,7 +13,7 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 {
 	private IOxygenStorage oxygenStorage;
 
-	public SpaceOxygenProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyOrDurability enchantment)
+	public SpaceOxygenProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyStorage enchantment)
 	{
 		super(entity, enchantment);
 
@@ -65,17 +65,11 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 	{
 		return AddonConfigs.Common.enchantments.space_breathing_energyUsing.get();
 	}
-
-	@Override
-	public int getDurabilityUsing()
-	{
-		return AddonConfigs.Common.enchantments.space_breathing_durabilityUsing.get();
-	}
-
+	
 	@Override
 	public int getProofDuration()
 	{
-		return AddonConfigs.Common.enchantments.space_breathing_proofDuration.get();
+		return AddonConfigs.Common.enchantments.space_breathing_oxygenDuration.get();
 	}
 
 	public IOxygenStorage getOxygenStorage()
