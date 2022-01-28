@@ -59,6 +59,7 @@ public class BossToolsAddon
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
 
 		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+		forgeEventBus.register(EventListenerCommand.class);
 		forgeEventBus.register(EventListenerFuelAdapter.class);
 		forgeEventBus.register(EventListenerFuelGauge.class);
 		forgeEventBus.register(EventListenerGravityNormalizing.class);

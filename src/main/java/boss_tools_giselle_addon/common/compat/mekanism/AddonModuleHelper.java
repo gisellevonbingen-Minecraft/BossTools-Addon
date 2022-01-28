@@ -4,9 +4,7 @@ import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
-import boss_tools_giselle_addon.common.BossToolsAddon;
 import mekanism.api.gear.ICustomModule;
-import mekanism.api.gear.IModule;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.providers.IModuleDataProvider;
 import mekanism.common.content.gear.Module;
@@ -16,7 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
 public class AddonModuleHelper
@@ -92,21 +89,6 @@ public class AddonModuleHelper
 		}
 
 		return false;
-	}
-
-	public static CompoundNBT getCustomTag(IModule<?> module, ItemStack container)
-	{
-		return container.getTagElement(getCustomTagKey(module));
-	}
-
-	public static CompoundNBT getOrCreateCustomTag(IModule<?> module, ItemStack container)
-	{
-		return container.getOrCreateTagElement(getCustomTagKey(module));
-	}
-
-	public static String getCustomTagKey(IModule<?> module)
-	{
-		return BossToolsAddon.rl("compat/mekanism/module/" + module.getData().getName()).toString();
 	}
 
 	private AddonModuleHelper()

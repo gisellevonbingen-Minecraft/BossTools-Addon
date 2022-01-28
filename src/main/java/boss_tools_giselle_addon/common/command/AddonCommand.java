@@ -45,9 +45,9 @@ public class AddonCommand
 			CommandSource source = context.getSource();
 			ServerPlayerEntity player = source.getPlayerOrException();
 			CompoundNBT persistentData = player.getPersistentData();
-			persistentData.putBoolean("beyond_earth:planet_selection_gui_open", true);
-			persistentData.putString("beyond_earth:rocket_type", ModInnet.TIER_3_ROCKET.get().getDescriptionId());
-			persistentData.putString("beyond_earth:slot0", Items.AIR.getRegistryName().toString());
+			persistentData.putBoolean("boss_tools:planet_selection_gui_open", true);
+			persistentData.putString("boss_tools:rocket_type", ModInnet.TIER_3_ROCKET.get().getDescriptionId());
+			persistentData.putString("boss_tools:slot0", Items.AIR.getRegistryName().toString());
 
 			return 0;
 		}

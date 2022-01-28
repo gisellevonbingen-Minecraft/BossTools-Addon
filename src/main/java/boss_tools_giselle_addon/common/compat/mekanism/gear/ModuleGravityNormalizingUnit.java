@@ -15,7 +15,7 @@ public class ModuleGravityNormalizingUnit implements ICustomModule<ModuleGravity
 	{
 		ICustomModule.super.init(module, configItemCreator);
 
-		this.energyUsing = FloatingLong.create(AddonConfigs.Common.mekanism.moduleSpaceGravityNormalizing_energyUsing.get());
+		this.energyUsing = FloatingLong.create(AddonConfigs.Common.mekanism.moduleGravityNormalizing_energyUsing.get());
 	}
 
 	public FloatingLong getEnergyUsing()
