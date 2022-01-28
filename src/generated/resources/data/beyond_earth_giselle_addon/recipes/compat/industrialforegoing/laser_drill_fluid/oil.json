@@ -10,12 +10,12 @@
     {
       "conditions": [
         {
-          "modid": "boss_tools",
+          "modid": "beyond_earth",
           "type": "forge:mod_loaded"
         }
       ],
       "recipe": {
-        "output": "{FluidName:\"boss_tools:oil\",Amount:50}",
+        "output": "{FluidName:\"beyond_earth:oil\",Amount:50}",
         "rarity": [
           {
             "whitelist": {

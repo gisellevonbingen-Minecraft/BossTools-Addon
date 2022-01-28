@@ -12,6 +12,8 @@ import beyond_earth_giselle_addon.common.content.flag.EventListenerFlagEdit;
 import beyond_earth_giselle_addon.common.content.fuel.EventListenerFuelAdapter;
 import beyond_earth_giselle_addon.common.content.fuel.EventListenerFuelGauge;
 import beyond_earth_giselle_addon.common.content.gravitynormalizing.EventListenerGravityNormalizing;
+import beyond_earth_giselle_addon.common.content.proof.ProofAbstractUtils;
+import beyond_earth_giselle_addon.common.enchantment.AddonEnchantments;
 import beyond_earth_giselle_addon.common.inventory.AddonMenuTypes;
 import beyond_earth_giselle_addon.common.item.AddonItems;
 import beyond_earth_giselle_addon.common.item.crafting.AddonRecipes;
@@ -43,6 +45,7 @@ public class BeyondEarthAddon
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);
+		AddonEnchantments.ENCHANTMENTS.register(fml_bus);
 		AddonRecipes.RECIPE_SERIALIZERS.register(fml_bus);
 		AddonBlockEntities.BLOCK_ENTITIES.register(fml_bus);
 		AddonMenuTypes.MENU_TYPES.register(fml_bus);
@@ -57,6 +60,7 @@ public class BeyondEarthAddon
 		forgeEventBus.register(EventListenerGravityNormalizing.class);
 		forgeEventBus.register(EventListenerFlagEdit.class);
 		forgeEventBus.register(EventListenerReload.class);
+		ProofAbstractUtils.register(forgeEventBus);
 
 		AddonCompatibleManager.visit();
 	}

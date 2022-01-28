@@ -26,8 +26,8 @@
             "whitelist": {
               "type": "minecraft:worldgen/biome",
               "values": [
-                "boss_tools:mars",
-				"boss_tools:mars_ice_spike"
+                "beyond_earth:mars",
+				"beyond_earth:mars_ice_spike"
               ]
 			},
             "blacklist": {},

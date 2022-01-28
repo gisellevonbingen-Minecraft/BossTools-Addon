@@ -26,7 +26,7 @@
             "whitelist": {
               "type": "minecraft:worldgen/biome",
               "values": [
-                "boss_tools:moon"
+                "beyond_earth:moon"
               ]
 			},
             "blacklist": {},

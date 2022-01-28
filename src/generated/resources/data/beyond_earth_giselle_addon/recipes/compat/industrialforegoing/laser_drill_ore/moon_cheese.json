@@ -10,20 +10,20 @@
     {
       "conditions": [
         {
-          "item": "boss_tools:moon_cheese_ore",
+          "item": "beyond_earth:moon_cheese_ore",
           "type": "forge:item_exists"
         }
       ],
       "recipe": {
         "output": {
-          "item": "boss_tools:moon_cheese_ore"
+          "item": "beyond_earth:moon_cheese_ore"
         },
         "rarity": [
           {
             "whitelist": {
               "type": "minecraft:worldgen/biome",
               "values": [
-                "boss_tools:moon"
+                "beyond_earth:moon"
               ]
 			},
             "blacklist": {},

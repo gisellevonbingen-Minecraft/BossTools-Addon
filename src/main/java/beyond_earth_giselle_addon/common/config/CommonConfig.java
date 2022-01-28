@@ -8,6 +8,8 @@ public class CommonConfig
 
 	public final MachinesConfig machines;
 
+	public final EnchantmentsConfig enchantments;
+
 	public final MekanismConfig mekanism;
 
 	public CommonConfig(ForgeConfigSpec.Builder builder)
@@ -18,6 +20,10 @@ public class CommonConfig
 
 		builder.push("machines");
 		this.machines = new MachinesConfig(builder);
+		builder.pop();
+
+		builder.push("enchantments");
+		this.enchantments = new EnchantmentsConfig(builder);
 		builder.pop();
 
 		builder.push("compats");
