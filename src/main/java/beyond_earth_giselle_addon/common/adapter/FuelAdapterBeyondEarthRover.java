@@ -20,11 +20,11 @@ public class FuelAdapterBeyondEarthRover extends FuelAdapter<Entity>
 		int fuelCapacity = BeyondEarthRoverHelper.getFuelCapacity(target);
 		int fuelRemain = fuelCapacity - fuelAmount;
 
-		int fuelFilling = Mth.clamp(amount, 0, fuelRemain / BeyondEarthRoverHelper.FUEL_BUCKET_MULTIPLIER);
+		int fuelFilling = Mth.clamp(amount, 0, fuelRemain);
 
 		if (action.execute() == true)
 		{
-			BeyondEarthRoverHelper.setCurrentFuel(target, fuelAmount + fuelFilling * BeyondEarthRoverHelper.FUEL_BUCKET_MULTIPLIER);
+			BeyondEarthRoverHelper.setCurrentFuel(target, fuelAmount + fuelFilling);
 		}
 
 		return fuelFilling;

@@ -9,7 +9,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.mrscauthd.beyond_earth.entity.RoverEntity;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueHelper;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueSimple;
-import net.mrscauthd.beyond_earth.gauge.IGaugeValue;
 
 public class EventListenerFuelGauge
 {
@@ -22,20 +21,15 @@ public class EventListenerFuelGauge
 		{
 			int amount = BeyondEarthRoverHelper.getFuelAmount(entity);
 			int capacity = BeyondEarthRoverHelper.getFuelCapacity(entity);
-			e.getValues().add(extracted(e, amount, capacity));
+			e.getValues().add(GaugeValueHelper.getFuel(amount, capacity));
 		}
 		else if (BeyondEarthRocketHelper.isBeyondEarthRocket(entity))
 		{
 			int amount = BeyondEarthRocketHelper.getFuelAmount(entity);
 			int capacity = BeyondEarthRocketHelper.getFuelCapacity(entity);
-			e.getValues().add(extracted(e, amount, capacity));
+			e.getValues().add(new GaugeValueSimple(GaugeValueHelper.FUEL_NAME, (int) (amount / (capacity / 100.0D)), 100, (Component) null, "%").color(GaugeValueHelper.FUEL_COLOR));
 		}
 
-	}
-
-	public static IGaugeValue extracted(EntityGaugeValueFetchEvent e, int amount, int capacity)
-	{
-		return new GaugeValueSimple(GaugeValueHelper.FUEL_NAME, (int) (amount / (capacity / 100.0D)), 100, (Component) null, "%").color(GaugeValueHelper.FUEL_COLOR);
 	}
 
 }
