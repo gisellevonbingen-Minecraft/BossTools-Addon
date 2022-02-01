@@ -1,13 +1,11 @@
 {
-   "type":"beyond_earth_giselle_addon:rolling",
-   "input":{
-      "ingredient":{
-         "tag":"forge:ingots/iron"
-      }
-   },
-   "output":{
-      "item":"beyond_earth:iron_plate",
-      "count":1
-   },
-   "cookTime":200
+	"type": "beyond_earth_giselle_addon:rolling",
+	"input": {
+		"tag": "forge:ingots/iron"
+	},
+	"output": {
+		"item": "beyond_earth:iron_plate",
+		"count": 1
+	},
+	"cookTime": 200
 }

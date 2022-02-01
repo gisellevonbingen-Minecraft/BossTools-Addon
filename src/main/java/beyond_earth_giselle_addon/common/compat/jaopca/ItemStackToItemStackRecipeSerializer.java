@@ -25,10 +25,8 @@ public class ItemStackToItemStackRecipeSerializer implements IRecipeSerializer
 		JsonObject json = new JsonObject();
 		json.addProperty("type", recipe.getSerializer().getRegistryName().toString());
 
-		Ingredient ingredient = recipe.getIngredient();
-		JsonObject inputJson = new JsonObject();
-		inputJson.add("ingredient", ingredient.toJson());
-		json.add("input", inputJson);
+		Ingredient input = recipe.getInput();
+		json.add("input", input.toJson());
 
 		ItemStack output = recipe.getOutput();
 		JsonObject outputJson = new JsonObject();
