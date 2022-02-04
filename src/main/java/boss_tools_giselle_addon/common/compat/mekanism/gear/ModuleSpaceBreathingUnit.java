@@ -82,6 +82,14 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 
 		this.produceOxygen(module, player);
 	}
+	
+	@Override
+	public void tickClient(IModule<ModuleSpaceBreathingUnit> module, PlayerEntity player)
+	{
+		ICustomModule.super.tickClient(module, player);
+		
+		this.produceOxygen(module, player);
+	}
 
 	private void produceOxygen(IModule<ModuleSpaceBreathingUnit> module, PlayerEntity player)
 	{
