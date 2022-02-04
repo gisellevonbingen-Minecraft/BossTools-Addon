@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.network.PacketDistributor;
 import net.mrscauthd.beyond_earth.flag.FlagBlock;
 import net.mrscauthd.beyond_earth.flag.FlagTileEntity;
 
