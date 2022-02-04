@@ -106,7 +106,7 @@ public class JaopcaModule implements IModule
 		IMiscHelper miscHelper = api.miscHelper();
 		ResourceLocation ingotsTag = miscHelper.getTagLocation("ingots", material.getName());
 
-		ResourceLocation id = JaopcaCompat.rl(BeyondEarthAddon.PMODID + "." + BeyondEarthRecipeTypes.COMPRESSING.getName() + "." + material.getName());
+		ResourceLocation id = AddonJaopcaCompat.rl(BeyondEarthAddon.PMODID + "." + BeyondEarthRecipeTypes.COMPRESSING.getName() + "." + material.getName());
 		api.registerRecipe(id, () ->
 		{
 			Ingredient ingredient = miscHelper.getIngredient(ingotsTag);
@@ -132,7 +132,7 @@ public class JaopcaModule implements IModule
 			return;
 		}
 
-		ResourceLocation id = JaopcaCompat.rl(BeyondEarthAddon.MODID + "." + AddonRecipes.ROLLING.getName() + "." + material.getName());
+		ResourceLocation id = AddonJaopcaCompat.rl(BeyondEarthAddon.MODID + "." + AddonRecipes.ROLLING.getName() + "." + material.getName());
 		api.registerRecipe(id, () ->
 		{
 			Ingredient ingredient = miscHelper.getIngredient(ingotsTag);
@@ -155,7 +155,7 @@ public class JaopcaModule implements IModule
 			return;
 		}
 
-		ResourceLocation id = JaopcaCompat.rl(BeyondEarthAddon.MODID + "." + AddonRecipes.EXTRUDING.getName() + "." + material.getName());
+		ResourceLocation id = AddonJaopcaCompat.rl(BeyondEarthAddon.MODID + "." + AddonRecipes.EXTRUDING.getName() + "." + material.getName());
 		api.registerRecipe(id, () ->
 		{
 			Ingredient ingredient = miscHelper.getIngredient(ingotsTag);

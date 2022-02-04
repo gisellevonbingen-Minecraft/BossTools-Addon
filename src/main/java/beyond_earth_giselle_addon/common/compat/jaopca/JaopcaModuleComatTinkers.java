@@ -59,7 +59,7 @@ public class JaopcaModuleComatTinkers implements IModule
 		IMiscHelper miscHelper = api.miscHelper();
 
 		String name = material.getName();
-		ResourceLocation id = JaopcaCompat.rl(BeyondEarthAddon.PMODID + ".smeltery.melting." + name + "_" + suffix);
+		ResourceLocation id = AddonJaopcaCompat.rl(BeyondEarthAddon.PMODID + ".smeltery.melting." + name + "_" + suffix);
 		ResourceLocation compressedsTag = miscHelper.getTagLocation(JaopcaModule.COMPRESSEDS_TAG, name);
 		List<ResourceLocation> moltenTags = new ArrayList<>();
 		moltenTags.add(miscHelper.getTagLocation("molten", name, "_"));
