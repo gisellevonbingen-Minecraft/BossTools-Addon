@@ -49,7 +49,7 @@ public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainerM
 	public void setWorkingAreaVisible(boolean visible)
 	{
 		super.setWorkingAreaVisible(visible);
-		AddonNetwork.CHANNEL.sendToServer(new FuelLoaderMessageWorkingAreaVisible(this.getMenu().getBlockEntity(), visible));
+		AddonNetwork.sendToServer(new FuelLoaderMessageWorkingAreaVisible(this.getMenu().getBlockEntity(), visible));
 	}
 
 	@Override

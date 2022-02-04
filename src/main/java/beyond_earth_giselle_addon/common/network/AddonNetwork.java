@@ -1,13 +1,17 @@
 package beyond_earth_giselle_addon.common.network;
 
+import java.util.Collection;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.PacketDistributor;
+import net.minecraftforge.network.PacketDistributor.PacketTarget;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 public class AddonNetwork
@@ -46,6 +50,54 @@ public class AddonNetwork
 	{
 		CHANNEL.registerMessage(messageID, messageType, encoder, decoder, messageConsumer);
 		messageID++;
+	}
+
+	public static void sendToServer(AbstractMessage message)
+	{
+		PacketTarget target = PacketDistributor.SERVER.noArg();
+		CHANNEL.send(target, message);
+	}
+
+	public static void sendToServer(AbstractMessage... messages)
+	{
+		for (AbstractMessage message : messages)
+		{
+			sendToServer(message);
+		}
+
+	}
+
+	public static void sendToPlayer(ServerPlayer player, AbstractMessage message)
+	{
+		PacketTarget target = PacketDistributor.PLAYER.with(() -> player);
+		CHANNEL.send(target, message);
+	}
+
+	public static void sendToPlayer(ServerPlayer player, AbstractMessage... messages)
+	{
+		for (AbstractMessage message : messages)
+		{
+			sendToPlayer(player, message);
+		}
+
+	}
+
+	public static void sendToPlayer(Collection<ServerPlayer> players, AbstractMessage message)
+	{
+		for (ServerPlayer player : players)
+		{
+			sendToPlayer(player, message);
+		}
+
+	}
+
+	public static void sendToPlayer(Collection<ServerPlayer> players, AbstractMessage... messages)
+	{
+		for (AbstractMessage message : messages)
+		{
+			sendToPlayer(players, message);
+		}
+
 	}
 
 	private AddonNetwork()

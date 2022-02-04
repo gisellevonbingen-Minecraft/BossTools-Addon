@@ -57,7 +57,7 @@ public class EventListenerFlagEdit
 					if (player instanceof ServerPlayer)
 					{
 						ServerPlayer serverPlayer = (ServerPlayer) player;
-						AddonNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new FlagEditMessageOpen(pos));
+						AddonNetwork.sendToPlayer(serverPlayer, new FlagEditMessageOpen(pos));
 					}
 
 					e.setCanceled(true);

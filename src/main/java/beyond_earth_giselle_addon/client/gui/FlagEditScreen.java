@@ -168,7 +168,7 @@ public class FlagEditScreen extends Screen
 
 			if (gameProfile != null)
 			{
-				AddonNetwork.CHANNEL.sendToServer(new FlagEditMessageSave(this.getBlockEntity(), gameProfile));
+				AddonNetwork.sendToServer(new FlagEditMessageSave(this.getBlockEntity(), gameProfile));
 			}
 
 			this.setWillClose(true);
