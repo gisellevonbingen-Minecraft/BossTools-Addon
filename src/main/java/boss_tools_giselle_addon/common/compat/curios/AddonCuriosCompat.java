@@ -8,7 +8,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-public class CuriosCompat extends CompatibleMod
+public class AddonCuriosCompat extends CompatibleMod
 {
 	public static final String MODID = "curios";
 

@@ -1,5 +1,6 @@
 package boss_tools_giselle_addon.common.compat.mekanism;
 
+import boss_tools_giselle_addon.client.compat.mekanism.AddonMekanismCompatClient;
 import boss_tools_giselle_addon.common.compat.CompatibleMod;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -29,9 +30,10 @@ public class AddonMekanismCompat extends CompatibleMod
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		AddonMekanismModules.MODULES.register(fml_bus);
 		AddonMekanismItems.ITEMS.register(fml_bus);
-		fml_bus.register(new AddonMekanismFMLEventListener());
+		fml_bus.register(AddonMekanismFMLEventListener.class);
 
-		MinecraftForge.EVENT_BUS.register(new AddonMekanismCommonEventListener());
+		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
+		forge_bus.register(AddonMekanismCommonEventListener.class);
 
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonMekanismCompatClient::new);
 	}

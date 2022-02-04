@@ -45,7 +45,7 @@ public class JaopcaModuleComatTinkers implements IModule
 		JAOPCAApi api = JAOPCAApi.instance();
 		IMiscHelper miscHelper = api.miscHelper();
 
-		ResourceLocation id = JaopcaCompat.rl(BossToolsAddon.PMODID + ".smeltery.melting." + material.getName() + "_" + suffix);
+		ResourceLocation id = AddonJaopcaCompat.rl(BossToolsAddon.PMODID + ".smeltery.melting." + material.getName() + "_" + suffix);
 		ResourceLocation compressedsTag = miscHelper.getTagLocation(JaopcaModule.COMPRESSEDS_TAG, material.getName());
 		ResourceLocation moltenLocation = miscHelper.getTagLocation("molten", material.getName(), "_");
 

@@ -7,20 +7,19 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 
 public class AddonMekanismFMLEventListener
 {
-	public AddonMekanismFMLEventListener()
-	{
-
-	}
-
-
 	@SubscribeEvent
-	public void onInterModeEnqueue(InterModEnqueueEvent event)
+	public static void onInterModeEnqueue(InterModEnqueueEvent event)
 	{
 		String MODID = AddonMekanismCompat.MODID;
 		InterModComms.sendTo(MODID, MekanismIMC.ADD_MEKA_SUIT_HELMET_MODULES, AddonMekanismModules.SPACE_BREATHING_UNIT);
 		InterModComms.sendTo(MODID, MekanismIMC.ADD_MEKA_SUIT_BODYARMOR_MODULES, AddonMekanismModules.SPACE_FIRE_PROOF_UNIT);
 		InterModComms.sendTo(MODID, MekanismIMC.ADD_MEKA_SUIT_BODYARMOR_MODULES, AddonMekanismModules.VENUS_ACID_PROOF_UNIT);
 		InterModComms.sendTo(MODID, MekanismIMC.ADD_MEKA_SUIT_BOOTS_MODULES, AddonMekanismModules.GRAVITY_NORMALIZING_UNIT);
+	}
+
+	private AddonMekanismFMLEventListener()
+	{
+
 	}
 
 }

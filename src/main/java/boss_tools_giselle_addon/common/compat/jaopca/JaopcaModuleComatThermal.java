@@ -2,7 +2,7 @@ package boss_tools_giselle_addon.common.compat.jaopca;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.compat.thermal.AddonThermalItems;
-import boss_tools_giselle_addon.common.compat.thermal.ThermalCompat;
+import boss_tools_giselle_addon.common.compat.thermal.AddonThermalCompat;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -19,7 +19,7 @@ import thelm.jaopca.api.modules.IModuleData;
 import thelm.jaopca.api.modules.JAOPCAModule;
 import thelm.jaopca.compat.thermalexpansion.recipes.PressRecipeSupplier;
 
-@JAOPCAModule(modDependencies = ThermalCompat.MODID)
+@JAOPCAModule(modDependencies = AddonThermalCompat.MODID)
 public class JaopcaModuleComatThermal implements IModule
 {
 	@Override
@@ -46,7 +46,7 @@ public class JaopcaModuleComatThermal implements IModule
 	{
 		JAOPCAApi api = JAOPCAApi.instance();
 
-		ResourceLocation id = JaopcaCompat.rl(BossToolsAddon.PMODID + ".press." + material.getName() + "_to_" + suffix);
+		ResourceLocation id = AddonJaopcaCompat.rl(BossToolsAddon.PMODID + ".press." + material.getName() + "_to_" + suffix);
 		api.registerRecipe(id, () ->
 		{
 			IMiscHelper miscHelper = api.miscHelper();

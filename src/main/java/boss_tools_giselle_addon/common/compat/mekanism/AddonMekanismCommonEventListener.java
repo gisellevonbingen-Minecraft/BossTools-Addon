@@ -17,13 +17,8 @@ import net.mrscauthd.boss_tools.events.forgeevents.LivingSetVenusRainEvent;
 
 public class AddonMekanismCommonEventListener
 {
-	public AddonMekanismCommonEventListener()
-	{
-
-	}
-
 	@SubscribeEvent
-	public void onLivingSpaceOxygenProofEvent(LivingSpaceOxygenProofEvent e)
+	public static void onLivingSpaceOxygenProofEvent(LivingSpaceOxygenProofEvent e)
 	{
 		LivingEntity entity = e.getEntityLiving();
 		Module<ModuleSpaceBreathingUnit> module = AddonModuleHelper.findArmorEnabledModule(entity, AddonMekanismModules.SPACE_BREATHING_UNIT);
@@ -37,7 +32,7 @@ public class AddonMekanismCommonEventListener
 	}
 
 	@SubscribeEvent
-	public void onLivingGravityEvent(LivingGravityEvent e)
+	public static void onLivingGravityEvent(LivingGravityEvent e)
 	{
 		if (AddonConfigs.Common.mekanism.moduleGravitationalModulating_normalizable.get() == true)
 		{
@@ -48,15 +43,20 @@ public class AddonMekanismCommonEventListener
 	}
 
 	@SubscribeEvent
-	public void onLivingSetFireInHotPlanet(LivingSetFireInHotPlanetEvent e)
+	public static void onLivingSetFireInHotPlanet(LivingSetFireInHotPlanetEvent e)
 	{
 		AddonModuleHelper.tryCancel(e, AddonMekanismModules.SPACE_FIRE_PROOF_UNIT, ModuleSpaceFireProofUnit::getEnergyUsing);
 	}
 
 	@SubscribeEvent
-	public void onLivingSetVenusRain(LivingSetVenusRainEvent e)
+	public static void onLivingSetVenusRain(LivingSetVenusRainEvent e)
 	{
 		AddonModuleHelper.tryCancel(e, AddonMekanismModules.VENUS_ACID_PROOF_UNIT, ModuleVenusAcidProofUnit::getEnergyUsing);
+	}
+
+	private AddonMekanismCommonEventListener()
+	{
+
 	}
 
 }

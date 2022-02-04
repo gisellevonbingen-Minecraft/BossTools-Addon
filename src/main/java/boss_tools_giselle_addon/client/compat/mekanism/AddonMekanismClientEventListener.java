@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.common.compat.mekanism;
+package boss_tools_giselle_addon.client.compat.mekanism;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
@@ -12,13 +12,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class AddonMekanismClientEventListener
 {
-	public AddonMekanismClientEventListener()
-	{
-
-	}
-
 	@SubscribeEvent
-	public void onItemTooltipEvent(ItemTooltipEvent e)
+	public static void onItemTooltipEvent(ItemTooltipEvent e)
 	{
 		Item item = e.getItemStack().getItem();
 
@@ -30,6 +25,11 @@ public class AddonMekanismClientEventListener
 			}
 
 		}
+
+	}
+
+	private AddonMekanismClientEventListener()
+	{
 
 	}
 

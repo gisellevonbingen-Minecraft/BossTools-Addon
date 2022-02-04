@@ -106,7 +106,7 @@ public class JaopcaModule implements IModule
 		IMiscHelper miscHelper = api.miscHelper();
 		ResourceLocation ingotsTag = miscHelper.getTagLocation("ingots", material.getName());
 
-		ResourceLocation id = JaopcaCompat.rl(BossToolsAddon.PMODID + "." + BossToolsRecipeTypes.COMPRESSING.getName() + "." + material.getName());
+		ResourceLocation id = AddonJaopcaCompat.rl(BossToolsAddon.PMODID + "." + BossToolsRecipeTypes.COMPRESSING.getName() + "." + material.getName());
 		api.registerRecipe(id, () ->
 		{
 			Ingredient ingredient = miscHelper.getIngredient(ingotsTag);
@@ -132,7 +132,7 @@ public class JaopcaModule implements IModule
 			return;
 		}
 
-		ResourceLocation id = JaopcaCompat.rl(BossToolsAddon.MODID + "." + AddonRecipes.ROLLING.getName() + "." + material.getName());
+		ResourceLocation id = AddonJaopcaCompat.rl(BossToolsAddon.MODID + "." + AddonRecipes.ROLLING.getName() + "." + material.getName());
 		api.registerRecipe(id, () ->
 		{
 			Ingredient ingredient = miscHelper.getIngredient(ingotsTag);
@@ -155,7 +155,7 @@ public class JaopcaModule implements IModule
 			return;
 		}
 
-		ResourceLocation id = JaopcaCompat.rl(BossToolsAddon.MODID + "." + AddonRecipes.EXTRUDING.getName() + "." + material.getName());
+		ResourceLocation id = AddonJaopcaCompat.rl(BossToolsAddon.MODID + "." + AddonRecipes.EXTRUDING.getName() + "." + material.getName());
 		api.registerRecipe(id, () ->
 		{
 			Ingredient ingredient = miscHelper.getIngredient(ingotsTag);

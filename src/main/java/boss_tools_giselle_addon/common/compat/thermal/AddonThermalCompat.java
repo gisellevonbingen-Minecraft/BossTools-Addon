@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-public class ThermalCompat extends CompatibleMod
+public class AddonThermalCompat extends CompatibleMod
 {
 	public static final String MODID = "thermal_expansion";
 
