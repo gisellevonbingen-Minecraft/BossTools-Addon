@@ -17,7 +17,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.network.PacketDistributor;
 import net.mrscauthd.boss_tools.flag.FlagBlock;
 import net.mrscauthd.boss_tools.flag.FlagTileEntity;
 
