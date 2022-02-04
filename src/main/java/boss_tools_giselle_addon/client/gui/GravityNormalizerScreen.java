@@ -57,7 +57,7 @@ public class GravityNormalizerScreen extends AbstractMachineScreen<GravityNormal
 	{
 		super.setWorkingAreaVisible(visible);
 
-		AddonNetwork.CHANNEL.sendToServer(new GravityNormalizerMessageWorkingAreaVisible(this.getMenu().getTileEntity(), visible));
+		AddonNetwork.sendToServer(new GravityNormalizerMessageWorkingAreaVisible(this.getMenu().getTileEntity(), visible));
 	}
 
 	@Override
@@ -107,14 +107,14 @@ public class GravityNormalizerScreen extends AbstractMachineScreen<GravityNormal
 	{
 		GravityNormalizerTileEntity tileEntity = this.getMenu().getTileEntity();
 		int nextRange = tileEntity.getRange() + 1;
-		AddonNetwork.CHANNEL.sendToServer(new GravityNormalizerMessageRange(tileEntity, nextRange));
+		AddonNetwork.sendToServer(new GravityNormalizerMessageRange(tileEntity, nextRange));
 	}
 
 	public void onWorkingAreaDownButtonClick(Button button)
 	{
 		GravityNormalizerTileEntity tileEntity = this.getMenu().getTileEntity();
 		int nextRange = tileEntity.getRange() - 1;
-		AddonNetwork.CHANNEL.sendToServer(new GravityNormalizerMessageRange(tileEntity, nextRange));
+		AddonNetwork.sendToServer(new GravityNormalizerMessageRange(tileEntity, nextRange));
 	}
 
 	public Button getWorkingAreaPlusButton()

@@ -173,7 +173,7 @@ public class FlagEditScreen extends Screen
 
 			if (gameProfile != null)
 			{
-				AddonNetwork.CHANNEL.sendToServer(new FlagEditMessageSave(this.getTileEntity(), gameProfile));
+				AddonNetwork.sendToServer(new FlagEditMessageSave(this.getTileEntity(), gameProfile));
 			}
 
 			this.onClose();

@@ -1,14 +1,18 @@
 package boss_tools_giselle_addon.common.network;
 
+import java.util.Collection;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fml.network.PacketDistributor.PacketTarget;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 public class AddonNetwork
@@ -47,6 +51,54 @@ public class AddonNetwork
 	{
 		CHANNEL.registerMessage(messageID, messageType, encoder, decoder, messageConsumer);
 		messageID++;
+	}
+
+	public static void sendToServer(AbstractMessage message)
+	{
+		PacketTarget target = PacketDistributor.SERVER.noArg();
+		CHANNEL.send(target, message);
+	}
+
+	public static void sendToServer(AbstractMessage... messages)
+	{
+		for (AbstractMessage message : messages)
+		{
+			sendToServer(message);
+		}
+
+	}
+
+	public static void sendToPlayer(ServerPlayerEntity player, AbstractMessage message)
+	{
+		PacketTarget target = PacketDistributor.PLAYER.with(() -> player);
+		CHANNEL.send(target, message);
+	}
+
+	public static void sendToPlayer(ServerPlayerEntity player, AbstractMessage... messages)
+	{
+		for (AbstractMessage message : messages)
+		{
+			sendToPlayer(player, message);
+		}
+
+	}
+
+	public static void sendToPlayer(Collection<ServerPlayerEntity> players, AbstractMessage message)
+	{
+		for (ServerPlayerEntity player : players)
+		{
+			sendToPlayer(player, message);
+		}
+
+	}
+
+	public static void sendToPlayer(Collection<ServerPlayerEntity> players, AbstractMessage... messages)
+	{
+		for (AbstractMessage message : messages)
+		{
+			sendToPlayer(players, message);
+		}
+
 	}
 
 	private AddonNetwork()

@@ -77,7 +77,7 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 		AdvancedCompressorTileEntity tileEntity = this.getMenu().getTileEntity();
 		int direction = this.getCyclicDirection();
 		ICompressorMode cyclicMode = tileEntity.getCyclicMode(direction);
-		AddonNetwork.CHANNEL.sendToServer(new AdvancedCompressorMessageMode(tileEntity, cyclicMode.getRecipeTypeKey()));
+		AddonNetwork.sendToServer(new AdvancedCompressorMessageMode(tileEntity, cyclicMode.getRecipeTypeKey()));
 	}
 
 	public ItemIconButton getChangeModeButton()
