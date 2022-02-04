@@ -7,9 +7,13 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.mrscauthd.beyond_earth.ModInit;
+import net.mrscauthd.beyond_earth.capability.oxygen.OxygenUtil;
 
 public class AddonCommand
 {
@@ -20,7 +24,10 @@ public class AddonCommand
 
 	public static LiteralArgumentBuilder<CommandSourceStack> builder()
 	{
-		return Commands.literal("bega").then(PlanetSelection.builder());
+		return Commands.literal("bega") //
+				.then(PlanetSelection.builder()) //
+				.then(Equip.builder()) //
+		;
 	}
 
 	public static boolean isPlayerHasPermission(CommandSourceStack cs, int permission)
@@ -31,6 +38,12 @@ public class AddonCommand
 	public static boolean isPlayerHasPermission2(CommandSourceStack cs)
 	{
 		return isPlayerHasPermission(cs, 2);
+	}
+
+	public static int sendEquipedMessage(CommandSourceStack source)
+	{
+		source.sendSuccess(new TextComponent("Equipped"), false);
+		return 0;
 	}
 
 	private static class PlanetSelection
@@ -50,6 +63,44 @@ public class AddonCommand
 			persistentData.putString("beyond_earth:slot0", Items.AIR.getRegistryName().toString());
 
 			return 0;
+		}
+
+	}
+
+	private static class Equip
+	{
+		public static LiteralArgumentBuilder<CommandSourceStack> builder()
+		{
+			return Commands.literal("equip").requires(AddonCommand::isPlayerHasPermission2) //
+					.then(Commands.literal("spacesuit1").executes(Equip::spacesuit1)) //
+					.then(Commands.literal("spacesuit2").executes(Equip::spacesuit2)) //
+			;
+		}
+
+		public static int spacesuit1(CommandContext<CommandSourceStack> context) throws CommandSyntaxException
+		{
+			CommandSourceStack source = context.getSource();
+			ServerPlayer player = source.getPlayerOrException();
+
+			player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModInit.OXYGEN_MASK.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, OxygenUtil.makeFull(new ItemStack(ModInit.SPACE_SUIT.get())));
+			player.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModInit.SPACE_PANTS.get()));
+			player.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModInit.SPACE_BOOTS.get()));
+
+			return sendEquipedMessage(source);
+		}
+
+		public static int spacesuit2(CommandContext<CommandSourceStack> context) throws CommandSyntaxException
+		{
+			CommandSourceStack source = context.getSource();
+			ServerPlayer player = source.getPlayerOrException();
+
+			player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModInit.NETHERITE_OXYGEN_MASK.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, OxygenUtil.makeFull(new ItemStack(ModInit.NETHERITE_SPACE_SUIT.get())));
+			player.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModInit.NETHERITE_SPACE_PANTS.get()));
+			player.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModInit.NETHERITE_SPACE_BOOTS.get()));
+
+			return sendEquipedMessage(source);
 		}
 
 	}
