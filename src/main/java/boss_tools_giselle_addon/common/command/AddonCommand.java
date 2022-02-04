@@ -6,6 +6,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.compat.mekanism.AddonMekanismCommand;
+import boss_tools_giselle_addon.common.compat.redstonearsenal.AddonRSACommand;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -83,6 +84,11 @@ public class AddonCommand
 				builder.then(Commands.literal("mekasuit").executes(AddonMekanismCommand::mekasuit));
 			}
 
+			if (AddonCompatibleManager.REDSTONE_ARSENAL.isLoaded() == true)
+			{
+				builder.then(Commands.literal("flux_armor").executes(AddonRSACommand::fluxarmor));
+			}
+
 			return builder;
 		}
 
@@ -95,7 +101,7 @@ public class AddonCommand
 			player.setItemSlot(EquipmentSlotType.CHEST, OxygenUtil.makeFull(new ItemStack(ModInnet.SPACE_SUIT.get())));
 			player.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ModInnet.SPACE_PANTS.get()));
 			player.setItemSlot(EquipmentSlotType.FEET, new ItemStack(ModInnet.SPACE_BOOTS.get()));
-			
+
 			return sendEquipedMessage(source);
 		}
 
@@ -108,7 +114,7 @@ public class AddonCommand
 			player.setItemSlot(EquipmentSlotType.CHEST, OxygenUtil.makeFull(new ItemStack(ModInnet.NETHERITE_SPACE_SUIT.get())));
 			player.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ModInnet.NETHERITE_SPACE_PANTS.get()));
 			player.setItemSlot(EquipmentSlotType.FEET, new ItemStack(ModInnet.NETHERITE_SPACE_BOOTS.get()));
-			
+
 			return sendEquipedMessage(source);
 		}
 

@@ -125,9 +125,10 @@ dependencies {
     implementation fg.deobf("curse.maven:tinkers-construct-74072:3576393")
 
     // Thermal Expansion
-    implementation fg.deobf("curse.maven:cofh-core-69162:3556973")
-    implementation fg.deobf("curse.maven:thermal-foundation-222880:3556953")
-    implementation fg.deobf("curse.maven:thermal-expansion-69163:3556990")
+    implementation fg.deobf("curse.maven:cofh-core-69162:3621734")
+    implementation fg.deobf("curse.maven:thermal-foundation-222880:3621736")
+    implementation fg.deobf("curse.maven:thermal-expansion-69163:3607549")
+    implementation fg.deobf("curse.maven:redstone-arsenal-70631:3621740")
 
     // Refined Storage
     compileOnly fg.deobf("curse.maven:refined-storage-243076:3400575")
