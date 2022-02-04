@@ -16,7 +16,7 @@ import boss_tools_giselle_addon.common.compat.thermal.AddonThermalCompat;
 
 public class AddonCompatibleManager
 {
-	public static final List<CompatibleMod> MODS;
+	public static final List<AddonCompatibleMod> MODS;
 	public static final AddonJeiCompat JEI;
 	public static final AddonJerCompat JER;
 	public static final AddonMekanismCompat MEKANISM;
@@ -30,7 +30,7 @@ public class AddonCompatibleManager
 
 	static
 	{
-		List<CompatibleMod> mods = new ArrayList<>();
+		List<AddonCompatibleMod> mods = new ArrayList<>();
 		mods.add(JEI = new AddonJeiCompat());
 		mods.add(JER = new AddonJerCompat());
 		mods.add(MEKANISM = new AddonMekanismCompat());
@@ -41,7 +41,7 @@ public class AddonCompatibleManager
 		mods.add(HWYLA = new AddonHwylaCompat());
 		mods.add(TOP = new AddonTOPCompat());
 
-		for (CompatibleMod mod : mods)
+		for (AddonCompatibleMod mod : mods)
 		{
 			mod.tryLoad();
 		}

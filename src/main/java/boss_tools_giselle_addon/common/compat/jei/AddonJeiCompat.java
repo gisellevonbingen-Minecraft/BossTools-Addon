@@ -1,9 +1,9 @@
 package boss_tools_giselle_addon.common.compat.jei;
 
-import boss_tools_giselle_addon.common.compat.CompatibleMod;
+import boss_tools_giselle_addon.common.compat.AddonCompatibleMod;
 import net.minecraft.util.ResourceLocation;
 
-public class AddonJeiCompat extends CompatibleMod
+public class AddonJeiCompat extends AddonCompatibleMod
 {
 	public static final String MODID = "jei";
 

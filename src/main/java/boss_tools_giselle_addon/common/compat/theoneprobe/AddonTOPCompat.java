@@ -1,13 +1,13 @@
 package boss_tools_giselle_addon.common.compat.theoneprobe;
 
-import boss_tools_giselle_addon.common.compat.CompatibleMod;
+import boss_tools_giselle_addon.common.compat.AddonCompatibleMod;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-public class AddonTOPCompat extends CompatibleMod
+public class AddonTOPCompat extends AddonCompatibleMod
 {
 	public static final String MODID = "theoneprobe";
 

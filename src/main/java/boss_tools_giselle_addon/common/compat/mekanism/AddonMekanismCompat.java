@@ -1,7 +1,7 @@
 package boss_tools_giselle_addon.common.compat.mekanism;
 
 import boss_tools_giselle_addon.client.compat.mekanism.AddonMekanismCompatClient;
-import boss_tools_giselle_addon.common.compat.CompatibleMod;
+import boss_tools_giselle_addon.common.compat.AddonCompatibleMod;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-public class AddonMekanismCompat extends CompatibleMod
+public class AddonMekanismCompat extends AddonCompatibleMod
 {
 	public static final String MODID = "mekanism";
 
