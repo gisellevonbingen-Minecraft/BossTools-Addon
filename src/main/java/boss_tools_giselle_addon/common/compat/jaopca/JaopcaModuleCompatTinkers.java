@@ -19,7 +19,7 @@ import thelm.jaopca.api.modules.JAOPCAModule;
 import thelm.jaopca.compat.tconstruct.TConstructHelper;
 
 @JAOPCAModule(modDependencies = TinkersCompat.MODID)
-public class JaopcaModuleComatTinkers implements IModule
+public class JaopcaModuleCompatTinkers implements IModule
 {
 	@Override
 	public String getName()
@@ -45,20 +45,21 @@ public class JaopcaModuleComatTinkers implements IModule
 		JAOPCAApi api = JAOPCAApi.instance();
 		IMiscHelper miscHelper = api.miscHelper();
 
-		ResourceLocation id = AddonJaopcaCompat.rl(BossToolsAddon.PMODID + ".smeltery.melting." + material.getName() + "_" + suffix);
-		ResourceLocation compressedsTag = miscHelper.getTagLocation(JaopcaModule.COMPRESSEDS_TAG, material.getName());
-		ResourceLocation moltenLocation = miscHelper.getTagLocation("molten", material.getName(), "_");
-
-		int ingots = 1;
-		ToIntFunction<FluidStack> tempFunction = stack -> stack.getFluid().getAttributes().getTemperature(stack) - 300;
-		ToIntFunction<FluidStack> moltenTime = stack -> IMeltingRecipe.calcTime(tempFunction.applyAsInt(stack), ingots);
+		String name = material.getName();
+		ResourceLocation compressedsTag = miscHelper.getTagLocation(JaopcaModule.COMPRESSEDS_TAG, name);
+		ResourceLocation moltenLocation = miscHelper.getTagLocation("molten", name, "_");
 
 		if (api.getItemTags().contains(compressedsTag) == false || api.getFluidTags().contains(moltenLocation) == false)
 		{
 			return;
 		}
 
-		TConstructHelper.INSTANCE.registerMeltingRecipe(id, compressedsTag, moltenLocation, FluidValues.INGOT * ingots, tempFunction, moltenTime, false);
+		int ingots = 1;
+		ResourceLocation id = AddonJaopcaCompat.rl(BossToolsAddon.PMODID + ".smeltery.melting." + name + "_" + suffix);
+		ToIntFunction<FluidStack> tempFunction = stack -> stack.getFluid().getAttributes().getTemperature(stack) - 300;
+		ToIntFunction<FluidStack> moltenTime = stack -> IMeltingRecipe.calcTime(tempFunction.applyAsInt(stack), ingots);
+		TConstructHelper tinkerHelper = TConstructHelper.INSTANCE;
+		tinkerHelper.registerMeltingRecipe(id, compressedsTag, moltenLocation, FluidValues.INGOT * ingots, tempFunction, moltenTime, false);
 	}
 
 }

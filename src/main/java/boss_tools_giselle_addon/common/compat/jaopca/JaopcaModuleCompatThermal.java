@@ -20,7 +20,7 @@ import thelm.jaopca.api.modules.JAOPCAModule;
 import thelm.jaopca.compat.thermalexpansion.recipes.PressRecipeSupplier;
 
 @JAOPCAModule(modDependencies = AddonThermalCompat.MODID)
-public class JaopcaModuleComatThermal implements IModule
+public class JaopcaModuleCompatThermal implements IModule
 {
 	@Override
 	public String getName()
