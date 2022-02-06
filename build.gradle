@@ -13,12 +13,6 @@ apply plugin: "net.minecraftforge.gradle"
 apply plugin: "eclipse"
 apply plugin: "maven-publish"
 
-wrapper {
-    //Define wrapper values here so as to not have to always do so when updating gradlew.properties
-    gradleVersion = "7.3.3"
-    distributionType = Wrapper.DistributionType.ALL
-}
-
 version = "${mc_version}-${mod_version}"
 group = "gisellevonbingen.beyond_earth_giselle_addon" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Beyond-Earth-Giselle-Addon"
