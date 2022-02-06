@@ -135,7 +135,7 @@ dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.57'
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.63'
 
     // REI
     // compileOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:7.1.390")
@@ -164,7 +164,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:refined-storage-243076:3569563")
 
     // JAOPCA
-    compileOnly fg.deobf("thelm:jaopca:1.18.1-4.0.0.0:api")
+    compileOnly fg.deobf("thelm:jaopca:1.18.1-4.0.1.1:api")
 
     // Curios
     compileOnly fg.deobf("curse.maven:curios-309927:3600023:api")
