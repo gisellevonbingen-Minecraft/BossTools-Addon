@@ -12,7 +12,7 @@ description=''''''
 [[dependencies.beyond_earth_giselle_addon]]
     modId="forge"
     mandatory=true
-    versionRange="[39.0.5,)"
+    versionRange="[39.0.63,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.beyond_earth_giselle_addon]]
