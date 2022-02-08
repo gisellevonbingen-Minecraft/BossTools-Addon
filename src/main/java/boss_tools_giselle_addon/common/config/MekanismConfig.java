@@ -5,7 +5,6 @@ import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 public class MekanismConfig
 {
-	public final ConfigValue<Integer> moduleSpaceBreathing_maxProduceRate;
 	public final ConfigValue<Integer> moduleSpaceBreathing_oxygenDuration;
 	public final ConfigValue<Integer> moduleSpaceBreathing_energyUsingProvide;
 	public final ConfigValue<Integer> moduleSpaceBreathing_energyUsingProduce;
@@ -20,8 +19,6 @@ public class MekanismConfig
 	public MekanismConfig(ForgeConfigSpec.Builder builder)
 	{
 		builder.push("module_space_breathing_unit");
-		builder.comment("Fill amount of oxygen to helmet when player in water or rain", "in rain, produce efficiency is half");
-		this.moduleSpaceBreathing_maxProduceRate = builder.define("maxProduceRate", 4);
 		builder.comment("Duration of provided oxygen (oxygen provide interval)");
 		this.moduleSpaceBreathing_oxygenDuration = builder.define("oxygenDuration", 4);
 		builder.comment("Energy usage when provide Space-BossTools oxygen to player in space");

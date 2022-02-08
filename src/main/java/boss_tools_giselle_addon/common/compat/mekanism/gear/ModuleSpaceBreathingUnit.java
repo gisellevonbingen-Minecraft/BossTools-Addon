@@ -36,7 +36,6 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 {
 	public static final ResourceLocation ICON = BossToolsAddon.rl(MekanismUtils.ResourceType.GUI_HUD.getPrefix() + "space_breathing_unit.png");
 
-	private long maxProduceRate = 0;
 	private int oxygenDuration = 0;
 	private FloatingLong energyUsingProvide;
 	private FloatingLong energyUsingProduce;
@@ -51,7 +50,6 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 	{
 		ICustomModule.super.init(module, configItemCreator);
 
-		this.maxProduceRate = AddonConfigs.Common.mekanism.moduleSpaceBreathing_maxProduceRate.get();
 		this.oxygenDuration = AddonConfigs.Common.mekanism.moduleSpaceBreathing_oxygenDuration.get();
 		this.energyUsingProvide = FloatingLong.create(AddonConfigs.Common.mekanism.moduleSpaceBreathing_energyUsingProvide.get());
 		this.energyUsingProduce = FloatingLong.create(AddonConfigs.Common.mekanism.moduleSpaceBreathing_energyUsingProduce.get());
@@ -209,7 +207,7 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 
 	public long getMaxProduceRate(IModule<ModuleSpaceBreathingUnit> module)
 	{
-		return (int) Math.pow(this.maxProduceRate, module.getInstalledCount());
+		return (long) Math.pow(2L, module.getInstalledCount() - 1);
 	}
 
 	public int getOxygenDuration()
