@@ -1,8 +1,7 @@
 package boss_tools_giselle_addon.common.compat.mekanism.gear;
 
+import java.util.Map;
 import java.util.function.Consumer;
-
-import javax.annotation.Nullable;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.capability.IOxygenCharger;
@@ -10,7 +9,6 @@ import boss_tools_giselle_addon.common.capability.OxygenChargerUtils;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import mekanism.api.Action;
 import mekanism.api.MekanismAPI;
-import mekanism.api.chemical.gas.Gas;
 import mekanism.api.chemical.gas.GasStack;
 import mekanism.api.chemical.gas.IGasHandler;
 import mekanism.api.gear.ICustomModule;
@@ -21,15 +19,16 @@ import mekanism.api.math.FloatingLong;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.registries.MekanismGases;
 import mekanism.common.util.MekanismUtils;
+import mekanism.common.util.MekanismUtils.FluidInDetails;
 import mekanism.common.util.StorageUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.mrscauthd.boss_tools.gauge.IGaugeValue;
 
 public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreathingUnit>
@@ -80,12 +79,12 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 
 		this.produceOxygen(module, player);
 	}
-	
+
 	@Override
 	public void tickClient(IModule<ModuleSpaceBreathingUnit> module, PlayerEntity player)
 	{
 		ICustomModule.super.tickClient(module, player);
-		
+
 		this.produceOxygen(module, player);
 	}
 
@@ -98,45 +97,44 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 			return;
 		}
 
-		long productionRateFirst = productionRate;
 		FloatingLong energyUsing = this.getEnergyUsingProduce();
+		productionRate = Math.min(productionRate, module.getContainerEnergy().divideToInt(energyUsing));
+		long productionRateFirst = productionRate;
 
-		if (module.canUseEnergy(player, energyUsing) == true)
+		ItemStack handStack = player.getItemBySlot(EquipmentSlotType.MAINHAND);
+		IGasHandler handCapability = handStack.getCapability(Capabilities.GAS_HANDLER_CAPABILITY).orElse(null);
+
+		if (handCapability != null)
 		{
-			ItemStack handStack = player.getItemBySlot(EquipmentSlotType.MAINHAND);
-			IGasHandler handCapability = handStack.getCapability(Capabilities.GAS_HANDLER_CAPABILITY).orElse(null);
-
-			if (handCapability != null)
-			{
-				GasStack remain = handCapability.insertChemical(MekanismGases.OXYGEN.getStack(productionRate), Action.EXECUTE);
-				productionRate = remain.getAmount();
-			}
-
-			long oxygenUsed = productionRateFirst - productionRate;
-			double oxygenUsedRatio = (double) oxygenUsed / (double) productionRateFirst;
-			FloatingLong multiply = energyUsing.multiply(oxygenUsedRatio);
-			module.useEnergy(player, multiply);
-
-			int airSupply = player.getAirSupply();
-			int airFill = (int) Math.min(productionRate, player.getMaxAirSupply() - airSupply);
-			player.setAirSupply(airSupply + airFill);
+			GasStack remain = handCapability.insertChemical(MekanismGases.OXYGEN.getStack(productionRate), Action.EXECUTE);
+			productionRate = remain.getAmount();
 		}
 
+		long oxygenUsed = productionRateFirst - productionRate;
+		FloatingLong multiply = energyUsing.multiply(oxygenUsed);
+		module.useEnergy(player, multiply);
+
+		int airSupply = player.getAirSupply();
+		int airFill = (int) Math.min(productionRateFirst, player.getMaxAirSupply() - airSupply);
+		player.setAirSupply(airSupply + airFill);
 	}
 
 	public long getProduceRate(IModule<ModuleSpaceBreathingUnit> module, PlayerEntity player)
 	{
-		double maskHeight = player.getEyeHeight() - 0.15D;
-		BlockPos headPos = new BlockPos(player.getBbWidth(), maskHeight, player.getBbHeight());
-		FluidState fluidstate = player.level.getFluidState(headPos);
-
-		if (fluidstate.is(FluidTags.WATER) && maskHeight <= (headPos.getY() + fluidstate.getHeight(player.level, headPos)))
+		float eyeHeight = player.getEyeHeight();
+		Map<Fluid, FluidInDetails> fluidsIn = MekanismUtils.getFluidsIn(player, bb ->
+		{
+			double centerX = (bb.minX + bb.maxX) / 2;
+			double centerZ = (bb.minZ + bb.maxZ) / 2;
+			return new AxisAlignedBB(centerX, Math.min(bb.minY + eyeHeight - 0.27, bb.maxY), centerZ, centerX, Math.min(bb.minY + eyeHeight - 0.14, bb.maxY), centerZ);
+		});
+		if (fluidsIn.entrySet().stream().anyMatch(entry -> entry.getKey().is(FluidTags.WATER) && entry.getValue().getMaxHeight() >= 0.11))
 		{
 			return this.getMaxProduceRate(module);
 		}
-		else if (player.isInWaterOrRain())
+		else if (player.isInWaterOrRain() == true)
 		{
-			return this.getMaxProduceRate(module) / 2;
+			return this.getMaxProduceRate(module) / 2L;
 		}
 
 		return 0L;
@@ -177,32 +175,6 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 		int capacity = gauge.getCapacity();
 		double ratio = capacity > 0 ? StorageUtils.getRatio(gauge.getAmount(), capacity) : 0.0D;
 		hudElementAdder.accept(MekanismAPI.getModuleHelper().hudElementPercent(ICON, ratio));
-	}
-
-	public Gas getGas()
-	{
-		return MekanismGases.OXYGEN.get();
-	}
-
-	@Nullable
-	private long getGasCapacity(ItemStack container, Gas gas)
-	{
-		IGasHandler gasHandlerItem = container.getCapability(Capabilities.GAS_HANDLER_CAPABILITY).orElse(null);
-
-		if (gasHandlerItem != null)
-		{
-			for (int i = 0; i < gasHandlerItem.getTanks(); ++i)
-			{
-				if (gasHandlerItem.isValid(i, new GasStack(gas, 1)))
-				{
-					return gasHandlerItem.getTankCapacity(i);
-				}
-
-			}
-
-		}
-
-		return 0;
 	}
 
 	public long getMaxProduceRate(IModule<ModuleSpaceBreathingUnit> module)

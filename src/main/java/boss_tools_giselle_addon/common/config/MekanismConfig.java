@@ -23,8 +23,8 @@ public class MekanismConfig
 		this.moduleSpaceBreathing_oxygenDuration = builder.define("oxygenDuration", 4);
 		builder.comment("Energy usage when provide Space-BossTools oxygen to player in space");
 		this.moduleSpaceBreathing_energyUsingProvide = builder.define("energyUsing", 10);
-		builder.comment("Energy usage when produce Mekanism oxygen to player in water, rain");
-		this.moduleSpaceBreathing_energyUsingProduce = builder.define("energyUsingProduce", 10);
+		builder.comment("Energy usage per mb when produce Mekanism oxygen to player in water, rain");
+		this.moduleSpaceBreathing_energyUsingProduce = builder.define("energyUsingProduce", 200);
 		builder.pop();
 
 		builder.push("module_space_fire_proof_unit");
