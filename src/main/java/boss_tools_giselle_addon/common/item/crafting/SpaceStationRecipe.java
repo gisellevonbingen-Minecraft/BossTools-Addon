@@ -59,7 +59,8 @@ public class SpaceStationRecipe extends BossToolsRecipe
 	public SpaceStationRecipe(ResourceLocation id, NonNullList<IngredientStack> ingredients)
 	{
 		super(id);
-		this.ingredients = NonNullList.of(IngredientStack.EMPTY, ingredients.toArray(IngredientStack[]::new));
+		IngredientStack[] array = ingredients.toArray(new IngredientStack[0]);
+		this.ingredients = NonNullList.of(IngredientStack.EMPTY, array);
 	}
 
 	@Override
@@ -92,12 +93,14 @@ public class SpaceStationRecipe extends BossToolsRecipe
 	@Override
 	public NonNullList<Ingredient> getIngredients()
 	{
-		return NonNullList.of(Ingredient.EMPTY, this.ingredients.stream().map(IngredientStack::getIngredient).toArray(Ingredient[]::new));
+		Ingredient[] array = this.ingredients.stream().map(IngredientStack::getIngredient).toArray(Ingredient[]::new);
+		return NonNullList.of(Ingredient.EMPTY, array);
 	}
 
 	public NonNullList<IngredientStack> getIngredientStacks()
 	{
-		return NonNullList.of(IngredientStack.EMPTY, this.ingredients.toArray(IngredientStack[]::new));
+		IngredientStack[] array = this.ingredients.toArray(new IngredientStack[0]);
+		return NonNullList.of(IngredientStack.EMPTY, array);
 	}
 
 }

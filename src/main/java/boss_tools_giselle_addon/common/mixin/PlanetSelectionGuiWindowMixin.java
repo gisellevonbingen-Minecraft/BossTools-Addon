@@ -31,7 +31,7 @@ import net.mrscauthd.boss_tools.gui.screens.planetselection.PlanetSelectionGuiWi
 @Mixin(PlanetSelectionGuiWindow.class)
 public abstract class PlanetSelectionGuiWindowMixin
 {
-	@Inject(at = @At(value = "HEAD"), method = "spaceStationCreatorButtonManager", cancellable = true)
+	@Inject(at = @At(value = "HEAD"), method = "spaceStationCreatorButtonManager", cancellable = true, remap = false)
 	public void spaceStationCreatorButtonManager(ResourceLocation brb, ResourceLocation brb2, ResourceLocation bbb, ResourceLocation bbb2, int mouseX, int mouseY, int left, int top, int width, int height, MatrixStack ms, ImageButtonPlacer button, String orbitType, String gravity, String oxygen, String temperature, CallbackInfo info)
 	{
 		PlanetSelectionGuiWindow screen = (PlanetSelectionGuiWindow) ((Object) this);
@@ -109,7 +109,7 @@ public abstract class PlanetSelectionGuiWindowMixin
 		return count;
 	}
 
-	@Inject(at = @At(value = "HEAD"), method = "getSpaceStationItemList", cancellable = true)
+	@Inject(at = @At(value = "HEAD"), method = "getSpaceStationItemList", cancellable = true, remap = false)
 	private void getSpaceStationItemList(CallbackInfoReturnable<Boolean> info)
 	{
 		PlanetSelectionGuiWindow screen = (PlanetSelectionGuiWindow) ((Object) this);

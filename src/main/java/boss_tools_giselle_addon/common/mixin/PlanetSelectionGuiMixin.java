@@ -15,7 +15,7 @@ import net.mrscauthd.boss_tools.gui.screens.planetselection.PlanetSelectionGui;
 @Mixin(PlanetSelectionGui.class)
 public abstract class PlanetSelectionGuiMixin
 {
-	@Inject(at = @At(value = "HEAD"), method = "deleteItems", cancellable = true)
+	@Inject(at = @At(value = "HEAD"), method = "deleteItems", cancellable = true, remap = false)
 	private static void deleteItems(PlayerEntity player, CallbackInfo info)
 	{
 		info.cancel();
