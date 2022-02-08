@@ -1,10 +1,14 @@
 {
-  "required": true,
-  "package": "boss_tools_giselle_addon.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "mixins": [
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+	"required": true,
+	"package": "boss_tools_giselle_addon.common.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"PlanetSelectionGuiMixin"
+	],
+	"client": [
+		"PlanetSelectionGuiWindowMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
 }
