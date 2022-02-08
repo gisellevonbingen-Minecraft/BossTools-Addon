@@ -14,6 +14,7 @@ import boss_tools_giselle_addon.common.inventory.container.ElectricBlastFurnaceC
 import boss_tools_giselle_addon.common.item.crafting.AddonRecipes;
 import boss_tools_giselle_addon.common.item.crafting.ExtrudingRecipe;
 import boss_tools_giselle_addon.common.item.crafting.RollingRecipe;
+import boss_tools_giselle_addon.common.item.crafting.SpaceStationRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.constants.VanillaTypes;
@@ -63,6 +64,7 @@ public class AddonJeiPlugin implements IModPlugin
 	private IItemStackToitemStackRegistration<AdvancedCompressorScreen, AdvancedCompressorContainer> advancedCompressor;
 
 	private List<RecipeCategory<?>> categoires;
+	private RecipeCategorySpaceStation spaceStationCategory;
 	private RecipeCategory<RollingRecipe> rollingCategory;
 	private RecipeCategory<ExtrudingRecipe> extrudingCategory;
 	private RecipeCategoryFuelLoader fuelLoaderCategory;
@@ -74,6 +76,7 @@ public class AddonJeiPlugin implements IModPlugin
 		instance = this;
 
 		this.categoires = new ArrayList<>();
+		this.categoires.add(this.spaceStationCategory = new RecipeCategorySpaceStation(SpaceStationRecipe.class, AddonRecipes.SPACE_STATION));
 		this.categoires.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(RollingRecipe.class, AddonRecipes.ROLLING));
 		this.categoires.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(ExtrudingRecipe.class, AddonRecipes.EXTRUDING));
 		this.categoires.add(this.fuelLoaderCategory = new RecipeCategoryFuelLoader(Fluid.class));
@@ -182,6 +185,11 @@ public class AddonJeiPlugin implements IModPlugin
 	public List<RecipeCategory<?>> getCategoires()
 	{
 		return Collections.unmodifiableList(this.categoires);
+	}
+	
+	public RecipeCategorySpaceStation getSpaceStationCategory()
+	{
+		return this.spaceStationCategory;
 	}
 
 	public RecipeCategory<RollingRecipe> getRollingCategory()

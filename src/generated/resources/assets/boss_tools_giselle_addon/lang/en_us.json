@@ -59,6 +59,9 @@
   "chargemode.boss_tools_giselle_addon.armors": "Enabled: All Armor",
   "chargemode.boss_tools_giselle_addon.all": "Enabled: All Inventory",
   
+  "jei.category.boss_tools_giselle_addon.space_station": "Space Station",
+  "jei.info.boss_tools_giselle_addon.space_station": "Ingredients for create\na Space Station",
+  
   "jei.category.boss_tools_giselle_addon.rolling": "Compressor - Rolling",
   "jei.category.boss_tools_giselle_addon.extruding": "Compressor - Extruding",
   "jei.category.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
