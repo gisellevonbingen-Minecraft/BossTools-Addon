@@ -59,6 +59,9 @@
   "chargemode.boss_tools_giselle_addon.armors": "활성화: 모든 갑옷",
   "chargemode.boss_tools_giselle_addon.all": "활성화: 인벤토리 전체",
   
+  "jei.category.boss_tools_giselle_addon.space_station": "우주 정거장",
+  "jei.info.boss_tools_giselle_addon.space_station": "우주 정거장을 만들 때\n필요한 재료입니다",
+  
   "jei.category.boss_tools_giselle_addon.rolling": "압축기 - 압연",
   "jei.category.boss_tools_giselle_addon.extruding": "압축기 - 압출",
   "jei.category.boss_tools_giselle_addon.fuel_loader": "연료 적재기",

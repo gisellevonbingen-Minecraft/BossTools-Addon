@@ -13,6 +13,9 @@ public class AddonRecipes
 {
 	public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, BossToolsAddon.MODID);
 
+	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_SPACE_STATION = RECIPE_SERIALIZERS.register("space_station", () -> new SpaceStationRecipeSerializer());
+	public static final BossToolsRecipeType<SpaceStationRecipe> SPACE_STATION = create(new BossToolsRecipeType<>("space_station"));
+	
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ROLLING = RECIPE_SERIALIZERS.register("rolling", () -> new RollingRecipeSerializer());
 	public static final ItemStackToItemStackRecipeType<RollingRecipe> ROLLING = create(new ItemStackToItemStackRecipeType<>("rolling"));
 
