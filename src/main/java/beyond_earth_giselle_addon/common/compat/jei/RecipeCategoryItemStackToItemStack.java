@@ -8,7 +8,6 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
-import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
@@ -20,8 +19,8 @@ import net.mrscauthd.beyond_earth.jei.JeiPlugin;
 public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRecipeType<? extends R>, R extends ItemStackToItemStackRecipe> extends RecipeCategoryRecipeType<T, R>
 {
 	public static final ResourceLocation BACKGROUND_LOCATION = BeyondEarthAddon.rl("textures/jei/itemstack_to_itemstack.png");
-	public static final int BACKGROUND_HEIGHT = 84;
 	public static final int BACKGROUND_WIDTH = 144;
+	public static final int BACKGROUND_HEIGHT = 84;
 	public static final int ARROW_LEFT = 55;
 	public static final int ARROW_TOP = 29;
 	public static final int INPUT_X = 33;
@@ -45,7 +44,7 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 		this.background = createBackground(guiHelper);
 	}
 
-	protected IDrawableStatic createBackground(IGuiHelper guiHelper)
+	protected IDrawable createBackground(IGuiHelper guiHelper)
 	{
 		return guiHelper.createDrawable(BACKGROUND_LOCATION, 0, 0, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
 	}
