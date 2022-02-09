@@ -1,11 +1,10 @@
 modLoader="javafml"
 loaderVersion="[36,)"
-license="All rights reserved"
+license="MIT License"
 [[mods]]
 modId="boss_tools_giselle_addon"
 version="${file.jarVersion}"
 displayName="Space-BossTools: Giselle Addon"
-logoFile="examplemod.png"
 credits="gisellevonbingen"
 authors="gisellevonbingen"
 description=''''''
@@ -33,4 +32,3 @@ description=''''''
     versionRange="[10.1.0,)"
     ordering="AFTER"
     side="BOTH"
-    
