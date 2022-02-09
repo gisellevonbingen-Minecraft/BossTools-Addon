@@ -1,11 +1,10 @@
 modLoader="javafml"
 loaderVersion="[39,)"
-license="All rights reserved"
+license="MIT License"
 [[mods]]
 modId="beyond_earth_giselle_addon"
 version="${file.jarVersion}"
 displayName="Beyond Earth: Giselle Addon"
-logoFile="examplemod.png"
 credits="gisellevonbingen"
 authors="gisellevonbingen"
 description=''''''
@@ -33,4 +32,3 @@ description=''''''
     versionRange="[10.0.20,)"
     ordering="AFTER"
     side="BOTH"
-    
