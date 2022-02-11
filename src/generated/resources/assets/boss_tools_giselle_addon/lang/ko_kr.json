@@ -75,5 +75,15 @@
   "jer.dim.boss_tools:mercury": "Space-BossTools: 수성",
   "jer.dim.boss_tools:venus": "Space-BossTools: 금성",
   
+  "biome.boss_tools.orbit": "궤도",
+  "biome.boss_tools.infernal_venus_barrens": "금성 지옥 불모지",
+  "biome.boss_tools.venus": "금성",
+  "biome.boss_tools.mercury": "수성",
+  "biome.boss_tools.mars": "화성",
+  "biome.boss_tools.venus_hills": "금성 언덕",
+  "biome.boss_tools.moon": "달",
+  "biome.boss_tools.mercury_magma": "수성 마그마",
+  "biome.boss_tools.mars_ice_spike": "화성 역고드름",
+  
   "_eof": "eof"
 }
