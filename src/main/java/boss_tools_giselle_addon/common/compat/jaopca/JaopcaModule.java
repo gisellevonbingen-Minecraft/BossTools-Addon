@@ -41,8 +41,8 @@ public class JaopcaModule implements IModule
 	public static final String COMPRESSEDS_NAME = "compresseds";
 	public static final String COMPRESSEDS_TAG = BossToolsAddon.prl(COMPRESSEDS_NAME).toString();
 	public static final String COMPRESSEDS_FORM_NAME = BossToolsAddon.PMODID + "_" + COMPRESSEDS_NAME;
-	public static final Set<String> COMRESSING_BLACKLIST = Sets.union(BUILTIN_COMPRESSEDS_MATERIALS, COMMON_BLACKLIST);
 
+	public static final Set<String> COMPRESSING_BLACKLIST = Sets.union(BUILTIN_COMPRESSEDS_MATERIALS, COMMON_BLACKLIST);
 	public static final Set<String> ROLLING_BLACKLIST = Sets.union(BUILTIN_PLATES_MATERIALS, COMMON_BLACKLIST);
 	public static final Set<String> EXTRUDING_BLACKLIST = Sets.union(BUILTIN_RODS_MATERIALS, COMMON_BLACKLIST);
 
@@ -51,7 +51,7 @@ public class JaopcaModule implements IModule
 	public JaopcaModule()
 	{
 		JAOPCAApi api = JAOPCAApi.instance();
-		this.compressedsForm = JAOPCAApi.instance().newForm(this, COMPRESSEDS_FORM_NAME, api.itemFormType()).setMaterialTypes(MaterialType.INGOTS).setSecondaryName(COMPRESSEDS_TAG).setDefaultMaterialBlacklist(COMRESSING_BLACKLIST);
+		this.compressedsForm = JAOPCAApi.instance().newForm(this, COMPRESSEDS_FORM_NAME, api.itemFormType()).setMaterialTypes(MaterialType.INGOTS).setSecondaryName(COMPRESSEDS_TAG).setDefaultMaterialBlacklist(COMMON_BLACKLIST);
 	}
 
 	@Override
@@ -79,7 +79,14 @@ public class JaopcaModule implements IModule
 
 		for (IMaterial material : compressedForm.getMaterials())
 		{
-			this.registerIngotCompressingRecipe(material, compressedForm);
+			String name = material.getName();
+
+			if (COMPRESSING_BLACKLIST.contains(name) == false)
+			{
+				this.registerIngotCompressingRecipe(material, compressedForm);
+				this.registerCompressedRecyclingRecipe(material, compressedForm, COMPRESSEDS_NAME);
+			}
+
 		}
 
 		for (IMaterial material : moduleData.getMaterials())
@@ -117,6 +124,17 @@ public class JaopcaModule implements IModule
 
 			return new CompressingRecipe(id, ingredient, output, 200);
 		});
+	}
+
+	public void registerCompressedRecyclingRecipe(IMaterial material, IForm form, String recipeSuffix)
+	{
+		JAOPCAApi api = JAOPCAApi.instance();
+		IMiscHelper miscHelper = api.miscHelper();
+		ResourceLocation ingotsTag = miscHelper.getTagLocation("ingots", material.getName());
+		IItemInfo ingredientInfo = api.itemFormType().getMaterialFormInfo(form, material);
+
+		ResourceLocation id = AddonJaopcaCompat.rl(BossToolsAddon.PMODID + ".recycling." + material.getName() + "_ingot_from_" + recipeSuffix);
+		api.registerSmeltingRecipe(id, ingredientInfo, ingotsTag, 1, 0.0F, 200);
 	}
 
 	public void registerIngotRollingRecipe(IMaterial material)

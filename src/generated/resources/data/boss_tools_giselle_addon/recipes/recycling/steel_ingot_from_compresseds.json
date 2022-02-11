@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:smelting",
+	"experience": 0,
+	"cookingtime": 200,
+	"ingredient": {
+		"tag": "boss_tools:compresseds/steel"
+	},
+	"result": {
+		"item": "boss_tools:steel_ingot"
+	}
+}

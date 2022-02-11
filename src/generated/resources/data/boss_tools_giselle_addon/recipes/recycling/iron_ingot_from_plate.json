@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:smelting",
+	"experience": 0,
+	"cookingtime": 200,
+	"ingredient": {
+		"item": "boss_tools:iron_plate"
+	},
+	"result": {
+		"item": "minecraft:iron_ingot"
+	}
+}
