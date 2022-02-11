@@ -1,0 +1,24 @@
+{
+	"type": "immersiveengineering:blueprint",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "immersiveengineering"
+		}
+	],
+	"inputs": [
+		{
+			"count": 3,
+			"base_ingredient": {
+				"tag": "forge:plates/steel"
+			}
+		},
+		{
+			"item": "immersiveengineering:wirecutter"
+		}
+	],
+	"category": "molds",
+	"result": {
+		"item": "boss_tools_giselle_addon:mold_compressing"
+	}
+}
