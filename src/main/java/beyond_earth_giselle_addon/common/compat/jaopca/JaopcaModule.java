@@ -51,7 +51,7 @@ public class JaopcaModule implements IModule
 	public JaopcaModule()
 	{
 		JAOPCAApi api = JAOPCAApi.instance();
-		this.compressedsForm = JAOPCAApi.instance().newForm(this, COMPRESSEDS_FORM_NAME, api.itemFormType()).setMaterialTypes(MaterialType.INGOTS).setSecondaryName(COMPRESSEDS_TAG).setDefaultMaterialBlacklist(COMPRESSING_BLACKLIST);
+		this.compressedsForm = JAOPCAApi.instance().newForm(this, COMPRESSEDS_FORM_NAME, api.itemFormType()).setMaterialTypes(MaterialType.INGOTS).setSecondaryName(COMPRESSEDS_TAG).setDefaultMaterialBlacklist(COMMON_BLACKLIST);
 	}
 
 	@Override
