@@ -77,6 +77,10 @@ repositories {
         url "https://dvs1.progwml6.com/files/maven"
     }
     maven {
+        name "ModMaven"
+        url "https://modmaven.dev"
+    }
+    maven {
         name "CurseForge"
         url = "https://www.cursemaven.com"
     }
@@ -118,6 +122,9 @@ dependencies {
 
     // Beyond Earth
     implementation fg.deobf("net.mrscauthd:beyond_earth:${mc_version}-${beyond_earth_version}")
+    
+    // Immersive Engineering
+    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${immersive_engineering_version}:api")
 }
 
 jar {
