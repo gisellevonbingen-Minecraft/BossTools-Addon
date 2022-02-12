@@ -29,6 +29,9 @@ public class AddonIECompat extends CompatibleMod
 	{
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		AddonIEItems.ITEMS.register(fml_bus);
+
+		IEApi.prefixToIngotMap.put("compresseds", new Integer[]{1, 1});
+		ArcRecyclingChecker.allowItemTagForRecycling(ItemTags.bind(BeyondEarthAddon.prl("compresseds").toString()));
 	}
 
 }
