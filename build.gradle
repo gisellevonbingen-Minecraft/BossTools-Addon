@@ -78,7 +78,7 @@ repositories {
         url "https://dvs1.progwml6.com/files/maven"
     }
     maven {
-        name "Mekanism"
+        name "ModMaven"
         url "https://modmaven.dev"
     }
     maven {
