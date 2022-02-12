@@ -1,6 +1,6 @@
 package beyond_earth_giselle_addon.common.compat.curios;
 
-import beyond_earth_giselle_addon.common.compat.CompatibleMod;
+import beyond_earth_giselle_addon.common.compat.AddonCompatibleMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -8,7 +8,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-public class AddonCuriosCompat extends CompatibleMod
+public class AddonCuriosCompat extends AddonCompatibleMod
 {
 	public static final String MODID = "curios";
 

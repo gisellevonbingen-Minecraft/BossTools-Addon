@@ -1,13 +1,13 @@
 package beyond_earth_giselle_addon.common.compat.theoneprobe;
 
-import beyond_earth_giselle_addon.common.compat.CompatibleMod;
+import beyond_earth_giselle_addon.common.compat.AddonCompatibleMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-public class AddonTOPCompat extends CompatibleMod
+public class AddonTOPCompat extends AddonCompatibleMod
 {
 	public static final String MODID = "theoneprobe";
 

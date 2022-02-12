@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.function.Supplier;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import beyond_earth_giselle_addon.common.compat.CompatibleMod;
+import beyond_earth_giselle_addon.common.compat.AddonCompatibleMod;
 import jeresources.api.IWorldGenRegistry;
 import jeresources.api.drop.LootDrop;
 import jeresources.api.restrictions.DimensionRestriction;
@@ -25,7 +25,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.mrscauthd.beyond_earth.ModInit;
 
-public class AddonJerCompat extends CompatibleMod
+public class AddonJerCompat extends AddonCompatibleMod
 {
 	public static final String MODID = "jeresources";
 	public static final String LANGPREFIX = "jer";

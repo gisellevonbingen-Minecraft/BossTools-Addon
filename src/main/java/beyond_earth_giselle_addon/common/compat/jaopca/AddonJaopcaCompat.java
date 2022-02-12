@@ -1,9 +1,9 @@
 package beyond_earth_giselle_addon.common.compat.jaopca;
 
-import beyond_earth_giselle_addon.common.compat.CompatibleMod;
+import beyond_earth_giselle_addon.common.compat.AddonCompatibleMod;
 import net.minecraft.resources.ResourceLocation;
 
-public class AddonJaopcaCompat extends CompatibleMod
+public class AddonJaopcaCompat extends AddonCompatibleMod
 {
 	public static final String MODID = "jaopca";
 

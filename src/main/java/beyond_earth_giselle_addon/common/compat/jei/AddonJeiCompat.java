@@ -1,9 +1,9 @@
 package beyond_earth_giselle_addon.common.compat.jei;
 
-import beyond_earth_giselle_addon.common.compat.CompatibleMod;
+import beyond_earth_giselle_addon.common.compat.AddonCompatibleMod;
 import net.minecraft.resources.ResourceLocation;
 
-public class AddonJeiCompat extends CompatibleMod
+public class AddonJeiCompat extends AddonCompatibleMod
 {
 	public static final String MODID = "jei";
 

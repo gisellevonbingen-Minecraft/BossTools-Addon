@@ -3,7 +3,7 @@ package beyond_earth_giselle_addon.common.compat;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.ModList;
 
-public abstract class CompatibleMod
+public abstract class AddonCompatibleMod
 {
 	private boolean isLoaded;
 
