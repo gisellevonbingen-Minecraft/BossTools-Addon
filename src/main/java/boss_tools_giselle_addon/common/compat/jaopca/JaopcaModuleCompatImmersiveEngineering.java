@@ -54,7 +54,7 @@ public class JaopcaModuleCompatImmersiveEngineering implements IModule
 		ResourceLocation id = AddonJaopcaCompat.rl(BossToolsAddon.PMODID + ".metalpress." + material.getName() + "_to_" + suffix);
 		IItemFormType itemFormType = api.itemFormType();
 		IItemInfo outputItemInfo = itemFormType.getMaterialFormInfo(form, material);
-		ImmersiveEngineeringHelper.INSTANCE.registerMetalPressRecipe(id, ingotsTag, 1, mold, outputItemInfo, 1, 200);
+		ImmersiveEngineeringHelper.INSTANCE.registerMetalPressRecipe(id, ingotsTag, 1, mold, outputItemInfo, 1, 2400);
 	}
 
 }
