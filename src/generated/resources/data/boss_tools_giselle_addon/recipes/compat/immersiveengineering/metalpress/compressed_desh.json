@@ -1,0 +1,19 @@
+{
+	"type": "immersiveengineering:metal_press",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "immersiveengineering"
+		}
+	],
+	"mold": {
+		"item": "boss_tools_giselle_addon:mold_compressing"
+	},
+	"result": {
+		"tag": "boss_tools:compresseds/desh"
+	},
+	"input": {
+		"tag": "forge:ingots/desh"
+	},
+	"energy": 200
+}

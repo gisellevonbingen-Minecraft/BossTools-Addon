@@ -6,6 +6,7 @@ import java.util.List;
 
 import boss_tools_giselle_addon.common.compat.curios.AddonCuriosCompat;
 import boss_tools_giselle_addon.common.compat.hwyla.AddonHwylaCompat;
+import boss_tools_giselle_addon.common.compat.immersiveengineering.AddonIECompat;
 import boss_tools_giselle_addon.common.compat.jaopca.AddonJaopcaCompat;
 import boss_tools_giselle_addon.common.compat.jei.AddonJeiCompat;
 import boss_tools_giselle_addon.common.compat.jer.AddonJerCompat;
@@ -22,6 +23,7 @@ public class AddonCompatibleManager
 	public static final AddonMekanismCompat MEKANISM;
 	public static final AddonThermalCompat THERMAL;
 	public static final AddonRedstoneArsenalCompat REDSTONE_ARSENAL;
+	public static final AddonIECompat IMMERSIVE_ENGINEERING;
 	public static final AddonJaopcaCompat JAOPCA;
 	public static final AddonCuriosCompat CURIOS;
 
@@ -36,6 +38,7 @@ public class AddonCompatibleManager
 		mods.add(MEKANISM = new AddonMekanismCompat());
 		mods.add(THERMAL = new AddonThermalCompat());
 		mods.add(REDSTONE_ARSENAL = new AddonRedstoneArsenalCompat());
+		mods.add(IMMERSIVE_ENGINEERING = new AddonIECompat());
 		mods.add(JAOPCA = new AddonJaopcaCompat());
 		mods.add(CURIOS = new AddonCuriosCompat());
 		mods.add(HWYLA = new AddonHwylaCompat());

@@ -138,6 +138,9 @@ dependencies {
     implementation fg.deobf("curse.maven:thermal-foundation-222880:${thermal_foundation_file}")
     implementation fg.deobf("curse.maven:thermal-expansion-69163:${thermal_expansion_file}")
     implementation fg.deobf("curse.maven:redstone-arsenal-70631:${redstone_arsenal_file}")
+
+    // Immersive Engineering
+    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${immersive_engineering_version}:api")
 }
 
 jar {
