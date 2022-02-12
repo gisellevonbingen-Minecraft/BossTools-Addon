@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:blasting",
+	"experience": 0,
+	"cookingtime": 100,
+	"ingredient": {
+		"item": "beyond_earth:iron_plate"
+	},
+	"result": {
+		"item": "minecraft:iron_ingot"
+	}
+}
