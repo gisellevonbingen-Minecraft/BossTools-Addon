@@ -1,17 +1,24 @@
 {
-  "type": "thermal:press",
-  "ingredient": {
-    "tag": "forge:ingots/desh"
-  },
-  "result": [
-    {
-      "item": "boss_tools:desh_plate"
-    }
-  ],
-  "conditions":[
-    {
-      "type":"forge:mod_loaded",
-      "modid":"thermal_expansion"
-    }
-  ]
+	"type": "thermal:press",
+	"ingredient": {
+		"tag": "forge:ingots/desh"
+	},
+	"result": [
+		{
+			"item": "boss_tools:desh_plate"
+		}
+	],
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "thermal_expansion"
+		},
+		{
+			"value": {
+				"type": "forge:mod_loaded",
+				"modid": "jaopca"
+			},
+			"type": "forge:not"
+		}
+	]
 }

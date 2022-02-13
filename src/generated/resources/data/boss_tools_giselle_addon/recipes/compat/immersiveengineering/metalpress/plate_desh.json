@@ -4,6 +4,13 @@
 		{
 			"type": "forge:mod_loaded",
 			"modid": "immersiveengineering"
+		},
+		{
+			"value": {
+				"type": "forge:mod_loaded",
+				"modid": "jaopca"
+			},
+			"type": "forge:not"
 		}
 	],
 	"mold": {

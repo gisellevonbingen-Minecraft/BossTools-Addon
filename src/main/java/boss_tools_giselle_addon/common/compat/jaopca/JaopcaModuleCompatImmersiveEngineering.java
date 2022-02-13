@@ -1,8 +1,8 @@
 package boss_tools_giselle_addon.common.compat.jaopca;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
-import boss_tools_giselle_addon.common.compat.thermal.AddonThermalCompat;
-import boss_tools_giselle_addon.common.compat.thermal.AddonThermalItems;
+import boss_tools_giselle_addon.common.compat.immersiveengineering.AddonIECompat;
+import boss_tools_giselle_addon.common.compat.immersiveengineering.AddonIEItems;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -15,22 +15,22 @@ import thelm.jaopca.api.materials.IMaterial;
 import thelm.jaopca.api.modules.IModule;
 import thelm.jaopca.api.modules.IModuleData;
 import thelm.jaopca.api.modules.JAOPCAModule;
-import thelm.jaopca.compat.thermalexpansion.ThermalExpansionHelper;
+import thelm.jaopca.compat.immersiveengineering.ImmersiveEngineeringHelper;
 
-@JAOPCAModule(modDependencies = AddonThermalCompat.MODID)
-public class JaopcaModuleCompatThermal implements IModule
+@JAOPCAModule(modDependencies = AddonIECompat.MODID)
+public class JaopcaModuleCompatImmersiveEngineering implements IModule
 {
 	@Override
 	public String getName()
 	{
-		return BossToolsAddon.MODID + "_compat_thermal";
+		return BossToolsAddon.MODID + "_compat_ie";
 	}
 
 	@Override
 	public void onCommonSetup(IModuleData moduleData, FMLCommonSetupEvent event)
 	{
 		JAOPCAApi api = JAOPCAApi.instance();
-		Item compressingDie = AddonThermalItems.PRESS_COMPRESSING_DIE.get();
+		Item moldCompressing = AddonIEItems.MOLD_COMPRESSING.get();
 		IForm compressedsForm = api.getForm(JaopcaModule.COMPRESSEDS_FORM_NAME);
 
 		for (IMaterial material : compressedsForm.getMaterials())
@@ -39,22 +39,22 @@ public class JaopcaModuleCompatThermal implements IModule
 
 			if (JaopcaModule.COMPRESSING_BLACKLIST.contains(name) == false)
 			{
-				this.registerIngotCompressingRecipe(material, compressedsForm, compressingDie, JaopcaModule.COMPRESSEDS_NAME);
+				this.registerIngotCompressingRecipe(material, compressedsForm, moldCompressing, JaopcaModule.COMPRESSEDS_NAME);
 			}
 
 		}
 
 	}
 
-	public void registerIngotCompressingRecipe(IMaterial material, IForm form, Item die, String suffix)
+	public void registerIngotCompressingRecipe(IMaterial material, IForm form, Item mold, String suffix)
 	{
 		JAOPCAApi api = JAOPCAApi.instance();
 		IMiscHelper miscHelper = api.miscHelper();
 		ResourceLocation ingotsTag = miscHelper.getTagLocation("ingots", material.getName());
-		ResourceLocation id = AddonJaopcaCompat.rl(BossToolsAddon.PMODID + ".press." + material.getName() + "_to_" + suffix);
+		ResourceLocation id = AddonJaopcaCompat.rl(BossToolsAddon.PMODID + ".metalpress." + material.getName() + "_to_" + suffix);
 		IItemFormType itemFormType = api.itemFormType();
 		IItemInfo outputItemInfo = itemFormType.getMaterialFormInfo(form, material);
-		ThermalExpansionHelper.INSTANCE.registerPressRecipe(id, ingotsTag, 1, die, 1, outputItemInfo, 1, 2400, 0.0F);
+		ImmersiveEngineeringHelper.INSTANCE.registerMetalPressRecipe(id, ingotsTag, 1, mold, outputItemInfo, 1, 2400);
 	}
 
 }
