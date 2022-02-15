@@ -80,7 +80,7 @@ public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygen
 			return LazyOptional.empty();
 		}
 
-		LazyOptional<T> oxygenCapability = OxygenUtil2.getOxygenCapability(capability, direction, this.getOxygenStorage());
+		LazyOptional<T> oxygenCapability = OxygenUtil2.getOxygenStorageOrEmpty(capability, direction, this::getOxygenStorage);
 
 		if (oxygenCapability.isPresent() == true)
 		{
