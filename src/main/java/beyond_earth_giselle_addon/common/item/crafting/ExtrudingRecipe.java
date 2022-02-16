@@ -2,6 +2,7 @@ package beyond_earth_giselle_addon.common.item.crafting;
 
 import com.google.gson.JsonObject;
 
+import beyond_earth_giselle_addon.common.registries.AddonRecipes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;

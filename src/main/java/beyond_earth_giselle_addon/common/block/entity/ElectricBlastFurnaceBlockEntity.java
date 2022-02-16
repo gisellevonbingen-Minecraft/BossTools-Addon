@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import beyond_earth_giselle_addon.common.inventory.ElectricBlastFurnaceContainerMenu;
+import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -21,7 +22,7 @@ public class ElectricBlastFurnaceBlockEntity extends ItemStackToItemStackBlockEn
 {
 	public ElectricBlastFurnaceBlockEntity(BlockPos pos, BlockState state)
 	{
-		super(AddonBlockEntities.ELECTRIC_BLAST_FURNACE.get(), pos, state);
+		super(AddonBlockEntityTypes.ELECTRIC_BLAST_FURNACE.get(), pos, state);
 	}
 
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)

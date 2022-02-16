@@ -8,7 +8,7 @@ import net.minecraftforge.energy.CapabilityEnergy;
 
 public class EnchantmentEnergyStorage extends Enchantment
 {
-	protected EnchantmentEnergyStorage(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots)
+	public EnchantmentEnergyStorage(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots)
 	{
 		super(rarity, category, slots);
 	}

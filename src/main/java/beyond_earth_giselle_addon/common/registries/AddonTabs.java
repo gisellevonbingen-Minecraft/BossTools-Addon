@@ -1,9 +1,6 @@
-package beyond_earth_giselle_addon.common.tab;
+package beyond_earth_giselle_addon.common.registries;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import beyond_earth_giselle_addon.common.block.AddonBlocks;
-import beyond_earth_giselle_addon.common.enchantment.AddonEnchantments;
-import beyond_earth_giselle_addon.common.item.AddonItems;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.EnchantedBookItem;
@@ -37,7 +34,7 @@ public class AddonTabs
 		@Override
 		public ItemStack makeIcon()
 		{
-			return new ItemStack(AddonItems.BLOCKS.get(AddonBlocks.FUEL_LOADER).get());
+			return new ItemStack(AddonBlocks.FUEL_LOADER);
 		}
 
 	};

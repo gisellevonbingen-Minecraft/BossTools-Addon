@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import beyond_earth_giselle_addon.client.gui.FuelLoaderScreen;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import beyond_earth_giselle_addon.common.block.AddonBlocks;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
+import beyond_earth_giselle_addon.common.registries.AddonBlocks;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;

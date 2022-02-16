@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.content.gravity.GravityNormalizeUtils;
 import beyond_earth_giselle_addon.common.inventory.GravityNormalizerContainerMenu;
+import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -31,7 +32,7 @@ public class GravityNormalizerBlockEntity extends AbstractMachineBlockEntity
 
 	public GravityNormalizerBlockEntity(BlockPos pos, BlockState state)
 	{
-		super(AddonBlockEntities.GRAVITY_NORMALIZER.get(), pos, state);
+		super(AddonBlockEntityTypes.GRAVITY_NORMALIZER.get(), pos, state);
 		this.setWorkingAreaVisible(false);
 	}
 

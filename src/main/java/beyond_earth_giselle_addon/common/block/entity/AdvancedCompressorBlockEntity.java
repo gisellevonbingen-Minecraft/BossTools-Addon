@@ -8,7 +8,8 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Lists;
 
 import beyond_earth_giselle_addon.common.inventory.AdvancedCompressorContainerMenu;
-import beyond_earth_giselle_addon.common.item.crafting.AddonRecipes;
+import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
+import beyond_earth_giselle_addon.common.registries.AddonRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
@@ -34,7 +35,7 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 
 	public AdvancedCompressorBlockEntity(BlockPos pos, BlockState state)
 	{
-		super(AddonBlockEntities.ADVANCED_COMPRESSOR.get(), pos, state);
+		super(AddonBlockEntityTypes.ADVANCED_COMPRESSOR.get(), pos, state);
 	}
 
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)

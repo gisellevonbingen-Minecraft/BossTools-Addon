@@ -1,6 +1,7 @@
 package beyond_earth_giselle_addon.common.inventory;
 
 import beyond_earth_giselle_addon.common.block.entity.FuelLoaderBlockEntity;
+import beyond_earth_giselle_addon.common.registries.AddonMenuTypes;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

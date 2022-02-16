@@ -9,9 +9,9 @@ import java.util.Set;
 import com.google.common.collect.Sets;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import beyond_earth_giselle_addon.common.item.crafting.AddonRecipes;
 import beyond_earth_giselle_addon.common.item.crafting.ExtrudingRecipe;
 import beyond_earth_giselle_addon.common.item.crafting.RollingRecipe;
+import beyond_earth_giselle_addon.common.registries.AddonRecipes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;

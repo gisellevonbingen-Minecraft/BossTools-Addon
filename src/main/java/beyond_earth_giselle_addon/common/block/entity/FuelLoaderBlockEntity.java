@@ -9,6 +9,7 @@ import beyond_earth_giselle_addon.common.adapter.FuelAdapterCreateEntityEvent;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.fluid.FluidUtil3;
 import beyond_earth_giselle_addon.common.inventory.FuelLoaderContainerMenu;
+import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
@@ -44,7 +45,7 @@ public class FuelLoaderBlockEntity extends AbstractMachineBlockEntity
 
 	public FuelLoaderBlockEntity(BlockPos pos, BlockState state)
 	{
-		super(AddonBlockEntities.FUEL_LOADER.get(), pos, state);
+		super(AddonBlockEntityTypes.FUEL_LOADER.get(), pos, state);
 	}
 
 	@Override

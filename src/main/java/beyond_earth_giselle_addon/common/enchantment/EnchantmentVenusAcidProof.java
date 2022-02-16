@@ -5,7 +5,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class EnchantmentVenusAcidProof extends EnchantmentEnergyStorage
 {
-	protected EnchantmentVenusAcidProof()
+	public EnchantmentVenusAcidProof()
 	{
 		super(Rarity.RARE, EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST);
 	}
