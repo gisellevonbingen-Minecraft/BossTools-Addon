@@ -57,7 +57,6 @@ public class BossToolsAddon
 	public static void registerFML()
 	{
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
-
 		fml_bus.addListener(BossToolsAddon::init);
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);
@@ -78,6 +77,7 @@ public class BossToolsAddon
 		forge_bus.register(EventListenerGravityNormalizing.class);
 		forge_bus.register(EventListenerFlagEdit.class);
 		forge_bus.register(EventListenerReload.class);
+		forge_bus.register(EventListenerEnchantmentTooltip.class);
 
 		ProofAbstractUtils.register(forge_bus);
 	}
