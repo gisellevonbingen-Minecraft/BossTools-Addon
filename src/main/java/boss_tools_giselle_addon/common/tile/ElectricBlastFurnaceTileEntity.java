@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import boss_tools_giselle_addon.common.block.ElectricBlastFurnaceBlock;
 import boss_tools_giselle_addon.common.inventory.container.ElectricBlastFurnaceContainer;
-import boss_tools_giselle_addon.common.registries.AddonTileEntitTypes;
+import boss_tools_giselle_addon.common.registries.AddonTileEntityTypes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
@@ -23,7 +23,7 @@ public class ElectricBlastFurnaceTileEntity extends ItemStackToItemStackTileEnti
 {
 	public ElectricBlastFurnaceTileEntity()
 	{
-		super(AddonTileEntitTypes.ELECTRIC_BLAST_FURNACE.get());
+		super(AddonTileEntityTypes.ELECTRIC_BLAST_FURNACE.get());
 	}
 
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)

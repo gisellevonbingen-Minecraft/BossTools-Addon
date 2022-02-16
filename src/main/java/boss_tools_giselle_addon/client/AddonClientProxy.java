@@ -9,7 +9,7 @@ import boss_tools_giselle_addon.client.renderer.tileentity.GravityNormalizerRend
 import boss_tools_giselle_addon.client.util.RenderHelper;
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.registries.AddonContainerTypes;
-import boss_tools_giselle_addon.common.registries.AddonTileEntitTypes;
+import boss_tools_giselle_addon.common.registries.AddonTileEntityTypes;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
@@ -38,8 +38,8 @@ public class AddonClientProxy
 
 	public void onClientSetup(FMLClientSetupEvent event)
 	{
-		ClientRegistry.bindTileEntityRenderer(AddonTileEntitTypes.FUEL_LOADER.get(), FuelLoaderRenderer::new);
-		ClientRegistry.bindTileEntityRenderer(AddonTileEntitTypes.GRAVITY_NORMALIZER.get(), GravityNormalizerRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(AddonTileEntityTypes.FUEL_LOADER.get(), FuelLoaderRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(AddonTileEntityTypes.GRAVITY_NORMALIZER.get(), GravityNormalizerRenderer::new);
 	}
 
 	public void registerContainer(RegistryEvent.Register<ContainerType<?>> event)

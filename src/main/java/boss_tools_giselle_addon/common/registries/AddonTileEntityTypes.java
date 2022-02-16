@@ -8,7 +8,7 @@ import boss_tools_giselle_addon.common.tile.GravityNormalizerTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 
-public class AddonTileEntitTypes
+public class AddonTileEntityTypes
 {
 	public static final TileEntityTypeDeferredRegister TILE_ENTITY_TYPES = new TileEntityTypeDeferredRegister(BossToolsAddon.MODID);
 	public static final RegistryObject<TileEntityType<FuelLoaderTileEntity>> FUEL_LOADER = TILE_ENTITY_TYPES.register("fuel_loader", AddonBlocks.FUEL_LOADER, FuelLoaderTileEntity::new);
@@ -16,7 +16,7 @@ public class AddonTileEntitTypes
 	public static final RegistryObject<TileEntityType<AdvancedCompressorTileEntity>> ADVANCED_COMPRESSOR = TILE_ENTITY_TYPES.register("advanced_compressor", AddonBlocks.ADVANCED_COMPRESSOR, AdvancedCompressorTileEntity::new);
 	public static final RegistryObject<TileEntityType<GravityNormalizerTileEntity>> GRAVITY_NORMALIZER = TILE_ENTITY_TYPES.register("gravity_normalizer", AddonBlocks.GRAVITY_NORMALIZER, GravityNormalizerTileEntity::new);
 
-	private AddonTileEntitTypes()
+	private AddonTileEntityTypes()
 	{
 
 	}

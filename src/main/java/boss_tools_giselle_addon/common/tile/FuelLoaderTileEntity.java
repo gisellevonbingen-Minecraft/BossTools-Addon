@@ -9,7 +9,7 @@ import boss_tools_giselle_addon.common.adapter.FuelAdapterCreateEntityEvent;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.fluid.FluidUtil3;
 import boss_tools_giselle_addon.common.inventory.container.FuelLoaderContainer;
-import boss_tools_giselle_addon.common.registries.AddonTileEntitTypes;
+import boss_tools_giselle_addon.common.registries.AddonTileEntityTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluid;
@@ -44,7 +44,7 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 
 	public FuelLoaderTileEntity()
 	{
-		super(AddonTileEntitTypes.FUEL_LOADER.get());
+		super(AddonTileEntityTypes.FUEL_LOADER.get());
 	}
 
 	@Override
