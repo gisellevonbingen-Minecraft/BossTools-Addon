@@ -6,6 +6,7 @@ import org.apache.commons.lang3.tuple.Triple;
 
 import com.google.gson.JsonObject;
 
+import boss_tools_giselle_addon.common.registries.AddonRecipes;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;

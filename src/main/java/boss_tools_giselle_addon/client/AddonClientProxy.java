@@ -8,8 +8,8 @@ import boss_tools_giselle_addon.client.renderer.tileentity.FuelLoaderRenderer;
 import boss_tools_giselle_addon.client.renderer.tileentity.GravityNormalizerRenderer;
 import boss_tools_giselle_addon.client.util.RenderHelper;
 import boss_tools_giselle_addon.common.BossToolsAddon;
-import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
-import boss_tools_giselle_addon.common.tile.AddonTiles;
+import boss_tools_giselle_addon.common.registries.AddonContainerTypes;
+import boss_tools_giselle_addon.common.registries.AddonTileEntityTypes;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
@@ -25,29 +25,38 @@ public class AddonClientProxy
 {
 	public AddonClientProxy()
 	{
+		this.registerFML();
+		this.registerForge();
+	}
+
+	public void registerFML()
+	{
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		fml_bus.addListener(this::onAtlasPreStitch);
 		fml_bus.addListener(this::onClientSetup);
 		fml_bus.addGenericListener(ContainerType.class, this::registerContainer);
+	}
 
-		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-		forgeEventBus.register(EventListenerRenderSpaceSuitOverlay.class);
-		forgeEventBus.register(EventListenerRenderOxygenCanOverlay.class);
-		forgeEventBus.addListener(this::onRecipesUpdated);
+	public void registerForge()
+	{
+		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
+		forge_bus.register(EventListenerRenderSpaceSuitOverlay.class);
+		forge_bus.register(EventListenerRenderOxygenCanOverlay.class);
+		forge_bus.addListener(this::onRecipesUpdated);
 	}
 
 	public void onClientSetup(FMLClientSetupEvent event)
 	{
-		ClientRegistry.bindTileEntityRenderer(AddonTiles.FUEL_LOADER.get(), FuelLoaderRenderer::new);
-		ClientRegistry.bindTileEntityRenderer(AddonTiles.GRAVITY_NORMALIZER.get(), GravityNormalizerRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(AddonTileEntityTypes.FUEL_LOADER.get(), FuelLoaderRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(AddonTileEntityTypes.GRAVITY_NORMALIZER.get(), GravityNormalizerRenderer::new);
 	}
 
 	public void registerContainer(RegistryEvent.Register<ContainerType<?>> event)
 	{
-		ScreenManager.register(AddonContainers.FUEL_LOADER.get(), FuelLoaderScreen::new);
-		ScreenManager.register(AddonContainers.ELECTRIC_BLAST_FURNACE.get(), ElectricBlastFurnaceScreen::new);
-		ScreenManager.register(AddonContainers.ADVANCED_COMPRESSOR.get(), AdvancedCompressorScreen::new);
-		ScreenManager.register(AddonContainers.GRAVITY_NORMALIZER.get(), GravityNormalizerScreen::new);
+		ScreenManager.register(AddonContainerTypes.FUEL_LOADER.get(), FuelLoaderScreen::new);
+		ScreenManager.register(AddonContainerTypes.ELECTRIC_BLAST_FURNACE.get(), ElectricBlastFurnaceScreen::new);
+		ScreenManager.register(AddonContainerTypes.ADVANCED_COMPRESSOR.get(), AdvancedCompressorScreen::new);
+		ScreenManager.register(AddonContainerTypes.GRAVITY_NORMALIZER.get(), GravityNormalizerScreen::new);
 	}
 
 	public void onAtlasPreStitch(TextureStitchEvent.Pre event)

@@ -2,6 +2,7 @@ package boss_tools_giselle_addon.common.item.crafting;
 
 import com.google.gson.JsonObject;
 
+import boss_tools_giselle_addon.common.registries.AddonRecipes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;

@@ -5,8 +5,8 @@ import java.util.stream.Stream;
 
 import com.google.common.collect.Iterables;
 
-import boss_tools_giselle_addon.common.item.AddonItems;
 import boss_tools_giselle_addon.common.item.OxygenCanItem;
+import boss_tools_giselle_addon.common.registries.AddonItems;
 import boss_tools_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;

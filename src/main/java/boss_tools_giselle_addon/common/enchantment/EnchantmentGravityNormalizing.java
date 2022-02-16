@@ -5,7 +5,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 
 public class EnchantmentGravityNormalizing extends EnchantmentEnergyStorage
 {
-	protected EnchantmentGravityNormalizing()
+	public EnchantmentGravityNormalizing()
 	{
 		super(Rarity.UNCOMMON, EnchantmentType.ARMOR_FEET, EquipmentSlotType.FEET);
 	}
