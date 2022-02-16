@@ -8,13 +8,13 @@
   "block.beyond_earth_giselle_addon.gravity_normalizer": "중력 정규화 장치",
   
   "module.beyond_earth_giselle_addon.space_breathing_unit": "우주 호흡 기구",
-  "description.beyond_earth_giselle_addon.space_breathing_unit": "산소와 에너지를 소모하여, Beyond Earth 차원에서 호흡할 수 있습니다\n수중, 우천시 모듈에 산소가 충전됩니다",
+  "description.beyond_earth_giselle_addon.space_breathing_unit": "Beyond Earth 차원에서 호흡할 수 있습니다\n비, 물속에서 들고있는 아이템에 산소를 충전합니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
   "module.beyond_earth_giselle_addon.space_fire_proof_unit": "우주 내화성 기구",
-  "description.beyond_earth_giselle_addon.space_fire_proof_unit": "에너지를 소모하여, Beyond Earth 차원에서 자신에게 불이 붙지 않습니다",
+  "description.beyond_earth_giselle_addon.space_fire_proof_unit": "Beyond Earth 차원에서 불이 붙지 않습니다",
   "module.beyond_earth_giselle_addon.venus_acid_proof_unit": "우주 내산성 기구",
-  "description.beyond_earth_giselle_addon.venus_acid_proof_unit": "에너지를 소모하여, Beyond Earth 차원에서 산성비 피해를 입지 않습니다",
+  "description.beyond_earth_giselle_addon.venus_acid_proof_unit": "Beyond Earth 차원에서 산성비 피해를 입지 않습니다",
   "module.beyond_earth_giselle_addon.gravity_normalizing_unit": "중력 정규화 기구",
-  "description.beyond_earth_giselle_addon.gravity_normalizing_unit": "에너지를 소모하여, Beyond Earth 차원에서 중력을 오버월드 처럼 정규화합니다",
+  "description.beyond_earth_giselle_addon.gravity_normalizing_unit": "Beyond Earth 차원에서 중력을 오버월드 처럼 정규화합니다",
   
   "description.beyond_earth_giselle_addon.instead_gravity_normalizing_unit": "중력 정규화 기구를 대신할 수 있습니다",
  
@@ -26,13 +26,13 @@
   "description.beyond_earth_giselle_addon.charge_mode": "충전 모드",
     
   "enchantment.beyond_earth_giselle_addon.space_breathing": "우주 호흡성",
-  "enchantment.beyond_earth_giselle_addon.space_breathing.desc": "Beyond Earth 차원에서 호흡할 수 있습니다\n갑옷의 에너지를 소모합니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
+  "enchantment.beyond_earth_giselle_addon.space_breathing.desc": "Beyond Earth 차원에서 호흡할 수 있습니다\n에너지를 가질 수 있는 갑옷에 마법 부여 가능합니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
   "enchantment.beyond_earth_giselle_addon.gravity_normalizing": "중력 정규화",
-  "enchantment.beyond_earth_giselle_addon.gravity_normalizing.desc": "Beyond Earth 차원에서 중력을 오버월드 처럼 정규화합니다\n갑옷의 에너지를 소모합니다",
+  "enchantment.beyond_earth_giselle_addon.gravity_normalizing.desc": "Beyond Earth 차원에서 중력을 오버월드 처럼 정규화합니다\n에너지를 가질 수 있는 갑옷에 마법 부여 가능합니다",
   "enchantment.beyond_earth_giselle_addon.space_fire_proof": "우주 내화성",
-  "enchantment.beyond_earth_giselle_addon.space_fire_proof.desc": "Beyond Earth 차원에서 자신에게 불이 붙지 않습니다\n갑옷의 에너지를 소모합니다",
+  "enchantment.beyond_earth_giselle_addon.space_fire_proof.desc": "Beyond Earth 차원에서 불이 붙지 않습니다\n에너지를 가질 수 있는 갑옷에 마법 부여 가능합니다",
   "enchantment.beyond_earth_giselle_addon.venus_acid_proof": "우주 내산성",
-  "enchantment.beyond_earth_giselle_addon.venus_acid_proof.desc": "Beyond Earth 차원에서 산성비 피해를 입지 않습니다\n갑옷의 에너지를 소모합니다",
+  "enchantment.beyond_earth_giselle_addon.venus_acid_proof.desc": "Beyond Earth 차원에서 산성비 피해를 입지 않습니다\n에너지를 가질 수 있는 갑옷에 마법 부여 가능합니다",
   
   "container.beyond_earth_giselle_addon.fuel_loader": "연료 적재기",
   "container.beyond_earth_giselle_addon.electric_blast_furnace": "전기 용광로",
