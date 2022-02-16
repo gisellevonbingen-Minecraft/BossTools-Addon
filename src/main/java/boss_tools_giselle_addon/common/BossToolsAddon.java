@@ -22,7 +22,7 @@ import boss_tools_giselle_addon.common.registries.AddonContainerTypes;
 import boss_tools_giselle_addon.common.registries.AddonEnchantments;
 import boss_tools_giselle_addon.common.registries.AddonItems;
 import boss_tools_giselle_addon.common.registries.AddonRecipes;
-import boss_tools_giselle_addon.common.tile.AddonTileEntitTypes;
+import boss_tools_giselle_addon.common.registries.AddonTileEntityTypes;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -47,28 +47,41 @@ public class BossToolsAddon
 	{
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AddonConfigs.CommonSpec);
 
+		registerFML();
+
+		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
+
+		registerForge();
+
+		AddonCompatibleManager.visit();
+	}
+
+	public static void registerFML()
+	{
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
+		
 		fml_bus.addListener(BossToolsAddon::init);
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);
 		AddonEnchantments.ENCHANTMENTS.register(fml_bus);
 		AddonRecipes.RECIPE_SERIALIZERS.register(fml_bus);
-		AddonTileEntitTypes.TILE_ENTITY_TYPES.register(fml_bus);
+		AddonTileEntityTypes.TILE_ENTITY_TYPES.register(fml_bus);
 		AddonContainerTypes.CONTAINER_TYPES.register(fml_bus);
+
 		AddonNetwork.registerAll();
+	}
 
-		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
+	public static void registerForge()
+	{
+		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
+		forge_bus.register(EventListenerCommand.class);
+		forge_bus.register(EventListenerFuelAdapter.class);
+		forge_bus.register(EventListenerFuelGauge.class);
+		forge_bus.register(EventListenerGravityNormalizing.class);
+		forge_bus.register(EventListenerFlagEdit.class);
+		forge_bus.register(EventListenerReload.class);
 
-		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-		forgeEventBus.register(EventListenerCommand.class);
-		forgeEventBus.register(EventListenerFuelAdapter.class);
-		forgeEventBus.register(EventListenerFuelGauge.class);
-		forgeEventBus.register(EventListenerGravityNormalizing.class);
-		forgeEventBus.register(EventListenerFlagEdit.class);
-		forgeEventBus.register(EventListenerReload.class);
-		ProofAbstractUtils.register(forgeEventBus);
-
-		AddonCompatibleManager.visit();
+		ProofAbstractUtils.register(forge_bus);
 	}
 
 	public static void init(FMLCommonSetupEvent event)
