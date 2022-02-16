@@ -11,6 +11,7 @@ import beyond_earth_giselle_addon.common.content.fuel.EventListenerFuelAdapter;
 import beyond_earth_giselle_addon.common.content.fuel.EventListenerFuelGauge;
 import beyond_earth_giselle_addon.common.content.gravity.EventListenerGravityNormalizing;
 import beyond_earth_giselle_addon.common.content.proof.ProofAbstractUtils;
+import beyond_earth_giselle_addon.common.enchantment.EventListenerEnchantmentTooltip;
 import beyond_earth_giselle_addon.common.item.crafting.IS2ISRecipeCache;
 import beyond_earth_giselle_addon.common.network.AddonNetwork;
 import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
@@ -71,6 +72,7 @@ public class BeyondEarthAddon
 		forge_bus.register(EventListenerGravityNormalizing.class);
 		forge_bus.register(EventListenerFlagEdit.class);
 		forge_bus.register(EventListenerReload.class);
+		forge_bus.register(EventListenerEnchantmentTooltip.class);
 
 		ProofAbstractUtils.register(forge_bus);
 	}
