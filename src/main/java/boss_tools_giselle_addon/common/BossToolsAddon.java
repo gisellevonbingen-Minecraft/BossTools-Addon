@@ -48,10 +48,8 @@ public class BossToolsAddon
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AddonConfigs.CommonSpec);
 
 		registerFML();
-
-		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
-
 		registerForge();
+		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
 
 		AddonCompatibleManager.visit();
 	}
@@ -59,7 +57,7 @@ public class BossToolsAddon
 	public static void registerFML()
 	{
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
-		
+
 		fml_bus.addListener(BossToolsAddon::init);
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);

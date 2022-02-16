@@ -25,15 +25,24 @@ public class AddonClientProxy
 {
 	public AddonClientProxy()
 	{
+		this.registerFML();
+		this.registerForge();
+	}
+
+	public void registerFML()
+	{
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		fml_bus.addListener(this::onAtlasPreStitch);
 		fml_bus.addListener(this::onClientSetup);
 		fml_bus.addGenericListener(ContainerType.class, this::registerContainer);
+	}
 
-		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-		forgeEventBus.register(EventListenerRenderSpaceSuitOverlay.class);
-		forgeEventBus.register(EventListenerRenderOxygenCanOverlay.class);
-		forgeEventBus.addListener(this::onRecipesUpdated);
+	public void registerForge()
+	{
+		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
+		forge_bus.register(EventListenerRenderSpaceSuitOverlay.class);
+		forge_bus.register(EventListenerRenderOxygenCanOverlay.class);
+		forge_bus.addListener(this::onRecipesUpdated);
 	}
 
 	public void onClientSetup(FMLClientSetupEvent event)
