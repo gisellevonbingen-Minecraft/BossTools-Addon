@@ -7,7 +7,6 @@ import beyond_earth_giselle_addon.common.item.crafting.RollingRecipe;
 import beyond_earth_giselle_addon.common.item.crafting.RollingRecipeSerializer;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeType;
@@ -15,7 +14,7 @@ import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipeType;
 
 public class AddonRecipes
 {
-	public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, BeyondEarthAddon.MODID);
+	public static final DeferredRegisterWrapper<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegisterWrapper.create(BeyondEarthAddon.MODID, ForgeRegistries.RECIPE_SERIALIZERS);
 
 	public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_ROLLING = RECIPE_SERIALIZERS.register("rolling", () -> new RollingRecipeSerializer());
 	public static final ItemStackToItemStackRecipeType<RollingRecipe> ROLLING = create(new ItemStackToItemStackRecipeType<>("rolling"));

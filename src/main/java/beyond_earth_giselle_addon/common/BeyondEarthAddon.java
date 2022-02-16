@@ -42,13 +42,7 @@ public class BeyondEarthAddon
 	{
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AddonConfigs.CommonSpec);
 
-		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
-		AddonBlocks.BLOCKS.register(fml_bus);
-		AddonItems.ITEMS.register(fml_bus);
-		AddonEnchantments.ENCHANTMENTS.register(fml_bus);
-		AddonRecipes.RECIPE_SERIALIZERS.register(fml_bus);
-		AddonBlockEntityTypes.BLOCK_ENTITY_TYPES.register(fml_bus);
-		AddonMenuTypes.MENU_TYPES.register(fml_bus);
+		registerAll(FMLJavaModLoadingContext.get().getModEventBus());
 		AddonNetwork.registerAll();
 
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
@@ -63,6 +57,16 @@ public class BeyondEarthAddon
 		ProofAbstractUtils.register(forgeEventBus);
 
 		AddonCompatibleManager.visit();
+	}
+
+	public static void registerAll(IEventBus fml_bus)
+	{
+		AddonBlocks.BLOCKS.register(fml_bus);
+		AddonItems.ITEMS.register(fml_bus);
+		AddonEnchantments.ENCHANTMENTS.register(fml_bus);
+		AddonRecipes.RECIPE_SERIALIZERS.register(fml_bus);
+		AddonBlockEntityTypes.BLOCK_ENTITY_TYPES.register(fml_bus);
+		AddonMenuTypes.MENU_TYPES.register(fml_bus);
 	}
 
 	public static void resetRecipeCaches(RecipeManager recipeManager)
