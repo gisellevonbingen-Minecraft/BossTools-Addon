@@ -8,11 +8,11 @@ import net.minecraftforge.fml.RegistryObject;
 public class AddonItems
 {
 	public static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(BossToolsAddon.MODID);
-	public static final RegistryObject<OxygenCanItem> OXYGEN_CAN = ITEMS.register("oxygen_can", () -> new OxygenCanItem(new Item.Properties().tab(AddonTabs.tab_main)));
+	public static final RegistryObject<OxygenCanItem> OXYGEN_CAN = ITEMS.register("oxygen_can", () -> new OxygenCanItem(new Item.Properties().tab(AddonItemGroups.tab_main)));
 
 	public static Item.Properties getMainItemProperties()
 	{
-		return new Item.Properties().tab(AddonTabs.tab_main);
+		return new Item.Properties().tab(AddonItemGroups.tab_main);
 	}
 
 	private AddonItems()

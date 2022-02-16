@@ -1,8 +1,10 @@
-package boss_tools_giselle_addon.common.tile;
+package boss_tools_giselle_addon.common.registries;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
-import boss_tools_giselle_addon.common.registries.AddonBlocks;
-import boss_tools_giselle_addon.common.registries.TileEntityTypeDeferredRegister;
+import boss_tools_giselle_addon.common.tile.AdvancedCompressorTileEntity;
+import boss_tools_giselle_addon.common.tile.ElectricBlastFurnaceTileEntity;
+import boss_tools_giselle_addon.common.tile.FuelLoaderTileEntity;
+import boss_tools_giselle_addon.common.tile.GravityNormalizerTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 

@@ -9,7 +9,7 @@ import boss_tools_giselle_addon.client.renderer.tileentity.GravityNormalizerRend
 import boss_tools_giselle_addon.client.util.RenderHelper;
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.registries.AddonContainerTypes;
-import boss_tools_giselle_addon.common.tile.AddonTileEntitTypes;
+import boss_tools_giselle_addon.common.registries.AddonTileEntitTypes;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;

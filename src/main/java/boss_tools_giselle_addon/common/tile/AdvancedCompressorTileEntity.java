@@ -10,6 +10,7 @@ import com.google.common.collect.Lists;
 import boss_tools_giselle_addon.common.block.ElectricBlastFurnaceBlock;
 import boss_tools_giselle_addon.common.inventory.container.AdvancedCompressorContainer;
 import boss_tools_giselle_addon.common.registries.AddonRecipes;
+import boss_tools_giselle_addon.common.registries.AddonTileEntitTypes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;

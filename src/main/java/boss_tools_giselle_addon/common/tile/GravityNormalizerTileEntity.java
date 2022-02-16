@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.content.gravity.GravityNormalizeUtils;
 import boss_tools_giselle_addon.common.inventory.container.GravityNormalizerContainer;
+import boss_tools_giselle_addon.common.registries.AddonTileEntitTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerInventory;

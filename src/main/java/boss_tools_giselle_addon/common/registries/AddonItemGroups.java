@@ -8,7 +8,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-public class AddonTabs
+public class AddonItemGroups
 {
 	public static final ItemGroup tab_main = new ItemGroup(BossToolsAddon.MODID + "_tab_main")
 	{
