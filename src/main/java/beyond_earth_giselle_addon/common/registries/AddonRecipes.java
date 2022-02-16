@@ -1,6 +1,10 @@
-package beyond_earth_giselle_addon.common.item.crafting;
+package beyond_earth_giselle_addon.common.registries;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
+import beyond_earth_giselle_addon.common.item.crafting.ExtrudingRecipe;
+import beyond_earth_giselle_addon.common.item.crafting.ExtrudingRecipeSerializer;
+import beyond_earth_giselle_addon.common.item.crafting.RollingRecipe;
+import beyond_earth_giselle_addon.common.item.crafting.RollingRecipeSerializer;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.DeferredRegister;

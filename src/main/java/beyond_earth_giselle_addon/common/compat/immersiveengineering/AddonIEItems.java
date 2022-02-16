@@ -1,7 +1,7 @@
 package beyond_earth_giselle_addon.common.compat.immersiveengineering;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import beyond_earth_giselle_addon.common.item.AddonItems;
+import beyond_earth_giselle_addon.common.registries.AddonItems;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;

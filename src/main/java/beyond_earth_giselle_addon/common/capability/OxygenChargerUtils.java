@@ -5,8 +5,8 @@ import java.util.stream.Stream;
 
 import com.google.common.collect.Iterables;
 
-import beyond_earth_giselle_addon.common.item.AddonItems;
 import beyond_earth_giselle_addon.common.item.OxygenCanItem;
+import beyond_earth_giselle_addon.common.registries.AddonItems;
 import beyond_earth_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;

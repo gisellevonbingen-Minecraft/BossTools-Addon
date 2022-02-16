@@ -8,8 +8,8 @@ import beyond_earth_giselle_addon.client.renderer.blockentity.FuelLoaderRenderer
 import beyond_earth_giselle_addon.client.renderer.blockentity.GravityNormalizerRenderer;
 import beyond_earth_giselle_addon.client.util.RenderHelper;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import beyond_earth_giselle_addon.common.block.entity.AddonBlockEntities;
-import beyond_earth_giselle_addon.common.inventory.AddonMenuTypes;
+import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
+import beyond_earth_giselle_addon.common.registries.AddonMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -37,8 +37,8 @@ public class AddonClientProxy
 
 	public void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event)
 	{
-		event.registerBlockEntityRenderer(AddonBlockEntities.FUEL_LOADER.get(), FuelLoaderRenderer::new);
-		event.registerBlockEntityRenderer(AddonBlockEntities.GRAVITY_NORMALIZER.get(), GravityNormalizerRenderer::new);
+		event.registerBlockEntityRenderer(AddonBlockEntityTypes.FUEL_LOADER.get(), FuelLoaderRenderer::new);
+		event.registerBlockEntityRenderer(AddonBlockEntityTypes.GRAVITY_NORMALIZER.get(), GravityNormalizerRenderer::new);
 	}
 
 	public void registerMenuType(RegistryEvent.Register<MenuType<?>> event)

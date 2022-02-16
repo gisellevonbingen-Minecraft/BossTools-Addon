@@ -1,6 +1,10 @@
-package beyond_earth_giselle_addon.common.inventory;
+package beyond_earth_giselle_addon.common.registries;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
+import beyond_earth_giselle_addon.common.inventory.AdvancedCompressorContainerMenu;
+import beyond_earth_giselle_addon.common.inventory.ElectricBlastFurnaceContainerMenu;
+import beyond_earth_giselle_addon.common.inventory.FuelLoaderContainerMenu;
+import beyond_earth_giselle_addon.common.inventory.GravityNormalizerContainerMenu;
 import beyond_earth_giselle_addon.common.util.TriFunction;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
