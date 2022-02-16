@@ -8,7 +8,7 @@ import net.mrscauthd.boss_tools.ModInnet;
 
 public class EnchantmentSpaceFireProof extends EnchantmentEnergyStorage
 {
-	protected EnchantmentSpaceFireProof()
+	public EnchantmentSpaceFireProof()
 	{
 		super(Rarity.RARE, EnchantmentType.ARMOR_CHEST, EquipmentSlotType.CHEST);
 	}

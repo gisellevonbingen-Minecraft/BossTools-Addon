@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import boss_tools_giselle_addon.client.gui.FuelLoaderScreen;
 import boss_tools_giselle_addon.common.BossToolsAddon;
-import boss_tools_giselle_addon.common.block.AddonBlocks;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
+import boss_tools_giselle_addon.common.registries.AddonBlocks;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;

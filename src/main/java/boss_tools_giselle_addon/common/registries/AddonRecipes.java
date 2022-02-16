@@ -1,17 +1,29 @@
-package boss_tools_giselle_addon.common.item.crafting;
+package boss_tools_giselle_addon.common.registries;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
+import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipeDyedItem;
+import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipeEnchantedBook;
+import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipeEnchantedItem;
+import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipeItemStack;
+import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipeMap;
+import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipePotionedItem;
+import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipeType;
+import boss_tools_giselle_addon.common.item.crafting.ExtrudingRecipe;
+import boss_tools_giselle_addon.common.item.crafting.ExtrudingRecipeSerializer;
+import boss_tools_giselle_addon.common.item.crafting.RollingRecipe;
+import boss_tools_giselle_addon.common.item.crafting.RollingRecipeSerializer;
+import boss_tools_giselle_addon.common.item.crafting.SpaceStationRecipe;
+import boss_tools_giselle_addon.common.item.crafting.SpaceStationRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.mrscauthd.boss_tools.crafting.BossToolsRecipeType;
 import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipeType;
 
 public class AddonRecipes
 {
-	public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, BossToolsAddon.MODID);
+	public static final DeferredRegisterWrapper<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegisterWrapper.create(BossToolsAddon.MODID, ForgeRegistries.RECIPE_SERIALIZERS);
 
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_SPACE_STATION = RECIPE_SERIALIZERS.register("space_station", () -> new SpaceStationRecipeSerializer());
 	public static final BossToolsRecipeType<SpaceStationRecipe> SPACE_STATION = create(new BossToolsRecipeType<>("space_station"));

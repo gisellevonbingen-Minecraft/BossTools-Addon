@@ -8,7 +8,7 @@ import net.mrscauthd.boss_tools.ModInnet;
 
 public class EnchantmentSpaceBreathing extends EnchantmentEnergyStorage
 {
-	protected EnchantmentSpaceBreathing()
+	public EnchantmentSpaceBreathing()
 	{
 		super(Rarity.UNCOMMON, EnchantmentType.ARMOR_HEAD, EquipmentSlotType.HEAD);
 	}

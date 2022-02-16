@@ -30,7 +30,7 @@ public class GravityNormalizerTileEntity extends AbstractMachineTileEntity
 
 	public GravityNormalizerTileEntity()
 	{
-		super(AddonTiles.GRAVITY_NORMALIZER.get());
+		super(AddonTileEntitTypes.GRAVITY_NORMALIZER.get());
 		this.setWorkingAreaVisible(false);
 	}
 

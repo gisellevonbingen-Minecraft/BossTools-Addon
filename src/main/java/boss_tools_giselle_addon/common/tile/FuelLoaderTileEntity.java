@@ -43,7 +43,7 @@ public class FuelLoaderTileEntity extends AbstractMachineTileEntity
 
 	public FuelLoaderTileEntity()
 	{
-		super(AddonTiles.FUEL_LOADER.get());
+		super(AddonTileEntitTypes.FUEL_LOADER.get());
 	}
 
 	@Override

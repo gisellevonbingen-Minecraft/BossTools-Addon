@@ -4,7 +4,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import boss_tools_giselle_addon.common.command.AddonCommand;
-import boss_tools_giselle_addon.common.enchantment.AddonEnchantments;
+import boss_tools_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.command.CommandSource;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.ServerPlayerEntity;

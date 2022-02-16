@@ -8,8 +8,8 @@ import boss_tools_giselle_addon.client.renderer.tileentity.FuelLoaderRenderer;
 import boss_tools_giselle_addon.client.renderer.tileentity.GravityNormalizerRenderer;
 import boss_tools_giselle_addon.client.util.RenderHelper;
 import boss_tools_giselle_addon.common.BossToolsAddon;
-import boss_tools_giselle_addon.common.inventory.container.AddonContainers;
-import boss_tools_giselle_addon.common.tile.AddonTiles;
+import boss_tools_giselle_addon.common.registries.AddonContainerTypes;
+import boss_tools_giselle_addon.common.tile.AddonTileEntitTypes;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
@@ -38,16 +38,16 @@ public class AddonClientProxy
 
 	public void onClientSetup(FMLClientSetupEvent event)
 	{
-		ClientRegistry.bindTileEntityRenderer(AddonTiles.FUEL_LOADER.get(), FuelLoaderRenderer::new);
-		ClientRegistry.bindTileEntityRenderer(AddonTiles.GRAVITY_NORMALIZER.get(), GravityNormalizerRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(AddonTileEntitTypes.FUEL_LOADER.get(), FuelLoaderRenderer::new);
+		ClientRegistry.bindTileEntityRenderer(AddonTileEntitTypes.GRAVITY_NORMALIZER.get(), GravityNormalizerRenderer::new);
 	}
 
 	public void registerContainer(RegistryEvent.Register<ContainerType<?>> event)
 	{
-		ScreenManager.register(AddonContainers.FUEL_LOADER.get(), FuelLoaderScreen::new);
-		ScreenManager.register(AddonContainers.ELECTRIC_BLAST_FURNACE.get(), ElectricBlastFurnaceScreen::new);
-		ScreenManager.register(AddonContainers.ADVANCED_COMPRESSOR.get(), AdvancedCompressorScreen::new);
-		ScreenManager.register(AddonContainers.GRAVITY_NORMALIZER.get(), GravityNormalizerScreen::new);
+		ScreenManager.register(AddonContainerTypes.FUEL_LOADER.get(), FuelLoaderScreen::new);
+		ScreenManager.register(AddonContainerTypes.ELECTRIC_BLAST_FURNACE.get(), ElectricBlastFurnaceScreen::new);
+		ScreenManager.register(AddonContainerTypes.ADVANCED_COMPRESSOR.get(), AdvancedCompressorScreen::new);
+		ScreenManager.register(AddonContainerTypes.GRAVITY_NORMALIZER.get(), GravityNormalizerScreen::new);
 	}
 
 	public void onAtlasPreStitch(TextureStitchEvent.Pre event)

@@ -1,7 +1,7 @@
 package boss_tools_giselle_addon.common.content.proof;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
-import boss_tools_giselle_addon.common.enchantment.AddonEnchantments;
+import boss_tools_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

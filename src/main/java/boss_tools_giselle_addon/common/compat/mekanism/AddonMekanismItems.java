@@ -1,7 +1,7 @@
 package boss_tools_giselle_addon.common.compat.mekanism;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
-import boss_tools_giselle_addon.common.tab.AddonTabs;
+import boss_tools_giselle_addon.common.registries.AddonTabs;
 import mekanism.common.content.gear.ModuleHelper;
 import mekanism.common.item.ItemModule;
 import mekanism.common.registration.impl.ItemDeferredRegister;

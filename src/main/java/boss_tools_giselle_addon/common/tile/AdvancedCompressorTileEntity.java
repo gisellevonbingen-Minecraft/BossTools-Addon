@@ -9,7 +9,7 @@ import com.google.common.collect.Lists;
 
 import boss_tools_giselle_addon.common.block.ElectricBlastFurnaceBlock;
 import boss_tools_giselle_addon.common.inventory.container.AdvancedCompressorContainer;
-import boss_tools_giselle_addon.common.item.crafting.AddonRecipes;
+import boss_tools_giselle_addon.common.registries.AddonRecipes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
@@ -34,7 +34,7 @@ public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntity
 
 	public AdvancedCompressorTileEntity()
 	{
-		super(AddonTiles.ADVANCED_COMPRESSOR.get());
+		super(AddonTileEntitTypes.ADVANCED_COMPRESSOR.get());
 	}
 
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)

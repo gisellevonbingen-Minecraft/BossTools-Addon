@@ -1,5 +1,6 @@
 package boss_tools_giselle_addon.common.inventory.container;
 
+import boss_tools_giselle_addon.common.registries.AddonContainerTypes;
 import boss_tools_giselle_addon.common.tile.AdvancedCompressorTileEntity;
 import net.minecraft.entity.player.PlayerInventory;
 
@@ -7,7 +8,7 @@ public class AdvancedCompressorContainer extends ItemStackToItemStackContainer<A
 {
 	public AdvancedCompressorContainer(int windowId, PlayerInventory inv, AdvancedCompressorTileEntity tileEntity)
 	{
-		super(AddonContainers.ADVANCED_COMPRESSOR.get(), windowId, inv, tileEntity);
+		super(AddonContainerTypes.ADVANCED_COMPRESSOR.get(), windowId, inv, tileEntity);
 	}
 
 }

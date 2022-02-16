@@ -6,6 +6,7 @@ import java.util.Random;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 
+import boss_tools_giselle_addon.common.registries.AddonRecipes;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.DyeItem;

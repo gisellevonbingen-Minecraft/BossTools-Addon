@@ -22,7 +22,7 @@ public class ElectricBlastFurnaceTileEntity extends ItemStackToItemStackTileEnti
 {
 	public ElectricBlastFurnaceTileEntity()
 	{
-		super(AddonTiles.ELECTRIC_BLAST_FURNACE.get());
+		super(AddonTileEntitTypes.ELECTRIC_BLAST_FURNACE.get());
 	}
 
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)

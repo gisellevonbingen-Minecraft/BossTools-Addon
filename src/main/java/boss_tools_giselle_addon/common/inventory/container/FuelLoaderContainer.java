@@ -1,5 +1,6 @@
 package boss_tools_giselle_addon.common.inventory.container;
 
+import boss_tools_giselle_addon.common.registries.AddonContainerTypes;
 import boss_tools_giselle_addon.common.tile.FuelLoaderTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -12,7 +13,7 @@ public class FuelLoaderContainer extends AbstractMachineContainer<FuelLoaderCont
 {
 	public FuelLoaderContainer(int windowId, PlayerInventory inv, FuelLoaderTileEntity tileEntity)
 	{
-		super(AddonContainers.FUEL_LOADER.get(), windowId, inv, tileEntity);
+		super(AddonContainerTypes.FUEL_LOADER.get(), windowId, inv, tileEntity);
 
 		IItemHandlerModifiable itemHandler = tileEntity.getItemHandler();
 
