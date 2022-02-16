@@ -42,31 +42,37 @@ public class BeyondEarthAddon
 	{
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AddonConfigs.CommonSpec);
 
-		registerAll(FMLJavaModLoadingContext.get().getModEventBus());
-		AddonNetwork.registerAll();
-
+		registerFML();
+		registerForge();
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
-
-		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-		forgeEventBus.register(EventListenerCommand.class);
-		forgeEventBus.register(EventListenerFuelAdapter.class);
-		forgeEventBus.register(EventListenerFuelGauge.class);
-		forgeEventBus.register(EventListenerGravityNormalizing.class);
-		forgeEventBus.register(EventListenerFlagEdit.class);
-		forgeEventBus.register(EventListenerReload.class);
-		ProofAbstractUtils.register(forgeEventBus);
 
 		AddonCompatibleManager.visit();
 	}
 
-	public static void registerAll(IEventBus fml_bus)
+	public static void registerFML()
 	{
+		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);
 		AddonEnchantments.ENCHANTMENTS.register(fml_bus);
 		AddonRecipes.RECIPE_SERIALIZERS.register(fml_bus);
 		AddonBlockEntityTypes.BLOCK_ENTITY_TYPES.register(fml_bus);
 		AddonMenuTypes.MENU_TYPES.register(fml_bus);
+
+		AddonNetwork.registerAll();
+	}
+
+	public static void registerForge()
+	{
+		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
+		forge_bus.register(EventListenerCommand.class);
+		forge_bus.register(EventListenerFuelAdapter.class);
+		forge_bus.register(EventListenerFuelGauge.class);
+		forge_bus.register(EventListenerGravityNormalizing.class);
+		forge_bus.register(EventListenerFlagEdit.class);
+		forge_bus.register(EventListenerReload.class);
+
+		ProofAbstractUtils.register(forge_bus);
 	}
 
 	public static void resetRecipeCaches(RecipeManager recipeManager)

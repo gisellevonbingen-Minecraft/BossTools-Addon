@@ -24,15 +24,24 @@ public class AddonClientProxy
 {
 	public AddonClientProxy()
 	{
+		this.registerFML();
+		this.registerForge();
+	}
+
+	public void registerFML()
+	{
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		fml_bus.addListener(this::onAtlasPreStitch);
 		fml_bus.addListener(this::onRegisterRenderers);
 		fml_bus.addGenericListener(MenuType.class, this::registerMenuType);
+	}
 
-		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-		forgeEventBus.register(EventListenerRenderSpaceSuitOverlay.class);
-		forgeEventBus.register(EventListenerRenderOxygenCanOverlay.class);
-		forgeEventBus.addListener(this::onRecipesUpdated);
+	public void registerForge()
+	{
+		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
+		forge_bus.register(EventListenerRenderSpaceSuitOverlay.class);
+		forge_bus.register(EventListenerRenderOxygenCanOverlay.class);
+		forge_bus.addListener(this::onRecipesUpdated);
 	}
 
 	public void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event)
@@ -58,5 +67,5 @@ public class AddonClientProxy
 	{
 		BeyondEarthAddon.resetRecipeCaches(event.getRecipeManager());
 	}
-	
+
 }
