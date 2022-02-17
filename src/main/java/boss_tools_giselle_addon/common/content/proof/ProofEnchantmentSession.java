@@ -65,8 +65,12 @@ public abstract class ProofEnchantmentSession extends ProofSession
 
 		if (LivingEntityHelper.isPlayingMode(entity) == true)
 		{
-			int energyUsing = this.getEnergyUsing();
-			this.getEnergyStorage().extractEnergy(energyUsing, false);
+			if (entity.level.isClientSide() == false)
+			{
+				int energyUsing = this.getEnergyUsing();
+				this.getEnergyStorage().extractEnergy(energyUsing, false);
+			}
+
 		}
 
 	}

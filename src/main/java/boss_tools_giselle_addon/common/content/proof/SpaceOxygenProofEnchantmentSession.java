@@ -34,12 +34,13 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 	@Override
 	public boolean canProvide()
 	{
-		IOxygenStorage oxygenStorage = this.getOxygenStorage();
-		int oxygenUsing = this.getOxygenUsing();
 		LivingEntity entity = this.getEntity();
 
 		if (LivingEntityHelper.isPlayingMode(entity) == true)
 		{
+			IOxygenStorage oxygenStorage = this.getOxygenStorage();
+			int oxygenUsing = this.getOxygenUsing();
+
 			if (oxygenStorage == null || oxygenStorage.extractOxygen(oxygenUsing, true) < oxygenUsing)
 			{
 				return false;
@@ -55,9 +56,20 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 	{
 		super.onProvide();
 
-		IOxygenStorage oxygenStorage = this.getOxygenStorage();
-		int oxygenUsing = this.getOxygenUsing();
-		oxygenStorage.extractOxygen(oxygenUsing, false);
+		LivingEntity entity = this.getEntity();
+
+		if (LivingEntityHelper.isPlayingMode(entity) == true)
+		{
+			IOxygenStorage oxygenStorage = this.getOxygenStorage();
+
+			if (oxygenStorage != null && entity.level.isClientSide() == false)
+			{
+				int oxygenUsing = this.getOxygenUsing();
+				oxygenStorage.extractOxygen(oxygenUsing, false);
+			}
+
+		}
+
 	}
 
 	@Override
@@ -65,7 +77,7 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 	{
 		return AddonConfigs.Common.enchantments.space_breathing_energyUsing.get();
 	}
-	
+
 	@Override
 	public int getProofDuration()
 	{

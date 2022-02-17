@@ -80,14 +80,6 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 		this.produceOxygen(module, player);
 	}
 
-	@Override
-	public void tickClient(IModule<ModuleSpaceBreathingUnit> module, PlayerEntity player)
-	{
-		ICustomModule.super.tickClient(module, player);
-
-		this.produceOxygen(module, player);
-	}
-
 	private void produceOxygen(IModule<ModuleSpaceBreathingUnit> module, PlayerEntity player)
 	{
 		long productionRate = this.getProduceRate(module, player);
@@ -112,7 +104,11 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 
 		long oxygenUsed = productionRateFirst - productionRate;
 		FloatingLong multiply = energyUsing.multiply(oxygenUsed);
-		module.useEnergy(player, multiply);
+
+		if (player.level.isClientSide() == false)
+		{
+			module.useEnergy(player, multiply);
+		}
 
 		int airSupply = player.getAirSupply();
 		int airFill = (int) Math.min(productionRateFirst, player.getMaxAirSupply() - airSupply);
@@ -151,8 +147,12 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 
 			if (module.canUseEnergy(entity, energyUsing) == true)
 			{
-				oxygenCharnger.getOxygenStorage().extractOxygen(oyxgenUsing, false);
-				module.useEnergy(entity, energyUsing);
+				if (entity.level.isClientSide() == false)
+				{
+					oxygenCharnger.getOxygenStorage().extractOxygen(oyxgenUsing, false);
+					module.useEnergy(entity, energyUsing);
+				}
+
 				return true;
 			}
 
