@@ -70,7 +70,11 @@ public class AddonModuleHelper
 
 				if (module.canUseEnergy(entity, usingEnergy) == true)
 				{
-					module.useEnergy(entity, usingEnergy);
+					if (entity.level.isClientSide() == false)
+					{
+						module.useEnergy(entity, usingEnergy);
+					}
+
 					cancel = true;
 				}
 
