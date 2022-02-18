@@ -2,6 +2,9 @@ package beyond_earth_giselle_addon.common.capability;
 
 import javax.annotation.Nullable;
 
+import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
+import beyond_earth_giselle_addon.common.compat.mekanism.AddonMekanismHelper;
+import beyond_earth_giselle_addon.common.compat.mekanism.OxygenStorageGasAdapter;
 import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -21,18 +24,18 @@ public class OxygenUtil2
 		{
 			return LazyOptional.of(oxygenStorage).cast();
 		}
-//		else if (CompatibleManager.MEKANISM.isLoaded() && capability == MekanismHelper.getGasHandlerCapability())
-//		{
-//			return LazyOptional.of(oxygenStorage).lazyMap(OxygenUtil2::getOxygenGasAdapter).cast();
-//		}
+		else if (AddonCompatibleManager.MEKANISM.isLoaded() && capability == AddonMekanismHelper.getGasHandlerCapability())
+		{
+			return LazyOptional.of(oxygenStorage).lazyMap(OxygenUtil2::getOxygenGasAdapter).cast();
+		}
 
 		return LazyOptional.empty();
 	}
 
-//	public static OxygenStorageGasAdapter getOxygenGasAdapter(IOxygenStorage oxygenStorage)
-//	{
-//		return new OxygenStorageGasAdapter(oxygenStorage, true, true);
-//	}
+	public static OxygenStorageGasAdapter getOxygenGasAdapter(IOxygenStorage oxygenStorage)
+	{
+		return new OxygenStorageGasAdapter(oxygenStorage, true, true);
+	}
 
 	private OxygenUtil2()
 	{
