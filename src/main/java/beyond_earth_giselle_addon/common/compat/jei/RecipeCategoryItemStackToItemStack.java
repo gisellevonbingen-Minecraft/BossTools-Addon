@@ -4,13 +4,13 @@ import com.google.common.cache.LoadingCache;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
-import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
 import net.minecraft.resources.ResourceLocation;
 import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
 import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipeType;
@@ -23,10 +23,10 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 	public static final int BACKGROUND_HEIGHT = 84;
 	public static final int ARROW_LEFT = 55;
 	public static final int ARROW_TOP = 29;
-	public static final int INPUT_X = 33;
-	public static final int INPUT_Y = 29;
-	public static final int OUTPUT_X = 88;
-	public static final int OUTPUT_Y = 29;
+	public static final int INPUT_X = 34;
+	public static final int INPUT_Y = 30;
+	public static final int OUTPUT_X = 89;
+	public static final int OUTPUT_Y = 30;
 
 	private LoadingCache<Integer, IDrawableAnimated> cachedArrows;
 	private IDrawable background;
@@ -49,9 +49,10 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 		return guiHelper.createDrawable(BACKGROUND_LOCATION, 0, 0, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
 	}
 
-	public void draw(R recipe, PoseStack stack, double mouseX, double mouseY)
+	@Override
+	public void draw(R recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY)
 	{
-		super.draw(recipe, stack, mouseX, mouseY);
+		super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
 
 		this.drawArrow(recipe, stack);
 		this.drawText(recipe, stack);
@@ -72,24 +73,15 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 	}
 
 	@Override
-	public void setIngredients(R recipe, IIngredients ingredients)
+	public void setRecipe(IRecipeLayoutBuilder builder, R recipe, IFocusGroup focuses)
 	{
-		ingredients.setInputIngredients(recipe.getIngredients());
-		ingredients.setOutput(VanillaTypes.ITEM, recipe.getOutput());
-	}
+		super.setRecipe(builder, recipe, focuses);
 
-	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, R recipe, IIngredients ingredients)
-	{
-		IGuiItemStackGroup stacks = recipeLayout.getItemStacks();
+		builder.addSlot(RecipeIngredientRole.INPUT, this.getInputX(), this.getInputY()) //
+				.addIngredients(recipe.getInput());
 
-		int inputSlot = this.getInputSlot();
-		stacks.init(inputSlot, true, this.getInputX(), this.getInputY());
-		stacks.set(inputSlot, ingredients.getInputs(VanillaTypes.ITEM).get(0));
-
-		int outputSlot = this.getOutputSlot();
-		stacks.init(outputSlot, false, this.getOutputX(), this.getOutputY());
-		stacks.set(outputSlot, ingredients.getOutputs(VanillaTypes.ITEM).get(0));
+		builder.addSlot(RecipeIngredientRole.OUTPUT, this.getOutputX(), this.getOutputY()) //
+				.addItemStack(recipe.getOutput());
 	}
 
 	public int getArrowLeft()
@@ -102,11 +94,6 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 		return ARROW_TOP;
 	}
 
-	public int getInputSlot()
-	{
-		return 0;
-	}
-
 	public int getInputX()
 	{
 		return INPUT_X;
@@ -115,11 +102,6 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 	public int getInputY()
 	{
 		return INPUT_Y;
-	}
-
-	public int getOutputSlot()
-	{
-		return 1;
 	}
 
 	public int getOutputX()
