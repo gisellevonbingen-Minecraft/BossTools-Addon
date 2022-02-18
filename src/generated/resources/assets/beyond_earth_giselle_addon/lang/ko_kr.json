@@ -24,7 +24,7 @@
   "item.jaopca.beyond_earth_compresseds": "압축 %s",
   
   "description.beyond_earth_giselle_addon.charge_mode": "충전 모드",
-    
+  
   "enchantment.beyond_earth_giselle_addon.space_breathing": "우주 호흡성",
   "enchantment.beyond_earth_giselle_addon.space_breathing.desc": "Beyond Earth 차원에서 호흡할 수 있습니다\n에너지를 가질 수 있는 갑옷에 마법 부여 가능합니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
   "enchantment.beyond_earth_giselle_addon.gravity_normalizing": "중력 정규화",
@@ -58,6 +58,7 @@
   "chargemode.beyond_earth_giselle_addon.none": "비활성화",
   "chargemode.beyond_earth_giselle_addon.armors": "활성화: 모든 갑옷",
   "chargemode.beyond_earth_giselle_addon.all": "활성화: 인벤토리 전체",
+  
   
   "jei.category.beyond_earth_giselle_addon.rolling": "압축기 - 압연",
   "jei.category.beyond_earth_giselle_addon.extruding": "압축기 - 압출",
