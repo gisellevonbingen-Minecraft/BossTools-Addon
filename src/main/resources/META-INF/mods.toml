@@ -1,34 +1,41 @@
 modLoader="javafml"
 loaderVersion="[39,)"
-license="MIT License"
+license="MIT"
+issueTrackerURL="https://github.com/gisellevonbingen/Minecraft-BossTools-Addon/issues"
+
 [[mods]]
-modId="beyond_earth_giselle_addon"
-version="${file.jarVersion}"
-displayName="Beyond Earth: Giselle Addon"
-credits="gisellevonbingen"
-authors="gisellevonbingen"
-description=''''''
+    modId="beyond_earth_giselle_addon"
+    version="${file.jarVersion}"
+    displayName="Beyond Earth: Giselle Addon"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/space-bosstools-giselle-addon"
+    authors="gisellevonbingen"
+    description='''Just add good things in my think for Beyond Earth'''
+    itemIcon="beyond_earth_giselle_addon:oxygen_can" #for Catalogue
+
 [[dependencies.beyond_earth_giselle_addon]]
     modId="forge"
     mandatory=true
     versionRange="[39.0.63,)"
     ordering="NONE"
     side="BOTH"
+
 [[dependencies.beyond_earth_giselle_addon]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.18.1,)"
     ordering="NONE"
     side="BOTH"
+
 [[dependencies.beyond_earth_giselle_addon]]
     modId="beyond_earth"
     mandatory=true
     versionRange="[6.0,)"
     ordering="AFTER"
     side="BOTH"
+
 [[dependencies.beyond_earth_giselle_addon]]
     modId="mekanism"
     mandatory=false
-    versionRange="[10.0.20,)"
+    versionRange="[10.1.0,)"
     ordering="AFTER"
     side="BOTH"
