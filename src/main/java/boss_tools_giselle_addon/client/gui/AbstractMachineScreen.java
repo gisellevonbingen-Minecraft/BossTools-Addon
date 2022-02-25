@@ -29,6 +29,16 @@ import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 
 public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> extends ContainerScreen<C>
 {
+	public static final String WORKINGAREA_TEXT_PREFIX = ctl("workingarea.");
+	public static final String WORKINGAREA_TEXT_KEY = WORKINGAREA_TEXT_PREFIX + "text";
+	public static final ResourceLocation WORKINGAREA_MIDDLE_TEXTURE = BossToolsAddon.rl("textures/gui/workingarea_middle.png");
+	public static final ResourceLocation WORKINGAREA_SIDE_TEXTURE = BossToolsAddon.rl("textures/gui/workingarea_side.png");
+
+	public static String ctl(String path)
+	{
+		return BossToolsAddon.tl("gui", path);
+	}
+
 	private boolean cachedWorkingAreaVisible;
 	private Button workingAreaVisibleButton;
 
@@ -154,13 +164,13 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 		int workingAreaLeft = left.x + left.getWidth() - this.leftPos;
 		int workignAreaTop = -workingAreaHeight;
 		int workingAreaOffsetX = workingAreaLeft;
-		this.minecraft.getTextureManager().bind(BossToolsAddon.rl("textures/gui/workingarea_side.png"));
+		this.minecraft.getTextureManager().bind(WORKINGAREA_SIDE_TEXTURE);
 		AbstractGui.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
-		this.minecraft.getTextureManager().bind(BossToolsAddon.rl("textures/gui/workingarea_middle.png"));
+		this.minecraft.getTextureManager().bind(WORKINGAREA_MIDDLE_TEXTURE);
 		AbstractGui.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, workingAreaWidth, workingAreaHeight, workingAreaWidth, workingAreaHeight);
 		workingAreaOffsetX += workingAreaWidth;
-		this.minecraft.getTextureManager().bind(BossToolsAddon.rl("textures/gui/workingarea_side.png"));
+		this.minecraft.getTextureManager().bind(WORKINGAREA_SIDE_TEXTURE);
 		AbstractGui.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
 
@@ -195,7 +205,7 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 	{
 		this.renderTank(stack, mouseX, mouseY, left, top, tank, true);
 	}
-	
+
 	protected void renderTank(MatrixStack stack, int mouseX, int mouseY, int left, int top, FluidTank tank, boolean renderTooltip)
 	{
 		FluidStack fluidInTank = tank.getFluid();
@@ -216,26 +226,20 @@ public class AbstractMachineScreen<C extends AbstractMachineContainer<?, ?>> ext
 	{
 		NumberFormat numberInstance = NumberFormat.getNumberInstance();
 		numberInstance.setMaximumFractionDigits(2);
-		TranslationTextComponent workingAreaText = new TranslationTextComponent(this.ctl("workingarea.text"), numberInstance.format(workingArea.getXsize()), numberInstance.format(workingArea.getYsize()), numberInstance.format(workingArea.getZsize()));
+		TranslationTextComponent workingAreaText = new TranslationTextComponent(WORKINGAREA_TEXT_KEY, numberInstance.format(workingArea.getXsize()), numberInstance.format(workingArea.getYsize()), numberInstance.format(workingArea.getZsize()));
 		return workingAreaText;
 	}
 
 	protected ITextComponent getWorkingAreaVisibleText(boolean visible)
 	{
-		String prefix = this.ctl("workingarea.");
 		String method = visible ? "hide" : "show";
-		return new TranslationTextComponent(prefix + method);
+		return new TranslationTextComponent(WORKINGAREA_TEXT_PREFIX + method);
 	}
 
 	protected String rtl(String path)
 	{
 		ResourceLocation registryName = this.getMenu().getTileEntity().getType().getRegistryName();
 		return BossToolsAddon.tl("gui", registryName, path);
-	}
-
-	protected String ctl(String path)
-	{
-		return BossToolsAddon.tl("gui", path);
 	}
 
 }

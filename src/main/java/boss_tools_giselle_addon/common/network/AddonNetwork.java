@@ -23,6 +23,9 @@ public class AddonNetwork
 
 	public static void registerAll()
 	{
+		registerMessage(IS2ISMachineMessageAutoPull.class, IS2ISMachineMessageAutoPull::new);
+		registerMessage(IS2ISMachineMessageAutoEject.class, IS2ISMachineMessageAutoEject::new);
+		
 		registerMessage(FuelLoaderMessageWorkingAreaVisible.class, FuelLoaderMessageWorkingAreaVisible::new);
 		registerMessage(GravityNormalizerMessageWorkingAreaVisible.class, GravityNormalizerMessageWorkingAreaVisible::new);
 		registerMessage(GravityNormalizerMessageRange.class, GravityNormalizerMessageRange::new);

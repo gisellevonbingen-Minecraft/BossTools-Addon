@@ -20,8 +20,8 @@ public class ItemStackToItemStackContainer<O extends ItemStackToItemStackContain
 		super(type, windowId, inv, tileEntity);
 
 		IItemHandlerModifiable itemHandler = tileEntity.getItemHandler();
-		this.inputSlot = this.addSlot(new SlotItemHandler(itemHandler, tileEntity.getSlotIngredient(), 40, 30));
-		this.addSlot(new SlotItemHandler(itemHandler, tileEntity.getSlotOutput(), 92, 30)
+		this.inputSlot = this.addSlot(new SlotItemHandler(itemHandler, tileEntity.getSlotIngredient(), 40, 22));
+		this.addSlot(new SlotItemHandler(itemHandler, tileEntity.getSlotOutput(), 92, 22)
 		{
 			@Override
 			public boolean mayPlace(ItemStack stack)
@@ -31,7 +31,13 @@ public class ItemStackToItemStackContainer<O extends ItemStackToItemStackContain
 		});
 
 		this.handlerEndIndex = this.slots.size();
-		ContainerHelper.addInventorySlots(this, inv, 8, 86, 144, this::addSlot);
+		int inventoryTop = this.getInventoryTop();
+		ContainerHelper.addInventorySlots(this, inv, 8, inventoryTop, inventoryTop + 58, this::addSlot);
+	}
+
+	public int getInventoryTop()
+	{
+		return 86;
 	}
 
 	public Slot getInputSlot()
