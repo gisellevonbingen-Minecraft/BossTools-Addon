@@ -15,10 +15,12 @@ import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 
 public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<AdvancedCompressorContainer>
 {
+	public static final int CHANGE_MODE_LEFT = 38;
+	public static final int CHANGE_MODE_TOP = 50;
+
 	private ItemIconButton changeModeButton;
 
 	public AdvancedCompressorScreen(AdvancedCompressorContainer container, PlayerInventory inv, ITextComponent text)
@@ -31,7 +33,7 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 	{
 		super.init();
 
-		this.changeModeButton = this.addButton(new ItemIconButton(this.leftPos + 38, this.topPos + 50, 20, 20, ItemStack.EMPTY, this::onChangeModeButtonClick));
+		this.changeModeButton = this.addButton(new ItemIconButton(this.leftPos + CHANGE_MODE_LEFT, this.topPos + CHANGE_MODE_TOP, 20, 20, ItemStack.EMPTY, this::onChangeModeButtonClick));
 		this.refreshChnageModeButtonText();
 	}
 
@@ -40,16 +42,6 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 	{
 		super.render(stack, mouseX, mouseY, partialTicks);
 		this.refreshChnageModeButtonText();
-
-		if (this.getChangeModeButton().isHovered() == true)
-		{
-			AdvancedCompressorTileEntity tileEntity = this.getMenu().getTileEntity();
-			int direction = this.getCyclicDirection();
-			ICompressorMode cyclicMode = tileEntity.getCyclicMode(direction);
-			String text = direction > 0 ? "next" : "prev";
-			this.renderTooltip(stack, new TranslationTextComponent(this.rtl("change." + text)).append(": ").append(cyclicMode.getText()), mouseX, mouseY);
-		}
-
 	}
 
 	private int getCyclicDirection()
