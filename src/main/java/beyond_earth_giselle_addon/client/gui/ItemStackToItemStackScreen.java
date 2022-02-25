@@ -4,12 +4,12 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
+import beyond_earth_giselle_addon.common.block.entity.ItemStackToItemStackBlockEntityMultiRecipe;
 import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainerMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.mrscauthd.beyond_earth.gui.helper.GuiHelper;
-import net.mrscauthd.beyond_earth.machines.tile.ItemStackToItemStackBlockEntity;
 
 public class ItemStackToItemStackScreen<C extends ItemStackToItemStackContainerMenu<C, ?>> extends AbstractMachineScreen<C>
 {
@@ -32,7 +32,7 @@ public class ItemStackToItemStackScreen<C extends ItemStackToItemStackContainerM
 	{
 		super.renderContents(stack, mouseX, mouseY, partialTicks);
 
-		ItemStackToItemStackBlockEntity blockEntity = this.getMenu().getBlockEntity();
+		ItemStackToItemStackBlockEntityMultiRecipe blockEntity = this.getMenu().getBlockEntity();
 		GuiHelper.drawArrow(stack, this.leftPos + ARROW_LEFT, this.topPos + ARROW_TOP, blockEntity.getTimerRatio());
 		this.renderEnergy(stack, mouseX, mouseY, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, blockEntity.getPrimaryEnergyStorage());
 	}
