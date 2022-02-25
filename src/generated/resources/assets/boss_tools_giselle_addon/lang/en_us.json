@@ -43,9 +43,6 @@
   "gui.boss_tools_giselle_addon.workingarea.show": "Show",
   "gui.boss_tools_giselle_addon.workingarea.hide": "Hide",
   
-  "gui.boss_tools_giselle_addon.advanced_compressor.change.next": "Next",
-  "gui.boss_tools_giselle_addon.advanced_compressor.change.prev": "Prev",
-  
   "gui.boss_tools_giselle_addon.flag_edit.title": "Edit Flag",
   "gui.boss_tools_giselle_addon.flag_edit.verify": "Verify",
   "gui.boss_tools_giselle_addon.flag_edit.verifying": "Verifying",

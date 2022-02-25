@@ -7,6 +7,7 @@ import java.util.List;
 
 import boss_tools_giselle_addon.client.gui.ItemStackToItemStackScreen;
 import boss_tools_giselle_addon.common.inventory.container.ItemStackToItemStackContainer;
+import boss_tools_giselle_addon.common.tile.ItemStackToItemStackTileEntityMultiRecipe;
 import mezz.jei.api.gui.handlers.IGuiClickableArea;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import mezz.jei.api.recipe.IFocusFactory;
@@ -17,9 +18,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.mrscauthd.boss_tools.gauge.GaugeTextHelper;
 import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
-import net.mrscauthd.boss_tools.machines.tile.ItemStackToItemStackTileEntity;
 
-public abstract class ItemStackToItemStackGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntity> implements IGuiContainerHandler<S>
+public abstract class ItemStackToItemStackGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntityMultiRecipe> implements IGuiContainerHandler<S>
 {
 	public ItemStackToItemStackGuiContainerHandler()
 	{

@@ -12,8 +12,10 @@ import boss_tools_giselle_addon.common.inventory.container.AdvancedCompressorCon
 import boss_tools_giselle_addon.common.registries.AddonRecipes;
 import boss_tools_giselle_addon.common.registries.AddonTileEntityTypes;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.util.ResourceLocation;
@@ -24,12 +26,11 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.mrscauthd.boss_tools.ModInnet;
 import net.mrscauthd.boss_tools.crafting.BossToolsRecipeTypes;
 import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipeType;
-import net.mrscauthd.boss_tools.machines.tile.ItemStackToItemStackTileEntity;
 import net.mrscauthd.boss_tools.machines.tile.NamedComponentRegistry;
 import net.mrscauthd.boss_tools.machines.tile.PowerSystemEnergyCommon;
 import net.mrscauthd.boss_tools.machines.tile.PowerSystemRegistry;
 
-public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntity
+public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntityMultiRecipe
 {
 	public static final String KEY_MODE = "mode";
 
@@ -73,9 +74,12 @@ public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntity
 		return ElectricBlastFurnaceBlock.LIT;
 	}
 
-	public ItemStackToItemStackRecipeType<?> getRecipeType()
+	@Override
+	public List<IRecipeType<? extends IRecipe<IInventory>>> getRecipeTypes()
 	{
-		return this.getMode().getRecipeType();
+		List<IRecipeType<? extends IRecipe<IInventory>>> list = super.getRecipeTypes();
+		list.add(this.getMode().getRecipeType());
+		return list;
 	}
 
 	public List<ICompressorMode> getAvailableModes()
@@ -109,7 +113,7 @@ public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntity
 
 		this.getTileData().putString(KEY_MODE, key.toString());
 		this.resetTimer();
-		ItemStackToItemStackTileEntityUtils.getItemStackCacher(this).set(ItemStack.EMPTY);
+		this.clearRecipeCache();
 		this.setChanged();
 	}
 

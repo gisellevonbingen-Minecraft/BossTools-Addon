@@ -1,5 +1,6 @@
 package boss_tools_giselle_addon.common.inventory.container;
 
+import boss_tools_giselle_addon.common.tile.ItemStackToItemStackTileEntityMultiRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.ContainerType;
@@ -8,16 +9,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
 import net.mrscauthd.boss_tools.gui.helper.ContainerHelper;
-import net.mrscauthd.boss_tools.machines.tile.ItemStackToItemStackTileEntity;
 
-public class ItemStackToItemStackContainer<O extends ItemStackToItemStackContainer<O, T>, T extends ItemStackToItemStackTileEntity> extends AbstractMachineContainer<ItemStackToItemStackContainer<O, T>, T>
+public class ItemStackToItemStackContainer<O extends ItemStackToItemStackContainer<O, T>, T extends ItemStackToItemStackTileEntityMultiRecipe> extends AbstractMachineContainer<ItemStackToItemStackContainer<O, T>, T>
 {
-	@FunctionalInterface
-	public interface IItemStackToItemStackContainerConstructor<O extends ItemStackToItemStackContainer<O, T>, T extends ItemStackToItemStackTileEntity>
-	{
-		public ItemStackToItemStackContainer<O, T> invoke(ContainerType<? extends ItemStackToItemStackContainer<O, T>> type, int windowId, PlayerInventory inv, T tileEntity);
-	}
-
 	private int handlerEndIndex;
 	private Slot inputSlot;
 

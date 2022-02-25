@@ -5,12 +5,12 @@ import java.util.List;
 
 import boss_tools_giselle_addon.client.gui.ItemStackToItemStackScreen;
 import boss_tools_giselle_addon.common.inventory.container.ItemStackToItemStackContainer;
+import boss_tools_giselle_addon.common.tile.ItemStackToItemStackTileEntityMultiRecipe;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.mrscauthd.boss_tools.machines.tile.ItemStackToItemStackTileEntity;
 
-public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntity> implements IItemStackToitemStackRegistration<S, C>
+public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntityMultiRecipe> implements IItemStackToitemStackRegistration<S, C>
 {
 	private Class<S> screenClass;
 	private Class<C> containerClass;

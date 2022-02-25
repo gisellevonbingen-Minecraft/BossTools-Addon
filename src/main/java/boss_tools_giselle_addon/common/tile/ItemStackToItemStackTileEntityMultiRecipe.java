@@ -82,6 +82,14 @@ public abstract class ItemStackToItemStackTileEntityMultiRecipe extends ItemStac
 		return null;
 	}
 
+	protected void clearRecipeCache()
+	{
+		this.itemStackCacher.set(ItemStack.EMPTY);
+		this.cachedRecipe = null;
+		this.setMaxTimer(0);
+		this.resetTimer();
+	}
+
 	@Override
 	protected ItemStackToItemStackRecipe cacheRecipe()
 	{

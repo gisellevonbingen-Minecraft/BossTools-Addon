@@ -43,9 +43,6 @@
   "gui.boss_tools_giselle_addon.workingarea.show": "표시",
   "gui.boss_tools_giselle_addon.workingarea.hide": "숨김",
   
-  "gui.boss_tools_giselle_addon.advanced_compressor.change.next": "다음",
-  "gui.boss_tools_giselle_addon.advanced_compressor.change.prev": "이전",
-  
   "gui.boss_tools_giselle_addon.flag_edit.title": "깃발 편집",
   "gui.boss_tools_giselle_addon.flag_edit.verify": "확인",
   "gui.boss_tools_giselle_addon.flag_edit.verifying": "확인중",
