@@ -1,5 +1,6 @@
 package beyond_earth_giselle_addon.common.inventory;
 
+import beyond_earth_giselle_addon.common.block.entity.ItemStackToItemStackBlockEntityMultiRecipe;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
@@ -8,16 +9,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
 import net.mrscauthd.beyond_earth.gui.helper.ContainerHelper;
-import net.mrscauthd.beyond_earth.machines.tile.ItemStackToItemStackBlockEntity;
 
-public class ItemStackToItemStackContainerMenu<O extends ItemStackToItemStackContainerMenu<O, T>, T extends ItemStackToItemStackBlockEntity> extends AbstractMachineContainerMenu<ItemStackToItemStackContainerMenu<O, T>, T>
+public class ItemStackToItemStackContainerMenu<O extends ItemStackToItemStackContainerMenu<O, T>, T extends ItemStackToItemStackBlockEntityMultiRecipe> extends AbstractMachineContainerMenu<ItemStackToItemStackContainerMenu<O, T>, T>
 {
-	@FunctionalInterface
-	public interface IItemStackToItemStackContainerConstructor<O extends ItemStackToItemStackContainerMenu<O, T>, T extends ItemStackToItemStackBlockEntity>
-	{
-		public ItemStackToItemStackContainerMenu<O, T> invoke(MenuType<? extends ItemStackToItemStackContainerMenu<O, T>> type, int windowId, Inventory inv, T tileEntity);
-	}
-
 	private int handlerEndIndex;
 	private net.minecraft.world.inventory.Slot inputSlot;
 
