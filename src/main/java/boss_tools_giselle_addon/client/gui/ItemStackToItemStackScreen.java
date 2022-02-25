@@ -4,11 +4,11 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.inventory.container.ItemStackToItemStackContainer;
+import boss_tools_giselle_addon.common.tile.ItemStackToItemStackTileEntityMultiRecipe;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
-import net.mrscauthd.boss_tools.machines.tile.ItemStackToItemStackTileEntity;
 
 public class ItemStackToItemStackScreen<C extends ItemStackToItemStackContainer<C, ?>> extends AbstractMachineScreen<C>
 {
@@ -31,7 +31,7 @@ public class ItemStackToItemStackScreen<C extends ItemStackToItemStackContainer<
 	{
 		super.renderContents(stack, mouseX, mouseY, partialTicks);
 
-		ItemStackToItemStackTileEntity tileEntity = this.getMenu().getTileEntity();
+		ItemStackToItemStackTileEntityMultiRecipe tileEntity = this.getMenu().getTileEntity();
 		GuiHelper.drawArrow(stack, this.leftPos + ARROW_LEFT, this.topPos + ARROW_TOP, tileEntity.getTimerRatio());
 		this.renderEnergy(stack, mouseX, mouseY, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, tileEntity.getPrimaryEnergyStorage());
 	}
