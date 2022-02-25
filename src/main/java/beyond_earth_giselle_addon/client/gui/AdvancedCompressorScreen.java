@@ -13,12 +13,14 @@ import beyond_earth_giselle_addon.common.network.AdvancedCompressorMessageMode;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 
 public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<AdvancedCompressorContainerMenu>
 {
+	private static final int CHANGE_MODE_LEFT = 38;
+	private static final int CHANGE_MODE_TOP = 50;
+
 	private ItemIconButton changeModeButton;
 
 	public AdvancedCompressorScreen(AdvancedCompressorContainerMenu menu, Inventory inventory, Component text)
@@ -31,7 +33,7 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 	{
 		super.init();
 
-		this.changeModeButton = this.addRenderableWidget(new ItemIconButton(this.leftPos + 38, this.topPos + 50, 20, 20, ItemStack.EMPTY, this::onChangeModeButtonClick));
+		this.changeModeButton = this.addRenderableWidget(new ItemIconButton(this.leftPos + CHANGE_MODE_LEFT, this.topPos + CHANGE_MODE_TOP, 20, 20, ItemStack.EMPTY, this::onChangeModeButtonClick));
 		this.refreshChnageModeButtonText();
 	}
 
@@ -40,16 +42,6 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 	{
 		super.render(stack, mouseX, mouseY, partialTicks);
 		this.refreshChnageModeButtonText();
-
-		if (this.getChangeModeButton().isHoveredOrFocused() == true)
-		{
-			AdvancedCompressorBlockEntity tileEntity = this.getMenu().getBlockEntity();
-			int direction = this.getCyclicDirection();
-			ICompressorMode cyclicMode = tileEntity.getCyclicMode(direction);
-			String text = direction > 0 ? "next" : "prev";
-			this.renderTooltip(stack, new TranslatableComponent(this.rtl("change." + text)).append(": ").append(cyclicMode.getText()), mouseX, mouseY);
-		}
-
 	}
 
 	private int getCyclicDirection()
