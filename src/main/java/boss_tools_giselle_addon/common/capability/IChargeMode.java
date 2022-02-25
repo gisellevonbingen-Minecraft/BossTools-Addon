@@ -11,12 +11,14 @@ public interface IChargeMode
 {
 	public static final String LANGUGE_CATEGORY_CHARGEMODE = "chargemode";
 
+	public static ITextComponent createDisplayName(ResourceLocation name)
+	{
+		return new TranslationTextComponent(BossToolsAddon.tl(LANGUGE_CATEGORY_CHARGEMODE, name));
+	}
+
 	public ResourceLocation getName();
 
-	public default ITextComponent getDisplayName()
-	{
-		return new TranslationTextComponent(BossToolsAddon.tl(LANGUGE_CATEGORY_CHARGEMODE, this.getName()));
-	}
+	public ITextComponent getDisplayName();
 
 	public Iterable<ItemStack> getItemStacks(Entity entity);
 }
