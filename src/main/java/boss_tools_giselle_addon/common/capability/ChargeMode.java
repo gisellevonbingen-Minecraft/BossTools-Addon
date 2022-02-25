@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 public enum ChargeMode implements IChargeMode
@@ -21,11 +22,13 @@ public enum ChargeMode implements IChargeMode
 
 	private final ResourceLocation name;
 	private final Function<Entity, Iterable<ItemStack>> function;
+	private final ITextComponent displayName;
 
 	private ChargeMode(ResourceLocation name, Function<Entity, Iterable<ItemStack>> function)
 	{
 		this.name = name;
 		this.function = function;
+		this.displayName = IChargeMode.createDisplayName(name);
 	}
 
 	@Override
@@ -43,6 +46,12 @@ public enum ChargeMode implements IChargeMode
 	public Iterable<ItemStack> getItemStacks(Entity entity)
 	{
 		return this.getFunction().apply(entity);
+	}
+
+	@Override
+	public ITextComponent getDisplayName()
+	{
+		return this.displayName;
 	}
 
 }
