@@ -3,7 +3,6 @@ package beyond_earth_giselle_addon.client.gui;
 import org.lwjgl.glfw.GLFW;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.vertex.PoseStack;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.block.entity.AdvancedCompressorBlockEntity;
@@ -39,7 +38,7 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 	{
 		super.init();
 
-		this.changeModeButton = this.addRenderableWidget(new ItemIconButton(this.leftPos + CHANGE_MODE_LEFT, this.topPos + CHANGE_MODE_TOP, 20, 20, ItemStack.EMPTY, this::onChangeModeButtonClick));
+		this.changeModeButton = this.addRenderableWidget(new ItemIconButton(this.leftPos + CHANGE_MODE_LEFT, this.topPos + CHANGE_MODE_TOP, ItemStack.EMPTY, this::onChangeModeButtonClick));
 		this.refreshChnageModeButtonText();
 
 		this.getAutoPullButton().y += AUTO_PULL_Y_OFFSET;
@@ -60,18 +59,12 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 		return InputConstants.isKeyDown(window, GLFW.GLFW_KEY_LEFT_SHIFT) ? -1 : 1;
 	}
 
-	@Override
-	protected void renderLabels(PoseStack stack, int mouseX, int mouseY)
-	{
-		super.renderLabels(stack, mouseX, mouseY);
-
-		ItemIconButton button = this.getChangeModeButton();
-		this.font.draw(stack, this.getMenu().getBlockEntity().getMode().getText(), button.x + button.getWidth() + 2 - this.leftPos, button.y + button.getHeight() - this.font.lineHeight - this.topPos, 0x404040);
-	}
-
 	public void refreshChnageModeButtonText()
 	{
-		this.getChangeModeButton().setItemStack(this.getMenu().getBlockEntity().getMode().getIcon());
+		ItemIconButton button = this.getChangeModeButton();
+		ICompressorMode mode = this.getMenu().getBlockEntity().getMode();
+		button.setItemStack(mode.getIcon());
+		button.setMessage(mode.getText());
 	}
 
 	public void onChangeModeButtonClick(Button button)

@@ -11,6 +11,7 @@ import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -32,17 +33,22 @@ public class SimpleCheckBoxButton extends AbstractButton
 
 	public SimpleCheckBoxButton(int x, int y, Component text)
 	{
-		this(x, y, text, false);
+		this(x, y, false, text);
 	}
 
-	public SimpleCheckBoxButton(int x, int y, Component text, boolean checked)
+	public SimpleCheckBoxButton(int x, int y, boolean checked)
 	{
-		this(x, y, text, checked, true);
+		this(x, y, checked, TextComponent.EMPTY, false);
 	}
 
-	public SimpleCheckBoxButton(int x, int y, Component text, boolean checked, boolean showText)
+	public SimpleCheckBoxButton(int x, int y, boolean checked, Component message)
 	{
-		super(x, y, CHECKER_WIDTH, CHECKER_HEIGHT, text);
+		this(x, y, checked, message, true);
+	}
+
+	public SimpleCheckBoxButton(int x, int y, boolean checked, Component message, boolean showText)
+	{
+		super(x, y, CHECKER_WIDTH, CHECKER_HEIGHT, message);
 		this.checked = checked;
 		this.autoToggle = true;
 
