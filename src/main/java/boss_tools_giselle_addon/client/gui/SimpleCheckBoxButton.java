@@ -11,6 +11,7 @@ import net.minecraft.client.gui.widget.button.AbstractButton;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 public class SimpleCheckBoxButton extends AbstractButton
 {
@@ -29,17 +30,22 @@ public class SimpleCheckBoxButton extends AbstractButton
 
 	public SimpleCheckBoxButton(int x, int y, ITextComponent text)
 	{
-		this(x, y, text, false);
+		this(x, y, false, text);
 	}
 
-	public SimpleCheckBoxButton(int x, int y, ITextComponent text, boolean checked)
+	public SimpleCheckBoxButton(int x, int y, boolean checked)
 	{
-		this(x, y, text, checked, true);
+		this(x, y, checked, StringTextComponent.EMPTY, false);
 	}
 
-	public SimpleCheckBoxButton(int x, int y, ITextComponent text, boolean checked, boolean showText)
+	public SimpleCheckBoxButton(int x, int y, boolean checked, ITextComponent message)
 	{
-		super(x, y, CHECKER_WIDTH, CHECKER_HEIGHT, text);
+		this(x, y, checked, message, true);
+	}
+
+	public SimpleCheckBoxButton(int x, int y, boolean checked, ITextComponent message, boolean showText)
+	{
+		super(x, y, CHECKER_WIDTH, CHECKER_HEIGHT, message);
 		this.checked = checked;
 		this.autoToggle = true;
 
