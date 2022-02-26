@@ -29,6 +29,16 @@ import net.mrscauthd.beyond_earth.gui.helper.GuiHelper;
 
 public class AbstractMachineScreen<M extends AbstractMachineContainerMenu<?, ?>> extends AbstractContainerScreen<M>
 {
+	public static final String WORKINGAREA_TEXT_PREFIX = ctl("workingarea.");
+	public static final String WORKINGAREA_TEXT_KEY = WORKINGAREA_TEXT_PREFIX + "text";
+	public static final ResourceLocation WORKINGAREA_MIDDLE_TEXTURE = BeyondEarthAddon.rl("textures/gui/workingarea_middle.png");
+	public static final ResourceLocation WORKINGAREA_SIDE_TEXTURE = BeyondEarthAddon.rl("textures/gui/workingarea_side.png");
+
+	public static String ctl(String path)
+	{
+		return BeyondEarthAddon.tl("gui", path);
+	}
+
 	private boolean cachedWorkingAreaVisible;
 	private Button workingAreaVisibleButton;
 
@@ -154,13 +164,13 @@ public class AbstractMachineScreen<M extends AbstractMachineContainerMenu<?, ?>>
 		int workingAreaLeft = left.x + left.getWidth() - this.leftPos;
 		int workignAreaTop = -workingAreaHeight;
 		int workingAreaOffsetX = workingAreaLeft;
-		RenderSystem.setShaderTexture(0, BeyondEarthAddon.rl("textures/gui/workingarea_side.png"));
+		RenderSystem.setShaderTexture(0, WORKINGAREA_SIDE_TEXTURE);
 		Screen.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
-		RenderSystem.setShaderTexture(0, BeyondEarthAddon.rl("textures/gui/workingarea_middle.png"));
+		RenderSystem.setShaderTexture(0, WORKINGAREA_MIDDLE_TEXTURE);
 		Screen.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, workingAreaWidth, workingAreaHeight, workingAreaWidth, workingAreaHeight);
 		workingAreaOffsetX += workingAreaWidth;
-		RenderSystem.setShaderTexture(0, BeyondEarthAddon.rl("textures/gui/workingarea_side.png"));
+		RenderSystem.setShaderTexture(0, WORKINGAREA_SIDE_TEXTURE);
 		Screen.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
 
@@ -216,26 +226,20 @@ public class AbstractMachineScreen<M extends AbstractMachineContainerMenu<?, ?>>
 	{
 		NumberFormat numberInstance = NumberFormat.getNumberInstance();
 		numberInstance.setMaximumFractionDigits(2);
-		TranslatableComponent workingAreaText = new TranslatableComponent(this.ctl("workingarea.text"), numberInstance.format(workingArea.getXsize()), numberInstance.format(workingArea.getYsize()), numberInstance.format(workingArea.getZsize()));
+		TranslatableComponent workingAreaText = new TranslatableComponent(WORKINGAREA_TEXT_KEY, numberInstance.format(workingArea.getXsize()), numberInstance.format(workingArea.getYsize()), numberInstance.format(workingArea.getZsize()));
 		return workingAreaText;
 	}
 
 	protected Component getWorkingAreaVisibleText(boolean visible)
 	{
-		String prefix = this.ctl("workingarea.");
 		String method = visible ? "hide" : "show";
-		return new TranslatableComponent(prefix + method);
+		return new TranslatableComponent(WORKINGAREA_TEXT_PREFIX + method);
 	}
 
 	protected String rtl(String path)
 	{
 		ResourceLocation registryName = this.getMenu().getBlockEntity().getType().getRegistryName();
 		return BeyondEarthAddon.tl("gui", registryName, path);
-	}
-
-	protected String ctl(String path)
-	{
-		return BeyondEarthAddon.tl("gui", path);
 	}
 
 }
