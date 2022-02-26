@@ -65,6 +65,7 @@ public class ItemStackToItemStackScreen<C extends ItemStackToItemStackContainer<
 			}
 		});
 		this.autoEjectButton.setAutoToggle(false);
+		this.refreshAutoTransferCheckBoxStates();
 	}
 
 	@FunctionalInterface

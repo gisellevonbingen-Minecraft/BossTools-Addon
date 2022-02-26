@@ -69,7 +69,6 @@ public class SimpleCheckBoxButton extends AbstractButton
 
 	}
 
-	@SuppressWarnings("deprecation")
 	public void renderButton(MatrixStack stack, int mouseX, int mouseY, float p_230431_4_)
 	{
 		Minecraft minecraft = Minecraft.getInstance();
