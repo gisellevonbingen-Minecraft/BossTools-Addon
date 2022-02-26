@@ -116,7 +116,7 @@ public abstract class ItemStackToItemStackTileEntityMultiRecipe extends ItemStac
 		if (autoTimer >= this.getAutoMaxTimer())
 		{
 			autoTimer = 0;
-			int amount = 4;
+			int amount = 1;
 
 			if (this.isAutoPull() == true)
 			{
