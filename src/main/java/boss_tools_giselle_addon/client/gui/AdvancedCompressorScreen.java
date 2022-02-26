@@ -2,8 +2,6 @@ package boss_tools_giselle_addon.client.gui;
 
 import org.lwjgl.glfw.GLFW;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.inventory.container.AdvancedCompressorContainer;
 import boss_tools_giselle_addon.common.network.AddonNetwork;
@@ -39,7 +37,7 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 	{
 		super.init();
 
-		this.changeModeButton = this.addButton(new ItemIconButton(this.leftPos + CHANGE_MODE_LEFT, this.topPos + CHANGE_MODE_TOP, 20, 20, ItemStack.EMPTY, this::onChangeModeButtonClick));
+		this.changeModeButton = this.addButton(new ItemIconButton(this.leftPos + CHANGE_MODE_LEFT, this.topPos + CHANGE_MODE_TOP, ItemStack.EMPTY, this::onChangeModeButtonClick));
 		this.refreshChnageModeButtonText();
 
 		this.getAutoPullButton().y += AUTO_PULL_Y_OFFSET;
@@ -60,18 +58,12 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 		return InputMappings.isKeyDown(window, GLFW.GLFW_KEY_LEFT_SHIFT) ? -1 : 1;
 	}
 
-	@Override
-	protected void renderLabels(MatrixStack stack, int mouseX, int mouseY)
-	{
-		super.renderLabels(stack, mouseX, mouseY);
-
-		ItemIconButton button = this.getChangeModeButton();
-		this.font.draw(stack, this.getMenu().getTileEntity().getMode().getText(), button.x + button.getWidth() + 2 - this.leftPos, button.y + button.getHeight() - this.font.lineHeight - this.topPos, 0x404040);
-	}
-
 	public void refreshChnageModeButtonText()
 	{
-		this.getChangeModeButton().setItemStack(this.getMenu().getTileEntity().getMode().getIcon());
+		ItemIconButton button = this.getChangeModeButton();
+		ICompressorMode mode = this.getMenu().getTileEntity().getMode();
+		button.setItemStack(mode.getIcon());
+		button.setMessage(mode.getText());
 	}
 
 	public void onChangeModeButtonClick(Button button)
