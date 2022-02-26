@@ -38,6 +38,8 @@
   "container.beyond_earth_giselle_addon.advanced_compressor": "고급 압축기",
   "container.beyond_earth_giselle_addon.gravity_normalizer": "중력 정규화 장치",
   
+  "gui.beyond_earth_giselle_addon.auto_pull": "자동 투입",
+  "gui.beyond_earth_giselle_addon.auto_eject": "자동 배출",
   "gui.beyond_earth_giselle_addon.workingarea.text": "작업 영역: %1$sx%2$sx%3$s",
   "gui.beyond_earth_giselle_addon.workingarea.show": "표시",
   "gui.beyond_earth_giselle_addon.workingarea.hide": "숨김",

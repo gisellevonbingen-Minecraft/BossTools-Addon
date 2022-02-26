@@ -38,6 +38,8 @@
   "container.beyond_earth_giselle_addon.advanced_compressor": "Advanced Compressor",
   "container.beyond_earth_giselle_addon.gravity_normalizer": "Gravity Normalizer",
   
+  "gui.beyond_earth_giselle_addon.auto_pull": "Auto Pull",
+  "gui.beyond_earth_giselle_addon.auto_eject": "Auto Eject",
   "gui.beyond_earth_giselle_addon.workingarea.text": "Working Area: %1$sx%2$sx%3$s",
   "gui.beyond_earth_giselle_addon.workingarea.show": "Show",
   "gui.beyond_earth_giselle_addon.workingarea.hide": "Hide",
