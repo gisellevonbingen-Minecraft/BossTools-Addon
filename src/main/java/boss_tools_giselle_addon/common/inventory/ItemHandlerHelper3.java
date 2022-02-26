@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class ItemHandlerHelper3
 {
@@ -56,6 +57,34 @@ public class ItemHandlerHelper3
 		}
 
 		return list;
+	}
+
+	public static ItemStack tryStackTransfer(IItemHandler from, IItemHandler to, int amount)
+	{
+		int fromSlots = from.getSlots();
+
+		for (int fromSlot = 0; fromSlot < fromSlots; fromSlot++)
+		{
+			ItemStack extracting = from.extractItem(fromSlot, amount, true);
+
+			if (extracting.isEmpty() == true)
+			{
+				continue;
+			}
+
+			ItemStack inserting = ItemHandlerHelper.insertItemStacked(to, extracting, true);
+			int insertedCount = extracting.getCount() - inserting.getCount();
+
+			if (insertedCount > 0)
+			{
+				ItemStack extracted = from.extractItem(fromSlot, insertedCount, false);
+				ItemStack inserted = ItemHandlerHelper.insertItemStacked(to, extracted, false);
+				return inserted;
+			}
+
+		}
+
+		return ItemStack.EMPTY;
 	}
 
 	private ItemHandlerHelper3()
