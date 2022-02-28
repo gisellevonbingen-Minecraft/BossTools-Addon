@@ -77,12 +77,12 @@ public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 		}
 		else
 		{
-			switch (focus.getMode())
+			switch (focus.getRole())
 			{
 				case INPUT:
-					return getSubListBuy(focus.getValue());
+					return getSubListBuy(focus.getTypedValue().getIngredient());
 				case OUTPUT:
-					return getSubListSell(focus.getValue());
+					return getSubListSell(focus.getTypedValue().getIngredient());
 				default:
 					return this;
 			}

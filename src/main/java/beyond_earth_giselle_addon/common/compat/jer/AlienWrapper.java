@@ -2,16 +2,12 @@ package beyond_earth_giselle_addon.common.compat.jer;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import jeresources.reference.Resources;
 import jeresources.util.Font;
 import jeresources.util.RenderHelper;
 import jeresources.util.TranslationHelper;
-import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IFocus;
 import mezz.jei.api.recipe.category.extensions.IRecipeCategoryExtension;
 import net.minecraft.world.item.ItemStack;
@@ -25,13 +21,6 @@ public class AlienWrapper implements IRecipeCategoryExtension
 	public AlienWrapper(AlienEntry entry)
 	{
 		this.entry = entry;
-	}
-
-	@Override
-	public void setIngredients(@Nonnull IIngredients ingredients)
-	{
-		ingredients.setInputs(VanillaTypes.ITEM, entry.getInputs());
-		ingredients.setOutputs(VanillaTypes.ITEM, entry.getOutputs());
 	}
 
 	public AlienTradeList getTrades(int level)
