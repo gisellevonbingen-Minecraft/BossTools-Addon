@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import beyond_earth_giselle_addon.client.gui.ItemStackToItemStackScreen;
+import beyond_earth_giselle_addon.common.block.entity.ItemStackToItemStackBlockEntityMultiRecipe;
 import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainerMenu;
 import mezz.jei.api.gui.handlers.IGuiClickableArea;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
@@ -17,9 +18,8 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.mrscauthd.beyond_earth.gauge.GaugeTextHelper;
 import net.mrscauthd.beyond_earth.gui.helper.GuiHelper;
-import net.mrscauthd.beyond_earth.machines.tile.ItemStackToItemStackBlockEntity;
 
-public abstract class ItemStackToItemStackGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ? extends T>, T extends ItemStackToItemStackBlockEntity> implements IGuiContainerHandler<S>
+public abstract class ItemStackToItemStackGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ? extends T>, T extends ItemStackToItemStackBlockEntityMultiRecipe> implements IGuiContainerHandler<S>
 {
 	public ItemStackToItemStackGuiContainerHandler()
 	{

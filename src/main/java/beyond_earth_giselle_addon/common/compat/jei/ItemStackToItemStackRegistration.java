@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beyond_earth_giselle_addon.client.gui.ItemStackToItemStackScreen;
+import beyond_earth_giselle_addon.common.block.entity.ItemStackToItemStackBlockEntityMultiRecipe;
 import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainerMenu;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.mrscauthd.beyond_earth.machines.tile.ItemStackToItemStackBlockEntity;
 
-public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ? extends T>, T extends ItemStackToItemStackBlockEntity> implements IItemStackToitemStackRegistration<S, C>
+public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ? extends T>, T extends ItemStackToItemStackBlockEntityMultiRecipe> implements IItemStackToitemStackRegistration<S, C>
 {
 	private Class<S> screenClass;
 	private Class<C> containerClass;

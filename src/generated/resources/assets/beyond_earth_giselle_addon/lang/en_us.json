@@ -15,9 +15,8 @@
   "description.beyond_earth_giselle_addon.venus_acid_proof_unit": "Don't damage from acid rain in Beyond Earth dimensions",
   "module.beyond_earth_giselle_addon.gravity_normalizing_unit": "Gravity Normalizing Unit",
   "description.beyond_earth_giselle_addon.gravity_normalizing_unit": "Normalize gravity like overworld in Beyond Earth dimensions",
- 
   "description.beyond_earth_giselle_addon.instead_gravity_normalizing_unit": "Can use instead of Gravity Normalizing Unit",
- 
+  
   "item.beyond_earth_giselle_addon.oxygen_can": "Oxygen Can",
   "item.beyond_earth_giselle_addon.press_compressing_die": "Compressing Die",
   "item.beyond_earth_giselle_addon.mold_compressing": "Metal Press Mold: Compressing",
@@ -39,12 +38,11 @@
   "container.beyond_earth_giselle_addon.advanced_compressor": "Advanced Compressor",
   "container.beyond_earth_giselle_addon.gravity_normalizer": "Gravity Normalizer",
   
+  "gui.beyond_earth_giselle_addon.auto_pull": "Auto Pull",
+  "gui.beyond_earth_giselle_addon.auto_eject": "Auto Eject",
   "gui.beyond_earth_giselle_addon.workingarea.text": "Working Area: %1$sx%2$sx%3$s",
   "gui.beyond_earth_giselle_addon.workingarea.show": "Show",
   "gui.beyond_earth_giselle_addon.workingarea.hide": "Hide",
-  
-  "gui.beyond_earth_giselle_addon.advanced_compressor.change.next": "Next",
-  "gui.beyond_earth_giselle_addon.advanced_compressor.change.prev": "Prev",
   
   "gui.beyond_earth_giselle_addon.flag_edit.title": "Edit Flag",
   "gui.beyond_earth_giselle_addon.flag_edit.verify": "Verify",
@@ -58,6 +56,7 @@
   "chargemode.beyond_earth_giselle_addon.none": "Disabled",
   "chargemode.beyond_earth_giselle_addon.armors": "Enabled: All Armor",
   "chargemode.beyond_earth_giselle_addon.all": "Enabled: All Inventory",
+  
   
   "jei.category.beyond_earth_giselle_addon.rolling": "Compressor - Rolling",
   "jei.category.beyond_earth_giselle_addon.extruding": "Compressor - Extruding",
