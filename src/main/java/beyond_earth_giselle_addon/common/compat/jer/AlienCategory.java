@@ -1,17 +1,22 @@
 package beyond_earth_giselle_addon.common.compat.jer;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
+
+import org.jetbrains.annotations.NotNull;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.compat.jei.AddonJeiPlugin;
 import jeresources.jei.BlankJEIRecipeCategory;
 import jeresources.reference.Resources;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IFocus;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -59,33 +64,23 @@ public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 	}
 
 	@Override
-	public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull AlienWrapper recipeWrapper, @Nonnull IIngredients ingredients)
+	public void setRecipe(@NotNull IRecipeLayoutBuilder builder, @NotNull AlienWrapper recipeWrapper, @NotNull IFocusGroup focuses)
 	{
-		IFocus<ItemStack> focus = recipeLayout.getFocus(VanillaTypes.ITEM);
-		recipeWrapper.setFocus(focus);
-
 		if (recipeWrapper.hasPois() == true)
 		{
-			recipeLayout.getItemStacks().init(0, true, 49, 18);
-			recipeLayout.getItemStacks().set(0, recipeWrapper.getPois());
+			builder.addSlot(RecipeIngredientRole.INPUT, 50, 19).addItemStacks(recipeWrapper.getPois());
 		}
 
-		int y = Y_ITEM_DISTANCE * (6 - recipeWrapper.getPossibleLevels(focus).size()) / 2;
-		for (int i = 0; i < recipeWrapper.getPossibleLevels(focus).size(); i++)
-		{
-			recipeLayout.getItemStacks().init(3 * i + 1, true, X_FIRST_ITEM, y + i * Y_ITEM_DISTANCE);
-			recipeLayout.getItemStacks().init(3 * i + 2, true, X_FIRST_ITEM + X_ITEM_DISTANCE, y + i * Y_ITEM_DISTANCE);
-			recipeLayout.getItemStacks().init(3 * i + 3, false, X_ITEM_RESULT, y + i * Y_ITEM_DISTANCE);
-		}
+		IFocus<ItemStack> focus = focuses.getFocuses(VanillaTypes.ITEM).findFirst().orElse(null);
+		List<Integer> possibleLevels = recipeWrapper.getPossibleLevels(focus);
+		int y = 1 + Y_ITEM_DISTANCE * (6 - possibleLevels.size()) / 2;
 
-		int i = 0;
-		for (int level : recipeWrapper.getPossibleLevels(focus))
+		for (int i = 0; i < possibleLevels.size(); i++)
 		{
-			AlienTradeList tradeList = recipeWrapper.getTrades(level).getFocusedList(focus);
-			recipeLayout.getItemStacks().set(3 * i + 1, tradeList.getCostAs());
-			recipeLayout.getItemStacks().set(3 * i + 2, tradeList.getCostBs());
-			recipeLayout.getItemStacks().set(3 * i + 3, tradeList.getResults());
-			i++;
+			AlienTradeList tradeList = recipeWrapper.getTrades(possibleLevels.get(i)).getFocusedList(focus);
+			builder.addSlot(RecipeIngredientRole.INPUT, 1 + X_FIRST_ITEM, y + i * Y_ITEM_DISTANCE).addItemStacks(tradeList.getCostAs());
+			builder.addSlot(RecipeIngredientRole.INPUT, 1 + X_FIRST_ITEM + X_ITEM_DISTANCE, y + i * Y_ITEM_DISTANCE).addItemStacks(tradeList.getCostBs());
+			builder.addSlot(RecipeIngredientRole.OUTPUT, 1 + X_ITEM_RESULT, y + i * Y_ITEM_DISTANCE).addItemStacks(tradeList.getResults());
 		}
 
 	}
