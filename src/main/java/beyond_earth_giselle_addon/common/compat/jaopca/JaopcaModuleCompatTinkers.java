@@ -10,9 +10,8 @@ import thelm.jaopca.api.helpers.IMiscHelper;
 import thelm.jaopca.api.materials.IMaterial;
 import thelm.jaopca.api.modules.IModule;
 import thelm.jaopca.api.modules.IModuleData;
-import thelm.jaopca.api.modules.JAOPCAModule;
 
-@JAOPCAModule(modDependencies = TinkersCompat.MODID)
+//@JAOPCAModule(modDependencies = TinkersCompat.MODID)
 public class JaopcaModuleCompatTinkers implements IModule
 {
 	public JaopcaModuleCompatTinkers()
