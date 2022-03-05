@@ -163,7 +163,7 @@ public class AddonJeiPlugin implements IModPlugin
 			recipeCategory.registerRecipes(registration);
 		}
 
-		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get(), AddonConfigs.Common.machines.fuelLoader_range.get(), ModInit.FLUID_VEHICLE_FUEL_TAG.toString());
+		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get(), AddonConfigs.Common.machines.fuelLoader_range.get(), ModInit.FLUID_VEHICLE_FUEL_TAG.location());
 		this.addIngredientInfo(registration, AddonBlocks.GRAVITY_NORMALIZER.get());
 	}
 

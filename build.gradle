@@ -114,7 +114,7 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 
     // JER
-    implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:${jer_file}")
+    // implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:${jer_file}")
 
     // The One Probe
     implementation fg.deobf("curse.maven:the-one-probe-245211:${top_file}")
@@ -127,7 +127,7 @@ dependencies {
     // implementation fg.deobf("slimeknights.tconstruct:TConstruct:${mc_version}-${tconstruct_version}")
 
     // Refined Storage
-    compileOnly fg.deobf("curse.maven:refined-storage-243076:${refined_storage_file}")
+    // compileOnly fg.deobf("curse.maven:refined-storage-243076:${refined_storage_file}")
 
     // JAOPCA
     compileOnly fg.deobf("thelm:jaopca:${mc_version}-${jaopca_version}:api")

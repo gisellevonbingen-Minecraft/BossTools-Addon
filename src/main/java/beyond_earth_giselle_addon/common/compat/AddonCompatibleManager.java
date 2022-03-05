@@ -8,7 +8,6 @@ import beyond_earth_giselle_addon.common.compat.curios.AddonCuriosCompat;
 import beyond_earth_giselle_addon.common.compat.immersiveengineering.AddonIECompat;
 import beyond_earth_giselle_addon.common.compat.jaopca.AddonJaopcaCompat;
 import beyond_earth_giselle_addon.common.compat.jei.AddonJeiCompat;
-import beyond_earth_giselle_addon.common.compat.jer.AddonJerCompat;
 import beyond_earth_giselle_addon.common.compat.theoneprobe.AddonTOPCompat;
 import beyond_earth_giselle_addon.common.compat.waila.AddonWailaCompat;
 
@@ -16,7 +15,7 @@ public class AddonCompatibleManager
 {
 	public static final List<AddonCompatibleMod> MODS;
 	public static final AddonJeiCompat JEI;
-	public static final AddonJerCompat JER;
+//	public static final AddonJerCompat JER;
 	public static final AddonIECompat IMMERSIVE_ENGINEERING;
 	public static final AddonJaopcaCompat JAOPCA;
 	public static final AddonCuriosCompat CURIOS;
@@ -28,7 +27,7 @@ public class AddonCompatibleManager
 	{
 		List<AddonCompatibleMod> mods = new ArrayList<>();
 		mods.add(JEI = new AddonJeiCompat());
-		mods.add(JER = new AddonJerCompat());
+//		mods.add(JER = new AddonJerCompat());
 		mods.add(IMMERSIVE_ENGINEERING = new AddonIECompat());
 		mods.add(JAOPCA = new AddonJaopcaCompat());
 		mods.add(CURIOS = new AddonCuriosCompat());
