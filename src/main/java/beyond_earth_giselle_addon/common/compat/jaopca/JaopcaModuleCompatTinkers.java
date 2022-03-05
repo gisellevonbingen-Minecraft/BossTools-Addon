@@ -3,7 +3,6 @@ package beyond_earth_giselle_addon.common.compat.jaopca;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.mrscauthd.beyond_earth.compat.tinkers.TinkersCompat;
 import thelm.jaopca.api.JAOPCAApi;
 import thelm.jaopca.api.forms.IForm;
 import thelm.jaopca.api.helpers.IMiscHelper;
