@@ -1,14 +1,9 @@
 package beyond_earth_giselle_addon.common.compat.jaopca;
 
-import java.util.function.ToIntFunction;
-
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.mrscauthd.beyond_earth.compat.tinkers.TinkersCompat;
-import slimeknights.tconstruct.library.recipe.FluidValues;
-import slimeknights.tconstruct.library.recipe.melting.IMeltingRecipe;
 import thelm.jaopca.api.JAOPCAApi;
 import thelm.jaopca.api.forms.IForm;
 import thelm.jaopca.api.helpers.IMiscHelper;
@@ -16,7 +11,6 @@ import thelm.jaopca.api.materials.IMaterial;
 import thelm.jaopca.api.modules.IModule;
 import thelm.jaopca.api.modules.IModuleData;
 import thelm.jaopca.api.modules.JAOPCAModule;
-import thelm.jaopca.compat.tconstruct.TConstructHelper;
 
 @JAOPCAModule(modDependencies = TinkersCompat.MODID)
 public class JaopcaModuleCompatTinkers implements IModule
@@ -59,12 +53,12 @@ public class JaopcaModuleCompatTinkers implements IModule
 			return;
 		}
 
-		int ingots = 1;
-		ResourceLocation id = AddonJaopcaCompat.rl(BeyondEarthAddon.PMODID + ".smeltery.melting." + name + "_" + suffix);
-		ToIntFunction<FluidStack> tempFunction = stack -> stack.getFluid().getAttributes().getTemperature(stack) - 300;
-		ToIntFunction<FluidStack> moltenTime = stack -> IMeltingRecipe.calcTime(tempFunction.applyAsInt(stack), ingots);
-		TConstructHelper tinkerHelper = TConstructHelper.INSTANCE;
-		tinkerHelper.registerMeltingRecipe(id, compressedsTag, moltenLocation, FluidValues.INGOT * ingots, tempFunction, moltenTime);
+//		int ingots = 1;
+//		ResourceLocation id = AddonJaopcaCompat.rl(BeyondEarthAddon.PMODID + ".smeltery.melting." + name + "_" + suffix);
+//		ToIntFunction<FluidStack> tempFunction = stack -> stack.getFluid().getAttributes().getTemperature(stack) - 300;
+//		ToIntFunction<FluidStack> moltenTime = stack -> IMeltingRecipe.calcTime(tempFunction.applyAsInt(stack), ingots);
+//		TConstructHelper tinkerHelper = TConstructHelper.INSTANCE;
+//		tinkerHelper.registerMeltingRecipe(id, compressedsTag, moltenLocation, FluidValues.INGOT * ingots, tempFunction, moltenTime);
 	}
 
 }

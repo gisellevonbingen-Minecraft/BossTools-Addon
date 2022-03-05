@@ -1,5 +1,6 @@
 package beyond_earth_giselle_addon.common;
 
+import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -12,17 +13,24 @@ public class EventListenerReload
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void onAddReloadListener(AddReloadListenerEvent event)
 	{
-		RecipeManager recipeManager = event.getDataPackRegistries().getRecipeManager();
-
-		event.addListener(new ResourceManagerReloadListener()
+		for (PreparableReloadListener preparableReloadListener : event.getListeners())
 		{
-			@Override
-			public void onResourceManagerReload(ResourceManager resourceManager)
+			if (preparableReloadListener instanceof RecipeManager)
 			{
-				BeyondEarthAddon.resetRecipeCaches(recipeManager);
+				RecipeManager recipeManager = (RecipeManager) preparableReloadListener;
+				event.addListener(new ResourceManagerReloadListener()
+				{
+					@Override
+					public void onResourceManagerReload(ResourceManager resourceManager)
+					{
+						BeyondEarthAddon.resetRecipeCaches(recipeManager);
+					}
+
+				});
+
 			}
 
-		});
+		}
 
 	}
 

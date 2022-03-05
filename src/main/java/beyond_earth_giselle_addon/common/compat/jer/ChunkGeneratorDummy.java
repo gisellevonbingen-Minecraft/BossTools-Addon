@@ -1,10 +1,13 @@
 package beyond_earth_giselle_addon.common.compat.jer;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 import com.mojang.serialization.Codec;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NoiseColumn;
@@ -21,7 +24,7 @@ public class ChunkGeneratorDummy extends ChunkGenerator
 {
 	public ChunkGeneratorDummy()
 	{
-		super(null, null);
+		super(null, Optional.empty(), null);
 	}
 
 	@Override
@@ -94,6 +97,12 @@ public class ChunkGeneratorDummy extends ChunkGenerator
 	public NoiseColumn getBaseColumn(int p_156150_, int p_156151_, LevelHeightAccessor p_156152_)
 	{
 		return null;
+	}
+
+	@Override
+	public void addDebugScreenInfo(List<String> p_208054_, BlockPos p_208055_)
+	{
+		
 	}
 
 }

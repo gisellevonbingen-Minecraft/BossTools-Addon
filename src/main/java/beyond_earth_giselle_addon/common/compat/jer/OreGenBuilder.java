@@ -78,7 +78,7 @@ public class OreGenBuilder
 
 	public OreGenBuilder placedFeature(PlacedFeature placedFeature)
 	{
-		List<PlacementModifier> placements = placedFeature.getPlacement();
+		List<PlacementModifier> placements = placedFeature.placement();
 		List<ConfiguredFeature<?, ?>> children = placedFeature.getFeatures().collect(Collectors.toList());
 
 		for (PlacementModifier placementModifier : placements)
