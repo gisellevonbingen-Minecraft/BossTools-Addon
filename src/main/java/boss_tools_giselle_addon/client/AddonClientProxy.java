@@ -42,6 +42,7 @@ public class AddonClientProxy
 		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
 		forge_bus.register(EventListenerRenderSpaceSuitOverlay.class);
 		forge_bus.register(EventListenerRenderOxygenCanOverlay.class);
+		forge_bus.register(EventListenerEnchantmentTooltip.class);
 		forge_bus.addListener(this::onRecipesUpdated);
 	}
 

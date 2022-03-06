@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import boss_tools_giselle_addon.client.AddonClientProxy;
+import boss_tools_giselle_addon.client.EventListenerEnchantmentTooltip;
 import boss_tools_giselle_addon.common.capability.CapabilityChargeModeHandler;
 import boss_tools_giselle_addon.common.capability.CapabilityOxygenCharger;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
@@ -14,7 +15,6 @@ import boss_tools_giselle_addon.common.content.fuel.EventListenerFuelAdapter;
 import boss_tools_giselle_addon.common.content.fuel.EventListenerFuelGauge;
 import boss_tools_giselle_addon.common.content.gravity.EventListenerGravityNormalizing;
 import boss_tools_giselle_addon.common.content.proof.ProofAbstractUtils;
-import boss_tools_giselle_addon.common.enchantment.EventListenerEnchantmentTooltip;
 import boss_tools_giselle_addon.common.item.crafting.IS2ISRecipeCache;
 import boss_tools_giselle_addon.common.network.AddonNetwork;
 import boss_tools_giselle_addon.common.registries.AddonBlocks;
@@ -77,7 +77,6 @@ public class BossToolsAddon
 		forge_bus.register(EventListenerGravityNormalizing.class);
 		forge_bus.register(EventListenerFlagEdit.class);
 		forge_bus.register(EventListenerReload.class);
-		forge_bus.register(EventListenerEnchantmentTooltip.class);
 
 		ProofAbstractUtils.register(forge_bus);
 	}
