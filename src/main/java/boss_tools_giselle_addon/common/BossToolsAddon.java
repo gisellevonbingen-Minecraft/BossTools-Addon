@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import boss_tools_giselle_addon.client.AddonClientProxy;
-import boss_tools_giselle_addon.client.EventListenerEnchantmentTooltip;
 import boss_tools_giselle_addon.common.capability.CapabilityChargeModeHandler;
 import boss_tools_giselle_addon.common.capability.CapabilityOxygenCharger;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
