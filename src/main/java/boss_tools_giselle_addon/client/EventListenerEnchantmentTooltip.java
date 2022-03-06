@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.common.enchantment;
+package boss_tools_giselle_addon.client;
 
 import java.util.Collections;
 import java.util.List;
@@ -8,6 +8,7 @@ import com.google.common.collect.Sets;
 
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.config.EnchantmentsConfig;
+import boss_tools_giselle_addon.common.enchantment.EnchantmentHelper2;
 import boss_tools_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.EnchantedBookItem;
