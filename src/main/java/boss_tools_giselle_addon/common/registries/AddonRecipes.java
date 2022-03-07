@@ -1,5 +1,8 @@
 package boss_tools_giselle_addon.common.registries;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipeDyedItem;
 import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipeEnchantedBook;
@@ -23,6 +26,7 @@ import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipeType;
 
 public class AddonRecipes
 {
+	private static final List<BossToolsRecipeType<?>> RECIPES = new ArrayList<>();
 	public static final DeferredRegisterWrapper<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegisterWrapper.create(BossToolsAddon.MODID, ForgeRegistries.RECIPE_SERIALIZERS);
 
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_SPACE_STATION = RECIPE_SERIALIZERS.register("space_station", () -> new SpaceStationRecipeSerializer());
@@ -52,9 +56,14 @@ public class AddonRecipes
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_DYEDITEM = RECIPE_SERIALIZERS.register("alien_trading_dyeditem", () -> new AlienTradingRecipeDyedItem.Serializer());
 	public static final AlienTradingRecipeType<AlienTradingRecipeDyedItem> ALIEN_TRADING_DYEDITEM = create(new AlienTradingRecipeType<>("alien_trading_dyeditem"));
 
+	public static void register()
+	{
+		RECIPES.forEach(r -> Registry.register(Registry.RECIPE_TYPE, BossToolsAddon.rl(r.getName()), r));
+	}
+
 	private static <T extends BossToolsRecipeType<?>> T create(T value)
 	{
-		Registry.register(Registry.RECIPE_TYPE, BossToolsAddon.rl(value.getName()), value);
+		RECIPES.add(value);
 		return value;
 	}
 

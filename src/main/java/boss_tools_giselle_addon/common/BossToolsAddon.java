@@ -22,10 +22,12 @@ import boss_tools_giselle_addon.common.registries.AddonEnchantments;
 import boss_tools_giselle_addon.common.registries.AddonItems;
 import boss_tools_giselle_addon.common.registries.AddonRecipes;
 import boss_tools_giselle_addon.common.registries.AddonTileEntityTypes;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -64,6 +66,8 @@ public class BossToolsAddon
 		AddonTileEntityTypes.TILE_ENTITY_TYPES.register(fml_bus);
 		AddonContainerTypes.CONTAINER_TYPES.register(fml_bus);
 
+		fml_bus.addGenericListener(IRecipeSerializer.class, BossToolsAddon::onRegisterRecipeSerializer);
+
 		AddonNetwork.registerAll();
 	}
 
@@ -84,6 +88,11 @@ public class BossToolsAddon
 	{
 		CapabilityChargeModeHandler.register();
 		CapabilityOxygenCharger.register();
+	}
+
+	public static void onRegisterRecipeSerializer(RegistryEvent.Register<IRecipeSerializer<?>> event)
+	{
+		AddonRecipes.register();
 	}
 
 	public static void resetRecipeCaches(RecipeManager recipeManager)
