@@ -2,7 +2,6 @@ package beyond_earth_giselle_addon.common.item.crafting;
 
 import com.google.gson.JsonObject;
 
-import beyond_earth_giselle_addon.common.registries.AddonRecipeSerializers;
 import beyond_earth_giselle_addon.common.registries.AddonRecipes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -32,7 +31,7 @@ public class ExtrudingRecipe extends ItemStackToItemStackRecipe
 	@Override
 	public RecipeSerializer<?> getSerializer()
 	{
-		return AddonRecipeSerializers.RECIPE_SERIALIZER_EXTRUDING.get();
+		return AddonRecipes.RECIPE_SERIALIZER_EXTRUDING.get();
 	}
 
 	@Override
