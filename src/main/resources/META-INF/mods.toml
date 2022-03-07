@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[39,)"
+loaderVersion="[40,)"
 license="MIT"
 issueTrackerURL="https://github.com/gisellevonbingen/Minecraft-BossTools-Addon/issues"
 
@@ -15,7 +15,7 @@ issueTrackerURL="https://github.com/gisellevonbingen/Minecraft-BossTools-Addon/i
 [[dependencies.beyond_earth_giselle_addon]]
     modId="forge"
     mandatory=true
-    versionRange="[39.0.63,)"
+    versionRange="[40.0.3,)"
     ordering="NONE"
     side="BOTH"
 
