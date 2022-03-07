@@ -66,7 +66,7 @@ public class AddonClientProxy
 
 	public void onRecipesUpdated(RecipesUpdatedEvent event)
 	{
-		BeyondEarthAddon.resetRecipeCaches(event.getRecipeManager());
+		BeyondEarthAddon.resetRecipeCaches();
 	}
 
 }

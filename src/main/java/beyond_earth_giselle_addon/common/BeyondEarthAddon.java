@@ -18,18 +18,17 @@ import beyond_earth_giselle_addon.common.registries.AddonBlocks;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import beyond_earth_giselle_addon.common.registries.AddonItems;
 import beyond_earth_giselle_addon.common.registries.AddonMenuTypes;
-import beyond_earth_giselle_addon.common.registries.AddonRecipeSerializers;
 import beyond_earth_giselle_addon.common.registries.AddonRecipes;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.mrscauthd.beyond_earth.BeyondEarthMod;
 
@@ -57,12 +56,12 @@ public class BeyondEarthAddon
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);
 		AddonEnchantments.ENCHANTMENTS.register(fml_bus);
-		AddonRecipeSerializers.RECIPE_SERIALIZERS.register(fml_bus);
+		AddonRecipes.RECIPE_SERIALIZERS.register(fml_bus);
 		AddonBlockEntityTypes.BLOCK_ENTITY_TYPES.register(fml_bus);
 		AddonMenuTypes.MENU_TYPES.register(fml_bus);
 
-		fml_bus.addListener(BeyondEarthAddon::onFMLCommonSetup);
-		
+		fml_bus.addGenericListener(RecipeSerializer.class, BeyondEarthAddon::onRegisterRecipeSerializer);
+
 		AddonNetwork.registerAll();
 	}
 
@@ -79,12 +78,12 @@ public class BeyondEarthAddon
 		ProofAbstractUtils.register(forge_bus);
 	}
 
-	public static void onFMLCommonSetup(FMLCommonSetupEvent event)
+	public static void onRegisterRecipeSerializer(RegistryEvent.Register<RecipeSerializer<?>> event)
 	{
-		AddonRecipes.visit();
+		AddonRecipes.register();
 	}
 
-	public static void resetRecipeCaches(RecipeManager recipeManager)
+	public static void resetRecipeCaches()
 	{
 		IS2ISRecipeCache.clearCaches();
 	}
