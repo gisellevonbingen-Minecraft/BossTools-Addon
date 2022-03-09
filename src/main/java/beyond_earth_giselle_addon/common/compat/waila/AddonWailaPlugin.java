@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import mcp.mobius.waila.api.IRegistrar;
 import mcp.mobius.waila.api.ITooltip;
 import mcp.mobius.waila.api.IWailaClientRegistration;
 import mcp.mobius.waila.api.IWailaCommonRegistration;
