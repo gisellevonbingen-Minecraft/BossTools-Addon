@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import mcp.mobius.waila.api.IRegistrar;
 import mcp.mobius.waila.api.ITooltip;
+import mcp.mobius.waila.api.IWailaClientRegistration;
+import mcp.mobius.waila.api.IWailaCommonRegistration;
 import mcp.mobius.waila.api.IWailaPlugin;
 import mcp.mobius.waila.api.TooltipPosition;
 import net.minecraft.nbt.CompoundTag;
@@ -61,13 +62,19 @@ public class AddonWailaPlugin implements IWailaPlugin
 	}
 
 	@Override
-	public void register(IRegistrar registrar)
+	public void register(IWailaCommonRegistration registration)
 	{
-		registrar.registerBlockDataProvider(AddonBlockDataProvider.INSTANCE, BlockEntity.class);
-		registrar.registerComponentProvider(AddonBlockDataProvider.INSTANCE, TooltipPosition.BODY, Block.class);
+		IWailaPlugin.super.register(registration);
+		registration.registerBlockDataProvider(AddonBlockDataProvider.INSTANCE, BlockEntity.class);
+		registration.registerEntityDataProvider(AddonEntityDataProvider.INSTANCE, Entity.class);
+	}
 
-		registrar.registerEntityDataProvider(AddonEntityDataProvider.INSTANCE, Entity.class);
-		registrar.registerComponentProvider(AddonEntityDataProvider.INSTANCE, TooltipPosition.BODY, Entity.class);
+	@Override
+	public void registerClient(IWailaClientRegistration registration)
+	{
+		IWailaPlugin.super.registerClient(registration);
+		registration.registerComponentProvider(AddonEntityDataProvider.INSTANCE, TooltipPosition.BODY, Entity.class);
+		registration.registerComponentProvider(AddonBlockDataProvider.INSTANCE, TooltipPosition.BODY, Block.class);
 	}
 
 }
