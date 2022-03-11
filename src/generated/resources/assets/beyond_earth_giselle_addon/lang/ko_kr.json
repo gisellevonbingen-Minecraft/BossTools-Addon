@@ -60,6 +60,8 @@
   
   "jei.category.beyond_earth_giselle_addon.rolling": "압축기 - 압연",
   "jei.category.beyond_earth_giselle_addon.extruding": "압축기 - 압출",
+  "jei.tooltip.beyond_earth_giselle_addon.incompatible_mode1": "호환되지 않는 모드",
+  "jei.tooltip.beyond_earth_giselle_addon.incompatible_mode2": "'%s' 모드로 변경 필요",
   "jei.category.beyond_earth_giselle_addon.fuel_loader": "연료 적재기",
   "jei.info.beyond_earth_giselle_addon.fuel_loader": "%2$s 태그가 지정된 유체를 받을 수 있습니다\n%1$s 블럭 이내에 존재하는 '로버' 혹은 '로켓'에게 연료를 채웁니다",
   "jei.info.beyond_earth_giselle_addon.gravity_normalizer": "범위 내 중력을 오버월드처럼 정규화합니다",

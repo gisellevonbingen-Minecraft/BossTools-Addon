@@ -60,6 +60,8 @@
   
   "jei.category.beyond_earth_giselle_addon.rolling": "Compressor - Rolling",
   "jei.category.beyond_earth_giselle_addon.extruding": "Compressor - Extruding",
+  "jei.tooltip.beyond_earth_giselle_addon.incompatible_mode1": "Incompatible Mode",
+  "jei.tooltip.beyond_earth_giselle_addon.incompatible_mode2": "Require change to '%s' Mode",
   "jei.category.beyond_earth_giselle_addon.fuel_loader": "Fuel Loader",
   "jei.info.beyond_earth_giselle_addon.fuel_loader": "Internal fluid tank can receive '%2$s' tagged fluid.\nThen give fuel to 'Rover' or 'Rockets' within %1$s blocks.",
   "jei.info.beyond_earth_giselle_addon.gravity_normalizer": "Normalize entity's gravity like to overworld within range",
