@@ -27,12 +27,11 @@ public abstract class RecipeCategory<R> implements IRecipeCategory<R>
 	@Override
 	public abstract IDrawable getBackground();
 
-	@Override
 	public RecipeType<R> getRecipeType()
 	{
 		return this.recipeType;
 	}
-	
+
 	@Override
 	public Class<? extends R> getRecipeClass()
 	{

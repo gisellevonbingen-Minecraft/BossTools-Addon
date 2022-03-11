@@ -27,18 +27,10 @@ public class IS2ISRegistration<S extends ItemStackToItemStackScreen<? extends C>
 
 	public IGuiContainerHandler<S> createContainerHandler()
 	{
-		return new IS2ISGuiContainerHandler<S, C, T>()
-		{
-			@Override
-			public List<RecipeType<?>> getRecipeTypes(T tileEntity)
-			{
-				return IS2ISRegistration.this.getRecipeTypes(tileEntity);
-			}
-
-		};
+		return new IS2ISGuiContainerHandler<>(this);
 	}
 
-	protected List<RecipeType<?>> getRecipeTypes(T tileEntity)
+	protected List<RecipeType<?>> getRecipeTypes(T blockEntity)
 	{
 		return this.getRecipeTypes();
 	}

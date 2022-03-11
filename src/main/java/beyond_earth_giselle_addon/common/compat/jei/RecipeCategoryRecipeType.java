@@ -2,6 +2,7 @@ package beyond_earth_giselle_addon.common.compat.jei;
 
 import java.util.List;
 
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -16,7 +17,7 @@ public abstract class RecipeCategoryRecipeType<T extends net.minecraft.world.ite
 
 	public RecipeCategoryRecipeType(Class<? extends R> recipeClass, T recipeType)
 	{
-		super(new mezz.jei.api.recipe.RecipeType<>(Registry.RECIPE_TYPE.getKey(recipeType), recipeClass));
+		super(new RecipeType<>(Registry.RECIPE_TYPE.getKey(recipeType), recipeClass));
 		this.mcRecipeType = recipeType;
 	}
 

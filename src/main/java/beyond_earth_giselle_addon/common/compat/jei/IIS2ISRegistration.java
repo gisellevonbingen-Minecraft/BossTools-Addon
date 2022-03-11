@@ -7,10 +7,14 @@ import javax.annotation.Nullable;
 import beyond_earth_giselle_addon.client.gui.ItemStackToItemStackScreen;
 import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainerMenu;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
+import mezz.jei.api.helpers.IStackHelper;
 import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.recipe.transfer.IRecipeTransferHandler;
+import mezz.jei.api.recipe.transfer.IRecipeTransferHandlerHelper;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
+import mezz.jei.transfer.BasicRecipeTransferHandler;
 import net.minecraft.world.item.ItemStack;
 
 public interface IIS2ISRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ?>>
@@ -45,23 +49,47 @@ public interface IIS2ISRegistration<S extends ItemStackToItemStackScreen<? exten
 
 	public default void addRecipeTransferHandler(IRecipeTransferRegistration registration)
 	{
+		Class<C> containerClass = this.getContainerClass();
+
 		for (RecipeType<?> recipeType : this.getRecipeTypes())
 		{
-			IS2ISRecipeTransferInfo<C, ?> info = this.createRecipeTransferHandler(recipeType);
+			this.addRecipeTransferHandler(registration, containerClass, recipeType);
+		}
 
-			if (info != null)
-			{
-				registration.addRecipeTransferHandler(info);
-			}
+	}
 
+	public default <R> void addRecipeTransferHandler(IRecipeTransferRegistration registration, Class<C> containerClass, RecipeType<R> recipeType)
+	{
+		IRecipeTransferHandler<C, R> handler = this.ceateRecipeTransferHandler(registration, containerClass, recipeType);
+
+		if (handler != null)
+		{
+			registration.addRecipeTransferHandler(handler, recipeType);
 		}
 
 	}
 
 	@Nullable
-	public default IS2ISRecipeTransferInfo<C, ?> createRecipeTransferHandler(RecipeType<?> recipeType)
+	public default <R> IRecipeTransferHandler<C, R> ceateRecipeTransferHandler(IRecipeTransferRegistration registration, Class<C> containerClass, RecipeType<R> recipeType)
 	{
-		Class<C> containerClass = this.getContainerClass();
+		IStackHelper stackHelper = registration.getJeiHelpers().getStackHelper();
+		IRecipeTransferHandlerHelper transferHelper = registration.getTransferHelper();
+		IS2ISRecipeTransferInfo<C, R> info = this.ceateRecipeTransferInfo(registration, containerClass, recipeType);
+
+		if (info != null)
+		{
+			return new BasicRecipeTransferHandler<C, R>(stackHelper, transferHelper, info);
+		}
+		else
+		{
+			return null;
+		}
+
+	}
+
+	@Nullable
+	public default <R> IS2ISRecipeTransferInfo<C, R> ceateRecipeTransferInfo(IRecipeTransferRegistration registration, Class<C> containerClass, RecipeType<R> recipeType)
+	{
 		return new IS2ISRecipeTransferInfo<>(containerClass, recipeType);
 	}
 

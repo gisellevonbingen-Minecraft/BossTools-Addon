@@ -11,7 +11,6 @@ import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainer
 import mezz.jei.api.gui.handlers.IGuiClickableArea;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import mezz.jei.api.recipe.IFocusFactory;
-import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.runtime.IRecipesGui;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
@@ -19,14 +18,14 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.mrscauthd.beyond_earth.gauge.GaugeTextHelper;
 import net.mrscauthd.beyond_earth.gui.helper.GuiHelper;
 
-public abstract class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ? extends T>, T extends ItemStackToItemStackBlockEntityMultiRecipe> implements IGuiContainerHandler<S>
+public class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ? extends T>, T extends ItemStackToItemStackBlockEntityMultiRecipe> implements IGuiContainerHandler<S>
 {
-	public IS2ISGuiContainerHandler()
+	private final IS2ISRegistration<S, C, T> registration;
+
+	public IS2ISGuiContainerHandler(IS2ISRegistration<S, C, T> registration)
 	{
-
+		this.registration = registration;
 	}
-
-	public abstract List<RecipeType<?>> getRecipeTypes(T tileEntity);
 
 	@Override
 	public Collection<IGuiClickableArea> getGuiClickableAreas(S containerScreen, double mouseX, double mouseY)
@@ -44,7 +43,7 @@ public abstract class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScr
 			@Override
 			public void onClick(IFocusFactory focusFactory, IRecipesGui recipesGui)
 			{
-				recipesGui.showTypes(getRecipeTypes(blockEntity));
+				recipesGui.showTypes(getRegistration().getRecipeTypes(blockEntity));
 			}
 
 			@Override
@@ -57,6 +56,11 @@ public abstract class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScr
 			}
 		});
 
+	}
+
+	public IS2ISRegistration<S, C, T> getRegistration()
+	{
+		return this.registration;
 	}
 
 }
