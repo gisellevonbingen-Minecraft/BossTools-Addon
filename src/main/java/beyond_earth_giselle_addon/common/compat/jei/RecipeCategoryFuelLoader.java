@@ -1,6 +1,5 @@
 package beyond_earth_giselle_addon.common.compat.jei;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,11 +8,11 @@ import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.registries.AddonBlocks;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.gui.ingredient.IGuiFluidStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
@@ -59,19 +58,16 @@ public class RecipeCategoryFuelLoader extends RecipeCategory<Fluid>
 	}
 
 	@Override
-	public void setIngredients(Fluid recipe, IIngredients ingredients)
+	public void setRecipe(IRecipeLayoutBuilder builder, Fluid recipe, IFocusGroup focuses)
 	{
-		int capacity = AddonConfigs.Common.machines.fuelLoader_capacity.get();
-		ingredients.setInputs(VanillaTypes.FLUID, Collections.singletonList(new FluidStack(recipe, capacity)));
-	}
+		super.setRecipe(builder, recipe, focuses);
 
-	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, Fluid recipe, IIngredients ingredients)
-	{
 		int capacity = AddonConfigs.Common.machines.fuelLoader_capacity.get();
-		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-		fluidStacks.init(0, true, TANK_LEFT, TANK_TOP, GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT, capacity, false, AddonJeiPlugin.instance().getFluidOverlay());
-		fluidStacks.set(0, ingredients.getInputs(VanillaTypes.FLUID).get(0));
+
+		builder.addSlot(RecipeIngredientRole.INPUT, TANK_LEFT, TANK_TOP) //
+				.addIngredient(VanillaTypes.FLUID, new FluidStack(recipe, capacity)) //
+				.setFluidRenderer(capacity, false, GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT) //
+				.setOverlay(AddonJeiPlugin.instance().getFluidOverlay(), 0, 0);
 	}
 
 	public boolean testFluid(Fluid fluid)
