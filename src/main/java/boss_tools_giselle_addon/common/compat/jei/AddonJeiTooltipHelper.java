@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
-import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -29,7 +28,7 @@ public class AddonJeiTooltipHelper
 
 	}
 
-	public static IFormattableTextComponent createIncompatibleModeText(Object require)
+	public static ITextComponent createIncompatibleModeText(Object require)
 	{
 		return new TranslationTextComponent(INCOMPATIABLE1_KEY).append("\n").append(new TranslationTextComponent(INCOMPATIABLE2_KEY, require));
 	}

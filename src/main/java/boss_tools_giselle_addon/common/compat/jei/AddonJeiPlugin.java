@@ -196,7 +196,7 @@ public class AddonJeiPlugin implements IModPlugin
 	{
 		return Collections.unmodifiableList(this.categories);
 	}
-	
+
 	public RecipeCategorySpaceStation getSpaceStationCategory()
 	{
 		return this.spaceStationCategory;
