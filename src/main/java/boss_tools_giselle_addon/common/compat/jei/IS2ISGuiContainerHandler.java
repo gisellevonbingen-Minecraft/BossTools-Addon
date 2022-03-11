@@ -19,14 +19,19 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.mrscauthd.boss_tools.gauge.GaugeTextHelper;
 import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 
-public abstract class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntityMultiRecipe> implements IGuiContainerHandler<S>
+public class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntityMultiRecipe> implements IGuiContainerHandler<S>
 {
-	public IS2ISGuiContainerHandler()
-	{
+	private final IS2ISRegistration<S, C, T> registration;
 
+	public IS2ISGuiContainerHandler(IS2ISRegistration<S, C, T> registration)
+	{
+		this.registration = registration;
 	}
 
-	public abstract List<ResourceLocation> getCategories(T tileEntity);
+	public List<ResourceLocation> getCategories(T tileEntity)
+	{
+		return this.getRegistration().getCategories(tileEntity);
+	}
 
 	@Override
 	public Collection<IGuiClickableArea> getGuiClickableAreas(S containerScreen, double mouseX, double mouseY)
@@ -57,6 +62,11 @@ public abstract class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScr
 			}
 		});
 
+	}
+
+	public IS2ISRegistration<S, C, T> getRegistration()
+	{
+		return this.registration;
 	}
 
 }
