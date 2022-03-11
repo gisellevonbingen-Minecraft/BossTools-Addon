@@ -13,7 +13,6 @@ import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import mezz.jei.api.recipe.IFocusFactory;
 import mezz.jei.api.runtime.IRecipesGui;
 import net.minecraft.client.renderer.Rectangle2d;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.mrscauthd.boss_tools.gauge.GaugeTextHelper;
@@ -26,11 +25,6 @@ public class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScreen<? ext
 	public IS2ISGuiContainerHandler(IS2ISRegistration<S, C, T> registration)
 	{
 		this.registration = registration;
-	}
-
-	public List<ResourceLocation> getCategories(T tileEntity)
-	{
-		return this.getRegistration().getCategories(tileEntity);
 	}
 
 	@Override
@@ -49,7 +43,7 @@ public class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScreen<? ext
 			@Override
 			public void onClick(IFocusFactory focusFactory, IRecipesGui recipesGui)
 			{
-				recipesGui.showCategories(getCategories(tileEntity));
+				recipesGui.showCategories(getRegistration().getCategories(tileEntity));
 			}
 
 			@Override
