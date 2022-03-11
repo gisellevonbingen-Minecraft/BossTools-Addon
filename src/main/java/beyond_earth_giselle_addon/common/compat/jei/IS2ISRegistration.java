@@ -7,40 +7,31 @@ import beyond_earth_giselle_addon.client.gui.ItemStackToItemStackScreen;
 import beyond_earth_giselle_addon.common.block.entity.ItemStackToItemStackBlockEntityMultiRecipe;
 import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainerMenu;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
-public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ? extends T>, T extends ItemStackToItemStackBlockEntityMultiRecipe> implements IItemStackToitemStackRegistration<S, C>
+public class IS2ISRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ? extends T>, T extends ItemStackToItemStackBlockEntityMultiRecipe> implements IIS2ISRegistration<S, C>
 {
 	private Class<S> screenClass;
 	private Class<C> containerClass;
 	private final List<ItemStack> itemstacks;
-	private final List<ResourceLocation> categories;
+	private final List<RecipeType<?>> recipeTypes;
 
-	public ItemStackToItemStackRegistration(Class<S> screenClass, Class<C> containerClass)
+	public IS2ISRegistration(Class<S> screenClass, Class<C> containerClass)
 	{
 		this.screenClass = screenClass;
 		this.containerClass = containerClass;
 		this.itemstacks = new ArrayList<ItemStack>();
-		this.categories = new ArrayList<ResourceLocation>();
+		this.recipeTypes = new ArrayList<RecipeType<?>>();
 	}
 
 	public IGuiContainerHandler<S> createContainerHandler()
 	{
-		return new ItemStackToItemStackGuiContainerHandler<S, C, T>()
-		{
-			@Override
-			public List<ResourceLocation> getCategories(T tileEntity)
-			{
-				return ItemStackToItemStackRegistration.this.getCategories(tileEntity);
-			}
-
-		};
+		return new IS2ISGuiContainerHandler<>(this);
 	}
 
-	protected List<ResourceLocation> getCategories(T tileEntity)
+	protected List<RecipeType<?>> getRecipeTypes(T blockEntity)
 	{
-		return this.getCategories();
+		return this.getRecipeTypes();
 	}
 
 	public Class<S> getScreenClass()
@@ -58,9 +49,9 @@ public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScre
 		return this.itemstacks;
 	}
 
-	public List<ResourceLocation> getCategories()
+	public List<RecipeType<?>> getRecipeTypes()
 	{
-		return this.categories;
+		return this.recipeTypes;
 	}
 
 }

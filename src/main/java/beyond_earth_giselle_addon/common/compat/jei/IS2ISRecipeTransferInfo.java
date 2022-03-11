@@ -8,17 +8,16 @@ import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainer
 import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.Slot;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
 
-public class ItemStackToitemStackRecipeTransferInfo<C extends ItemStackToItemStackContainerMenu<C, ?>> implements IRecipeTransferInfo<C, ItemStackToItemStackRecipe>
+public class IS2ISRecipeTransferInfo<C extends ItemStackToItemStackContainerMenu<C, ?>, R> implements IRecipeTransferInfo<C, R>
 {
 	private final Class<C> containerClass;
-	private final ResourceLocation uid;
+	private final RecipeType<R> recipeType;
 
-	public ItemStackToitemStackRecipeTransferInfo(Class<C> containerClass, ResourceLocation uid)
+	public IS2ISRecipeTransferInfo(Class<C> containerClass, RecipeType<R> recipeType)
 	{
 		this.containerClass = containerClass;
-		this.uid = uid;
+		this.recipeType = recipeType;
 	}
 
 	@Override
@@ -27,32 +26,38 @@ public class ItemStackToitemStackRecipeTransferInfo<C extends ItemStackToItemSta
 		return this.containerClass;
 	}
 
-	@Override
-	public Class<ItemStackToItemStackRecipe> getRecipeClass()
+	public RecipeType<R> getRecipeType()
 	{
-		return ItemStackToItemStackRecipe.class;
+		return this.recipeType;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Class<R> getRecipeClass()
+	{
+		return (Class<R>) this.getRecipeType().getRecipeClass();
 	}
 
 	@Override
 	public ResourceLocation getRecipeCategoryUid()
 	{
-		return this.uid;
+		return this.getRecipeType().getUid();
 	}
 
 	@Override
-	public boolean canHandle(C container, ItemStackToItemStackRecipe recipe)
+	public boolean canHandle(C container, R recipe)
 	{
 		return true;
 	}
 
 	@Override
-	public List<Slot> getRecipeSlots(C container, ItemStackToItemStackRecipe recipe)
+	public List<Slot> getRecipeSlots(C container, R recipe)
 	{
 		return Collections.singletonList(container.getInputSlot());
 	}
 
 	@Override
-	public List<Slot> getInventorySlots(C container, ItemStackToItemStackRecipe recipe)
+	public List<Slot> getInventorySlots(C container, R recipe)
 	{
 		List<Slot> slots = new ArrayList<>();
 		int inventorySlotStart = container.getHandlerEndIndex();
@@ -67,7 +72,7 @@ public class ItemStackToitemStackRecipeTransferInfo<C extends ItemStackToItemSta
 	}
 
 	@Override
-	public boolean requireCompleteSets(C container, ItemStackToItemStackRecipe recipe)
+	public boolean requireCompleteSets(C container, R recipe)
 	{
 		return false;
 	}
