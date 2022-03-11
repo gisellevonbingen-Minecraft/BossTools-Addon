@@ -15,7 +15,7 @@ issueTrackerURL="https://github.com/gisellevonbingen/Minecraft-BossTools-Addon/i
 [[dependencies.beyond_earth_giselle_addon]]
     modId="forge"
     mandatory=true
-    versionRange="[40.0.2,)"
+    versionRange="[40.0.12,)"
     ordering="NONE"
     side="BOTH"
 
