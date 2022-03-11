@@ -7,6 +7,7 @@ import java.util.List;
 import beyond_earth_giselle_addon.client.gui.AdvancedCompressorScreen;
 import beyond_earth_giselle_addon.client.gui.ElectricBlastFurnaceScreen;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
+import beyond_earth_giselle_addon.common.block.entity.AdvancedCompressorBlockEntity.CompressorMode;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.inventory.AdvancedCompressorContainerMenu;
 import beyond_earth_giselle_addon.common.inventory.ElectricBlastFurnaceContainerMenu;
@@ -41,6 +42,7 @@ public class AddonJeiPlugin implements IModPlugin
 {
 	public static final String JEI_CATEGORY = "jei.category";
 	public static final String JEI_INFO = "jei.info";
+	public static final String JEI_TOOLTIP = "jei.tooltip";
 
 	private static AddonJeiPlugin instance;
 
@@ -59,11 +61,11 @@ public class AddonJeiPlugin implements IModPlugin
 		return new TranslatableComponent(JEI_CATEGORY + "." + key.getNamespace() + "." + key.getPath());
 	}
 
-	private List<IIS2ISRegistration<?, ?>> is2isRegistrations;
+	private final List<IIS2ISRegistration<?, ?>> is2isRegistrations;
 	private IIS2ISRegistration<ElectricBlastFurnaceScreen, ElectricBlastFurnaceContainerMenu> electricBlastFurnace;
 	private IIS2ISRegistration<AdvancedCompressorScreen, AdvancedCompressorContainerMenu> advancedCompressor;
 
-	private List<RecipeCategory<?>> categories;
+	private final List<RecipeCategory<?>> categories;
 	private RecipeCategory<RollingRecipe> rollingCategory;
 	private RecipeCategory<ExtrudingRecipe> extrudingCategory;
 	private RecipeCategoryFuelLoader fuelLoaderCategory;
@@ -73,6 +75,9 @@ public class AddonJeiPlugin implements IModPlugin
 	public AddonJeiPlugin()
 	{
 		instance = this;
+
+		this.categories = new ArrayList<>();
+		this.is2isRegistrations = new ArrayList<>();
 	}
 
 	@Override
@@ -85,19 +90,23 @@ public class AddonJeiPlugin implements IModPlugin
 	public void registerCategories(IRecipeCategoryRegistration registration)
 	{
 		IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
+		this.categories.clear();
+		this.is2isRegistrations.clear();
 
-		this.categories = new ArrayList<>();
 		this.categories.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(RollingRecipe.class, AddonRecipes.ROLLING));
 		this.categories.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(ExtrudingRecipe.class, AddonRecipes.EXTRUDING));
 		this.categories.add(this.fuelLoaderCategory = new RecipeCategoryFuelLoader(Fluid.class));
 
-		this.is2isRegistrations = new ArrayList<>();
+		AddonJeiCompressorModeHelper compressorModeHelper = AddonJeiCompressorModeHelper.INSTANCE;
+		compressorModeHelper.register(CompressorMode.COMPRESSING, CompressorJeiCategory.Uid);
+		compressorModeHelper.register(CompressorMode.ROLLING, this.getRollingCategory().getRecipeType().getUid());
+		compressorModeHelper.register(CompressorMode.EXTRUDING, this.getExtrudingCategory().getRecipeType().getUid());
 
 		this.is2isRegistrations.add(this.electricBlastFurnace = new IS2ISRegistration<>(ElectricBlastFurnaceScreen.class, ElectricBlastFurnaceContainerMenu.class));
 		this.electricBlastFurnace.getRecipeTypes().add(new RecipeType<>(VanillaRecipeCategoryUid.BLASTING, BlastingRecipe.class));
 		this.electricBlastFurnace.getItemstacks().add(new ItemStack(AddonBlocks.ELECTRIC_BLAST_FURNACE.get()));
 
-		this.is2isRegistrations.add(this.advancedCompressor = new IS2ISRegistration<>(AdvancedCompressorScreen.class, AdvancedCompressorContainerMenu.class));
+		this.is2isRegistrations.add(this.advancedCompressor = new AdvancedCompressorRegistration(AdvancedCompressorScreen.class, AdvancedCompressorContainerMenu.class));
 		this.advancedCompressor.getRecipeTypes().add(new RecipeType<>(CompressorJeiCategory.Uid, CompressingRecipe.class));
 		this.advancedCompressor.getRecipeTypes().add(this.getRollingCategory().getRecipeType());
 		this.advancedCompressor.getRecipeTypes().add(this.getExtrudingCategory().getRecipeType());
