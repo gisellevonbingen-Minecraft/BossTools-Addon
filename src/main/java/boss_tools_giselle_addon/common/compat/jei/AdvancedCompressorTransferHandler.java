@@ -1,5 +1,7 @@
 package boss_tools_giselle_addon.common.compat.jei;
 
+import java.util.List;
+
 import boss_tools_giselle_addon.common.inventory.container.AdvancedCompressorContainer;
 import boss_tools_giselle_addon.common.tile.AdvancedCompressorTileEntity.ICompressorMode;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -14,12 +16,12 @@ import net.minecraft.util.text.ITextComponent;
 
 public class AdvancedCompressorTransferHandler extends BasicRecipeTransferHandler<AdvancedCompressorContainer>
 {
-	private final IRecipeTransferHandlerHelper handlerHelper;
+	private final IRecipeTransferInfo<AdvancedCompressorContainer> transferHelper;
 
 	public AdvancedCompressorTransferHandler(IStackHelper stackHelper, IRecipeTransferHandlerHelper handlerHelper, IRecipeTransferInfo<AdvancedCompressorContainer> transferHelper)
 	{
 		super(stackHelper, handlerHelper, transferHelper);
-		this.handlerHelper = handlerHelper;
+		this.transferHelper = transferHelper;
 	}
 
 	@Override
@@ -27,13 +29,13 @@ public class AdvancedCompressorTransferHandler extends BasicRecipeTransferHandle
 	{
 		ICompressorMode selectedMode = container.getTileEntity().getMode();
 		ResourceLocation selectedUid = AddonJeiCompressorModeHelper.INSTANCE.categoryUidByMode(selectedMode);
-		ResourceLocation showCategoryUid = recipeLayout.getRecipeCategory().getUid();
+		ResourceLocation showCategoryUid = this.transferHelper.getRecipeCategoryUid();
 
 		if (selectedUid == null || selectedUid.equals(showCategoryUid) == false)
 		{
 			ICompressorMode showMode = AddonJeiCompressorModeHelper.INSTANCE.modeByCategoryUid(showCategoryUid);
-			ITextComponent text = AddonJeiTooltipHelper.getIncompatibleModeText(showMode != null ? showMode.getText() : null);
-			return this.handlerHelper.createUserErrorWithTooltip(text);
+			List<ITextComponent> tooltip = AddonJeiTooltipHelper.getIncompatibleModeTooltip(showMode != null ? showMode.getText() : null);
+			return new RecipeTransferErrorTooltip2(tooltip);
 		}
 
 		return super.transferRecipe(container, recipe, recipeLayout, player, maxTransfer, doTransfer);
