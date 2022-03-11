@@ -9,12 +9,12 @@ import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.ResourceLocation;
 
-public class ItemStackToitemStackRecipeTransferInfo<C extends ItemStackToItemStackContainer<C, ?>> implements IRecipeTransferInfo<C>
+public class IS2ISRecipeTransferInfo<C extends ItemStackToItemStackContainer<C, ?>> implements IRecipeTransferInfo<C>
 {
 	private final Class<C> containerClass;
 	private final ResourceLocation uid;
 
-	public ItemStackToitemStackRecipeTransferInfo(Class<C> containerClass, ResourceLocation uid)
+	public IS2ISRecipeTransferInfo(Class<C> containerClass, ResourceLocation uid)
 	{
 		this.containerClass = containerClass;
 		this.uid = uid;

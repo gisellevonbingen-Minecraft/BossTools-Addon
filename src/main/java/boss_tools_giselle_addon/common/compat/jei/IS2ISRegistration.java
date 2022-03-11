@@ -10,14 +10,14 @@ import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntityMultiRecipe> implements IItemStackToitemStackRegistration<S, C>
+public class IS2ISRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntityMultiRecipe> implements IIS2ISRegistration<S, C>
 {
 	private Class<S> screenClass;
 	private Class<C> containerClass;
 	private final List<ItemStack> itemstacks;
 	private final List<ResourceLocation> categories;
 
-	public ItemStackToItemStackRegistration(Class<S> screenClass, Class<C> containerClass)
+	public IS2ISRegistration(Class<S> screenClass, Class<C> containerClass)
 	{
 		this.screenClass = screenClass;
 		this.containerClass = containerClass;
@@ -27,18 +27,10 @@ public class ItemStackToItemStackRegistration<S extends ItemStackToItemStackScre
 
 	public IGuiContainerHandler<S> createContainerHandler()
 	{
-		return new ItemStackToItemStackGuiContainerHandler<S, C, T>()
-		{
-			@Override
-			public List<ResourceLocation> getCategories(T tileEntity)
-			{
-				return ItemStackToItemStackRegistration.this.getCategories(tileEntity);
-			}
-
-		};
+		return new IS2ISGuiContainerHandler<>(this);
 	}
 
-	protected List<ResourceLocation> getCategories(T tileEntity)
+	public List<ResourceLocation> getCategories(T tileEntity)
 	{
 		return this.getCategories();
 	}
