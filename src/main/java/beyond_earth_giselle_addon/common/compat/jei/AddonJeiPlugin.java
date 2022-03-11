@@ -63,7 +63,7 @@ public class AddonJeiPlugin implements IModPlugin
 	private IIS2ISRegistration<ElectricBlastFurnaceScreen, ElectricBlastFurnaceContainerMenu> electricBlastFurnace;
 	private IIS2ISRegistration<AdvancedCompressorScreen, AdvancedCompressorContainerMenu> advancedCompressor;
 
-	private List<RecipeCategory<?>> categoires;
+	private List<RecipeCategory<?>> categories;
 	private RecipeCategory<RollingRecipe> rollingCategory;
 	private RecipeCategory<ExtrudingRecipe> extrudingCategory;
 	private RecipeCategoryFuelLoader fuelLoaderCategory;
@@ -86,10 +86,10 @@ public class AddonJeiPlugin implements IModPlugin
 	{
 		IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
 
-		this.categoires = new ArrayList<>();
-		this.categoires.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(RollingRecipe.class, AddonRecipes.ROLLING));
-		this.categoires.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(ExtrudingRecipe.class, AddonRecipes.EXTRUDING));
-		this.categoires.add(this.fuelLoaderCategory = new RecipeCategoryFuelLoader(Fluid.class));
+		this.categories = new ArrayList<>();
+		this.categories.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(RollingRecipe.class, AddonRecipes.ROLLING));
+		this.categories.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(ExtrudingRecipe.class, AddonRecipes.EXTRUDING));
+		this.categories.add(this.fuelLoaderCategory = new RecipeCategoryFuelLoader(Fluid.class));
 
 		this.is2isRegistrations = new ArrayList<>();
 
@@ -105,7 +105,7 @@ public class AddonJeiPlugin implements IModPlugin
 
 		this.fluidOverlay = guiHelper.drawableBuilder(GuiHelper.FLUID_TANK_PATH, 0, 0, GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT).setTextureSize(GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT).build();
 
-		for (RecipeCategory<?> recipeCategory : this.getCategoires())
+		for (RecipeCategory<?> recipeCategory : this.getCategories())
 		{
 			recipeCategory.createGui(guiHelper);
 			registration.addRecipeCategories(recipeCategory);
@@ -116,7 +116,7 @@ public class AddonJeiPlugin implements IModPlugin
 	@Override
 	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration)
 	{
-		for (RecipeCategory<?> recipeCategory : this.getCategoires())
+		for (RecipeCategory<?> recipeCategory : this.getCategories())
 		{
 			recipeCategory.addRecipeTransferHandler(registration);
 		}
@@ -131,7 +131,7 @@ public class AddonJeiPlugin implements IModPlugin
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration)
 	{
-		for (RecipeCategory<?> recipeCategory : this.getCategoires())
+		for (RecipeCategory<?> recipeCategory : this.getCategories())
 		{
 			recipeCategory.registerRecipeCatalysts(registration);
 		}
@@ -146,7 +146,7 @@ public class AddonJeiPlugin implements IModPlugin
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration)
 	{
-		for (RecipeCategory<?> recipeCategory : this.getCategoires())
+		for (RecipeCategory<?> recipeCategory : this.getCategories())
 		{
 			recipeCategory.registerGuiHandlers(registration);
 		}
@@ -161,7 +161,7 @@ public class AddonJeiPlugin implements IModPlugin
 	@Override
 	public void registerRecipes(IRecipeRegistration registration)
 	{
-		for (RecipeCategory<?> recipeCategory : this.getCategoires())
+		for (RecipeCategory<?> recipeCategory : this.getCategories())
 		{
 			recipeCategory.registerRecipes(registration);
 		}
@@ -180,9 +180,9 @@ public class AddonJeiPlugin implements IModPlugin
 		return this.is2isRegistrations;
 	}
 
-	public List<RecipeCategory<?>> getCategoires()
+	public List<RecipeCategory<?>> getCategories()
 	{
-		return Collections.unmodifiableList(this.categoires);
+		return Collections.unmodifiableList(this.categories);
 	}
 
 	public RecipeCategory<RollingRecipe> getRollingCategory()
