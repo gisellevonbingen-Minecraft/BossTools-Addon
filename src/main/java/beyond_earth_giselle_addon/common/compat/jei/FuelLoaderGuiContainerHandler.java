@@ -36,7 +36,7 @@ public class FuelLoaderGuiContainerHandler implements IGuiContainerHandler<FuelL
 			@Override
 			public void onClick(IFocusFactory focusFactory, IRecipesGui recipesGui)
 			{
-				recipesGui.showCategories(Collections.singletonList(AddonJeiPlugin.instance().getFuelLoaderCategory().getUid()));
+				recipesGui.showTypes(Collections.singletonList(AddonJeiPlugin.instance().getFuelLoaderCategory().getRecipeType()));
 			}
 
 			@Override

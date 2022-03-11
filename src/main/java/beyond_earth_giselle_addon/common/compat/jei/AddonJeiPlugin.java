@@ -15,7 +15,7 @@ import beyond_earth_giselle_addon.common.item.crafting.RollingRecipe;
 import beyond_earth_giselle_addon.common.registries.AddonBlocks;
 import beyond_earth_giselle_addon.common.registries.AddonRecipes;
 import mezz.jei.api.IModPlugin;
-import mezz.jei.api.constants.VanillaRecipeCategoryUid;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -57,9 +57,9 @@ public class AddonJeiPlugin implements IModPlugin
 		return new TranslatableComponent(JEI_CATEGORY + "." + key.getNamespace() + "." + key.getPath());
 	}
 
-	private List<IItemStackToitemStackRegistration<?, ?>> is2isRegistrations;
-	private IItemStackToitemStackRegistration<ElectricBlastFurnaceScreen, ElectricBlastFurnaceContainerMenu> electricBlastFurnace;
-	private IItemStackToitemStackRegistration<AdvancedCompressorScreen, AdvancedCompressorContainerMenu> advancedCompressor;
+	private List<IIS2ISRegistration<?, ?>> is2isRegistrations;
+	private IIS2ISRegistration<ElectricBlastFurnaceScreen, ElectricBlastFurnaceContainerMenu> electricBlastFurnace;
+	private IIS2ISRegistration<AdvancedCompressorScreen, AdvancedCompressorContainerMenu> advancedCompressor;
 
 	private List<RecipeCategory<?>> categoires;
 	private RecipeCategory<RollingRecipe> rollingCategory;
@@ -71,23 +71,6 @@ public class AddonJeiPlugin implements IModPlugin
 	public AddonJeiPlugin()
 	{
 		instance = this;
-
-		this.categoires = new ArrayList<>();
-		this.categoires.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(RollingRecipe.class, AddonRecipes.ROLLING));
-		this.categoires.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(ExtrudingRecipe.class, AddonRecipes.EXTRUDING));
-		this.categoires.add(this.fuelLoaderCategory = new RecipeCategoryFuelLoader(Fluid.class));
-
-		this.is2isRegistrations = new ArrayList<>();
-
-		this.is2isRegistrations.add(this.electricBlastFurnace = new ItemStackToItemStackRegistration<>(ElectricBlastFurnaceScreen.class, ElectricBlastFurnaceContainerMenu.class));
-		this.electricBlastFurnace.getCategories().add(VanillaRecipeCategoryUid.BLASTING);
-		this.electricBlastFurnace.getItemstacks().add(new ItemStack(AddonBlocks.ELECTRIC_BLAST_FURNACE.get()));
-
-		this.is2isRegistrations.add(this.advancedCompressor = new ItemStackToItemStackRegistration<>(AdvancedCompressorScreen.class, AdvancedCompressorContainerMenu.class));
-		this.advancedCompressor.getCategories().add(CompressorJeiCategory.Uid);
-		this.advancedCompressor.getCategories().add(this.getRollingCategory().getUid());
-		this.advancedCompressor.getCategories().add(this.getExtrudingCategory().getUid());
-		this.advancedCompressor.getItemstacks().add(new ItemStack(AddonBlocks.ADVANCED_COMPRESSOR.get()));
 	}
 
 	@Override
@@ -100,6 +83,24 @@ public class AddonJeiPlugin implements IModPlugin
 	public void registerCategories(IRecipeCategoryRegistration registration)
 	{
 		IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
+
+		this.categoires = new ArrayList<>();
+		this.categoires.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(RollingRecipe.class, AddonRecipes.ROLLING));
+		this.categoires.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(ExtrudingRecipe.class, AddonRecipes.EXTRUDING));
+		this.categoires.add(this.fuelLoaderCategory = new RecipeCategoryFuelLoader(Fluid.class));
+
+		this.is2isRegistrations = new ArrayList<>();
+
+		this.is2isRegistrations.add(this.electricBlastFurnace = new IS2ISRegistration<>(ElectricBlastFurnaceScreen.class, ElectricBlastFurnaceContainerMenu.class));
+		this.electricBlastFurnace.getRecipeTypes().add(RecipeTypes.BLASTING);
+		this.electricBlastFurnace.getItemstacks().add(new ItemStack(AddonBlocks.ELECTRIC_BLAST_FURNACE.get()));
+
+		this.is2isRegistrations.add(this.advancedCompressor = new IS2ISRegistration<>(AdvancedCompressorScreen.class, AdvancedCompressorContainerMenu.class));
+		this.advancedCompressor.getRecipeTypes().add(new CompressorJeiCategory(guiHelper).getRecipeType());
+		this.advancedCompressor.getRecipeTypes().add(this.getRollingCategory().getRecipeType());
+		this.advancedCompressor.getRecipeTypes().add(this.getExtrudingCategory().getRecipeType());
+		this.advancedCompressor.getItemstacks().add(new ItemStack(AddonBlocks.ADVANCED_COMPRESSOR.get()));
+		
 		this.fluidOverlay = guiHelper.drawableBuilder(GuiHelper.FLUID_TANK_PATH, 0, 0, GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT).setTextureSize(GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT).build();
 
 		for (RecipeCategory<?> recipeCategory : this.getCategoires())
@@ -118,7 +119,7 @@ public class AddonJeiPlugin implements IModPlugin
 			recipeCategory.addRecipeTransferHandler(registration);
 		}
 
-		for (IItemStackToitemStackRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
+		for (IIS2ISRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
 		{
 			cr.addRecipeTransferHandler(registration);
 		}
@@ -133,7 +134,7 @@ public class AddonJeiPlugin implements IModPlugin
 			recipeCategory.registerRecipeCatalysts(registration);
 		}
 
-		for (IItemStackToitemStackRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
+		for (IIS2ISRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
 		{
 			cr.registerRecipeCatalysts(registration);
 		}
@@ -148,7 +149,7 @@ public class AddonJeiPlugin implements IModPlugin
 			recipeCategory.registerGuiHandlers(registration);
 		}
 
-		for (IItemStackToitemStackRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
+		for (IIS2ISRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
 		{
 			cr.registerGuiHandlers(registration);
 		}
@@ -172,7 +173,7 @@ public class AddonJeiPlugin implements IModPlugin
 		registration.addIngredientInfo(new ItemStack(itemLike), VanillaTypes.ITEM, new TranslatableComponent(BeyondEarthAddon.tl(JEI_INFO, itemLike.asItem().getRegistryName()), objects));
 	}
 
-	public List<IItemStackToitemStackRegistration<?, ?>> getItemStackToItemStackRegistrations()
+	public List<IIS2ISRegistration<?, ?>> getItemStackToItemStackRegistrations()
 	{
 		return this.is2isRegistrations;
 	}

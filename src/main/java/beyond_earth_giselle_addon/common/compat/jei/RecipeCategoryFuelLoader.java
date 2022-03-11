@@ -1,7 +1,6 @@
 package beyond_earth_giselle_addon.common.compat.jei;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import beyond_earth_giselle_addon.client.gui.FuelLoaderScreen;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
@@ -13,6 +12,7 @@ import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
@@ -41,7 +41,7 @@ public class RecipeCategoryFuelLoader extends RecipeCategory<Fluid>
 
 	public RecipeCategoryFuelLoader(Class<? extends Fluid> recipeClass)
 	{
-		super(recipeClass);
+		super(new RecipeType<>(AddonBlocks.FUEL_LOADER.getId(), recipeClass));
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class RecipeCategoryFuelLoader extends RecipeCategory<Fluid>
 	{
 		super.registerRecipes(registration);
 
-		registration.addRecipes(ForgeRegistries.FLUIDS.getValues().stream().filter(this::testFluid).collect(Collectors.toList()), this.getUid());
+		registration.addRecipes(this.getRecipeType(), ForgeRegistries.FLUIDS.getValues().stream().filter(this::testFluid).toList());
 	}
 
 	@Override
@@ -97,12 +97,6 @@ public class RecipeCategoryFuelLoader extends RecipeCategory<Fluid>
 		super.registerGuiHandlers(registration);
 
 		registration.addGuiContainerHandler(FuelLoaderScreen.class, new FuelLoaderGuiContainerHandler());
-	}
-
-	@Override
-	public ResourceLocation getKey()
-	{
-		return AddonBlocks.FUEL_LOADER.getId();
 	}
 
 }

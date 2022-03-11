@@ -5,6 +5,7 @@ import java.util.List;
 
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
@@ -16,34 +17,38 @@ import net.minecraft.world.item.ItemStack;
 
 public abstract class RecipeCategory<R> implements IRecipeCategory<R>
 {
-	private final Class<? extends R> recipeClass;
+	private final RecipeType<R> recipeType;
 
-	public RecipeCategory(Class<? extends R> recipeClass)
+	public RecipeCategory(RecipeType<R> recipeType)
 	{
-		this.recipeClass = recipeClass;
+		this.recipeType = recipeType;
 	}
 
 	@Override
 	public abstract IDrawable getBackground();
 
-	public abstract ResourceLocation getKey();
-
+	@Override
+	public RecipeType<R> getRecipeType()
+	{
+		return this.recipeType;
+	}
+	
 	@Override
 	public Class<? extends R> getRecipeClass()
 	{
-		return this.recipeClass;
+		return this.getRecipeType().getRecipeClass();
 	}
 
 	@Override
 	public ResourceLocation getUid()
 	{
-		return AddonJeiPlugin.createUid(this.getKey());
+		return this.getRecipeType().getUid();
 	}
 
 	@Override
 	public Component getTitle()
 	{
-		return AddonJeiPlugin.getCategoryTitle(this.getKey());
+		return AddonJeiPlugin.getCategoryTitle(this.getUid());
 	}
 
 	@Override
@@ -74,11 +79,11 @@ public abstract class RecipeCategory<R> implements IRecipeCategory<R>
 
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration)
 	{
-		ResourceLocation uid = this.getUid();
+		RecipeType<R> recipeType = this.getRecipeType();
 
 		for (ItemStack itemStack : this.getRecipeCatalystItemStacks())
 		{
-			registration.addRecipeCatalyst(itemStack, uid);
+			registration.addRecipeCatalyst(itemStack, recipeType);
 		}
 
 	}
