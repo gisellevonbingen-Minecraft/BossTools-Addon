@@ -16,7 +16,7 @@ import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
 import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipeType;
 import net.mrscauthd.beyond_earth.jei.JeiPlugin;
 
-public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRecipeType<? extends R>, R extends ItemStackToItemStackRecipe> extends RecipeCategoryRecipeType<T, R>
+public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRecipeType<R>, R extends ItemStackToItemStackRecipe> extends RecipeCategoryRecipeType<T, R>
 {
 	public static final ResourceLocation BACKGROUND_LOCATION = BeyondEarthAddon.rl("textures/jei/itemstack_to_itemstack.png");
 	public static final int BACKGROUND_WIDTH = 144;

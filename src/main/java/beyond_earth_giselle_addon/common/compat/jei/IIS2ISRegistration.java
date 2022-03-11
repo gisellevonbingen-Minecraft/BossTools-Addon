@@ -2,22 +2,23 @@ package beyond_earth_giselle_addon.common.compat.jei;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import beyond_earth_giselle_addon.client.gui.ItemStackToItemStackScreen;
 import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainerMenu;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
-public interface IItemStackToitemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ?>>
+public interface IIS2ISRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ?>>
 {
 	public IGuiContainerHandler<S> createContainerHandler();
 
 	public List<ItemStack> getItemstacks();
 
-	public List<ResourceLocation> getCategories();
+	public List<RecipeType<?>> getRecipeTypes();
 
 	public Class<S> getScreenClass();
 
@@ -32,9 +33,9 @@ public interface IItemStackToitemStackRegistration<S extends ItemStackToItemStac
 	{
 		for (ItemStack itemStack : this.getItemstacks())
 		{
-			for (ResourceLocation category : this.getCategories())
+			for (RecipeType<?> recipeType : this.getRecipeTypes())
 			{
-				registration.addRecipeCatalyst(itemStack, category);
+				registration.addRecipeCatalyst(itemStack, recipeType.getUid());
 			}
 
 		}
@@ -43,13 +44,24 @@ public interface IItemStackToitemStackRegistration<S extends ItemStackToItemStac
 
 	public default void addRecipeTransferHandler(IRecipeTransferRegistration registration)
 	{
-		Class<C> containerClass = this.getContainerClass();
-
-		for (ResourceLocation category : this.getCategories())
+		for (RecipeType<?> recipeType : this.getRecipeTypes())
 		{
-			registration.addRecipeTransferHandler(new ItemStackToitemStackRecipeTransferInfo<C>(containerClass, category));
+			IS2ISRecipeTransferInfo<C, ?> info = this.createRecipeTransferHandler(recipeType);
+
+			if (info != null)
+			{
+				registration.addRecipeTransferHandler(info);
+			}
+
 		}
 
+	}
+
+	@Nullable
+	public default IS2ISRecipeTransferInfo<C, ?> createRecipeTransferHandler(RecipeType<?> recipeType)
+	{
+		Class<C> containerClass = this.getContainerClass();
+		return new IS2ISRecipeTransferInfo<>(containerClass, recipeType);
 	}
 
 }
