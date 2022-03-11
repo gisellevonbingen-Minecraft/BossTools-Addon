@@ -19,9 +19,9 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.mrscauthd.boss_tools.gauge.GaugeTextHelper;
 import net.mrscauthd.boss_tools.gui.helper.GuiHelper;
 
-public abstract class ItemStackToItemStackGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntityMultiRecipe> implements IGuiContainerHandler<S>
+public abstract class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ? extends T>, T extends ItemStackToItemStackTileEntityMultiRecipe> implements IGuiContainerHandler<S>
 {
-	public ItemStackToItemStackGuiContainerHandler()
+	public IS2ISGuiContainerHandler()
 	{
 
 	}

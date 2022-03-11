@@ -59,9 +59,9 @@ public class AddonJeiPlugin implements IModPlugin
 		return new TranslationTextComponent(JEI_CATEGORY + "." + key.getNamespace() + "." + key.getPath());
 	}
 
-	private List<IItemStackToitemStackRegistration<?, ?>> is2isRegistrations;
-	private IItemStackToitemStackRegistration<ElectricBlastFurnaceScreen, ElectricBlastFurnaceContainer> electricBlastFurnace;
-	private IItemStackToitemStackRegistration<AdvancedCompressorScreen, AdvancedCompressorContainer> advancedCompressor;
+	private List<IIS2ISRegistration<?, ?>> is2isRegistrations;
+	private IIS2ISRegistration<ElectricBlastFurnaceScreen, ElectricBlastFurnaceContainer> electricBlastFurnace;
+	private IIS2ISRegistration<AdvancedCompressorScreen, AdvancedCompressorContainer> advancedCompressor;
 
 	private List<RecipeCategory<?>> categoires;
 	private RecipeCategorySpaceStation spaceStationCategory;
@@ -83,12 +83,12 @@ public class AddonJeiPlugin implements IModPlugin
 
 		this.is2isRegistrations = new ArrayList<>();
 
-		this.is2isRegistrations.add(this.electricBlastFurnace = new ItemStackToItemStackRegistration<>(ElectricBlastFurnaceScreen.class, ElectricBlastFurnaceContainer.class));
+		this.is2isRegistrations.add(this.electricBlastFurnace = new IS2ISRegistration<>(ElectricBlastFurnaceScreen.class, ElectricBlastFurnaceContainer.class));
 		this.electricBlastFurnace.getCategories().add(VanillaRecipeCategoryUid.BLASTING);
 		this.electricBlastFurnace.getCategories().add(BlastingFurnaceJeiCategory.Uid);
 		this.electricBlastFurnace.getItemstacks().add(new ItemStack(AddonBlocks.ELECTRIC_BLAST_FURNACE.get()));
 
-		this.is2isRegistrations.add(this.advancedCompressor = new ItemStackToItemStackRegistration<>(AdvancedCompressorScreen.class, AdvancedCompressorContainer.class));
+		this.is2isRegistrations.add(this.advancedCompressor = new IS2ISRegistration<>(AdvancedCompressorScreen.class, AdvancedCompressorContainer.class));
 		this.advancedCompressor.getCategories().add(CompressorJeiCategory.Uid);
 		this.advancedCompressor.getCategories().add(this.getRollingCategory().getUid());
 		this.advancedCompressor.getCategories().add(this.getExtrudingCategory().getUid());
@@ -123,7 +123,7 @@ public class AddonJeiPlugin implements IModPlugin
 			recipeCategory.addRecipeTransferHandler(registration);
 		}
 
-		for (IItemStackToitemStackRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
+		for (IIS2ISRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
 		{
 			cr.addRecipeTransferHandler(registration);
 		}
@@ -138,7 +138,7 @@ public class AddonJeiPlugin implements IModPlugin
 			recipeCategory.registerRecipeCatalysts(registration);
 		}
 
-		for (IItemStackToitemStackRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
+		for (IIS2ISRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
 		{
 			cr.registerRecipeCatalysts(registration);
 		}
@@ -153,7 +153,7 @@ public class AddonJeiPlugin implements IModPlugin
 			recipeCategory.registerGuiHandlers(registration);
 		}
 
-		for (IItemStackToitemStackRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
+		for (IIS2ISRegistration<?, ?> cr : this.getItemStackToItemStackRegistrations())
 		{
 			cr.registerGuiHandlers(registration);
 		}
@@ -177,7 +177,7 @@ public class AddonJeiPlugin implements IModPlugin
 		registration.addIngredientInfo(new ItemStack(itemProvider), VanillaTypes.ITEM, new TranslationTextComponent(BossToolsAddon.tl(JEI_INFO, itemProvider.asItem().getRegistryName()), objects));
 	}
 
-	public List<IItemStackToitemStackRegistration<?, ?>> getItemStackToItemStackRegistrations()
+	public List<IIS2ISRegistration<?, ?>> getItemStackToItemStackRegistrations()
 	{
 		return this.is2isRegistrations;
 	}

@@ -11,7 +11,7 @@ import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public interface IItemStackToitemStackRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ?>>
+public interface IIS2ISRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainer<C, ?>>
 {
 	public IGuiContainerHandler<S> createContainerHandler();
 
@@ -47,7 +47,7 @@ public interface IItemStackToitemStackRegistration<S extends ItemStackToItemStac
 
 		for (ResourceLocation uid : this.getCategories())
 		{
-			registration.addRecipeTransferHandler(new ItemStackToitemStackRecipeTransferInfo<C>(containerClass, uid));
+			registration.addRecipeTransferHandler(new IS2ISRecipeTransferInfo<C>(containerClass, uid));
 		}
 
 	}
