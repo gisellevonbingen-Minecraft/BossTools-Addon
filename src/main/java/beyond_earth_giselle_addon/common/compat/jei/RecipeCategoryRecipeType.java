@@ -12,25 +12,25 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 
-public abstract class RecipeCategoryRecipeType<T extends RecipeType<? extends R>, R extends Recipe<Container>> extends RecipeCategory<R>
+public abstract class RecipeCategoryRecipeType<T extends net.minecraft.world.item.crafting.RecipeType<? extends R>, R extends Recipe<Container>> extends RecipeCategory<R>
 {
-	private final T recipeType;
+	private final T mcRecipeType;
 
 	public RecipeCategoryRecipeType(Class<? extends R> recipeClass, T recipeType)
 	{
 		super(recipeClass);
-		this.recipeType = recipeType;
+		this.mcRecipeType = recipeType;
 	}
 
 	@Override
 	public ResourceLocation getKey()
 	{
-		return Registry.RECIPE_TYPE.getKey(this.getRecipeType());
+		return Registry.RECIPE_TYPE.getKey(this.getMCRecipeType());
 	}
 
-	public T getRecipeType()
+	public T getMCRecipeType()
 	{
-		return this.recipeType;
+		return this.mcRecipeType;
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public abstract class RecipeCategoryRecipeType<T extends RecipeType<? extends R>
 		ClientLevel level = minecraft.level;
 		RecipeManager recipeManager = level.getRecipeManager();
 
-		RecipeType<? extends Recipe<Container>> recipeType = this.getRecipeType();
+		RecipeType<? extends Recipe<Container>> recipeType = this.getMCRecipeType();
 		List<?> recipes = recipeManager.getAllRecipesFor(recipeType);
 		registration.addRecipes(recipes, this.getUid());
 	}
