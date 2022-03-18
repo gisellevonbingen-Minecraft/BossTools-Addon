@@ -27,19 +27,9 @@ public class DeferredRegisterWrapper<T extends IForgeRegistryEntry<T>>
 		this.readonlyObjects = Collections.unmodifiableSet(this.objects);
 	}
 
-	protected DeferredRegisterWrapper(String modid, Class<T> base)
-	{
-		this(modid, DeferredRegister.create(base, modid));
-	}
-
 	protected DeferredRegisterWrapper(String modid, IForgeRegistry<T> reg)
 	{
 		this(modid, DeferredRegister.create(reg, modid));
-	}
-
-	public static <T extends IForgeRegistryEntry<T>> DeferredRegisterWrapper<T> create(String modid, Class<T> base)
-	{
-		return new DeferredRegisterWrapper<>(modid, base);
 	}
 
 	public static <T extends IForgeRegistryEntry<T>> DeferredRegisterWrapper<T> create(String modid, IForgeRegistry<T> reg)
