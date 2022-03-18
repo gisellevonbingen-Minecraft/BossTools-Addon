@@ -6,6 +6,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -15,11 +16,11 @@ public class DoubleDeferredRegister<P extends IForgeRegistryEntry<P>, S extends 
 	protected final DeferredRegisterWrapper<P> primaryRegister;
 	protected final DeferredRegisterWrapper<S> secondaryRegister;
 	
-	public DoubleDeferredRegister(String modid, Class<P> primaryClass, Class<S> scondaryClass)
+	public DoubleDeferredRegister(String modid, IForgeRegistry<P> primaryRegistry, IForgeRegistry<S> secondaryRegistry)
 	{
 		this.modid = modid;
-		this.primaryRegister = DeferredRegisterWrapper.create(modid, primaryClass);
-		this.secondaryRegister = DeferredRegisterWrapper.create(modid, scondaryClass);
+		this.primaryRegister = DeferredRegisterWrapper.create(modid, primaryRegistry);
+		this.secondaryRegister = DeferredRegisterWrapper.create(modid, secondaryRegistry);
 	}
 
 	public void register(IEventBus bus)
