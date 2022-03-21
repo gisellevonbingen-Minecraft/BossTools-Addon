@@ -24,7 +24,7 @@ import net.minecraft.world.item.ItemStack;
 public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 {
 	public static final ResourceLocation KEY = BeyondEarthAddon.rl("alien_trading");
-	public static final ResourceLocation Uid = AddonJeiPlugin.createUid(KEY);
+	public static final ResourceLocation UID = AddonJeiPlugin.createUid(KEY);
 
 	protected static final int X_FIRST_ITEM = 95;
 	protected static final int X_ITEM_DISTANCE = 18;
@@ -40,7 +40,7 @@ public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 	@Override
 	public ResourceLocation getUid()
 	{
-		return Uid;
+		return UID;
 	}
 
 	@Nonnull
