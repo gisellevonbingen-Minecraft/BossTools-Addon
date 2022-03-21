@@ -98,8 +98,7 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:0.8:processor"
 
     // JEI
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+    implementation fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 
     // JER
     implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:${jer_file}")
