@@ -1,0 +1,26 @@
+{
+	"type": "mekanism:crushing",
+	"input": {
+		"ingredient": [
+			{
+				"item": "beyond_earth:venus_sandstone"
+			},
+			{
+				"item": "beyond_earth:venus_sandstone_bricks"
+			},
+			{
+				"item": "beyond_earth:cracked_venus_sandstone_bricks"
+			}
+		]
+	},
+	"output": {
+		"item": "beyond_earth:venus_sand",
+		"count": 2
+	},
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "mekanism"
+		}
+	]
+}

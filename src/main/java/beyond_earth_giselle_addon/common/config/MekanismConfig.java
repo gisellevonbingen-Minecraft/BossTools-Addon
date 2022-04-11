@@ -5,37 +5,26 @@ import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 public class MekanismConfig
 {
-	public final ConfigValue<Integer> mekaSuitHelmet_OxygenCapacity;
-	public final ConfigValue<Integer> mekaSuitHelmet_OxygenTransfer;
-
-	public final ConfigValue<Integer> moduleSpaceBreathing_maxProduceRate;
-	public final ConfigValue<Integer> moduleSpaceBreathing_oxygenUsing;
 	public final ConfigValue<Integer> moduleSpaceBreathing_oxygenDuration;
-	public final ConfigValue<Integer> moduleSpaceBreathing_energyUsing;
+	public final ConfigValue<Integer> moduleSpaceBreathing_energyUsingProvide;
+	public final ConfigValue<Integer> moduleSpaceBreathing_energyUsingProduce;
 
 	public final ConfigValue<Integer> moduleSpaceFireProof_energyUsing;
 	public final ConfigValue<Integer> moduleVenusAcidProof_energyUsing;
-	public final ConfigValue<Integer> moduleSpaceGravityNormalizing_energyUsing;
+	public final ConfigValue<Integer> moduleGravityNormalizing_energyUsing;
 	
 	public final ConfigValue<Boolean> moduleGravitationalModulating_normalizable;
 	public final ConfigValue<Integer> moduleGravitationalModulating_energyUsing;
 
 	public MekanismConfig(ForgeConfigSpec.Builder builder)
 	{
-		builder.push("mekasuit_helmet");
-		this.mekaSuitHelmet_OxygenCapacity = builder.define("oxygenCapacity", 48000);
-		this.mekaSuitHelmet_OxygenTransfer = builder.define("oxygenTransfer", 256);
-		builder.pop();
-
 		builder.push("module_space_breathing_unit");
-		builder.comment("Fill amount of oxygen to helmet when player in water or rain", "in rain, produce efficiency is half");
-		this.moduleSpaceBreathing_maxProduceRate = builder.define("maxProduceRate", 4);
-		builder.comment("Oxygen gas usage when provide Beyond Earth oxygen to player in space");
-		this.moduleSpaceBreathing_oxygenUsing = builder.define("oxygenUsing", 1);
 		builder.comment("Duration of provided oxygen (oxygen provide interval)");
 		this.moduleSpaceBreathing_oxygenDuration = builder.define("oxygenDuration", 4);
 		builder.comment("Energy usage when provide Beyond Earth oxygen to player in space");
-		this.moduleSpaceBreathing_energyUsing = builder.define("energyUsing", 10);
+		this.moduleSpaceBreathing_energyUsingProvide = builder.define("energyUsing", 10);
+		builder.comment("Energy usage per mb when produce Mekanism oxygen to player in water, rain");
+		this.moduleSpaceBreathing_energyUsingProduce = builder.define("energyUsingProduce", 200);
 		builder.pop();
 
 		builder.push("module_space_fire_proof_unit");
@@ -50,7 +39,7 @@ public class MekanismConfig
 
 		builder.push("module_space_gravity_normalizing_unit");
 		builder.comment("Energy usage when normalizing gravity every tick in Beyond Earth dimensions");
-		this.moduleSpaceGravityNormalizing_energyUsing = builder.define("energyUsing", 10);
+		this.moduleGravityNormalizing_energyUsing = builder.define("energyUsing", 10);
 		builder.pop();
 
 		builder.push("module_gravitational_modulating_unit");

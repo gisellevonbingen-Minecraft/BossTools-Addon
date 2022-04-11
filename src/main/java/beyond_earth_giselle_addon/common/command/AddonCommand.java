@@ -4,6 +4,8 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
+import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
+import beyond_earth_giselle_addon.common.compat.mekanism.AddonMekanismCommand;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.nbt.CompoundTag;
@@ -71,10 +73,17 @@ public class AddonCommand
 	{
 		public static LiteralArgumentBuilder<CommandSourceStack> builder()
 		{
-			return Commands.literal("equip").requires(AddonCommand::isPlayerHasPermission2) //
+			LiteralArgumentBuilder<CommandSourceStack> builder = Commands.literal("equip").requires(AddonCommand::isPlayerHasPermission2) //
 					.then(Commands.literal("spacesuit1").executes(Equip::spacesuit1)) //
 					.then(Commands.literal("spacesuit2").executes(Equip::spacesuit2)) //
 			;
+
+			if (AddonCompatibleManager.MEKANISM.isLoaded() == true)
+			{
+				builder.then(Commands.literal("mekasuit").executes(AddonMekanismCommand::mekasuit));
+			}
+
+			return builder;
 		}
 
 		public static int spacesuit1(CommandContext<CommandSourceStack> context) throws CommandSyntaxException

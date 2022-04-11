@@ -1,0 +1,27 @@
+{
+	"type": "mekanism:painting",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "mekanism"
+		}
+	],
+	"itemInput": {
+		"ingredient": {
+			"type": "mekanism:without",
+			"base": {
+				"tag": "beyond_earth:flags"
+			},
+			"without": {
+				"item": "beyond_earth:flag"
+			}
+		}
+	},
+	"chemicalInput": {
+		"amount": 256,
+		"pigment": "mekanism:white"
+	},
+	"output": {
+		"item": "beyond_earth:flag"
+	}
+}
