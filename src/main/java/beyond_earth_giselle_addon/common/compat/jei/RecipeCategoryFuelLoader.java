@@ -6,7 +6,7 @@ import beyond_earth_giselle_addon.client.gui.FuelLoaderScreen;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.registries.AddonBlocks;
-import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -65,7 +65,7 @@ public class RecipeCategoryFuelLoader extends RecipeCategory<Fluid>
 		int capacity = AddonConfigs.Common.machines.fuelLoader_capacity.get();
 
 		builder.addSlot(RecipeIngredientRole.INPUT, TANK_LEFT, TANK_TOP) //
-				.addIngredient(VanillaTypes.FLUID, new FluidStack(recipe, capacity)) //
+				.addIngredient(ForgeTypes.FLUID_STACK, new FluidStack(recipe, capacity)) //
 				.setFluidRenderer(capacity, false, GuiHelper.FLUID_TANK_WIDTH, GuiHelper.FLUID_TANK_HEIGHT) //
 				.setOverlay(AddonJeiPlugin.instance().getFluidOverlay(), 0, 0);
 	}

@@ -18,11 +18,11 @@ import mekanism.api.gear.config.ModuleConfigItemCreator;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.registries.MekanismGases;
+import mekanism.common.tags.MekanismTags;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.MekanismUtils.FluidInDetails;
 import mekanism.common.util.StorageUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -124,7 +124,7 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 			double centerZ = (bb.minZ + bb.maxZ) / 2;
 			return new AABB(centerX, Math.min(bb.minY + eyeHeight - 0.27, bb.maxY), centerZ, centerX, Math.min(bb.minY + eyeHeight - 0.14, bb.maxY), centerZ);
 		});
-		if (fluidsIn.entrySet().stream().anyMatch(entry -> entry.getKey().is(FluidTags.WATER) && entry.getValue().getMaxHeight() >= 0.11))
+		if (fluidsIn.entrySet().stream().anyMatch(entry -> MekanismTags.Fluids.WATER_LOOKUP.contains(entry.getKey()) && entry.getValue().getMaxHeight() >= 0.11))
 		{
 			return this.getMaxProduceRate(module);
 		}

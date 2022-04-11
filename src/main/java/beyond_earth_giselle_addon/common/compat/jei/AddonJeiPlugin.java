@@ -181,7 +181,7 @@ public class AddonJeiPlugin implements IModPlugin
 
 	public void addIngredientInfo(IRecipeRegistration registration, ItemLike itemLike, Object... objects)
 	{
-		registration.addIngredientInfo(new ItemStack(itemLike), VanillaTypes.ITEM, new TranslatableComponent(BeyondEarthAddon.tl(JEI_INFO, itemLike.asItem().getRegistryName()), objects));
+		registration.addIngredientInfo(new ItemStack(itemLike), VanillaTypes.ITEM_STACK, new TranslatableComponent(BeyondEarthAddon.tl(JEI_INFO, itemLike.asItem().getRegistryName()), objects));
 	}
 
 	public List<IIS2ISRegistration<?, ?>> getItemStackToItemStackRegistrations()

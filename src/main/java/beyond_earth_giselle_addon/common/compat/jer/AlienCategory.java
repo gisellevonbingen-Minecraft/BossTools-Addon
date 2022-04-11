@@ -78,7 +78,7 @@ public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 			builder.addSlot(RecipeIngredientRole.INPUT, 50, 19).addItemStacks(recipeWrapper.getPois());
 		}
 
-		IFocus<ItemStack> focus = focuses.getFocuses(VanillaTypes.ITEM).findFirst().orElse(null);
+		IFocus<ItemStack> focus = focuses.getFocuses(VanillaTypes.ITEM_STACK).findFirst().orElse(null);
 		List<Integer> possibleLevels = recipeWrapper.getPossibleLevels(focus);
 		int y = 1 + Y_ITEM_DISTANCE * (6 - possibleLevels.size()) / 2;
 
