@@ -11,4 +11,10 @@ public class AdvancedCompressorContainerMenu extends ItemStackToItemStackContain
 		super(AddonMenuTypes.ADVANCED_COMPRESSOR.get(), windowId, inv, blockEntity);
 	}
 
+	@Override
+	public int getInventoryTop()
+	{
+		return 105;
+	}
+
 }

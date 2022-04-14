@@ -3,8 +3,8 @@ package beyond_earth_giselle_addon.client.gui;
 import org.lwjgl.glfw.GLFW;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.vertex.PoseStack;
 
+import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.block.entity.AdvancedCompressorBlockEntity;
 import beyond_earth_giselle_addon.common.block.entity.AdvancedCompressorBlockEntity.ICompressorMode;
 import beyond_earth_giselle_addon.common.inventory.AdvancedCompressorContainerMenu;
@@ -13,17 +13,24 @@ import beyond_earth_giselle_addon.common.network.AdvancedCompressorMessageMode;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 
 public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<AdvancedCompressorContainerMenu>
 {
+	public static final ResourceLocation TEXTURE = BeyondEarthAddon.rl("textures/gui/container/advanced_compressor.png");
+	public static final int CHANGE_MODE_LEFT = 38;
+	public static final int CHANGE_MODE_TOP = 42;
+	public static final int AUTO_PULL_Y_OFFSET = 22;
+
 	private ItemIconButton changeModeButton;
 
 	public AdvancedCompressorScreen(AdvancedCompressorContainerMenu menu, Inventory inventory, Component text)
 	{
 		super(menu, inventory, text);
+		this.imageHeight = 187;
+		this.inventoryLabelY = this.imageHeight - 94;
 	}
 
 	@Override
@@ -31,25 +38,19 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 	{
 		super.init();
 
-		this.changeModeButton = this.addRenderableWidget(new ItemIconButton(this.leftPos + 38, this.topPos + 50, 20, 20, ItemStack.EMPTY, this::onChangeModeButtonClick));
+		this.changeModeButton = this.addRenderableWidget(new ItemIconButton(this.leftPos + CHANGE_MODE_LEFT, this.topPos + CHANGE_MODE_TOP, ItemStack.EMPTY, this::onChangeModeButtonClick));
 		this.refreshChnageModeButtonText();
+
+		this.getAutoPullButton().y += AUTO_PULL_Y_OFFSET;
+		this.getAutoEjectButton().y += AUTO_PULL_Y_OFFSET;
 	}
 
 	@Override
-	public void render(PoseStack stack, int mouseX, int mouseY, float partialTicks)
+	protected void containerTick()
 	{
-		super.render(stack, mouseX, mouseY, partialTicks);
+		super.containerTick();
+
 		this.refreshChnageModeButtonText();
-
-		if (this.getChangeModeButton().isHoveredOrFocused() == true)
-		{
-			AdvancedCompressorBlockEntity tileEntity = this.getMenu().getBlockEntity();
-			int direction = this.getCyclicDirection();
-			ICompressorMode cyclicMode = tileEntity.getCyclicMode(direction);
-			String text = direction > 0 ? "next" : "prev";
-			this.renderTooltip(stack, new TranslatableComponent(this.rtl("change." + text)).append(": ").append(cyclicMode.getText()), mouseX, mouseY);
-		}
-
 	}
 
 	private int getCyclicDirection()
@@ -58,18 +59,12 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 		return InputConstants.isKeyDown(window, GLFW.GLFW_KEY_LEFT_SHIFT) ? -1 : 1;
 	}
 
-	@Override
-	protected void renderLabels(PoseStack stack, int mouseX, int mouseY)
-	{
-		super.renderLabels(stack, mouseX, mouseY);
-
-		ItemIconButton button = this.getChangeModeButton();
-		this.font.draw(stack, this.getMenu().getBlockEntity().getMode().getText(), button.x + button.getWidth() + 2 - this.leftPos, button.y + button.getHeight() - this.font.lineHeight - this.topPos, 4210752);
-	}
-
 	public void refreshChnageModeButtonText()
 	{
-		this.getChangeModeButton().setItemStack(this.getMenu().getBlockEntity().getMode().getIcon());
+		ItemIconButton button = this.getChangeModeButton();
+		ICompressorMode mode = this.getMenu().getBlockEntity().getMode();
+		button.setItemStack(mode.getIcon());
+		button.setMessage(mode.getText());
 	}
 
 	public void onChangeModeButtonClick(Button button)
@@ -78,6 +73,12 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 		int direction = this.getCyclicDirection();
 		ICompressorMode cyclicMode = tileEntity.getCyclicMode(direction);
 		AddonNetwork.sendToServer(new AdvancedCompressorMessageMode(tileEntity, cyclicMode.getRecipeTypeKey()));
+	}
+
+	@Override
+	public ResourceLocation getTexture()
+	{
+		return TEXTURE;
 	}
 
 	public ItemIconButton getChangeModeButton()

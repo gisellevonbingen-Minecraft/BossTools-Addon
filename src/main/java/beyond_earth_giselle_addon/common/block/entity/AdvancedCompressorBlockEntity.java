@@ -15,21 +15,22 @@ import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.mrscauthd.beyond_earth.ModInit;
 import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeTypes;
 import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipeType;
-import net.mrscauthd.beyond_earth.machines.tile.ItemStackToItemStackBlockEntity;
 import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
 import net.mrscauthd.beyond_earth.machines.tile.PowerSystemEnergyCommon;
 import net.mrscauthd.beyond_earth.machines.tile.PowerSystemRegistry;
 
-public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEntity
+public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEntityMultiRecipe
 {
 	public static final String KEY_MODE = "mode";
 
@@ -68,9 +69,12 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 		return 1;
 	}
 
-	public ItemStackToItemStackRecipeType<?> getRecipeType()
+	@Override
+	public List<RecipeType<? extends Recipe<Container>>> getRecipeTypes()
 	{
-		return this.getMode().getRecipeType();
+		List<RecipeType<? extends Recipe<Container>>> list = super.getRecipeTypes();
+		list.add(this.getMode().getRecipeType());
+		return list;
 	}
 
 	public List<ICompressorMode> getAvailableModes()
@@ -104,7 +108,7 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 
 		this.getTileData().putString(KEY_MODE, key.toString());
 		this.resetTimer();
-		ItemStackToItemStackTileEntityUtils.getItemStackCacher(this).set(ItemStack.EMPTY);
+		this.clearRecipeCache();
 		this.setChanged();
 	}
 

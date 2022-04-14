@@ -15,11 +15,10 @@
   "description.beyond_earth_giselle_addon.venus_acid_proof_unit": "Beyond Earth 차원에서 산성비 피해를 입지 않습니다",
   "module.beyond_earth_giselle_addon.gravity_normalizing_unit": "중력 정규화 기구",
   "description.beyond_earth_giselle_addon.gravity_normalizing_unit": "Beyond Earth 차원에서 중력을 오버월드 처럼 정규화합니다",
-  
   "description.beyond_earth_giselle_addon.instead_gravity_normalizing_unit": "중력 정규화 기구를 대신할 수 있습니다",
- 
+  
   "item.beyond_earth_giselle_addon.oxygen_can": "산소 캔",
-  "item.beyond_earth_giselle_addon.press_compressing_die": "Compressing Die",
+  "item.beyond_earth_giselle_addon.press_compressing_die": "압축 틀",
   "item.beyond_earth_giselle_addon.mold_compressing": "금속 압축틀: 압축",
   "item.jaopca.beyond_earth_compresseds": "압축 %s",
   
@@ -39,12 +38,11 @@
   "container.beyond_earth_giselle_addon.advanced_compressor": "고급 압축기",
   "container.beyond_earth_giselle_addon.gravity_normalizer": "중력 정규화 장치",
   
+  "gui.beyond_earth_giselle_addon.auto_pull": "자동 투입",
+  "gui.beyond_earth_giselle_addon.auto_eject": "자동 배출",
   "gui.beyond_earth_giselle_addon.workingarea.text": "작업 영역: %1$sx%2$sx%3$s",
   "gui.beyond_earth_giselle_addon.workingarea.show": "표시",
   "gui.beyond_earth_giselle_addon.workingarea.hide": "숨김",
-  
-  "gui.beyond_earth_giselle_addon.advanced_compressor.change.next": "다음",
-  "gui.beyond_earth_giselle_addon.advanced_compressor.change.prev": "이전",
   
   "gui.beyond_earth_giselle_addon.flag_edit.title": "깃발 편집",
   "gui.beyond_earth_giselle_addon.flag_edit.verify": "확인",
@@ -62,6 +60,8 @@
   
   "jei.category.beyond_earth_giselle_addon.rolling": "압축기 - 압연",
   "jei.category.beyond_earth_giselle_addon.extruding": "압축기 - 압출",
+  "jei.tooltip.beyond_earth_giselle_addon.incompatible_mode1": "호환되지 않는 모드",
+  "jei.tooltip.beyond_earth_giselle_addon.incompatible_mode2": "'%s' 모드로 변경 필요",
   "jei.category.beyond_earth_giselle_addon.fuel_loader": "연료 적재기",
   "jei.info.beyond_earth_giselle_addon.fuel_loader": "%2$s 태그가 지정된 유체를 받을 수 있습니다\n%1$s 블럭 이내에 존재하는 '로버' 혹은 '로켓'에게 연료를 채웁니다",
   "jei.info.beyond_earth_giselle_addon.gravity_normalizer": "범위 내 중력을 오버월드처럼 정규화합니다",

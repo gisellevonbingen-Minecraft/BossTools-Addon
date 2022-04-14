@@ -1,4 +1,4 @@
-package beyond_earth_giselle_addon.common.enchantment;
+package beyond_earth_giselle_addon.client;
 
 import java.util.Collections;
 import java.util.List;
@@ -8,6 +8,7 @@ import com.google.common.collect.Sets;
 
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.config.EnchantmentsConfig;
+import beyond_earth_giselle_addon.common.enchantment.EnchantmentHelper2;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;

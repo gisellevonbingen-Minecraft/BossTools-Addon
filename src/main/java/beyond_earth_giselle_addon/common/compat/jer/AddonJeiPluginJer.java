@@ -78,7 +78,7 @@ public class AddonJeiPluginJer implements IModPlugin
 
 			}
 
-			registration.addRecipes(list, AlienCategory.Uid);
+			registration.addRecipes(list, AlienCategory.UID);
 		}
 
 	}
