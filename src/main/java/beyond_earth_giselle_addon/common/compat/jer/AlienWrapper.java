@@ -11,7 +11,7 @@ import jeresources.util.TranslationHelper;
 import mezz.jei.api.recipe.IFocus;
 import mezz.jei.api.recipe.category.extensions.IRecipeCategoryExtension;
 import net.minecraft.world.item.ItemStack;
-import net.mrscauthd.beyond_earth.entity.alien.AlienEntity;
+import net.mrscauthd.beyond_earth.entities.alien.AlienEntity;
 
 public class AlienWrapper implements IRecipeCategoryExtension
 {

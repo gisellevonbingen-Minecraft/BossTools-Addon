@@ -11,7 +11,7 @@ import mezz.jei.api.recipe.IFocus;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
 import net.minecraft.world.item.ItemStack;
-import net.mrscauthd.beyond_earth.entity.alien.AlienEntity;
+import net.mrscauthd.beyond_earth.entities.alien.AlienEntity;
 
 public class AlienEntry
 {

@@ -25,7 +25,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.mrscauthd.beyond_earth.gauge.GaugeTextHelper;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueHelper;
-import net.mrscauthd.beyond_earth.gui.helper.GuiHelper;
+import net.mrscauthd.beyond_earth.guis.helper.GuiHelper;
 
 public class AbstractMachineScreen<M extends AbstractMachineContainerMenu<?, ?>> extends AbstractContainerScreen<M>
 {

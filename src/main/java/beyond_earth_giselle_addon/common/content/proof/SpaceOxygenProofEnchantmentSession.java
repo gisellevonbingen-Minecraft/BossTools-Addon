@@ -7,7 +7,7 @@ import beyond_earth_giselle_addon.common.enchantment.EnchantmentEnergyStorage;
 import beyond_earth_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.mrscauthd.beyond_earth.capability.oxygen.IOxygenStorage;
+import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
 
 public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 {

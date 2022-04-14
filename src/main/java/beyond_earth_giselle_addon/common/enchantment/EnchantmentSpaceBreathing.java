@@ -4,7 +4,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.mrscauthd.beyond_earth.ModInit;
+import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
 
 public class EnchantmentSpaceBreathing extends EnchantmentEnergyStorage
 {
@@ -18,7 +18,7 @@ public class EnchantmentSpaceBreathing extends EnchantmentEnergyStorage
 	{
 		Item item = stack.getItem();
 
-		if (item == ModInit.OXYGEN_MASK.get() || item == ModInit.NETHERITE_OXYGEN_MASK.get())
+		if (item == ItemsRegistry.OXYGEN_MASK.get() || item == ItemsRegistry.NETHERITE_OXYGEN_MASK.get())
 		{
 			return false;
 		}

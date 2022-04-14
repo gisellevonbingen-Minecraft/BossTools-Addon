@@ -2,7 +2,7 @@ package beyond_earth_giselle_addon.common.capability;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.mrscauthd.beyond_earth.capability.oxygen.IOxygenStorage;
+import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
 
 public class CapabilityOxygenUtils
 {

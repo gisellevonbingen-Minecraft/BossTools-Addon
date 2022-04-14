@@ -6,7 +6,7 @@ import mekanism.api.chemical.gas.GasStack;
 import mekanism.api.chemical.gas.IGasHandler;
 import mekanism.common.registries.MekanismGases;
 import net.minecraft.nbt.CompoundTag;
-import net.mrscauthd.beyond_earth.capability.oxygen.IOxygenStorage;
+import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
 
 public class GasHandlerOxygenAdapter implements IOxygenStorage
 {

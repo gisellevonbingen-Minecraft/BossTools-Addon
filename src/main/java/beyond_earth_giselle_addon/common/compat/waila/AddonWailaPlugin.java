@@ -15,7 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.mrscauthd.beyond_earth.compat.waila.GaugeValueElement;
+import net.mrscauthd.beyond_earth.compats.waila.GaugeValueElement;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueRenderer;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueSerializer;
 import net.mrscauthd.beyond_earth.gauge.IGaugeValue;

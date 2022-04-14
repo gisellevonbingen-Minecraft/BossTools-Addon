@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
-import net.mrscauthd.beyond_earth.gui.helper.ContainerHelper;
+import net.mrscauthd.beyond_earth.guis.helper.ContainerHelper;
 
 public class FuelLoaderContainerMenu extends AbstractMachineContainerMenu<FuelLoaderContainerMenu, FuelLoaderBlockEntity>
 {

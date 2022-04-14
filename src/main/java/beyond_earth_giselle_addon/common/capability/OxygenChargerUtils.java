@@ -10,7 +10,7 @@ import beyond_earth_giselle_addon.common.registries.AddonItems;
 import beyond_earth_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.mrscauthd.beyond_earth.capability.oxygen.IOxygenStorage;
+import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueSimple;
 import net.mrscauthd.beyond_earth.gauge.IGaugeValue;
 

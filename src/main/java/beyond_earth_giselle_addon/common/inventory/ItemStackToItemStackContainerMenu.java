@@ -8,7 +8,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
-import net.mrscauthd.beyond_earth.gui.helper.ContainerHelper;
+import net.mrscauthd.beyond_earth.guis.helper.ContainerHelper;
 
 public class ItemStackToItemStackContainerMenu<O extends ItemStackToItemStackContainerMenu<O, T>, T extends ItemStackToItemStackBlockEntityMultiRecipe> extends AbstractMachineContainerMenu<ItemStackToItemStackContainerMenu<O, T>, T>
 {

@@ -3,8 +3,8 @@ package beyond_earth_giselle_addon.common.entity;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.mrscauthd.beyond_earth.entity.RoverEntity;
-import net.mrscauthd.beyond_earth.fluid.FluidUtil2;
+import net.mrscauthd.beyond_earth.entities.RoverEntity;
+import net.mrscauthd.beyond_earth.fluids.FluidUtil2;
 
 public class BeyondEarthRoverHelper
 {

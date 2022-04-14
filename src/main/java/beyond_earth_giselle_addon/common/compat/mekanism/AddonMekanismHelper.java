@@ -4,7 +4,7 @@ import mekanism.api.chemical.gas.IGasHandler;
 import mekanism.common.capabilities.Capabilities;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
-import net.mrscauthd.beyond_earth.capability.oxygen.IOxygenStorage;
+import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
 
 public class AddonMekanismHelper
 {

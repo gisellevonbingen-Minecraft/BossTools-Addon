@@ -6,7 +6,7 @@ import beyond_earth_giselle_addon.common.event.EntityGaugeValueFetchEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.beyond_earth.entity.RoverEntity;
+import net.mrscauthd.beyond_earth.entities.RoverEntity;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueHelper;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueSimple;
 

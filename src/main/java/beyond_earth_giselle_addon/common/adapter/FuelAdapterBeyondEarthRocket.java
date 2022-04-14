@@ -4,7 +4,7 @@ import beyond_earth_giselle_addon.common.entity.BeyondEarthRocketHelper;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
-import net.mrscauthd.beyond_earth.fluid.FluidUtil2;
+import net.mrscauthd.beyond_earth.fluids.FluidUtil2;
 
 public class FuelAdapterBeyondEarthRocket extends FuelAdapter<Entity>
 {

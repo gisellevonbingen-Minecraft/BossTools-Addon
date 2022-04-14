@@ -3,7 +3,7 @@ package beyond_earth_giselle_addon.common.inventory;
 import beyond_earth_giselle_addon.common.block.entity.GravityNormalizerBlockEntity;
 import beyond_earth_giselle_addon.common.registries.AddonMenuTypes;
 import net.minecraft.world.entity.player.Inventory;
-import net.mrscauthd.beyond_earth.gui.helper.ContainerHelper;
+import net.mrscauthd.beyond_earth.guis.helper.ContainerHelper;
 
 public class GravityNormalizerContainerMenu extends AbstractMachineContainerMenu<GravityNormalizerContainerMenu, GravityNormalizerBlockEntity>
 {

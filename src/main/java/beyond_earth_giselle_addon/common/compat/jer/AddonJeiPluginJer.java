@@ -15,9 +15,9 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
-import net.mrscauthd.beyond_earth.ModInit;
-import net.mrscauthd.beyond_earth.entity.alien.AlienEntity;
-import net.mrscauthd.beyond_earth.entity.alien.AlienTrade;
+import net.mrscauthd.beyond_earth.entities.alien.AlienEntity;
+import net.mrscauthd.beyond_earth.entities.alien.AlienTrade;
+import net.mrscauthd.beyond_earth.registries.EntitiesRegistry;
 
 @mezz.jei.api.JeiPlugin
 public class AddonJeiPluginJer implements IModPlugin
@@ -65,7 +65,7 @@ public class AddonJeiPluginJer implements IModPlugin
 
 				if (values.values().stream().mapToInt(r -> r.length).sum() > 0)
 				{
-					AlienEntity alienEntity = (AlienEntity) ModInit.ALIEN.get().create(CompatBase.getLevel());
+					AlienEntity alienEntity = (AlienEntity) EntitiesRegistry.ALIEN.get().create(CompatBase.getLevel());
 					alienEntity.setVillagerData(alienEntity.getVillagerData().setProfession(villagerProfession));
 					AlienEntry alienEntry = new AlienEntry(villagerProfession, values, alienEntity);
 

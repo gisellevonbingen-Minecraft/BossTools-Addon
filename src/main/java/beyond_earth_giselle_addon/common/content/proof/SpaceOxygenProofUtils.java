@@ -5,7 +5,7 @@ import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.beyond_earth.ModInit;
+import net.mrscauthd.beyond_earth.registries.DamageSourcesRegistry;
 
 public class SpaceOxygenProofUtils extends ProofAbstractUtils
 {
@@ -40,7 +40,7 @@ public class SpaceOxygenProofUtils extends ProofAbstractUtils
 	@SubscribeEvent
 	public void onLivingAttack(LivingAttackEvent e)
 	{
-		if (e.getSource() != ModInit.DAMAGE_SOURCE_OXYGEN)
+		if (e.getSource() != DamageSourcesRegistry.DAMAGE_SOURCE_OXYGEN)
 		{
 			return;
 		}

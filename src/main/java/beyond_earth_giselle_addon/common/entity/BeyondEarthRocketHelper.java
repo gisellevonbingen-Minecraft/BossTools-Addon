@@ -3,11 +3,11 @@ package beyond_earth_giselle_addon.common.entity;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.mrscauthd.beyond_earth.entity.IRocketEntity;
-import net.mrscauthd.beyond_earth.entity.RocketTier1Entity;
-import net.mrscauthd.beyond_earth.entity.RocketTier2Entity;
-import net.mrscauthd.beyond_earth.entity.RocketTier3Entity;
-import net.mrscauthd.beyond_earth.entity.RocketTier4Entity;
+import net.mrscauthd.beyond_earth.entities.IRocketEntity;
+import net.mrscauthd.beyond_earth.entities.RocketTier1Entity;
+import net.mrscauthd.beyond_earth.entities.RocketTier2Entity;
+import net.mrscauthd.beyond_earth.entities.RocketTier3Entity;
+import net.mrscauthd.beyond_earth.entities.RocketTier4Entity;
 
 public class BeyondEarthRocketHelper
 {
