@@ -15,6 +15,8 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.OxygenUtil;
+import net.mrscauthd.beyond_earth.entities.IRocketEntity;
+import net.mrscauthd.beyond_earth.registries.EntitiesRegistry;
 import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
 
 public class AddonCommand
@@ -61,7 +63,7 @@ public class AddonCommand
 			ServerPlayer player = source.getPlayerOrException();
 			CompoundTag persistentData = player.getPersistentData();
 			persistentData.putBoolean("beyond_earth:planet_selection_gui_open", true);
-			persistentData.putString("beyond_earth:rocket_type", ItemsRegistry.TIER_4_ROCKET_ITEM.get().getDescriptionId());
+			persistentData.putString("beyond_earth:rocket_type", EntitiesRegistry.TIER_4_ROCKET.get().toString());
 			persistentData.putString("beyond_earth:slot0", Items.AIR.getRegistryName().toString());
 
 			return 0;
