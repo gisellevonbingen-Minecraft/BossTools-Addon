@@ -3,14 +3,14 @@ package beyond_earth_giselle_addon.common.capability;
 import javax.annotation.Nullable;
 
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
-import beyond_earth_giselle_addon.common.compat.mekanism.AddonMekanismHelper;
-import beyond_earth_giselle_addon.common.compat.mekanism.OxygenStorageGasAdapter;
 import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.util.NonNullSupplier;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.CapabilityOxygen;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
+import net.mrscauthd.beyond_earth.compats.mekanism.MekanismHelper;
+import net.mrscauthd.beyond_earth.compats.mekanism.OxygenStorageGasAdapter;
 
 public class OxygenUtil2
 {
@@ -24,7 +24,7 @@ public class OxygenUtil2
 		{
 			return LazyOptional.of(oxygenStorage).cast();
 		}
-		else if (AddonCompatibleManager.MEKANISM.isLoaded() && capability == AddonMekanismHelper.getGasHandlerCapability())
+		else if (AddonCompatibleManager.MEKANISM.isLoaded() && capability == MekanismHelper.getGasHandlerCapability())
 		{
 			return LazyOptional.of(oxygenStorage).lazyMap(OxygenUtil2::getOxygenGasAdapter).cast();
 		}
