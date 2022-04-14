@@ -9,8 +9,8 @@ import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.util.NonNullSupplier;
-import net.mrscauthd.beyond_earth.capability.oxygen.CapabilityOxygen;
-import net.mrscauthd.beyond_earth.capability.oxygen.IOxygenStorage;
+import net.mrscauthd.beyond_earth.capabilities.oxygen.CapabilityOxygen;
+import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
 
 public class OxygenUtil2
 {

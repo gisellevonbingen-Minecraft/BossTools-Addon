@@ -4,7 +4,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.mrscauthd.beyond_earth.ModInit;
+import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
 
 public class EnchantmentSpaceFireProof extends EnchantmentEnergyStorage
 {
@@ -18,7 +18,7 @@ public class EnchantmentSpaceFireProof extends EnchantmentEnergyStorage
 	{
 		Item item = stack.getItem();
 
-		if (item == ModInit.NETHERITE_SPACE_SUIT.get())
+		if (item == ItemsRegistry.NETHERITE_SPACE_SUIT.get())
 		{
 			return false;
 		}

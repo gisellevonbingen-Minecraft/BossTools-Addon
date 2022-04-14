@@ -23,12 +23,12 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.mrscauthd.beyond_earth.ModInit;
 import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeTypes;
 import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipeType;
 import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
 import net.mrscauthd.beyond_earth.machines.tile.PowerSystemEnergyCommon;
 import net.mrscauthd.beyond_earth.machines.tile.PowerSystemRegistry;
+import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
 
 public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEntityMultiRecipe
 {
@@ -153,9 +153,9 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 
 	public enum CompressorMode implements ICompressorMode
 	{
-		COMPRESSING(BeyondEarthRecipeTypes.COMPRESSING, () -> new ItemStack(ModInit.COMPRESSED_STEEL.get())),
-		ROLLING(AddonRecipes.ROLLING, () -> new ItemStack(ModInit.IRON_PLATE.get())),
-		EXTRUDING(AddonRecipes.EXTRUDING, () -> new ItemStack(ModInit.IRON_STICK.get())),
+		COMPRESSING(BeyondEarthRecipeTypes.COMPRESSING, () -> new ItemStack(ItemsRegistry.COMPRESSED_STEEL.get())),
+		ROLLING(AddonRecipes.ROLLING, () -> new ItemStack(ItemsRegistry.IRON_PLATE.get())),
+		EXTRUDING(AddonRecipes.EXTRUDING, () -> new ItemStack(ItemsRegistry.IRON_STICK.get())),
 		// EOL
 		;
 

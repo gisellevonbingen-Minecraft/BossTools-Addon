@@ -13,7 +13,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
-import net.mrscauthd.beyond_earth.compat.theoneprobe.GaugeValueElement;
+import net.mrscauthd.beyond_earth.compats.theoneprobe.GaugeValueElement;
 import net.mrscauthd.beyond_earth.gauge.IGaugeValue;
 
 public class AddonProbeInfoEntityProvider implements IProbeInfoEntityProvider

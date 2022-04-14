@@ -14,8 +14,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.mrscauthd.beyond_earth.ModInit;
-import net.mrscauthd.beyond_earth.capability.oxygen.OxygenUtil;
+import net.mrscauthd.beyond_earth.capabilities.oxygen.OxygenUtil;
+import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
 
 public class AddonCommand
 {
@@ -61,7 +61,7 @@ public class AddonCommand
 			ServerPlayer player = source.getPlayerOrException();
 			CompoundTag persistentData = player.getPersistentData();
 			persistentData.putBoolean("beyond_earth:planet_selection_gui_open", true);
-			persistentData.putString("beyond_earth:rocket_type", ModInit.TIER_4_ROCKET.get().getDescriptionId());
+			persistentData.putString("beyond_earth:rocket_type", ItemsRegistry.TIER_4_ROCKET_ITEM.get().getDescriptionId());
 			persistentData.putString("beyond_earth:slot0", Items.AIR.getRegistryName().toString());
 
 			return 0;
@@ -91,10 +91,10 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModInit.OXYGEN_MASK.get()));
-			player.setItemSlot(EquipmentSlot.CHEST, OxygenUtil.makeFull(new ItemStack(ModInit.SPACE_SUIT.get())));
-			player.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModInit.SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModInit.SPACE_BOOTS.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ItemsRegistry.OXYGEN_MASK.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, OxygenUtil.makeFull(new ItemStack(ItemsRegistry.SPACE_SUIT.get())));
+			player.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ItemsRegistry.SPACE_PANTS.get()));
+			player.setItemSlot(EquipmentSlot.FEET, new ItemStack(ItemsRegistry.SPACE_BOOTS.get()));
 
 			return sendEquipedMessage(source);
 		}
@@ -104,10 +104,10 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModInit.NETHERITE_OXYGEN_MASK.get()));
-			player.setItemSlot(EquipmentSlot.CHEST, OxygenUtil.makeFull(new ItemStack(ModInit.NETHERITE_SPACE_SUIT.get())));
-			player.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModInit.NETHERITE_SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModInit.NETHERITE_SPACE_BOOTS.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ItemsRegistry.NETHERITE_OXYGEN_MASK.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, OxygenUtil.makeFull(new ItemStack(ItemsRegistry.NETHERITE_SPACE_SUIT.get())));
+			player.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ItemsRegistry.NETHERITE_SPACE_PANTS.get()));
+			player.setItemSlot(EquipmentSlot.FEET, new ItemStack(ItemsRegistry.NETHERITE_SPACE_BOOTS.get()));
 
 			return sendEquipedMessage(source);
 		}

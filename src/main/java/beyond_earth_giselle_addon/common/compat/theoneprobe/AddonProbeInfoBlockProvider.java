@@ -15,7 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
-import net.mrscauthd.beyond_earth.compat.theoneprobe.GaugeValueElement;
+import net.mrscauthd.beyond_earth.compats.theoneprobe.GaugeValueElement;
 import net.mrscauthd.beyond_earth.gauge.IGaugeValue;
 
 public class AddonProbeInfoBlockProvider implements IProbeInfoProvider
