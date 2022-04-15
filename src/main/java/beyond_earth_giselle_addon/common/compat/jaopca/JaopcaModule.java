@@ -16,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeTypes;
 import net.mrscauthd.beyond_earth.crafting.CompressingRecipe;
 import thelm.jaopca.api.JAOPCAApi;
 import thelm.jaopca.api.forms.IForm;
@@ -113,7 +112,7 @@ public class JaopcaModule implements IModule
 		IMiscHelper miscHelper = api.miscHelper();
 		ResourceLocation ingotsTag = miscHelper.getTagLocation("ingots", material.getName());
 
-		ResourceLocation id = AddonJaopcaCompat.rl(BeyondEarthAddon.PMODID + "." + BeyondEarthRecipeTypes.COMPRESSING.getName() + "." + material.getName());
+		ResourceLocation id = AddonJaopcaCompat.rl(BeyondEarthAddon.PMODID + ".compressing." + material.getName());
 		api.registerRecipe(id, () ->
 		{
 			Ingredient ingredient = miscHelper.getIngredient(ingotsTag);
