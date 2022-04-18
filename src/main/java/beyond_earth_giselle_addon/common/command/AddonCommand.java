@@ -15,7 +15,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.OxygenUtil;
-import net.mrscauthd.beyond_earth.entities.IRocketEntity;
 import net.mrscauthd.beyond_earth.registries.EntitiesRegistry;
 import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
 
