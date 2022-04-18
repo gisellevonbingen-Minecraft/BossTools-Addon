@@ -8,11 +8,11 @@
 	],
 	"itemInput": {
 		"ingredient": {
-			"type": "mekanism:without",
+			"type": "forge:difference",
 			"base": {
 				"tag": "beyond_earth:flags"
 			},
-			"without": {
+			"subtracted": {
 				"item": "beyond_earth:flag_gray"
 			}
 		}
