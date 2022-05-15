@@ -146,6 +146,12 @@ dependencies {
     runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:additions")
     runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")
     runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")
+
+    // Thermal Expansion
+    implementation fg.deobf("curse.maven:cofh-core-69162:${cofh_core_file}")
+    implementation fg.deobf("curse.maven:thermal-foundation-222880:${thermal_foundation_file}")
+    implementation fg.deobf("curse.maven:thermal-expansion-69163:${thermal_expansion_file}")
+
 }
 
 jar {
