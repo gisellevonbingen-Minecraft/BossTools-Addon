@@ -72,7 +72,7 @@ public class AddonJerCompat extends AddonCompatibleMod
 	{
 		Restriction restriction = getRestriction(Restriction.Type.WHITELIST, BeyondEarthAddon.prl("moon"));
 		register(restriction, BeyondEarthAddon.prl("moon_cheese_ore"));
-		register(restriction, BeyondEarthAddon.prl("soul_soil"));
+		register(restriction, BeyondEarthAddon.prl("moon_soul_soil"));
 		register(restriction, BeyondEarthAddon.prl("moon_ice_shard_ore"), ItemsRegistry.ICE_SHARD);
 		register(restriction, BeyondEarthAddon.prl("moon_iron_ore"), Items.RAW_IRON);
 		register(restriction, BeyondEarthAddon.prl("moon_desh_ore"), ItemsRegistry.RAW_DESH);
@@ -111,10 +111,10 @@ public class AddonJerCompat extends AddonCompatibleMod
 		register(restriction, BeyondEarthAddon.prl("glacio_iron_ore"), Items.RAW_IRON);
 		register(restriction, BeyondEarthAddon.prl("glacio_lapis_ore"), new ItemStack(Items.LAPIS_LAZULI, 4));
 
-		register(restriction, BeyondEarthAddon.prl("deepslate_coal_ore"), Items.COAL);
-		register(restriction, BeyondEarthAddon.prl("deepslate_copper_ore"), Items.RAW_COPPER);
-		register(restriction, BeyondEarthAddon.prl("deepslate_iron_ore"), Items.RAW_IRON);
-		register(restriction, BeyondEarthAddon.prl("deepslate_lapis_ore"), new ItemStack(Items.LAPIS_LAZULI, 4));
+		register(restriction, BeyondEarthAddon.prl("glacio_deepslate_coal_ore"), Items.COAL);
+		register(restriction, BeyondEarthAddon.prl("glacio_deepslate_copper_ore"), Items.RAW_COPPER);
+		register(restriction, BeyondEarthAddon.prl("glacio_deepslate_iron_ore"), Items.RAW_IRON);
+		register(restriction, BeyondEarthAddon.prl("glacio_deepslate_lapis_ore"), new ItemStack(Items.LAPIS_LAZULI, 4));
 	}
 
 	public static void register(Restriction restriction, ResourceLocation worldGenRegistryName)
