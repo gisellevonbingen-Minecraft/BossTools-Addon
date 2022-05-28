@@ -4,7 +4,7 @@ import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.beyond_earth.events.forgeevents.LivingSetVenusRainEvent;
+import net.mrscauthd.beyond_earth.events.forge.LivingSetVenusRainEvent;
 
 public class VenusAcidProofUtils extends ProofAbstractUtils
 {

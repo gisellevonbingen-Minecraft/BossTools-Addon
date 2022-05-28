@@ -5,15 +5,15 @@ import beyond_earth_giselle_addon.common.compat.mekanism.gear.ModuleSpaceBreathi
 import beyond_earth_giselle_addon.common.compat.mekanism.gear.ModuleSpaceFireProofUnit;
 import beyond_earth_giselle_addon.common.compat.mekanism.gear.ModuleVenusAcidProofUnit;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
+import beyond_earth_giselle_addon.common.content.proof.LivingSpaceGravityProofEvent;
 import beyond_earth_giselle_addon.common.content.proof.LivingSpaceOxygenProofEvent;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.content.gear.Module;
 import mekanism.common.registries.MekanismModules;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.beyond_earth.events.forgeevents.LivingGravityEvent;
-import net.mrscauthd.beyond_earth.events.forgeevents.LivingSetFireInHotPlanetEvent;
-import net.mrscauthd.beyond_earth.events.forgeevents.LivingSetVenusRainEvent;
+import net.mrscauthd.beyond_earth.events.forge.LivingSetFireInHotPlanetEvent;
+import net.mrscauthd.beyond_earth.events.forge.LivingSetVenusRainEvent;
 
 public class AddonMekanismCommonEventListener
 {
@@ -32,7 +32,7 @@ public class AddonMekanismCommonEventListener
 	}
 
 	@SubscribeEvent
-	public static void onLivingGravityEvent(LivingGravityEvent e)
+	public static void onLivingGravityEvent(LivingSpaceGravityProofEvent e)
 	{
 		if (AddonConfigs.Common.mekanism.moduleGravitationalModulating_normalizable.get() == true)
 		{
