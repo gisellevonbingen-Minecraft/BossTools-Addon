@@ -1,25 +1,25 @@
 {
-  "type": "thermal:press",
-  "ingredients": [
-    {
-      "item": "beyond_earth:venus_sandstone",
-      "count": 1
-    },
-    {
-      "item": "thermal:press_unpacking_die"
-    }
-  ],
-  "result": [
-    {
-      "item": "beyond_earth:venus_sand",
-      "count": 4
-    }
-  ],
-  "energy": 400,
-  "conditions":[
-    {
-      "type":"forge:mod_loaded",
-      "modid":"thermal_expansion"
-    }
-  ]
+	"type": "thermal:press",
+	"ingredients": [
+		{
+			"item": "beyond_earth:venus_sandstone",
+			"count": 1
+		},
+		{
+			"item": "thermal:press_unpacking_die"
+		}
+	],
+	"result": [
+		{
+			"item": "beyond_earth:venus_sand",
+			"count": 4
+		}
+	],
+	"energy": 400,
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "thermal_expansion"
+		}
+	]
 }
