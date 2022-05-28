@@ -2,19 +2,17 @@
 	"type": "thermal:press",
 	"ingredients": [
 		{
-			"item": "beyond_earth:venus_sand",
-			"count": 4
+			"tag": "forge:ingots/ostrum"
 		},
 		{
-			"item": "thermal:press_packing_2x2_die"
+			"item": "beyond_earth_giselle_addon:press_compressing_die"
 		}
 	],
 	"result": [
 		{
-			"item": "beyond_earth:venus_sandstone"
+			"item": "beyond_earth:compressed_ostrum"
 		}
 	],
-	"energy": 400,
 	"conditions": [
 		{
 			"type": "forge:mod_loaded",
