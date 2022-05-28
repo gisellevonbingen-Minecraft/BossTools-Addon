@@ -1,13 +1,13 @@
 package beyond_earth_giselle_addon.common.content.gravity;
 
+import beyond_earth_giselle_addon.common.content.proof.LivingSpaceGravityProofEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.beyond_earth.events.forgeevents.ItemGravityEvent;
-import net.mrscauthd.beyond_earth.events.forgeevents.LivingGravityEvent;
+import net.mrscauthd.beyond_earth.events.forge.ItemGravityEvent;
 
 public class EventListenerGravityNormalizing
 {
 	@SubscribeEvent
-	public static void onLivingGravity(LivingGravityEvent e)
+	public static void onLivingGravity(LivingSpaceGravityProofEvent e)
 	{
 		GravityNormalizeUtils.tryCancelGravity(e);
 	}
