@@ -14,7 +14,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.EntityEvent;
 
 public class AddonModuleHelper
 {
@@ -46,14 +46,20 @@ public class AddonModuleHelper
 	 *            Energy function for cancel
 	 * @return Whether canceled in this method
 	 */
-	public static <T extends ICustomModule<T>> boolean tryCancel(LivingEvent e, IModuleDataProvider<T> type, @Nullable Function<T, FloatingLong> getEnergyUsing)
+	public static <T extends ICustomModule<T>> boolean tryCancel(EntityEvent e, IModuleDataProvider<T> type, @Nullable Function<T, FloatingLong> getEnergyUsing)
 	{
 		if (e.isCancelable() == false || e.isCanceled() == true)
 		{
 			return false;
 		}
 
-		LivingEntity entity = e.getEntityLiving();
+		if (!(e.getEntity() instanceof LivingEntity))
+		{
+			return false;
+		}
+
+		LivingEntity entity = (LivingEntity) e.getEntity();
+
 		Module<T> module = AddonModuleHelper.findArmorEnabledModule(entity, type);
 
 		if (module != null)
