@@ -7,14 +7,21 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.compat.mekanism.AddonMekanismCommand;
 import boss_tools_giselle_addon.common.compat.redstonearsenal.AddonRSACommand;
+import boss_tools_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.mrscauthd.boss_tools.ModInnet;
 import net.mrscauthd.boss_tools.capability.OxygenUtil;
 
@@ -49,7 +56,7 @@ public class AddonCommand
 		return 0;
 	}
 
-	private static class PlanetSelection
+	public static class PlanetSelection
 	{
 		public static LiteralArgumentBuilder<CommandSource> builder()
 		{
@@ -70,7 +77,7 @@ public class AddonCommand
 
 	}
 
-	private static class Equip
+	public static class Equip
 	{
 		public static LiteralArgumentBuilder<CommandSource> builder()
 		{
@@ -97,10 +104,10 @@ public class AddonCommand
 			CommandSource source = context.getSource();
 			ServerPlayerEntity player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ModInnet.OXYGEN_MASK.get()));
-			player.setItemSlot(EquipmentSlotType.CHEST, OxygenUtil.makeFull(new ItemStack(ModInnet.SPACE_SUIT.get())));
-			player.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ModInnet.SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlotType.FEET, new ItemStack(ModInnet.SPACE_BOOTS.get()));
+			player.setItemSlot(EquipmentSlotType.HEAD, makeFull(ModInnet.OXYGEN_MASK.get(), AddonEnchantments.SPACE_BREATHING.get()));
+			player.setItemSlot(EquipmentSlotType.CHEST, makeFull(ModInnet.SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlotType.LEGS, makeFull(ModInnet.SPACE_PANTS.get()));
+			player.setItemSlot(EquipmentSlotType.FEET, makeFull(ModInnet.SPACE_BOOTS.get(), AddonEnchantments.GRAVITY_NORMALIZING.get()));
 
 			return sendEquipedMessage(source);
 		}
@@ -110,12 +117,41 @@ public class AddonCommand
 			CommandSource source = context.getSource();
 			ServerPlayerEntity player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(ModInnet.NETHERITE_OXYGEN_MASK.get()));
-			player.setItemSlot(EquipmentSlotType.CHEST, OxygenUtil.makeFull(new ItemStack(ModInnet.NETHERITE_SPACE_SUIT.get())));
-			player.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(ModInnet.NETHERITE_SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlotType.FEET, new ItemStack(ModInnet.NETHERITE_SPACE_BOOTS.get()));
+			player.setItemSlot(EquipmentSlotType.HEAD, makeFull(ModInnet.NETHERITE_OXYGEN_MASK.get(), AddonEnchantments.SPACE_BREATHING.get()));
+			player.setItemSlot(EquipmentSlotType.CHEST, makeFull(ModInnet.NETHERITE_SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlotType.LEGS, makeFull(ModInnet.NETHERITE_SPACE_PANTS.get()));
+			player.setItemSlot(EquipmentSlotType.FEET, makeFull(ModInnet.NETHERITE_SPACE_BOOTS.get(), AddonEnchantments.GRAVITY_NORMALIZING.get()));
 
 			return sendEquipedMessage(source);
+		}
+
+		public static ItemStack makeFull(ResourceLocation name, Enchantment... enchantments)
+		{
+			Item item = ForgeRegistries.ITEMS.getValue(name);
+			return makeFull(item, enchantments);
+		}
+
+		public static ItemStack makeFull(Item item, Enchantment... enchantments)
+		{
+			ItemStack stack = new ItemStack(item);
+
+			for (Enchantment enchantment : enchantments)
+			{
+				stack.enchant(enchantment, 1);
+			}
+
+			IEnergyStorage energyStorage = stack.getCapability(CapabilityEnergy.ENERGY).orElse(null);
+
+			if (energyStorage != null)
+			{
+				for (int i = 0; i < 100; i++)
+				{
+					energyStorage.receiveEnergy(energyStorage.getMaxEnergyStored(), false);
+				}
+				
+			}
+
+			return OxygenUtil.makeFull(stack);
 		}
 
 	}
