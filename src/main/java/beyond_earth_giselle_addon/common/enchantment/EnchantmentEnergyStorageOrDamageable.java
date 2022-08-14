@@ -6,9 +6,9 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.energy.CapabilityEnergy;
 
-public class EnchantmentEnergyStorage extends Enchantment
+public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 {
-	public EnchantmentEnergyStorage(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots)
+	public EnchantmentEnergyStorageOrDamageable(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots)
 	{
 		super(rarity, category, slots);
 	}
