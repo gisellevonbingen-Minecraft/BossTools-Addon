@@ -25,13 +25,13 @@
   "description.beyond_earth_giselle_addon.charge_mode": "Charge Mode",
   
   "enchantment.beyond_earth_giselle_addon.space_breathing": "Space Breathing",
-  "enchantment.beyond_earth_giselle_addon.space_breathing.desc": "Can breath in Beyond Earth dimensions\nEnchanting item require have energy storage\nRequire enabled 'Oxygen Can' in inventory",
+  "enchantment.beyond_earth_giselle_addon.space_breathing.desc": "Can breath in Beyond Earth dimensions\nUse energy or durability\nRequire enabled 'Oxygen Can' in inventory",
   "enchantment.beyond_earth_giselle_addon.gravity_normalizing": "Gravity Normalizing",
-  "enchantment.beyond_earth_giselle_addon.gravity_normalizing.desc": "Normalize gravity like overworld in Beyond Earth dimensions\nEnchanting item require have energy storage",
+  "enchantment.beyond_earth_giselle_addon.gravity_normalizing.desc": "Normalize gravity like overworld in Beyond Earth dimensions\nUse energy or durability",
   "enchantment.beyond_earth_giselle_addon.space_fire_proof": "Space Fire Proof",
-  "enchantment.beyond_earth_giselle_addon.space_fire_proof.desc": "Don't set fire to player in Beyond Earth dimensions\nEnchanting item require have energy storage",
+  "enchantment.beyond_earth_giselle_addon.space_fire_proof.desc": "Don't set fire to player in Beyond Earth dimensions\nUse energy or durability",
   "enchantment.beyond_earth_giselle_addon.venus_acid_proof": "Venus Acid Proof",
-  "enchantment.beyond_earth_giselle_addon.venus_acid_proof.desc": "Don't damage from acid rain in Beyond Earth dimensions\nEnchanting item require have energy storage",
+  "enchantment.beyond_earth_giselle_addon.venus_acid_proof.desc": "Don't damage from acid rain in Beyond Earth dimensions\nUse energy or durability",
   
   "container.beyond_earth_giselle_addon.fuel_loader": "Fuel Loader",
   "container.beyond_earth_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
