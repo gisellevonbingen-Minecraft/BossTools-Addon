@@ -42,25 +42,31 @@ public abstract class ProofEnchantmentSession extends ProofSession
 		ItemStack enchantedItem = this.getEnchantedItem();
 		int enchantLevel = this.getEnchantLevel();
 
-		if (enchantedItem.isEmpty() == true || enchantLevel == 0 || ItemStackUtils.hasUseableResources(enchantedItem) == false)
+		if (enchantedItem.isEmpty() == true || enchantLevel == 0)
 		{
 			return false;
 		}
 
-		LivingEntity entity = this.getEntity();
-
-		if (LivingEntityHelper.isPlayingMode(entity) == true)
+		if (LivingEntityHelper.isPlayingMode(this.getEntity()) == true)
 		{
-			int energyUsing = this.getResourceUsingAmount(ItemUsableResource.Energy);
-			int durabilityUsing = this.getResourceUsingAmount(ItemUsableResource.Durability);
-			ItemUsableResourceResult result = ItemStackUtils.useResources(enchantedItem, energyUsing, durabilityUsing, true);
-			this.testedUsableResource = result.getResource();
-
-			if (result.getResult() == false)
+			if (ItemStackUtils.hasUseableResources(enchantedItem) == true)
 			{
-				return false;
+				int energyUsing = this.getResourceUsingAmount(ItemUsableResource.Energy);
+				int durabilityUsing = this.getResourceUsingAmount(ItemUsableResource.Durability);
+				ItemUsableResourceResult result = ItemStackUtils.useResources(enchantedItem, energyUsing, durabilityUsing, true);
+				this.testedUsableResource = result.getResource();
+
+				if (result.getResult() == false)
+				{
+					return false;
+				}
+
 			}
 
+		}
+		else
+		{
+			this.testedUsableResource = ItemUsableResource.Durability;
 		}
 
 		return true;

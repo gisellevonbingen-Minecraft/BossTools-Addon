@@ -3,6 +3,7 @@ package beyond_earth_giselle_addon.common.content.proof;
 import beyond_earth_giselle_addon.common.util.NBTUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -55,17 +56,32 @@ public abstract class ProofAbstractUtils
 		compound.putLong(NBT_PROOF_DURATION_KEY, Math.max(proofDuration, 0));
 	}
 
+	public boolean tryProvideProof(EntityEvent e)
+	{
+		if (e.isCanceled() == true)
+		{
+			return false;
+		}
+		else if (e.getEntity()instanceof LivingEntity living)
+		{
+			return this.tryProvideProof(living);
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
 	public boolean tryProvideProof(LivingEvent e)
 	{
-		LivingEntity entity = e.getEntityLiving();
-
 		if (e.isCanceled() == true)
 		{
 			return false;
 		}
 		else
 		{
-			return this.tryProvideProof(entity);
+			return this.tryProvideProof(e.getEntityLiving());
 		}
 
 	}
