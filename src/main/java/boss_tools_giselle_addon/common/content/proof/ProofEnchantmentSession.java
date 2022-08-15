@@ -2,58 +2,74 @@ package boss_tools_giselle_addon.common.content.proof;
 
 import com.mojang.datafixers.util.Pair;
 
-import boss_tools_giselle_addon.common.enchantment.EnchantmentEnergyStorage;
+import boss_tools_giselle_addon.common.enchantment.EnchantmentEnergyStorageOrDamageable;
 import boss_tools_giselle_addon.common.enchantment.EnchantmentHelper2;
+import boss_tools_giselle_addon.common.util.ItemUsableResource;
+import boss_tools_giselle_addon.common.util.ItemUsableResourceResult;
+import boss_tools_giselle_addon.common.util.ItemStackUtils;
 import boss_tools_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
 
 public abstract class ProofEnchantmentSession extends ProofSession
 {
-	private EnchantmentEnergyStorage enchantment;
+	private EnchantmentEnergyStorageOrDamageable enchantment;
 	private ItemStack enchantedItem;
-	private IEnergyStorage energyStorage;
 	private int enchantLevel;
 
-	public ProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyStorage enchantment)
+	private ItemUsableResource testedUsableResource;
+
+	public ProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyStorageOrDamageable enchantment)
 	{
 		super(entity);
 		this.enchantment = enchantment;
 
 		Pair<ItemStack, Integer> pair = EnchantmentHelper2.getEnchantmentItemAndLevel(enchantment, entity);
 		this.enchantedItem = pair.getFirst();
-		this.energyStorage = this.enchantedItem.getCapability(CapabilityEnergy.ENERGY).orElse(null);
 		this.enchantLevel = pair.getSecond();
+
+		this.testedUsableResource = null;
 	}
 
 	@Override
 	public boolean canProvide()
 	{
-		ItemStack enchantedItem = this.getEnchantedItem();
-		IEnergyStorage energyStorage = this.getEnergyStorage();
-		int enchantLevel = this.getEnchantLevel();
-
-		if (enchantedItem.isEmpty() == true || enchantLevel == 0 || energyStorage == null)
+		if (super.canProvide() == false)
 		{
 			return false;
 		}
 
-		LivingEntity entity = this.getEntity();
+		ItemStack enchantedItem = this.getEnchantedItem();
+		int enchantLevel = this.getEnchantLevel();
 
-		if (LivingEntityHelper.isPlayingMode(entity) == true)
+		if (enchantedItem.isEmpty() == true || enchantLevel == 0)
 		{
-			int energyUsing = this.getEnergyUsing();
+			return false;
+		}
 
-			if (energyStorage.extractEnergy(energyUsing, true) < energyUsing)
+		if (LivingEntityHelper.isPlayingMode(this.getEntity()) == true)
+		{
+			if (ItemStackUtils.hasUseableResources(enchantedItem) == true)
 			{
-				return false;
+				int energyUsing = this.getResourceUsingAmount(ItemUsableResource.Energy);
+				int durabilityUsing = this.getResourceUsingAmount(ItemUsableResource.Durability);
+				ItemUsableResourceResult result = ItemStackUtils.useResources(enchantedItem, energyUsing, durabilityUsing, true);
+				this.testedUsableResource = result.getResource();
+
+				if (result.getResult() == false)
+				{
+					return false;
+				}
+
 			}
 
 		}
+		else
+		{
+			this.testedUsableResource = ItemUsableResource.Durability;
+		}
 
-		return super.canProvide();
+		return true;
 	}
 
 	@Override
@@ -67,15 +83,28 @@ public abstract class ProofEnchantmentSession extends ProofSession
 		{
 			if (entity.level.isClientSide() == false)
 			{
-				int energyUsing = this.getEnergyUsing();
-				this.getEnergyStorage().extractEnergy(energyUsing, false);
+				ItemStack enchantedItem = this.getEnchantedItem();
+				int energyUsing = this.getResourceUsingAmount(ItemUsableResource.Energy);
+				int durabilityUsing = this.getResourceUsingAmount(ItemUsableResource.Durability);
+				ItemStackUtils.useResources(enchantedItem, energyUsing, durabilityUsing, false);
 			}
 
 		}
 
 	}
 
-	public EnchantmentEnergyStorage getEnchantment()
+	public abstract int getResourceUsingAmount(ItemUsableResource resource);
+
+	public abstract int getProofDuration(ItemUsableResource resource);
+
+	@Override
+	public int getProofDuration()
+	{
+		ItemUsableResource resource = this.getTestedUsableResource();
+		return this.getProofDuration(resource);
+	}
+
+	public EnchantmentEnergyStorageOrDamageable getEnchantment()
 	{
 		return this.enchantment;
 	}
@@ -85,16 +114,14 @@ public abstract class ProofEnchantmentSession extends ProofSession
 		return this.enchantedItem;
 	}
 
-	public IEnergyStorage getEnergyStorage()
-	{
-		return this.energyStorage;
-	}
-
 	public int getEnchantLevel()
 	{
 		return this.enchantLevel;
 	}
 
-	public abstract int getEnergyUsing();
+	public ItemUsableResource getTestedUsableResource()
+	{
+		return this.testedUsableResource;
+	}
 
 }

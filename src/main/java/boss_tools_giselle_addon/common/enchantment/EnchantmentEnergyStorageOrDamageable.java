@@ -1,14 +1,14 @@
 package boss_tools_giselle_addon.common.enchantment;
 
+import boss_tools_giselle_addon.common.util.ItemStackUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.energy.CapabilityEnergy;
 
-public class EnchantmentEnergyStorage extends Enchantment
+public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 {
-	public EnchantmentEnergyStorage(Rarity rarity, EnchantmentType type, EquipmentSlotType... slots)
+	public EnchantmentEnergyStorageOrDamageable(Rarity rarity, EnchantmentType type, EquipmentSlotType... slots)
 	{
 		super(rarity, type, slots);
 	}
@@ -28,7 +28,7 @@ public class EnchantmentEnergyStorage extends Enchantment
 		}
 		else
 		{
-			return stack.getCapability(CapabilityEnergy.ENERGY).isPresent();
+			return ItemStackUtils.hasUseableResources(stack);
 		}
 
 	}

@@ -53,7 +53,7 @@ public class SpaceGravityProofUtils extends ProofAbstractUtils
 	{
 		if (this.tryProvideProof(e) == true)
 		{
-			GravityNormalizeUtils.setNormalizing(e.getEntityLiving(), true);
+			e.setCanceled(true);
 		}
 
 	}
