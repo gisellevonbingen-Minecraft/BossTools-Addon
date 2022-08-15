@@ -25,13 +25,13 @@
   "description.boss_tools_giselle_addon.charge_mode": "Charge Mode",
   
   "enchantment.boss_tools_giselle_addon.space_breathing": "Space Breathing",
-  "enchantment.boss_tools_giselle_addon.space_breathing.desc": "Can breath in Space-BossTools dimensions\nEnchanting item require have energy storage\nRequire enabled 'Oxygen Can' in inventory",
+  "enchantment.boss_tools_giselle_addon.space_breathing.desc": "Can breath in Space-BossTools dimensions\nUse energy or durability\nRequire enabled 'Oxygen Can' in inventory",
   "enchantment.boss_tools_giselle_addon.gravity_normalizing": "Gravity Normalizing",
-  "enchantment.boss_tools_giselle_addon.gravity_normalizing.desc": "Normalize gravity like overworld in Space-BossTools dimensions\nEnchanting item require have energy storage",
+  "enchantment.boss_tools_giselle_addon.gravity_normalizing.desc": "Normalize gravity like overworld in Space-BossTools dimensions\nUse energy or durability",
   "enchantment.boss_tools_giselle_addon.space_fire_proof": "Space Fire Proof",
-  "enchantment.boss_tools_giselle_addon.space_fire_proof.desc": "Don't set fire to player in Space-BossTools dimensions\nEnchanting item require have energy storage",
+  "enchantment.boss_tools_giselle_addon.space_fire_proof.desc": "Don't set fire to player in Space-BossTools dimensions\nUse energy or durability",
   "enchantment.boss_tools_giselle_addon.venus_acid_proof": "Venus Acid Proof",
-  "enchantment.boss_tools_giselle_addon.venus_acid_proof.desc": "Don't damage from acid rain in Space-BossTools dimensions\nEnchanting item require have energy storage",
+  "enchantment.boss_tools_giselle_addon.venus_acid_proof.desc": "Don't damage from acid rain in Space-BossTools dimensions\nUse energy or durability",
   
   "container.boss_tools_giselle_addon.fuel_loader": "Fuel Loader",
   "container.boss_tools_giselle_addon.electric_blast_furnace": "Electric Blast Furnace",
