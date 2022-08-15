@@ -120,8 +120,7 @@ dependencies {
     compileOnly fg.deobf("thelm:jaopca:${mc_version}-${jaopca_version}:api")
 
     // Curios
-    compileOnly fg.deobf("curse.maven:curios-309927:${curios_file}:api")
-    runtimeOnly fg.deobf("curse.maven:curios-309927:${curios_file}")
+    implementation fg.deobf("curse.maven:curios-309927:${curios_file}")
 
     // Space-BossTools
     implementation fg.deobf("net.mrscauthd:boss_tools:${mc_version}-${boss_tools_version}")
