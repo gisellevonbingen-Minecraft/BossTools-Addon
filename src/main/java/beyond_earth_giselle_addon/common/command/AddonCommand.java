@@ -6,14 +6,21 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.compat.mekanism.AddonMekanismCommand;
+import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.OxygenUtil;
 import net.mrscauthd.beyond_earth.registries.EntitiesRegistry;
 import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
@@ -49,7 +56,7 @@ public class AddonCommand
 		return 0;
 	}
 
-	private static class PlanetSelection
+	public static class PlanetSelection
 	{
 		public static LiteralArgumentBuilder<CommandSourceStack> builder()
 		{
@@ -70,7 +77,7 @@ public class AddonCommand
 
 	}
 
-	private static class Equip
+	public static class Equip
 	{
 		public static LiteralArgumentBuilder<CommandSourceStack> builder()
 		{
@@ -92,10 +99,10 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ItemsRegistry.OXYGEN_MASK.get()));
-			player.setItemSlot(EquipmentSlot.CHEST, OxygenUtil.makeFull(new ItemStack(ItemsRegistry.SPACE_SUIT.get())));
-			player.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ItemsRegistry.SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlot.FEET, new ItemStack(ItemsRegistry.SPACE_BOOTS.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.OXYGEN_MASK.get(), AddonEnchantments.SPACE_BREATHING.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlot.LEGS, makeFull(ItemsRegistry.SPACE_PANTS.get()));
+			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.SPACE_BOOTS.get(), AddonEnchantments.GRAVITY_NORMALIZING.get()));
 
 			return sendEquipedMessage(source);
 		}
@@ -105,12 +112,41 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ItemsRegistry.NETHERITE_OXYGEN_MASK.get()));
-			player.setItemSlot(EquipmentSlot.CHEST, OxygenUtil.makeFull(new ItemStack(ItemsRegistry.NETHERITE_SPACE_SUIT.get())));
-			player.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ItemsRegistry.NETHERITE_SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlot.FEET, new ItemStack(ItemsRegistry.NETHERITE_SPACE_BOOTS.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.NETHERITE_OXYGEN_MASK.get(), AddonEnchantments.SPACE_BREATHING.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.NETHERITE_SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlot.LEGS, makeFull(ItemsRegistry.NETHERITE_SPACE_PANTS.get()));
+			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.NETHERITE_SPACE_BOOTS.get(), AddonEnchantments.GRAVITY_NORMALIZING.get()));
 
 			return sendEquipedMessage(source);
+		}
+
+		public static ItemStack makeFull(ResourceLocation name, Enchantment... enchantments)
+		{
+			Item item = ForgeRegistries.ITEMS.getValue(name);
+			return makeFull(item, enchantments);
+		}
+
+		private static ItemStack makeFull(Item item, Enchantment... enchantments)
+		{
+			ItemStack stack = new ItemStack(item);
+
+			for (Enchantment enchantment : enchantments)
+			{
+				stack.enchant(enchantment, 1);
+			}
+
+			IEnergyStorage energyStorage = stack.getCapability(CapabilityEnergy.ENERGY).orElse(null);
+
+			if (energyStorage != null)
+			{
+				for (int i = 0; i < 100; i++)
+				{
+					energyStorage.receiveEnergy(energyStorage.getMaxEnergyStored(), false);
+				}
+
+			}
+
+			return OxygenUtil.makeFull(stack);
 		}
 
 	}

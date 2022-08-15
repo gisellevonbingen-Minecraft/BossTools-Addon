@@ -5,6 +5,7 @@ import beyond_earth_giselle_addon.common.content.gravity.GravityNormalizeUtils;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.mrscauthd.beyond_earth.events.forge.EntityGravityEvent;
 
 public class SpaceGravityProofUtils extends ProofAbstractUtils
 {
@@ -48,11 +49,11 @@ public class SpaceGravityProofUtils extends ProofAbstractUtils
 	}
 
 	@SubscribeEvent
-	public void onLivingGravity(LivingSpaceGravityProofEvent e)
+	public void onLivingGravity(EntityGravityEvent e)
 	{
 		if (this.tryProvideProof(e) == true)
 		{
-			GravityNormalizeUtils.setNormalizing(e.getEntityLiving(), true);
+			e.setCanceled(true);
 		}
 
 	}

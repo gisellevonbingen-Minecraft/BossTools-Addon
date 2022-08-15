@@ -21,18 +21,15 @@ public abstract class ProofSession
 
 	}
 
-	public int getProofDuration()
-	{
-		return 1;
-	}
+	public abstract int getProofDuration();
 
 	public int provide()
 	{
 		if (this.canProvide() == true)
 		{
-			int proofDuration = this.getProofDuration();
 			this.onProvide();
 
+			int proofDuration = this.getProofDuration();
 			return proofDuration;
 		}
 		else

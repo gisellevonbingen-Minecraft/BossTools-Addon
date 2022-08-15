@@ -3,7 +3,8 @@ package beyond_earth_giselle_addon.common.content.proof;
 import beyond_earth_giselle_addon.common.capability.IOxygenCharger;
 import beyond_earth_giselle_addon.common.capability.OxygenChargerUtils;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
-import beyond_earth_giselle_addon.common.enchantment.EnchantmentEnergyStorage;
+import beyond_earth_giselle_addon.common.enchantment.EnchantmentEnergyStorageOrDamageable;
+import beyond_earth_giselle_addon.common.util.ItemUsableResource;
 import beyond_earth_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -13,7 +14,7 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 {
 	private IOxygenStorage oxygenStorage;
 
-	public SpaceOxygenProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyStorage enchantment)
+	public SpaceOxygenProofEnchantmentSession(LivingEntity entity, EnchantmentEnergyStorageOrDamageable enchantment)
 	{
 		super(entity, enchantment);
 
@@ -34,6 +35,11 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 	@Override
 	public boolean canProvide()
 	{
+		if (super.canProvide() == false)
+		{
+			return false;
+		}
+
 		LivingEntity entity = this.getEntity();
 
 		if (LivingEntityHelper.isPlayingMode(entity) == true)
@@ -48,7 +54,7 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 
 		}
 
-		return super.canProvide();
+		return true;
 	}
 
 	@Override
@@ -62,7 +68,7 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 		{
 			IOxygenStorage oxygenStorage = this.getOxygenStorage();
 
-			if (oxygenStorage != null && entity.getLevel().isClientSide() == false)
+			if (oxygenStorage != null && entity.level.isClientSide() == false)
 			{
 				int oxygenUsing = this.getOxygenUsing();
 				oxygenStorage.extractOxygen(oxygenUsing, false);
@@ -73,15 +79,39 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 	}
 
 	@Override
-	public int getEnergyUsing()
+	public int getResourceUsingAmount(ItemUsableResource resource)
 	{
-		return AddonConfigs.Common.enchantments.space_breathing_energyUsing.get();
+		if (resource == ItemUsableResource.Energy)
+		{
+			return AddonConfigs.Common.enchantments.space_breathing_energy_using.get();
+		}
+		else if (resource == ItemUsableResource.Durability)
+		{
+			return AddonConfigs.Common.enchantments.space_breathing_durabiltiy_using.get();
+		}
+		else
+		{
+			return 0;
+		}
+
 	}
 
 	@Override
-	public int getProofDuration()
+	public int getProofDuration(ItemUsableResource resource)
 	{
-		return AddonConfigs.Common.enchantments.space_breathing_oxygenDuration.get();
+		if (resource == ItemUsableResource.Energy)
+		{
+			return AddonConfigs.Common.enchantments.space_breathing_energy_duration.get();
+		}
+		else if (resource == ItemUsableResource.Durability)
+		{
+			return AddonConfigs.Common.enchantments.space_breathing_durability_duration.get();
+		}
+		else
+		{
+			return 0;
+		}
+
 	}
 
 	public IOxygenStorage getOxygenStorage()
@@ -91,7 +121,25 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 
 	public int getOxygenUsing()
 	{
-		return 1;
+		ItemUsableResource resource = this.getTestedUsableResource();
+		return this.getOxygenUsing(resource);
+	}
+
+	public int getOxygenUsing(ItemUsableResource resource)
+	{
+		if (resource == ItemUsableResource.Energy)
+		{
+			return AddonConfigs.Common.enchantments.space_breathing_energy_oxygen.get();
+		}
+		else if (resource == ItemUsableResource.Durability)
+		{
+			return AddonConfigs.Common.enchantments.space_breathing_durability_oxygen.get();
+		}
+		else
+		{
+			return 0;
+		}
+
 	}
 
 }
