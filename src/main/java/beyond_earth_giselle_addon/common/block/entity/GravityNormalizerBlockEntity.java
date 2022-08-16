@@ -17,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.mrscauthd.beyond_earth.capabilities.energy.EnergyStorageBasic;
 import net.mrscauthd.beyond_earth.machines.tile.AbstractMachineBlockEntity;
 import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
 import net.mrscauthd.beyond_earth.machines.tile.PowerSystem;
@@ -46,7 +47,9 @@ public class GravityNormalizerBlockEntity extends AbstractMachineBlockEntity
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)
 	{
 		super.createEnergyStorages(registry);
-		registry.put(this.createEnergyStorageCommon());
+		int capacity = AddonConfigs.Common.machines.gravityNormalizer_energyCapcity.get();
+		int transfer = AddonConfigs.Common.machines.gravityNormalizer_energyTransfer.get();
+		registry.put(new EnergyStorageBasic(this, capacity, transfer, capacity));
 	}
 
 	@Override

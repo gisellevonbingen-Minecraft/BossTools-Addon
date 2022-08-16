@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 
+import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.inventory.AdvancedCompressorContainerMenu;
 import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
 import beyond_earth_giselle_addon.common.registries.AddonRecipes;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.mrscauthd.beyond_earth.capabilities.energy.EnergyStorageBasic;
 import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeTypes;
 import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipeType;
 import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
@@ -42,7 +44,9 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)
 	{
 		super.createEnergyStorages(registry);
-		registry.put(this.createEnergyStorageCommon());
+		int capacity = AddonConfigs.Common.machines.advancedCompressor_energyCapcity.get();
+		int transfer = AddonConfigs.Common.machines.advancedCompressor_energyTransfer.get();
+		registry.put(new EnergyStorageBasic(this, capacity, transfer, capacity));
 	}
 
 	protected void createPowerSystems(PowerSystemRegistry map)
@@ -66,7 +70,7 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 
 	public int getBasePowerForOperation()
 	{
-		return 1;
+		return AddonConfigs.Common.machines.advancedCompressor_energyUsing.get();
 	}
 
 	@Override
