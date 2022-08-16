@@ -12,7 +12,7 @@ public class MekanismConfig
 	public final ConfigValue<Integer> moduleSpaceFireProof_energyUsing;
 	public final ConfigValue<Integer> moduleVenusAcidProof_energyUsing;
 	public final ConfigValue<Integer> moduleGravityNormalizing_energyUsing;
-	
+
 	public final ConfigValue<Boolean> moduleGravitationalModulating_normalizable;
 	public final ConfigValue<Integer> moduleGravitationalModulating_energyUsing;
 
