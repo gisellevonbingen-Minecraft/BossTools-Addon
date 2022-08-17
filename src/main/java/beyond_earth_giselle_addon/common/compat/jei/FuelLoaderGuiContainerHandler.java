@@ -11,16 +11,10 @@ import mezz.jei.api.gui.handlers.IGuiClickableArea;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import mezz.jei.api.recipe.IFocusFactory;
 import mezz.jei.api.runtime.IRecipesGui;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModList;
 import net.mrscauthd.beyond_earth.gauge.GaugeTextHelper;
-import net.mrscauthd.beyond_earth.gauge.GaugeValueHelper;
 import net.mrscauthd.beyond_earth.guis.helper.GuiHelper;
 
 public class FuelLoaderGuiContainerHandler implements IGuiContainerHandler<FuelLoaderScreen>
@@ -48,19 +42,7 @@ public class FuelLoaderGuiContainerHandler implements IGuiContainerHandler<FuelL
 			public List<Component> getTooltipStrings()
 			{
 				List<Component> list = new ArrayList<>();
-				list.add(GaugeTextHelper.getStorageText(GaugeValueHelper.getFluid(blockEntity.getFluidTank())).build());
-
-				ResourceLocation registryName = blockEntity.getFluidTank().getFluid().getFluid().getRegistryName();
-
-				if (registryName != null) {
-					ModContainer container = ModList.get().getModContainerById(registryName.getNamespace()).orElse(null);
-
-					if (container != null) {
-						list.add(new TextComponent(container.getModInfo().getDisplayName()).withStyle(ChatFormatting.BLUE, ChatFormatting.ITALIC));
-					}
-
-				}
-				
+				list.addAll(GaugeTextHelper.getFluidTooltip(blockEntity.getFluidTank()));
 				list.add(new TranslatableComponent("jei.tooltip.show.recipes"));
 				return list;
 			}
