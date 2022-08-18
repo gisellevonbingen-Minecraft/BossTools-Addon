@@ -1,6 +1,9 @@
 {
 	"replace": false,
 	"values": [
+		"#forge:diesel",
+		"#forge:biodiesel",
+		"#forge:biofuel",
 		{
 			"id": "thermal:refined_fuel",
 			"required": false
@@ -11,26 +14,6 @@
 		},
 		{
 			"id": "car:bio_diesel",
-			"required": false
-		},
-		{
-			"id": "immersivepetroleum:diesel",
-			"required": false
-		},
-		{
-			"id": "immersiveengineering:biodiesel",
-			"required": false
-		},
-		{
-			"id": "industrialforegoing:biofuel",
-			"required": false
-		},
-		{
-			"id": "pneumaticcraft:diesel",
-			"required": false
-		},
-		{
-			"id": "pneumaticcraft:biodiesel",
 			"required": false
 		}
 	]
