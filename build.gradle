@@ -1,16 +1,19 @@
 buildscript {
     repositories {
         maven { url = "https://maven.minecraftforge.net" }
+        maven { url = "https://repo.spongepowered.org/maven" }
         mavenCentral()
     }
     dependencies {
         classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "5.1.+", changing: true
+        classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
     }
 }
 
 apply plugin: "net.minecraftforge.gradle"
 apply plugin: "eclipse"
 apply plugin: "maven-publish"
+apply plugin: "org.spongepowered.mixin"
 
 version = "${mc_version}-${mod_version}"
 group = "gisellevonbingen.beyond_earth_giselle_addon"
@@ -101,6 +104,10 @@ repositories {
         url = "https://www.cursemaven.com"
     }
     maven {
+        name "CraftTweaker"
+        url = "https://maven.blamejared.com"
+    }
+    maven {
         name "Local"
         url uri("${projectDir}/libs")
     }
@@ -108,6 +115,11 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+
+    // Mixin
+    if (System.getProperty("idea.sync.active") != "true") {
+        annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
+    }
 
     // JEI
     implementation fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
@@ -122,8 +134,8 @@ dependencies {
     implementation fg.deobf("curse.maven:jade-324717:${jade_file}")
 
     // Tinkers Construct
-    // implementation fg.deobf("slimeknights.mantle:Mantle:${mc_version}-${mantle_version}")
-    // implementation fg.deobf("slimeknights.tconstruct:TConstruct:${mc_version}-${tconstruct_version}")
+    implementation fg.deobf("slimeknights.mantle:Mantle:${mc_version}-${mantle_version}")
+    implementation fg.deobf("slimeknights.tconstruct:TConstruct:${mc_version}-${tconstruct_version}")
 
     // Refined Storage
     // compileOnly fg.deobf("curse.maven:refined-storage-243076:${refined_storage_file}")
@@ -150,6 +162,10 @@ dependencies {
     implementation fg.deobf("curse.maven:cofh-core-69162:${cofh_core_file}")
     implementation fg.deobf("curse.maven:thermal-foundation-222880:${thermal_foundation_file}")
     implementation fg.deobf("curse.maven:thermal-expansion-69163:${thermal_expansion_file}")
+    
+    // Craft Tweaker
+    implementation fg.deobf("com.blamejared.crafttweaker:CraftTweaker-forge-${mc_version}:${crafttweaker_version}")
+    implementation fg.deobf("com.blamejared.jeitweaker:JEITweaker-${mc_version}:${jeitweaker_version}")
 
 }
 
