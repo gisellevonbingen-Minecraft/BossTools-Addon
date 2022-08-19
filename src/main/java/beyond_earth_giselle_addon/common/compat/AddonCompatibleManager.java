@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import beyond_earth_giselle_addon.common.compat.crafttweaker.AddonCraftTweakerCompat;
 import beyond_earth_giselle_addon.common.compat.curios.AddonCuriosCompat;
 import beyond_earth_giselle_addon.common.compat.immersiveengineering.AddonIECompat;
 import beyond_earth_giselle_addon.common.compat.jaopca.AddonJaopcaCompat;
@@ -24,6 +25,7 @@ public class AddonCompatibleManager
 	public static final AddonIECompat IMMERSIVE_ENGINEERING;
 	public static final AddonJaopcaCompat JAOPCA;
 	public static final AddonCuriosCompat CURIOS;
+	public static final AddonCraftTweakerCompat CRAFTTWEAKER;
 
 	public static final AddonWailaCompat WAILA;
 	public static final AddonTOPCompat TOP;
@@ -38,6 +40,7 @@ public class AddonCompatibleManager
 		mods.add(IMMERSIVE_ENGINEERING = new AddonIECompat());
 		mods.add(JAOPCA = new AddonJaopcaCompat());
 		mods.add(CURIOS = new AddonCuriosCompat());
+		mods.add(CRAFTTWEAKER = new AddonCraftTweakerCompat());
 		mods.add(WAILA = new AddonWailaCompat());
 		mods.add(TOP = new AddonTOPCompat());
 
