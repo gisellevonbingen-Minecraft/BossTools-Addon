@@ -101,11 +101,11 @@ repositories {
     }
     maven {
         name "CurseForge"
-        url = "https://www.cursemaven.com"
+        url "https://www.cursemaven.com"
     }
     maven {
         name "CraftTweaker"
-        url = "https://maven.blamejared.com"
+        url "https://maven.blamejared.com"
     }
     maven {
         name "Local"
