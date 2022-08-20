@@ -43,7 +43,7 @@ public class AddonCTAlienTradingRecipeManager
 	public static final AddonCTAlienTradingRecipeManager INSTANCE = new AddonCTAlienTradingRecipeManager();
 
 	@ZenCodeType.Method
-	public void addJsonRecipe(String name, IData data)
+	public void addJSONRecipe(String name, IData data)
 	{
 		MapData mapData = (MapData) data;
 		JsonObject recipeObject = JSON_RECIPE_GSON.fromJson(mapData.toJsonString(), JsonObject.class);
