@@ -83,7 +83,11 @@ repositories {
     }
     maven {
         name "CurseForge"
-        url = "https://www.cursemaven.com"
+        url "https://www.cursemaven.com"
+    }
+    maven {
+        name "CraftTweaker"
+        url "https://maven.blamejared.com"
     }
     maven {
         name "Local"
@@ -139,6 +143,10 @@ dependencies {
 
     // Immersive Engineering
     compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${immersive_engineering_version}:api")
+    
+    // Craft Tweaker
+    implementation fg.deobf("com.blamejared.crafttweaker:CraftTweaker-${mc_version}:${crafttweaker_version}")
+    implementation fg.deobf("com.blamejared.jeitweaker:JEITweaker-${mc_version}:${jeitweaker_version}")
 }
 
 jar {

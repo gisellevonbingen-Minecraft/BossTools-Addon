@@ -3,7 +3,9 @@
 	"package": "boss_tools_giselle_addon.common.mixin",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
-		"PlanetSelectionGuiMixin"
+		"PlanetSelectionGuiMixin",
+		"WorkbenchingRecipeMixin",
+		"WorkbenchTileEntityMixin"
 	],
 	"client": [
 		"PlanetSelectionGuiWindowMixin"

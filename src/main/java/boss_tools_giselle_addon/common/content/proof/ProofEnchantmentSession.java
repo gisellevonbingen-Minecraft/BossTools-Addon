@@ -4,9 +4,9 @@ import com.mojang.datafixers.util.Pair;
 
 import boss_tools_giselle_addon.common.enchantment.EnchantmentEnergyStorageOrDamageable;
 import boss_tools_giselle_addon.common.enchantment.EnchantmentHelper2;
+import boss_tools_giselle_addon.common.util.ItemStackUtils;
 import boss_tools_giselle_addon.common.util.ItemUsableResource;
 import boss_tools_giselle_addon.common.util.ItemUsableResourceResult;
-import boss_tools_giselle_addon.common.util.ItemStackUtils;
 import boss_tools_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
