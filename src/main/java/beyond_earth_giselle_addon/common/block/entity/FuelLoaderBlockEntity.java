@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import beyond_earth_giselle_addon.common.adapter.FuelAdapter;
-import beyond_earth_giselle_addon.common.adapter.FuelAdapterCreateEntityEvent;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.fluid.FluidUtil3;
 import beyond_earth_giselle_addon.common.inventory.FuelLoaderContainerMenu;
@@ -26,6 +24,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.RangedWrapper;
+import net.mrscauthd.beyond_earth.entities.IFuelVehicleEntity;
 import net.mrscauthd.beyond_earth.events.Methods;
 import net.mrscauthd.beyond_earth.fluids.FluidUtil2;
 import net.mrscauthd.beyond_earth.machines.tile.AbstractMachineBlockEntity;
@@ -174,11 +173,13 @@ public class FuelLoaderBlockEntity extends AbstractMachineBlockEntity
 
 		for (Entity entity : entities)
 		{
-			FuelAdapter<? extends Entity> adapter = new FuelAdapterCreateEntityEvent(entity).resolve();
-
-			if (this.exchangeFuelItem(adapter) == true)
+			if (entity instanceof IFuelVehicleEntity fuelVehicle)
 			{
-				worked = true;
+				if (this.exchangeFuelItem(fuelVehicle) == true)
+				{
+					worked = true;
+				}
+
 			}
 
 		}
@@ -228,32 +229,27 @@ public class FuelLoaderBlockEntity extends AbstractMachineBlockEntity
 		return new AABB(pos).inflate(range, half, range).move(0.0D, half, 0.0D);
 	}
 
-	public boolean exchangeFuelItem(FuelAdapter<? extends Entity> adapter)
+	public boolean exchangeFuelItem(IFuelVehicleEntity fuelVehicle)
 	{
-		if (adapter == null)
-		{
-			return false;
-		}
-
 		FluidTank fluidTank = this.getFluidTank();
-		FluidStack draining = fluidTank.getFluid();
+		int bucketSize = FluidUtil2.BUCKET_SIZE;
+		FluidStack draining = fluidTank.drain(bucketSize, FluidAction.SIMULATE);
 
-		if (draining.isEmpty() == true)
+		if (draining.isEmpty() == true || draining.getAmount() < bucketSize)
 		{
 			return false;
 		}
-
-		int filling = adapter.fill(draining.getAmount(), FluidAction.SIMULATE);
-
-		if (filling <= 0)
+		else if (fuelVehicle.canPutFuelMuchAsBucket() == false || fuelVehicle.getFuel() >= fuelVehicle.getFuelCapacity())
 		{
 			return false;
 		}
+		else
+		{
+			fuelVehicle.putFuelMuchAsBucket();
+			fluidTank.drain(draining, FluidAction.EXECUTE);
+			return true;
+		}
 
-		fluidTank.drain(filling, FluidAction.EXECUTE);
-		adapter.fill(filling, FluidAction.EXECUTE);
-
-		return true;
 	}
 
 	public boolean testFluidStack(FluidStack fluidStack)

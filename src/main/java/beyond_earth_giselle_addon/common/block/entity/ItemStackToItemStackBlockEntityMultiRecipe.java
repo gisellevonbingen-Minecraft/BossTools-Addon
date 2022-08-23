@@ -49,9 +49,9 @@ public abstract class ItemStackToItemStackBlockEntityMultiRecipe extends ItemSta
 	}
 
 	@Override
-	public List<IGaugeValue> getGaugeValues()
+	public List<IGaugeValue> getDisplayGaugeValues()
 	{
-		List<IGaugeValue> list = super.getGaugeValues();
+		List<IGaugeValue> list = super.getDisplayGaugeValues();
 
 		if (this.getCachedRecipe() != null)
 		{
