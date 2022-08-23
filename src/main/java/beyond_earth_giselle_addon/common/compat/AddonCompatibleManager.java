@@ -11,9 +11,7 @@ import beyond_earth_giselle_addon.common.compat.jaopca.AddonJaopcaCompat;
 import beyond_earth_giselle_addon.common.compat.jei.AddonJeiCompat;
 import beyond_earth_giselle_addon.common.compat.jer.AddonJerCompat;
 import beyond_earth_giselle_addon.common.compat.mekanism.AddonMekanismCompat;
-import beyond_earth_giselle_addon.common.compat.theoneprobe.AddonTOPCompat;
 import beyond_earth_giselle_addon.common.compat.thermal.AddonThermalCompat;
-import beyond_earth_giselle_addon.common.compat.waila.AddonWailaCompat;
 
 public class AddonCompatibleManager
 {
@@ -27,9 +25,6 @@ public class AddonCompatibleManager
 	public static final AddonCuriosCompat CURIOS;
 	public static final AddonCraftTweakerCompat CRAFTTWEAKER;
 
-	public static final AddonWailaCompat WAILA;
-	public static final AddonTOPCompat TOP;
-
 	static
 	{
 		List<AddonCompatibleMod> mods = new ArrayList<>();
@@ -41,8 +36,6 @@ public class AddonCompatibleManager
 		mods.add(JAOPCA = new AddonJaopcaCompat());
 		mods.add(CURIOS = new AddonCuriosCompat());
 		mods.add(CRAFTTWEAKER = new AddonCraftTweakerCompat());
-		mods.add(WAILA = new AddonWailaCompat());
-		mods.add(TOP = new AddonTOPCompat());
 
 		for (AddonCompatibleMod mod : mods)
 		{
