@@ -25,7 +25,7 @@ public class CapabilityOxygenCharger
 
 		if (instance != null)
 		{
-			compound.put(KEY_CHARGE_MODE, CapabilityChargeModeHandler.writeNBT(instance.getChargeMode()));
+			compound.put(KEY_CHARGE_MODE, IChargeMode.writeNBT(instance.getChargeMode()));
 		}
 
 		return compound;
