@@ -1,7 +1,5 @@
 package beyond_earth_giselle_addon.common.capability;
 
-import net.minecraft.nbt.CompoundTag;
-
 public class ChargeModeHandlerEmpty implements IChargeModeHandler
 {
 	public ChargeModeHandlerEmpty()
@@ -23,18 +21,6 @@ public class ChargeModeHandlerEmpty implements IChargeModeHandler
 
 	@Override
 	public void setChanged()
-	{
-
-	}
-
-	@Override
-	public CompoundTag serializeNBT()
-	{
-		return new CompoundTag();
-	}
-
-	@Override
-	public void deserializeNBT(CompoundTag nbt)
 	{
 
 	}
