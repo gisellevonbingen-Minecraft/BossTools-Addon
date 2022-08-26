@@ -1,10 +1,13 @@
 package beyond_earth_giselle_addon.common.capability;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
 
-public abstract class OxygenChargerWrapper implements IOxygenCharger
+public abstract class OxygenChargerWrapper implements IOxygenCharger, INBTSerializable<CompoundTag>
 {
+	public static final String KEY_CHARGE_MODE = "chargemode";
+
 	private IChargeMode mode;
 
 	public OxygenChargerWrapper()
@@ -38,13 +41,16 @@ public abstract class OxygenChargerWrapper implements IOxygenCharger
 	@Override
 	public void deserializeNBT(CompoundTag tag)
 	{
-		CapabilityOxygenCharger.readNBT(this, tag);
+		this.mode = IChargeMode.find(this.getAvailableChargeModes(), tag.getString(KEY_CHARGE_MODE));
 	}
 
 	@Override
 	public CompoundTag serializeNBT()
 	{
-		return CapabilityOxygenCharger.writeNBT(this);
+		CompoundTag compound = new CompoundTag();
+		compound.put(KEY_CHARGE_MODE, IChargeMode.writeNBT(this.mode));
+
+		return compound;
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorageHolder;
+import net.mrscauthd.beyond_earth.capabilities.oxygen.OxygenStorage;
 
 public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygenStorageHolder
 {
@@ -18,8 +19,8 @@ public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygen
 	public static final String KEY_OXYGEN_CHARGER = "oxygencharger";
 
 	private final ItemStack itemStack;
-	private final IOxygenStorage oxygenStorage;
-	private final IOxygenCharger oxygenCharger;
+	private final OxygenStorage oxygenStorage;
+	private final OxygenChargerWrapper oxygenCharger;
 
 	public OxygenCanCapabilityProvider(ItemStack itemStack, int capacity, int transfer)
 	{
@@ -31,7 +32,7 @@ public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygen
 			public void setChanged()
 			{
 				super.setChanged();
-				OxygenCanCapabilityProvider.this.writeOxygenCharger(this);
+				OxygenCanCapabilityProvider.this.writeOxygenCharger();
 			}
 
 			@Override
@@ -40,26 +41,26 @@ public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygen
 				return OxygenCanCapabilityProvider.this.getOxygenStorage();
 			}
 		};
+
+		CompoundTag tag = this.getTag();
+		this.oxygenStorage.deserializeNBT(tag.getCompound(KEY_OXYGEN_STORAGE));
+		this.oxygenCharger.deserializeNBT(tag.getCompound(KEY_OXYGEN_CHARGER));
 	}
 
-	public <T extends IOxygenStorage> T readOxygenStorage(T oxygenStorage)
+	private void writeOxygenStorage()
 	{
-		return CapabilityOxygenUtils.readNBT(oxygenStorage, this.getTag().get(KEY_OXYGEN_STORAGE));
+		if (this.oxygenStorage != null)
+		{
+			this.getOrCreateTag().put(KEY_OXYGEN_STORAGE, this.oxygenStorage.serializeNBT());
+		}
 	}
 
-	public void writeOxygenStorage(IOxygenStorage storage)
+	private void writeOxygenCharger()
 	{
-		this.getOrCreateTag().put(KEY_OXYGEN_STORAGE, CapabilityOxygenUtils.writeNBT(storage));
-	}
-
-	public <T extends IOxygenCharger> T readOxygenCharger(T oxygenCharger)
-	{
-		return CapabilityOxygenCharger.readNBT(oxygenCharger, this.getTag().getCompound(KEY_OXYGEN_CHARGER));
-	}
-
-	public void writeOxygenCharger(IOxygenCharger charger)
-	{
-		this.getOrCreateTag().put(KEY_OXYGEN_CHARGER, CapabilityOxygenCharger.writeNBT(charger));
+		if (this.oxygenCharger != null)
+		{
+			this.getOrCreateTag().put(KEY_OXYGEN_CHARGER, this.oxygenCharger.serializeNBT());
+		}
 	}
 
 	public CompoundTag getTag()
@@ -86,8 +87,7 @@ public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygen
 		{
 			return oxygenCapability;
 		}
-
-		if (capability == CapabilityOxygenCharger.OXYGEN_CHARGER)
+		else if (capability == CapabilityOxygenCharger.OXYGEN_CHARGER)
 		{
 			return LazyOptional.of(this::getOxygenCharger).cast();
 		}
@@ -102,7 +102,7 @@ public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygen
 	@Override
 	public void onOxygenChanged(IOxygenStorage storage, int delta)
 	{
-		this.writeOxygenStorage(storage);
+		this.writeOxygenStorage();
 	}
 
 	public final ItemStack getItemStack()
@@ -112,12 +112,12 @@ public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygen
 
 	public final IOxygenStorage getOxygenStorage()
 	{
-		return this.readOxygenStorage(this.oxygenStorage);
+		return this.oxygenStorage;
 	}
 
 	public final IOxygenCharger getOxygenCharger()
 	{
-		return this.readOxygenCharger(this.oxygenCharger);
+		return this.oxygenCharger;
 	}
 
 }
