@@ -1,5 +1,7 @@
 package boss_tools_giselle_addon.common.compat.crafttweaker;
 
+import java.util.stream.Collectors;
+
 import com.blamejared.crafttweaker.api.brackets.CommandStringDisplayable;
 import com.blamejared.crafttweaker.api.fluid.CTFluidIngredient;
 import com.blamejared.crafttweaker.api.fluid.IFluidStack;
@@ -120,7 +122,7 @@ public class CTUtils
 
 	public static CTFluidIngredient toFluidIngredient(FluidIngredient input)
 	{
-		return new CTFluidIngredient.CompoundFluidIngredient(input.toStacks().stream().map(CTUtils::asFluidIngredient).toList());
+		return new CTFluidIngredient.CompoundFluidIngredient(input.toStacks().stream().map(CTUtils::asFluidIngredient).collect(Collectors.toList()));
 	}
 
 	public static CTFluidIngredient asFluidIngredient(FluidStack fs)

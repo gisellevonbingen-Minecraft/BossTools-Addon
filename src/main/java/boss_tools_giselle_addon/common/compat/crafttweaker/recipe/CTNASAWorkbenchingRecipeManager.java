@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.openzen.zencode.java.ZenCodeType;
 
@@ -38,7 +39,7 @@ public class CTNASAWorkbenchingRecipeManager extends CTRecipeManager<Workbenchin
 		for (Entry<RocketPart, IIngredient[]> entry : map.entrySet())
 		{
 			RocketPart rocketPart = entry.getKey();
-			List<Ingredient> ingredients = Arrays.stream(entry.getValue()).map(IIngredient::asVanillaIngredient).toList();
+			List<Ingredient> ingredients = Arrays.stream(entry.getValue()).map(IIngredient::asVanillaIngredient).collect(Collectors.toList());
 			parts.put(rocketPart, ingredients);
 		}
 
@@ -56,7 +57,7 @@ public class CTNASAWorkbenchingRecipeManager extends CTRecipeManager<Workbenchin
 	{
 		List<String> values = new ArrayList<>();
 		values.add(this.toStringValue(recipe.getOutput()));
-		values.add(this.toStringValues(recipe.getParts().entrySet().stream().toList(), "{", "}", this::toStringEntry));
+		values.add(this.toStringValues(recipe.getParts().entrySet().stream().collect(Collectors.toList()), "{", "}", this::toStringEntry));
 
 		return this.buildCommandString(manager, recipe, values);
 	}
