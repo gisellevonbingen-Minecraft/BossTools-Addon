@@ -98,7 +98,7 @@ repositories {
     }
     maven {
         name "CurseForge"
-        url = "https://www.cursemaven.com"
+        url "https://www.cursemaven.com"
     }
     maven {
         name "Local"
