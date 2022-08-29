@@ -130,10 +130,10 @@ dependencies {
     implementation fg.deobf("net.mrscauthd:boss_tools:${mc_version}-${boss_tools_version}")
 
     // Mekanism
-    implementation fg.deobf("mekanism:Mekanism:${mekanism_version}")
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:additions")
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")
+    implementation fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}")
+    runtimeOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}:additions")
+    runtimeOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}:generators")
+    runtimeOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}:tools")
 
     // Thermal Expansion
     implementation fg.deobf("curse.maven:cofh-core-69162:${cofh_core_file}")
