@@ -86,8 +86,11 @@ public class BossToolsAddon
 
 	public static void init(FMLCommonSetupEvent event)
 	{
-		CapabilityChargeModeHandler.register();
-		CapabilityOxygenCharger.register();
+		event.enqueueWork(() ->
+		{
+			CapabilityChargeModeHandler.register();
+			CapabilityOxygenCharger.register();
+		});
 	}
 
 	public static void onRegisterRecipeSerializer(RegistryEvent.Register<IRecipeSerializer<?>> event)
