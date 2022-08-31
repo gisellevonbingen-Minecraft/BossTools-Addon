@@ -1,0 +1,38 @@
+{
+	"parent": "boss_tools_giselle_addon:space_suit",
+	"display": {
+		"icon": {
+			"item": "boss_tools_giselle_addon:oxygen_can"
+		},
+		"title": {
+			"translate": "advancements.boss_tools_giselle_addon.oxygen_can.title"
+		},
+		"description": {
+			"translate": "advancements.boss_tools_giselle_addon.oxygen_can.descr"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"inventory_changed": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "boss_tools_giselle_addon:oxygen_can"
+					}
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"inventory_changed"
+		]
+	],
+	"rewards": {
+		"experience": 7
+	}
+}

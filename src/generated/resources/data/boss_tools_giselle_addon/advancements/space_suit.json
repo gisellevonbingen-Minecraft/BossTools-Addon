@@ -1,0 +1,47 @@
+{
+	"parent": "boss_tools:rocket_advancement",
+	"display": {
+		"icon": {
+			"item": "boss_tools:space_suit"
+		},
+		"title": {
+			"translate": "advancements.boss_tools_giselle_addon.space_suit.title"
+		},
+		"description": {
+			"translate": "advancements.boss_tools_giselle_addon.space_suit.descr"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"inventory_changed": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "boss_tools:oxygen_mask"
+					},
+					{
+						"item": "boss_tools:space_suit"
+					},
+					{
+						"item": "boss_tools:space_pants"
+					},
+					{
+						"item": "boss_tools:space_boots"
+					}
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"inventory_changed"
+		]
+	],
+	"rewards": {
+		"experience": 7
+	}
+}

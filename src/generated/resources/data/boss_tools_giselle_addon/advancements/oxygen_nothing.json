@@ -1,0 +1,36 @@
+{
+	"parent": "boss_tools:rocket_advancement",
+	"display": {
+		"icon": {
+			"item": "boss_tools:oxygen_mask"
+		},
+		"title": {
+			"translate": "advancements.boss_tools_giselle_addon.oxygen_nothing.title"
+		},
+		"description": {
+			"translate": "advancements.boss_tools_giselle_addon.oxygen_nothing.descr"
+		},
+		"frame": "goal",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"player_died": {
+			"trigger": "boss_tools_giselle_addon:player_died",
+			"conditions": {
+				"damageType": [
+					"oxygen"
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"player_died"
+		]
+	],
+	"rewards": {
+		"experience": 50
+	}
+}

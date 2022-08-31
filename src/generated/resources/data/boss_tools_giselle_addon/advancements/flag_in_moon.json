@@ -1,0 +1,39 @@
+{
+	"parent": "boss_tools:moon_advancement",
+	"display": {
+		"icon": {
+			"item": "boss_tools:flag"
+		},
+		"title": {
+			"translate": "advancements.boss_tools_giselle_addon.flag_in_moon.title"
+		},
+		"description": {
+			"translate": "advancements.boss_tools_giselle_addon.flag_in_moon.descr"
+		},
+		"frame": "goal",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"placed_block": {
+			"trigger": "minecraft:placed_block",
+			"conditions": {
+				"item": {
+					"tag": "boss_tools:flags"
+				},
+				"location": {
+					"dimension": "boss_tools:moon"
+				}
+			}
+		}
+	},
+	"requirements": [
+		[
+			"placed_block"
+		]
+	],
+	"rewards": {
+		"experience": 50
+	}
+}

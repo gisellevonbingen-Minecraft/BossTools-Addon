@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import boss_tools_giselle_addon.client.AddonClientProxy;
+import boss_tools_giselle_addon.common.advencements.AddonCriteriaTriggers;
+import boss_tools_giselle_addon.common.advencements.EventListenerAdvancement;
 import boss_tools_giselle_addon.common.capability.CapabilityChargeModeHandler;
 import boss_tools_giselle_addon.common.capability.CapabilityOxygenCharger;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
@@ -48,17 +50,16 @@ public class BossToolsAddon
 	{
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AddonConfigs.CommonSpec);
 
-		registerFML();
-		registerForge();
+		this.registerFML();
+		this.registerForge();
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
 
 		AddonCompatibleManager.visit();
 	}
 
-	public static void registerFML()
+	public void registerFML()
 	{
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
-		fml_bus.addListener(BossToolsAddon::init);
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);
 		AddonEnchantments.ENCHANTMENTS.register(fml_bus);
@@ -66,12 +67,13 @@ public class BossToolsAddon
 		AddonTileEntityTypes.TILE_ENTITY_TYPES.register(fml_bus);
 		AddonContainerTypes.CONTAINER_TYPES.register(fml_bus);
 
-		fml_bus.addGenericListener(IRecipeSerializer.class, BossToolsAddon::onRegisterRecipeSerializer);
+		fml_bus.addListener(this::init);
+		fml_bus.addGenericListener(IRecipeSerializer.class, this::onRegisterRecipeSerializer);
 
 		AddonNetwork.registerAll();
 	}
 
-	public static void registerForge()
+	public void registerForge()
 	{
 		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
 		forge_bus.register(EventListenerCommand.class);
@@ -80,20 +82,22 @@ public class BossToolsAddon
 		forge_bus.register(EventListenerGravityNormalizing.class);
 		forge_bus.register(EventListenerFlagEdit.class);
 		forge_bus.register(EventListenerReload.class);
+		forge_bus.register(EventListenerAdvancement.class);
 
 		ProofAbstractUtils.register(forge_bus);
 	}
 
-	public static void init(FMLCommonSetupEvent event)
+	public void init(FMLCommonSetupEvent event)
 	{
 		event.enqueueWork(() ->
 		{
 			CapabilityChargeModeHandler.register();
 			CapabilityOxygenCharger.register();
+			AddonCriteriaTriggers.visit();
 		});
 	}
 
-	public static void onRegisterRecipeSerializer(RegistryEvent.Register<IRecipeSerializer<?>> event)
+	public void onRegisterRecipeSerializer(RegistryEvent.Register<IRecipeSerializer<?>> event)
 	{
 		AddonRecipes.register();
 	}
