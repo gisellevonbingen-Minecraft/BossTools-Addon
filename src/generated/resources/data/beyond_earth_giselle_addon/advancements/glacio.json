@@ -1,0 +1,34 @@
+{
+	"parent": "beyond_earth:rocket_tier_4_advancement",
+	"display": {
+		"icon": {
+			"item": "beyond_earth:glacio_stone"
+		},
+		"title": {
+			"translate": "advancements.beyond_earth_giselle_addon.glacio.title"
+		},
+		"description": {
+			"translate": "advancements.beyond_earth_giselle_addon.glacio.descr"
+		},
+		"frame": "goal",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"changed_dimension": {
+			"trigger": "minecraft:changed_dimension",
+			"conditions": {
+				"to": "beyond_earth:glacio"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"changed_dimension"
+		]
+	],
+	"rewards": {
+		"experience": 50
+	}
+}

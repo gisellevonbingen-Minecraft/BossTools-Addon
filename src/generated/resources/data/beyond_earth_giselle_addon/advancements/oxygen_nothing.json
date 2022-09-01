@@ -1,0 +1,36 @@
+{
+	"parent": "beyond_earth:rocket_advancement",
+	"display": {
+		"icon": {
+			"item": "beyond_earth:oxygen_mask"
+		},
+		"title": {
+			"translate": "advancements.beyond_earth_giselle_addon.oxygen_nothing.title"
+		},
+		"description": {
+			"translate": "advancements.beyond_earth_giselle_addon.oxygen_nothing.descr"
+		},
+		"frame": "goal",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"player_died": {
+			"trigger": "beyond_earth_giselle_addon:player_died",
+			"conditions": {
+				"damageType": [
+					"oxygen"
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"player_died"
+		]
+	],
+	"rewards": {
+		"experience": 50
+	}
+}

@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import beyond_earth_giselle_addon.client.AddonClientProxy;
+import beyond_earth_giselle_addon.common.advencements.AddonCriteriaTriggers;
+import beyond_earth_giselle_addon.common.advencements.EventListenerAdvancement;
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.content.flag.EventListenerFlagEdit;
@@ -29,6 +31,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.mrscauthd.beyond_earth.BeyondEarthMod;
 
@@ -43,14 +46,14 @@ public class BeyondEarthAddon
 	{
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AddonConfigs.CommonSpec);
 
-		registerFML();
-		registerForge();
+		this.registerFML();
+		this.registerForge();
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonClientProxy::new);
 
 		AddonCompatibleManager.visit();
 	}
 
-	public static void registerFML()
+	public void registerFML()
 	{
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		AddonBlocks.BLOCKS.register(fml_bus);
@@ -60,12 +63,13 @@ public class BeyondEarthAddon
 		AddonBlockEntityTypes.BLOCK_ENTITY_TYPES.register(fml_bus);
 		AddonMenuTypes.MENU_TYPES.register(fml_bus);
 
-		fml_bus.addGenericListener(RecipeSerializer.class, BeyondEarthAddon::onRegisterRecipeSerializer);
+		fml_bus.addListener(this::init);
+		fml_bus.addGenericListener(RecipeSerializer.class, this::onRegisterRecipeSerializer);
 
 		AddonNetwork.registerAll();
 	}
 
-	public static void registerForge()
+	public void registerForge()
 	{
 		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
 		forge_bus.register(EventListenerCommand.class);
@@ -74,11 +78,20 @@ public class BeyondEarthAddon
 		forge_bus.register(EventListenerGravityNormalizing.class);
 		forge_bus.register(EventListenerFlagEdit.class);
 		forge_bus.register(EventListenerReload.class);
+		forge_bus.register(EventListenerAdvancement.class);
 
 		ProofAbstractUtils.register(forge_bus);
 	}
 
-	public static void onRegisterRecipeSerializer(RegistryEvent.Register<RecipeSerializer<?>> event)
+	public void init(FMLCommonSetupEvent event)
+	{
+		event.enqueueWork(() ->
+		{
+			AddonCriteriaTriggers.visit();
+		});
+	}
+
+	public void onRegisterRecipeSerializer(RegistryEvent.Register<RecipeSerializer<?>> event)
 	{
 		AddonRecipes.register();
 	}
