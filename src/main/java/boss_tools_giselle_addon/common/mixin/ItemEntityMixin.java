@@ -10,7 +10,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mixin(ItemEntity.class)
-public abstract class ItemEntityTickMixin
+public abstract class ItemEntityMixin
 {
 	@Inject(at = @At(value = "RETURN"), method = "tick")
 	private void tick(CallbackInfo info)

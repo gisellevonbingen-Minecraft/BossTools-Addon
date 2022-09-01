@@ -6,12 +6,14 @@ buildscript {
     }
     dependencies {
         classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "5.1.+", changing: true
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 
 apply plugin: "net.minecraftforge.gradle"
 apply plugin: "eclipse"
 apply plugin: "maven-publish"
+apply plugin: 'org.spongepowered.mixin'
 
 version = "${mc_version}-${mod_version}"
 group = "gisellevonbingen.boss_tools_giselle_addon"
@@ -99,7 +101,7 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
     // Mixin
-    annotationProcessor "org.spongepowered:mixin:0.8:processor"
+    annotationProcessor "org.spongepowered:mixin:0.8.4:processor"
 
     // JEI
     implementation fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
@@ -147,6 +149,10 @@ dependencies {
     // Craft Tweaker
     implementation fg.deobf("com.blamejared.crafttweaker:CraftTweaker-${mc_version}:${crafttweaker_version}")
     implementation fg.deobf("com.blamejared.jeitweaker:JEITweaker-${mc_version}:${jeitweaker_version}")
+}
+
+mixin {
+    add sourceSets.main, "boss_tools_giselle_addon.mixin-refmap.json"
 }
 
 jar {

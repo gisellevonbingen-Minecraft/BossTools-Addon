@@ -6,7 +6,7 @@
 		"PlanetSelectionGuiMixin",
 		"WorkbenchingRecipeMixin",
 		"WorkbenchTileEntityMixin",
-		"ItemEntityTickMixin",
+		"ItemEntityMixin",
 		"LanderEntityMixin",
 		"MethodesMixin"
 	],
@@ -15,5 +15,6 @@
 	],
 	"injectors": {
 		"defaultRequire": 1
-	}
+	},
+	"refmap": "boss_tools_giselle_addon.mixin-refmap.json"
 }
