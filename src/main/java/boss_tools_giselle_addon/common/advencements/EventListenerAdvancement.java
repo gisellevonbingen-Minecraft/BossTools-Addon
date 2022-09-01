@@ -3,6 +3,7 @@ package boss_tools_giselle_addon.common.advencements;
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.event.ItemTickEvent;
 import boss_tools_giselle_addon.common.event.LanderExplodeEvent;
+import boss_tools_giselle_addon.common.event.PlayerCreateSpaceStationEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -108,6 +109,18 @@ public class EventListenerAdvancement
 				AddonCriteriaTriggers.LANDER_EXPLODE.trigger((ServerPlayerEntity) passenger, lander.position());
 			}
 
+		}
+
+	}
+
+	@SubscribeEvent
+	public static void onPlayerCreateSpaceStation(PlayerCreateSpaceStationEvent event)
+	{
+		PlayerEntity player = event.getPlayer();
+
+		if (player instanceof ServerPlayerEntity)
+		{
+			AddonCriteriaTriggers.PLAYER_CREATE_SPACE_STATION.trigger((ServerPlayerEntity) player);
 		}
 
 	}

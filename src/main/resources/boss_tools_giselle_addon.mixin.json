@@ -7,7 +7,8 @@
 		"WorkbenchingRecipeMixin",
 		"WorkbenchTileEntityMixin",
 		"ItemEntityTickMixin",
-		"LanderEntityMixin"
+		"LanderEntityMixin",
+		"MethodesMixin"
 	],
 	"client": [
 		"PlanetSelectionGuiWindowMixin"
