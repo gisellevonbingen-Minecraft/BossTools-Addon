@@ -14,7 +14,7 @@ import net.mrscauthd.boss_tools.events.Methodes;
 @Mixin(Methodes.class)
 public abstract class MethodesMixin
 {
-	@Inject(at = @At(value = "HEAD"), method = "createSpaceStation")
+	@Inject(at = @At(value = "HEAD"), method = "createSpaceStation", remap = false)
 	private static void createSpaceStation(PlayerEntity player, ServerWorld level, CallbackInfo info)
 	{
 		MinecraftForge.EVENT_BUS.post(new PlayerCreateSpaceStationEvent(player));
