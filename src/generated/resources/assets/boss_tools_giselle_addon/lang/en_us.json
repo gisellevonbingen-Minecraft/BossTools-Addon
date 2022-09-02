@@ -86,9 +86,9 @@
   "biome.boss_tools.mercury_magma": "Mercury Magma",
   "biome.boss_tools.mars_ice_spike": "Mars Ice",
   
-  "advancements.boss_tools_giselle_addon.flag.title": "Moon Flag Assembly",
-  "advancements.boss_tools_giselle_addon.flag.descr": "Craft a Flag",
-  "advancements.boss_tools_giselle_addon.flag_in_moon.title": "Flag can't be fluttering",
+  "advancements.boss_tools_giselle_addon.alien_trade.title": "Trade with alien",
+  "advancements.boss_tools_giselle_addon.alien_trade.descr": "Trade with alien",
+  "advancements.boss_tools_giselle_addon.flag_in_moon.title": "Flag can't be fluttering self",
   "advancements.boss_tools_giselle_addon.flag_in_moon.descr": "Place flag on Moon",
   "advancements.boss_tools_giselle_addon.landing_failure.title": "Like a Meteor!",
   "advancements.boss_tools_giselle_addon.landing_failure.descr": "Fail to land and explode",
