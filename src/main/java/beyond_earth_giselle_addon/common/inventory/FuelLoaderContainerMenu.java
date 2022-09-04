@@ -28,7 +28,7 @@ public class FuelLoaderContainerMenu extends AbstractMachineContainerMenu<FuelLo
 	@Override
 	public ItemStack quickMoveStack(Player player, int slotNumber)
 	{
-		return ContainerHelper.transferStackInSlot(this, player, slotNumber, 0, this.getBlockEntity(), this::moveItemStackTo);
+		return ContainerHelper2.quickMoveStack(this, player, slotNumber, 0, this.getBlockEntity(), this::moveItemStackTo);
 	}
 
 }

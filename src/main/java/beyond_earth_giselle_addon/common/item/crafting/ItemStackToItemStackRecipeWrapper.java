@@ -11,11 +11,18 @@ import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
 public class ItemStackToItemStackRecipeWrapper extends ItemStackToItemStackRecipe
 {
 	private final Recipe<Container> parent;
+	private final float experience;
 
 	public ItemStackToItemStackRecipeWrapper(Recipe<Container> parent, Ingredient ingredient, ItemStack result, int cookTime)
 	{
+		this(parent, ingredient, result, cookTime, 0.0F);
+	}
+
+	public ItemStackToItemStackRecipeWrapper(Recipe<Container> parent, Ingredient ingredient, ItemStack result, int cookTime, float experience)
+	{
 		super(parent.getId(), ingredient, result, cookTime);
 		this.parent = parent;
+		this.experience = experience;
 	}
 
 	public final Recipe<Container> getParent()
@@ -33,6 +40,11 @@ public class ItemStackToItemStackRecipeWrapper extends ItemStackToItemStackRecip
 	public RecipeType<?> getType()
 	{
 		return this.getParent().getType();
+	}
+
+	public float getExperience()
+	{
+		return this.experience;
 	}
 
 }
