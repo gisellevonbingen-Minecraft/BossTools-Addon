@@ -11,11 +11,18 @@ import net.mrscauthd.boss_tools.crafting.ItemStackToItemStackRecipe;
 public class ItemStackToItemStackRecipeWrapper extends ItemStackToItemStackRecipe
 {
 	private final IRecipe<IInventory> parent;
+	private final float experience;
 
 	public ItemStackToItemStackRecipeWrapper(IRecipe<IInventory> parent, Ingredient ingredient, ItemStack result, int cookTime)
 	{
+		this(parent, ingredient, result, cookTime, 0.0F);
+	}
+
+	public ItemStackToItemStackRecipeWrapper(IRecipe<IInventory> parent, Ingredient ingredient, ItemStack result, int cookTime, float experience)
+	{
 		super(parent.getId(), ingredient, result, cookTime);
 		this.parent = parent;
+		this.experience = experience;
 	}
 
 	public final IRecipe<IInventory> getParent()
@@ -33,6 +40,11 @@ public class ItemStackToItemStackRecipeWrapper extends ItemStackToItemStackRecip
 	public IRecipeType<?> getType()
 	{
 		return this.getParent().getType();
+	}
+
+	public float getExperience()
+	{
+		return this.experience;
 	}
 
 }
