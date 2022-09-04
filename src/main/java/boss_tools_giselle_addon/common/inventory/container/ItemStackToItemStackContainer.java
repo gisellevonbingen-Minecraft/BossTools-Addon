@@ -6,7 +6,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
 import net.mrscauthd.boss_tools.gui.helper.ContainerHelper;
 
@@ -14,25 +13,47 @@ public class ItemStackToItemStackContainer<O extends ItemStackToItemStackContain
 {
 	private int handlerEndIndex;
 	private Slot inputSlot;
+	private Slot outputSlot;
 
 	public ItemStackToItemStackContainer(ContainerType<? extends O> type, int windowId, PlayerInventory inv, T tileEntity)
 	{
 		super(type, windowId, inv, tileEntity);
 
-		IItemHandlerModifiable itemHandler = tileEntity.getItemHandler();
-		this.inputSlot = this.addSlot(new SlotItemHandler(itemHandler, tileEntity.getSlotIngredient(), 40, 22));
-		this.addSlot(new SlotItemHandler(itemHandler, tileEntity.getSlotOutput(), 92, 22)
+		this.inputSlot = this.addSlot(this.createInputSlot(tileEntity));
+		this.outputSlot = this.addSlot(this.createOutputSlot(tileEntity));
+
+		this.handlerEndIndex = this.slots.size();
+		int inventoryTop = this.getInventoryTop();
+		ContainerHelper.addInventorySlots(this, inv, 8, inventoryTop, inventoryTop + 58, this::addSlot);
+	}
+
+	protected Slot createInputSlot(T tileEntity)
+	{
+		return new SlotItemHandler(tileEntity.getItemHandler(), tileEntity.getSlotIngredient(), 40, 22);
+	}
+
+	protected Slot createOutputSlot(T tileEntity)
+	{
+		return new SlotItemHandler(tileEntity.getItemHandler(), tileEntity.getSlotOutput(), 92, 22)
 		{
 			@Override
 			public boolean mayPlace(ItemStack stack)
 			{
 				return false;
 			}
-		});
 
-		this.handlerEndIndex = this.slots.size();
-		int inventoryTop = this.getInventoryTop();
-		ContainerHelper.addInventorySlots(this, inv, 8, inventoryTop, inventoryTop + 58, this::addSlot);
+			@Override
+			public ItemStack onTake(PlayerEntity player, ItemStack stack)
+			{
+				onOutputSlotTake(player, stack);
+				return super.onTake(player, stack);
+			}
+		};
+	}
+
+	protected void onOutputSlotTake(PlayerEntity player, ItemStack stack)
+	{
+
 	}
 
 	public int getInventoryTop()
@@ -45,10 +66,15 @@ public class ItemStackToItemStackContainer<O extends ItemStackToItemStackContain
 		return this.inputSlot;
 	}
 
+	public Slot getOutputSlot()
+	{
+		return this.outputSlot;
+	}
+
 	@Override
 	public ItemStack quickMoveStack(PlayerEntity player, int slotNumber)
 	{
-		return ContainerHelper.transferStackInSlot(this, player, slotNumber, 0, this.getHandlerEndIndex(), this::moveItemStackTo);
+		return ContainerHelper2.quickMoveStack(this, player, slotNumber, 0, this.getHandlerEndIndex(), this::moveItemStackTo);
 	}
 
 	public int getHandlerEndIndex()
