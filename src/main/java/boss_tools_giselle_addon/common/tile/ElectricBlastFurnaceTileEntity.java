@@ -45,7 +45,6 @@ public class ElectricBlastFurnaceTileEntity extends ItemStackToItemStackTileEnti
 			{
 				ItemStackToItemStackRecipeWrapper recipe = (ItemStackToItemStackRecipeWrapper) this.getCachedRecipe();
 				this.setExperience(this.getExperience() + recipe.getExperience());
-				System.out.println(this.getExperience());
 			}
 
 		}

@@ -48,6 +48,7 @@ public class ItemStackToItemStackContainer<O extends ItemStackToItemStackContain
 				onOutputSlotTake(player, stack);
 				return super.onTake(player, stack);
 			}
+
 		};
 	}
 
