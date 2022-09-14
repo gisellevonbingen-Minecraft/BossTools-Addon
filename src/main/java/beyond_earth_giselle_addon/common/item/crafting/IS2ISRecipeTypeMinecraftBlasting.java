@@ -33,7 +33,8 @@ public class IS2ISRecipeTypeMinecraftBlasting extends IS2ISRecipeType<RecipeType
 		Ingredient ingredient = recipe.getIngredients().get(0);
 		ItemStack resultItem = recipe.getResultItem();
 		int cookingTime = recipe.getCookingTime();
-		return new ItemStackToItemStackRecipeWrapper(recipe, ingredient, resultItem, cookingTime);
+		float experience = recipe.getExperience();
+		return new ItemStackToItemStackRecipeWrapper(recipe, ingredient, resultItem, cookingTime, experience);
 	}
 
 }
