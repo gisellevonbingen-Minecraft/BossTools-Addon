@@ -26,7 +26,7 @@ public class AddonCTExtrudingRecipeManager extends CTItemStackToItemStackRecipeM
 	@Override
 	public int getDefaultCookTime()
 	{
-		return 50;
+		return ExtrudingRecipe.DEFAULT_COOK_TIME;
 	}
 
 	@Override

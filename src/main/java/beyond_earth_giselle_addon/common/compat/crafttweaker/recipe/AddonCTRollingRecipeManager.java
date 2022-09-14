@@ -24,6 +24,12 @@ public class AddonCTRollingRecipeManager extends CTItemStackToItemStackRecipeMan
 	}
 
 	@Override
+	public int getDefaultCookTime()
+	{
+		return RollingRecipe.DEFAULT_COOK_TIME;
+	}
+
+	@Override
 	public RecipeType<RollingRecipe> getRecipeType()
 	{
 		return AddonRecipes.ROLLING;
