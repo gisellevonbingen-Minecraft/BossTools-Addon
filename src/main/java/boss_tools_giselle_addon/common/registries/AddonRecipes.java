@@ -17,8 +17,10 @@ import boss_tools_giselle_addon.common.item.crafting.RollingRecipe;
 import boss_tools_giselle_addon.common.item.crafting.RollingRecipeSerializer;
 import boss_tools_giselle_addon.common.item.crafting.SpaceStationRecipe;
 import boss_tools_giselle_addon.common.item.crafting.SpaceStationRecipeSerializer;
+import boss_tools_giselle_addon.common.item.crafting.conditions.RecyclingEnabledCondition;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.mrscauthd.boss_tools.crafting.BossToolsRecipeType;
@@ -31,7 +33,7 @@ public class AddonRecipes
 
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_SPACE_STATION = RECIPE_SERIALIZERS.register("space_station", () -> new SpaceStationRecipeSerializer());
 	public static final BossToolsRecipeType<SpaceStationRecipe> SPACE_STATION = create(new BossToolsRecipeType<>("space_station"));
-	
+
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ROLLING = RECIPE_SERIALIZERS.register("rolling", () -> new RollingRecipeSerializer());
 	public static final ItemStackToItemStackRecipeType<RollingRecipe> ROLLING = create(new ItemStackToItemStackRecipeType<>("rolling"));
 
@@ -58,6 +60,8 @@ public class AddonRecipes
 
 	public static void register()
 	{
+		CraftingHelper.register(RecyclingEnabledCondition.Serializer.INSTANCE);
+
 		RECIPES.forEach(r -> Registry.register(Registry.RECIPE_TYPE, BossToolsAddon.rl(r.getName()), r));
 	}
 

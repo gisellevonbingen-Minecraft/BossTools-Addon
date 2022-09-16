@@ -142,7 +142,7 @@ dependencies {
     implementation fg.deobf("curse.maven:redstone-arsenal-70631:${redstone_arsenal_file}")
 
     // Immersive Engineering
-    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${immersive_engineering_version}:api")
+    implementation fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${immersive_engineering_version}")
     
     // Craft Tweaker
     implementation fg.deobf("com.blamejared.crafttweaker:CraftTweaker-${mc_version}:${crafttweaker_version}")

@@ -9,6 +9,7 @@ import java.util.Set;
 import com.google.common.collect.Sets;
 
 import boss_tools_giselle_addon.common.BossToolsAddon;
+import boss_tools_giselle_addon.common.config.AddonConfigs;
 import boss_tools_giselle_addon.common.item.crafting.ExtrudingRecipe;
 import boss_tools_giselle_addon.common.item.crafting.RollingRecipe;
 import boss_tools_giselle_addon.common.registries.AddonRecipes;
@@ -84,7 +85,12 @@ public class JaopcaModule implements IModule
 			if (COMPRESSING_BLACKLIST.contains(name) == false)
 			{
 				this.registerIngotCompressingRecipe(material, compressedForm);
-				this.registerCompressedRecyclingRecipe(material, compressedForm, COMPRESSEDS_NAME);
+
+				if (AddonConfigs.Common.recipes.recycling_enabled.get() == true)
+				{
+					this.registerCompressedRecyclingRecipe(material, compressedForm, COMPRESSEDS_NAME);
+				}
+
 			}
 
 		}
