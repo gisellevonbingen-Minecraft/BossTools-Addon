@@ -1,11 +1,16 @@
 {
-	"type": "minecraft:smelting",
+	"type": "boss_tools_giselle_addon:recycling_smelting",
+	"conditions": [
+		{
+			"type": "boss_tools_giselle_addon:recycling_enabled"
+		}
+	],
 	"experience": 0,
 	"cookingtime": 200,
 	"ingredient": {
 		"tag": "boss_tools:compresseds/silicon"
 	},
 	"result": {
-		"item": "boss_tools:silicon_ingot"
+		"tag": "forge:ingots/silicon"
 	}
 }

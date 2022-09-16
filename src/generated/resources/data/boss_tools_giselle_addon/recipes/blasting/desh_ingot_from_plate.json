@@ -1,11 +1,16 @@
 {
-	"type": "minecraft:blasting",
+	"type": "boss_tools_giselle_addon:recycling_blasting",
+	"conditions": [
+		{
+			"type": "boss_tools_giselle_addon:recycling_enabled"
+		}
+	],
 	"experience": 0,
 	"cookingtime": 100,
 	"ingredient": {
 		"item": "boss_tools:desh_plate"
 	},
 	"result": {
-		"item": "boss_tools:desh_ingot"
+		"tag": "forge:ingots/desh"
 	}
 }

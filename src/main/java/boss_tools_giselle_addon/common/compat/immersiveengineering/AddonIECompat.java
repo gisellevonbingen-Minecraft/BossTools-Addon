@@ -4,9 +4,11 @@ import blusunrize.immersiveengineering.api.IEApi;
 import blusunrize.immersiveengineering.api.crafting.ArcRecyclingChecker;
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleMod;
+import boss_tools_giselle_addon.common.config.AddonConfigs;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class AddonIECompat extends AddonCompatibleMod
@@ -30,8 +32,17 @@ public class AddonIECompat extends AddonCompatibleMod
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		AddonIEItems.ITEMS.register(fml_bus);
 
-		IEApi.prefixToIngotMap.put("compresseds", new Integer[]{1, 1});
-		ArcRecyclingChecker.allowItemTagForRecycling(ItemTags.bind(BossToolsAddon.prl("compresseds").toString()));
+		fml_bus.addListener(this::onFMLCommonSetup);
+	}
+
+	private void onFMLCommonSetup(FMLCommonSetupEvent event)
+	{
+		if (AddonConfigs.Common.recipes.recycling_enabled.get() == true)
+		{
+			IEApi.prefixToIngotMap.put("compresseds", new Integer[]{1, 1});
+			ArcRecyclingChecker.allowItemTagForRecycling(ItemTags.bind(BossToolsAddon.prl("compresseds").toString()));
+		}
+
 	}
 
 }
