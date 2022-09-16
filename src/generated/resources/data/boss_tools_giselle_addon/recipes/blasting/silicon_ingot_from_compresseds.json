@@ -1,5 +1,5 @@
 {
-	"type": "minecraft:blasting",
+	"type": "boss_tools_giselle_addon:recycling_blasting",
 	"conditions": [
 		{
 			"type": "boss_tools_giselle_addon:recycling_enabled"
@@ -11,6 +11,6 @@
 		"tag": "boss_tools:compresseds/silicon"
 	},
 	"result": {
-		"item": "boss_tools:silicon_ingot"
+		"tag": "forge:ingots/silicon"
 	}
 }
