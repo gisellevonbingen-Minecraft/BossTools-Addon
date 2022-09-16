@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:smelting",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "appliedenergistics2"
+		}
+	],
+	"ingredient": {
+		"item": "boss_tools:sky_stone"
+	},
+	"result": {
+		"item": "appliedenergistics2:smooth_sky_stone_block"
+	},
+	"experience": 0.0
+}
