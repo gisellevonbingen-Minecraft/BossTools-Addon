@@ -10,6 +10,8 @@ public class CommonConfig
 
 	public final EnchantmentsConfig enchantments;
 
+	public final RecipesConfig recipes;
+
 	public final MekanismConfig mekanism;
 
 	public CommonConfig(ForgeConfigSpec.Builder builder)
@@ -24,6 +26,10 @@ public class CommonConfig
 
 		builder.push("enchantments");
 		this.enchantments = new EnchantmentsConfig(builder);
+		builder.pop();
+
+		builder.push("recipes");
+		this.recipes = new RecipesConfig(builder);
 		builder.pop();
 
 		builder.push("compats");

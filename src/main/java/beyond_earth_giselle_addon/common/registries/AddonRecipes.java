@@ -8,8 +8,10 @@ import beyond_earth_giselle_addon.common.item.crafting.ExtrudingRecipe;
 import beyond_earth_giselle_addon.common.item.crafting.ExtrudingRecipeSerializer;
 import beyond_earth_giselle_addon.common.item.crafting.RollingRecipe;
 import beyond_earth_giselle_addon.common.item.crafting.RollingRecipeSerializer;
+import beyond_earth_giselle_addon.common.item.crafting.conditions.RecyclingEnabledCondition;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeType;
@@ -28,6 +30,8 @@ public class AddonRecipes
 
 	public static void register()
 	{
+		CraftingHelper.register(RecyclingEnabledCondition.Serializer.INSTANCE);
+
 		RECIPES.forEach(r -> Registry.register(Registry.RECIPE_TYPE, BeyondEarthAddon.rl(r.getName()), r));
 	}
 
