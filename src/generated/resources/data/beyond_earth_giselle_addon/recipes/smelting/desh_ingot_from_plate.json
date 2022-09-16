@@ -1,11 +1,16 @@
 {
-	"type": "minecraft:smelting",
+	"type": "beyond_earth_giselle_addon:recycling_smelting",
+	"conditions": [
+		{
+			"type": "beyond_earth_giselle_addon:recycling_enabled"
+		}
+	],
 	"experience": 0,
 	"cookingtime": 200,
 	"ingredient": {
 		"item": "beyond_earth:desh_plate"
 	},
 	"result": {
-		"item": "beyond_earth:desh_ingot"
+		"tag": "forge:ingots/desh"
 	}
 }

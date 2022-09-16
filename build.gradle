@@ -1,16 +1,19 @@
 buildscript {
     repositories {
         maven { url = "https://maven.minecraftforge.net" }
+        maven { url = "https://repo.spongepowered.org/maven" }
         mavenCentral()
     }
     dependencies {
         classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "5.1.+", changing: true
+        classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
     }
 }
 
 apply plugin: "net.minecraftforge.gradle"
 apply plugin: "eclipse"
 apply plugin: "maven-publish"
+apply plugin: "org.spongepowered.mixin"
 
 version = "${mc_version}-${mod_version}"
 group = "gisellevonbingen.beyond_earth_giselle_addon"
@@ -109,6 +112,11 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
+    // Mixin
+    if (System.getProperty("idea.sync.active") != "true") {
+        annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
+    }
+
     // JEI
     implementation fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 
@@ -122,8 +130,8 @@ dependencies {
     implementation fg.deobf("curse.maven:jade-324717:${jade_file}")
 
     // Tinkers Construct
-    // implementation fg.deobf("slimeknights.mantle:Mantle:${mc_version}-${mantle_version}")
-    // implementation fg.deobf("slimeknights.tconstruct:TConstruct:${mc_version}-${tconstruct_version}")
+    implementation fg.deobf("slimeknights.mantle:Mantle:${mc_version}-${mantle_version}")
+    implementation fg.deobf("slimeknights.tconstruct:TConstruct:${mc_version}-${tconstruct_version}")
 
     // Refined Storage
     // compileOnly fg.deobf("curse.maven:refined-storage-243076:${refined_storage_file}")
@@ -138,7 +146,7 @@ dependencies {
     implementation fg.deobf("net.mrscauthd:beyond_earth:${mc_version}-${beyond_earth_version}")
     
     // Immersive Engineering
-    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${immersive_engineering_version}:api")
+    implementation fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${immersive_engineering_version}")
 
     // Mekanism
     implementation fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}")

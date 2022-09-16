@@ -9,6 +9,7 @@ import java.util.Set;
 import com.google.common.collect.Sets;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
+import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.item.crafting.ExtrudingRecipe;
 import beyond_earth_giselle_addon.common.item.crafting.RollingRecipe;
 import beyond_earth_giselle_addon.common.registries.AddonRecipes;
@@ -83,7 +84,12 @@ public class JaopcaModule implements IModule
 			if (COMPRESSING_BLACKLIST.contains(name) == false)
 			{
 				this.registerIngotCompressingRecipe(material, compressedForm);
-				this.registerCompressedRecyclingRecipe(material, compressedForm, COMPRESSEDS_NAME);
+
+				if (AddonConfigs.Common.recipes.recycling_enabled.get() == true)
+				{
+					this.registerCompressedRecyclingRecipe(material, compressedForm, COMPRESSEDS_NAME);
+				}
+
 			}
 
 		}
