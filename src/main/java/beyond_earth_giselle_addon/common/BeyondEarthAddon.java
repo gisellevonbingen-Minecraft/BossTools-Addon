@@ -12,6 +12,7 @@ import beyond_earth_giselle_addon.common.content.fuel.EventListenerFuelGauge;
 import beyond_earth_giselle_addon.common.content.gravity.EventListenerGravityNormalizing;
 import beyond_earth_giselle_addon.common.content.proof.ProofAbstractUtils;
 import beyond_earth_giselle_addon.common.item.crafting.IS2ISRecipeCache;
+import beyond_earth_giselle_addon.common.item.crafting.TagPreference;
 import beyond_earth_giselle_addon.common.network.AddonNetwork;
 import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
 import beyond_earth_giselle_addon.common.registries.AddonBlocks;
@@ -76,6 +77,7 @@ public class BeyondEarthAddon
 		forge_bus.register(EventListenerReload.class);
 
 		ProofAbstractUtils.register(forge_bus);
+		TagPreference.register(forge_bus);
 	}
 
 	public static void onRegisterRecipeSerializer(RegistryEvent.Register<RecipeSerializer<?>> event)
