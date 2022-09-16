@@ -15,6 +15,7 @@ import boss_tools_giselle_addon.common.content.fuel.EventListenerFuelGauge;
 import boss_tools_giselle_addon.common.content.gravity.EventListenerGravityNormalizing;
 import boss_tools_giselle_addon.common.content.proof.ProofAbstractUtils;
 import boss_tools_giselle_addon.common.item.crafting.IS2ISRecipeCache;
+import boss_tools_giselle_addon.common.item.crafting.TagPreference;
 import boss_tools_giselle_addon.common.network.AddonNetwork;
 import boss_tools_giselle_addon.common.registries.AddonBlocks;
 import boss_tools_giselle_addon.common.registries.AddonContainerTypes;
@@ -82,6 +83,7 @@ public class BossToolsAddon
 		forge_bus.register(EventListenerReload.class);
 
 		ProofAbstractUtils.register(forge_bus);
+		TagPreference.register(forge_bus);
 	}
 
 	public static void init(FMLCommonSetupEvent event)

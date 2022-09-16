@@ -11,12 +11,15 @@ import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipeItemStack
 import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipeMap;
 import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipePotionedItem;
 import boss_tools_giselle_addon.common.item.crafting.AlienTradingRecipeType;
+import boss_tools_giselle_addon.common.item.crafting.RecyclingBlastingRecipe;
 import boss_tools_giselle_addon.common.item.crafting.ExtrudingRecipe;
 import boss_tools_giselle_addon.common.item.crafting.ExtrudingRecipeSerializer;
 import boss_tools_giselle_addon.common.item.crafting.RollingRecipe;
 import boss_tools_giselle_addon.common.item.crafting.RollingRecipeSerializer;
+import boss_tools_giselle_addon.common.item.crafting.RecyclingSmeltingRecipe;
 import boss_tools_giselle_addon.common.item.crafting.SpaceStationRecipe;
 import boss_tools_giselle_addon.common.item.crafting.SpaceStationRecipeSerializer;
+import boss_tools_giselle_addon.common.item.crafting.RecyclingVanillaRecipeSerializer;
 import boss_tools_giselle_addon.common.item.crafting.conditions.RecyclingEnabledCondition;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.registry.Registry;
@@ -57,6 +60,9 @@ public class AddonRecipes
 
 	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_ALIEN_TRADING_DYEDITEM = RECIPE_SERIALIZERS.register("alien_trading_dyeditem", () -> new AlienTradingRecipeDyedItem.Serializer());
 	public static final AlienTradingRecipeType<AlienTradingRecipeDyedItem> ALIEN_TRADING_DYEDITEM = create(new AlienTradingRecipeType<>("alien_trading_dyeditem"));
+
+	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_RECYCLING_SMELTING = RECIPE_SERIALIZERS.register("recycling_smelting", () -> new RecyclingVanillaRecipeSerializer<>(IRecipeSerializer.SMELTING_RECIPE, RecyclingSmeltingRecipe::new));
+	public static final RegistryObject<IRecipeSerializer<?>> RECIPE_SERIALIZER_RECYCLING_BLASTING = RECIPE_SERIALIZERS.register("recycling_blasting", () -> new RecyclingVanillaRecipeSerializer<>(IRecipeSerializer.BLASTING_RECIPE, RecyclingBlastingRecipe::new));
 
 	public static void register()
 	{
