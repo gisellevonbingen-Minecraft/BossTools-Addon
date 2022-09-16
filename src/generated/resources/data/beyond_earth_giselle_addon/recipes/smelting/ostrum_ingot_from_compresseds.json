@@ -1,5 +1,5 @@
 {
-	"type": "minecraft:smelting",
+	"type": "beyond_earth_giselle_addon:recycling_smelting",
 	"conditions": [
 		{
 			"type": "beyond_earth_giselle_addon:recycling_enabled"
@@ -11,6 +11,6 @@
 		"tag": "beyond_earth:compresseds/ostrum"
 	},
 	"result": {
-		"item": "beyond_earth:ostrum_ingot"
+		"tag": "forge:ingots/ostrum"
 	}
 }

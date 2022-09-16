@@ -1,5 +1,5 @@
 {
-	"type": "minecraft:blasting",
+	"type": "beyond_earth_giselle_addon:recycling_blasting",
 	"conditions": [
 		{
 			"type": "beyond_earth_giselle_addon:recycling_enabled"
@@ -11,6 +11,6 @@
 		"tag": "beyond_earth:compresseds/calorite"
 	},
 	"result": {
-		"item": "beyond_earth:calorite_ingot"
+		"tag": "forge:ingots/calorite"
 	}
 }
