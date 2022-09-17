@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import boss_tools_giselle_addon.common.block.ElectricBlastFurnaceBlock;
+import boss_tools_giselle_addon.common.entity.ExperienceOrbEntityHelper;
 import boss_tools_giselle_addon.common.inventory.container.ElectricBlastFurnaceContainer;
 import boss_tools_giselle_addon.common.item.crafting.ItemStackToItemStackRecipeWrapper;
 import boss_tools_giselle_addon.common.registries.AddonTileEntityTypes;
@@ -17,6 +18,8 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.mrscauthd.boss_tools.crafting.BossToolsRecipeTypes;
 import net.mrscauthd.boss_tools.machines.tile.NamedComponentRegistry;
@@ -32,6 +35,19 @@ public class ElectricBlastFurnaceTileEntity extends ItemStackToItemStackTileEnti
 	public ElectricBlastFurnaceTileEntity()
 	{
 		super(AddonTileEntityTypes.ELECTRIC_BLAST_FURNACE.get());
+	}
+
+	public void awardExp(World level, Vector3d position)
+	{
+		float stored = this.getExperience();
+		int awarding = (int) stored;
+
+		if (awarding > 0)
+		{
+			this.setExperience(stored - awarding);
+			ExperienceOrbEntityHelper.award(level, position, awarding);
+		}
+
 	}
 
 	@Override
