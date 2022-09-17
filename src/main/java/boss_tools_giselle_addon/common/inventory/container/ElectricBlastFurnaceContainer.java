@@ -1,6 +1,5 @@
 package boss_tools_giselle_addon.common.inventory.container;
 
-import boss_tools_giselle_addon.common.entity.ExperienceOrbEntityHelper;
 import boss_tools_giselle_addon.common.registries.AddonContainerTypes;
 import boss_tools_giselle_addon.common.tile.ElectricBlastFurnaceTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,16 +18,7 @@ public class ElectricBlastFurnaceContainer extends ItemStackToItemStackContainer
 	{
 		super.onOutputSlotTake(player, stack);
 
-		ElectricBlastFurnaceTileEntity tileEntity = this.getTileEntity();
-		float stored = tileEntity.getExperience();
-		int awarding = (int) stored;
-
-		if (awarding > 0)
-		{
-			tileEntity.setExperience(stored - awarding);
-			ExperienceOrbEntityHelper.award(player.level, player.position(), awarding);
-		}
-
+		this.getTileEntity().awardExp(player.level, player.position());
 	}
 
 }
