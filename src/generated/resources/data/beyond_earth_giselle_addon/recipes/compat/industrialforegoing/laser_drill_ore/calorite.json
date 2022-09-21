@@ -11,7 +11,7 @@
 			"conditions": [
 				{
 					"value": {
-						"tag": "forge:raw_materials/ostrum",
+						"tag": "forge:raw_materials/calorite",
 						"type": "forge:tag_empty"
 					},
 					"type": "forge:not"
@@ -19,16 +19,15 @@
 			],
 			"recipe": {
 				"output": {
-					"tag": "forge:raw_materials/ostrum"
+					"tag": "forge:raw_materials/calorite"
 				},
 				"rarity": [
 					{
 						"whitelist": {
 							"type": "minecraft:worldgen/biome",
 							"values": [
-								"beyond_earth:mars_desert",
-								"beyond_earth:mars_rocky_plains",
-								"beyond_earth:mars_ice_spikes"
+								"beyond_earth:venus_desert",
+								"beyond_earth:infernal_venus_barrens"
 							]
 						},
 						"blacklist": {},
@@ -39,7 +38,7 @@
 				],
 				"pointer": 0,
 				"catalyst": {
-					"item": "industrialforegoing:laser_lens10"
+					"item": "industrialforegoing:laser_lens14"
 				},
 				"type": "industrialforegoing:laser_drill_ore"
 			}
