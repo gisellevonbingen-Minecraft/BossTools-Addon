@@ -137,7 +137,7 @@ dependencies {
     // compileOnly fg.deobf("curse.maven:refined-storage-243076:${refined_storage_file}")
 
     // JAOPCA
-    compileOnly fg.deobf("thelm:jaopca:${mc_version}-${jaopca_version}:api")
+    implementation fg.deobf("curse.maven:jaopca-266936:${jaopca_file}")
 
     // Curios
     implementation fg.deobf("curse.maven:curios-309927:${curios_file}")
