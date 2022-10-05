@@ -10,13 +10,16 @@ import beyond_earth_giselle_addon.common.item.crafting.ItemStackToItemStackRecip
 import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.mrscauthd.beyond_earth.capabilities.energy.EnergyStorageBasic;
 import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
@@ -34,6 +37,19 @@ public class ElectricBlastFurnaceBlockEntity extends ItemStackToItemStackBlockEn
 		super(AddonBlockEntityTypes.ELECTRIC_BLAST_FURNACE.get(), pos, state);
 	}
 
+	public void awardExp(ServerLevel level, Vec3 position)
+	{
+		float stored = this.getExperience();
+		int awarding = (int) stored;
+
+		if (awarding > 0)
+		{
+			this.setExperience(stored - awarding);
+			ExperienceOrb.award(level, position, awarding);
+		}
+
+	}
+
 	@Override
 	protected void onCooking()
 	{
@@ -41,7 +57,7 @@ public class ElectricBlastFurnaceBlockEntity extends ItemStackToItemStackBlockEn
 
 		if (this.getTimer() >= this.getMaxTimer())
 		{
-			if (this.getCachedRecipe() instanceof ItemStackToItemStackRecipeWrapper recipe)
+			if (this.getCachedRecipe()instanceof ItemStackToItemStackRecipeWrapper recipe)
 			{
 				this.setExperience(this.getExperience() + recipe.getExperience());
 			}

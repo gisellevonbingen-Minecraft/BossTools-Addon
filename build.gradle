@@ -141,7 +141,7 @@ dependencies {
     // compileOnly fg.deobf("curse.maven:refined-storage-243076:${refined_storage_file}")
 
     // JAOPCA
-    compileOnly fg.deobf("thelm:jaopca:${mc_version}-${jaopca_version}:api")
+    implementation fg.deobf("curse.maven:jaopca-266936:${jaopca_file}")
 
     // Curios
     implementation fg.deobf("curse.maven:curios-309927:${curios_file}")
@@ -150,7 +150,7 @@ dependencies {
     implementation fg.deobf("net.mrscauthd:beyond_earth:${mc_version}-${beyond_earth_version}")
     
     // Immersive Engineering
-    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${immersive_engineering_version}:api")
+    implementation fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${immersive_engineering_version}")
 
     // Mekanism
     implementation fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}")

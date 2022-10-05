@@ -3,7 +3,6 @@ package beyond_earth_giselle_addon.common.inventory;
 import beyond_earth_giselle_addon.common.block.entity.ElectricBlastFurnaceBlockEntity;
 import beyond_earth_giselle_addon.common.registries.AddonMenuTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -20,19 +19,9 @@ public class ElectricBlastFurnaceContainerMenu extends ItemStackToItemStackConta
 	{
 		super.onOutputSlotTake(player, stack);
 
-		ElectricBlastFurnaceBlockEntity blockEntity = this.getBlockEntity();
-		float stored = blockEntity.getExperience();
-		int awarding = (int) stored;
-
-		if (awarding > 0)
+		if (player.getLevel()instanceof ServerLevel level)
 		{
-			blockEntity.setExperience(stored - awarding);
-
-			if (player.getLevel()instanceof ServerLevel level)
-			{
-				ExperienceOrb.award(level, player.position(), awarding);
-			}
-
+			this.getBlockEntity().awardExp(level, player.position());
 		}
 
 	}
