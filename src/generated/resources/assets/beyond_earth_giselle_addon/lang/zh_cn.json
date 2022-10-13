@@ -1,78 +1,78 @@
 {
 
-	"itemGroup.beyond_earth_giselle_addon_tab_main": "地球之外：吉赛尔·addon",
-	
-	"block.beyond_earth_giselle_addon.fuel_loader": "燃油装载机",
-	"block.beyond_earth_giselle_addon.electric_blast_furnace": "电动高炉",
-	"block.beyond_earth_giselle_addon.advanced_compressor": "先进压缩机",
-	"block.beyond_earth_giselle_addon.gravity_normalizer": "重力发生器",
-	
-	"module.beyond_earth_giselle_addon.space_breathing_unit": "太空呼吸装置",
-	"description.beyond_earth_giselle_addon.space_breathing_unit": "可以在地球之外的维度中呼吸\n在雨中，水时也会用氧气填充被保留的物品\n需要在物品栏中启用“氧气罐”",
-	"module.beyond_earth_giselle_addon.space_fire_proof_unit": "空间防火装置",
-	"description.beyond_earth_giselle_addon.space_fire_proof_unit": "不要在“超越地球”维度中放火烧玩家",
-	"module.beyond_earth_giselle_addon.venus_acid_proof_unit": "维纳斯酸防化装置",
-	"description.beyond_earth_giselle_addon.venus_acid_proof_unit": "不要在地球之外的维度中受到酸雨的破坏",
-	"module.beyond_earth_giselle_addon.gravity_normalizing_unit": "重力发生单元",
-	"description.beyond_earth_giselle_addon.gravity_normalizing_unit": "在“超越地球”维度中像主世界一样规范化重力",
-	"description.beyond_earth_giselle_addon.instead_gravity_normalizing_unit": "可以使用代替重力发生单元",
-	
-	"item.beyond_earth_giselle_addon.oxygen_can": "氧气罐",
-	"item.beyond_earth_giselle_addon.press_compressing_die": "压缩模",
-	"item.beyond_earth_giselle_addon.mold_compressing": "金属冲压模具制造： 压缩",
-	"item.jaopca.beyond_earth_compresseds": "压缩 %s",
-	
-	"description.beyond_earth_giselle_addon.charge_mode": "充电模式",
-	
-	"enchantment.beyond_earth_giselle_addon.space_breathing": "太空呼吸",
-	"enchantment.beyond_earth_giselle_addon.space_breathing.desc": "可以在地球之外的维度中呼吸\n装订物品需要有能量存储\n需要在库存中启用“氧气罐”",
-	"enchantment.beyond_earth_giselle_addon.gravity_normalizing": "重力发生",
-	"enchantment.beyond_earth_giselle_addon.gravity_normalizing.desc": "在“超越地球”维度中像主世界一样对重力进行归一化\n附着物品需要有能量存储",
-	"enchantment.beyond_earth_giselle_addon.space_fire_proof": "太空防火",
-	"enchantment.beyond_earth_giselle_addon.space_fire_proof.desc": "不要放火烧超地球维度的玩家\n附魔物品需要有能量储存",
-	"enchantment.beyond_earth_giselle_addon.venus_acid_proof": "维纳斯酸防护",
-	"enchantment.beyond_earth_giselle_addon.venus_acid_proof.desc": "不要在“地球之外”维度中受到酸雨的伤害\n装魔物品需要有能量存储",
-	
-	"container.beyond_earth_giselle_addon.fuel_loader": "燃油装载机",
-	"container.beyond_earth_giselle_addon.electric_blast_furnace": "电动高炉",
-	"container.beyond_earth_giselle_addon.advanced_compressor": "先进压缩机",
-	"container.beyond_earth_giselle_addon.gravity_normalizer": "重力发生器",
-	
-	"gui.beyond_earth_giselle_addon.auto_pull": "自动拉动",
-	"gui.beyond_earth_giselle_addon.auto_eject": "自动弹出",
-	"gui.beyond_earth_giselle_addon.workingarea.text": "工作区域： %1$sx%2$sx%3$s",
-	"gui.beyond_earth_giselle_addon.workingarea.show": "显示",
-	"gui.beyond_earth_giselle_addon.workingarea.hide": "隐藏",
-	
-	"gui.beyond_earth_giselle_addon.flag_edit.title": "编辑标志",
-	"gui.beyond_earth_giselle_addon.flag_edit.verify": "验证",
-	"gui.beyond_earth_giselle_addon.flag_edit.verifying": "验证中",
-	"gui.beyond_earth_giselle_addon.flag_edit.save": "保存",
-	
-	"compressormode.beyond_earth.compressing": "压缩",
-	"compressormode.beyond_earth_giselle_addon.rolling": "轧制",
-	"compressormode.beyond_earth_giselle_addon.extruding": "挤压",
-	
-	"chargemode.beyond_earth_giselle_addon.none": "禁用",
-	"chargemode.beyond_earth_giselle_addon.armors": "启用：所有护甲",
-	"chargemode.beyond_earth_giselle_addon.all": "已启用：所有库存",
-	
-	
-	"jei.category.beyond_earth_giselle_addon.rolling": "压缩机 - 轧制",
-	"jei.category.beyond_earth_giselle_addon.extruding": "压缩机 - 挤出",
-	"jei.tooltip.beyond_earth_giselle_addon.incompatible_mode1": "不兼容模式",
-	"jei.tooltip.beyond_earth_giselle_addon.incompatible_mode2": "需要更改为 '%s' 模式",
-	"jei.category.beyond_earth_giselle_addon.fuel_loader": "燃油装载机",
-	"jei.info.beyond_earth_giselle_addon.fuel_loader": "内部流体罐可以接收 '%2$s' \n将燃料提供给 'Rover' 或者 'Rockets' 在 %1$s 方块.",
-	"jei.info.beyond_earth_giselle_addon.gravity_normalizer": "规范化实体的重力，就像在范围内的主世界一样",
-	
-	"jei.category.beyond_earth_giselle_addon.alien_trading": "外来交易",
-	"jer.text.beyond_earth_giselle_addon.alien_trading.notneeded": "不需要",
-	"jer.dim.beyond_earth:moon": "Beyond Earth: 月球",
-	"jer.dim.beyond_earth:mars": "Beyond Earth: 火星",
-	"jer.dim.beyond_earth:mercury": "Beyond Earth: 水星",
-	"jer.dim.beyond_earth:venus": "Beyond Earth: 金星",
-	"jer.dim.beyond_earth:glacio": "Beyond Earth: 格拉西奥",
-	
-	"_eof": "eof"
-  }
+  "itemGroup.beyond_earth_giselle_addon_tab_main": "地球之外：吉赛尔·addon",
+  
+  "block.beyond_earth_giselle_addon.fuel_loader": "燃油装载机",
+  "block.beyond_earth_giselle_addon.electric_blast_furnace": "电动高炉",
+  "block.beyond_earth_giselle_addon.advanced_compressor": "先进压缩机",
+  "block.beyond_earth_giselle_addon.gravity_normalizer": "重力发生器",
+  
+  "module.beyond_earth_giselle_addon.space_breathing_unit": "太空呼吸装置",
+  "description.beyond_earth_giselle_addon.space_breathing_unit": "可以在地球之外的维度中呼吸\n在雨中，水时也会用氧气填充被保留的物品\n需要在物品栏中启用“氧气罐”",
+  "module.beyond_earth_giselle_addon.space_fire_proof_unit": "空间防火装置",
+  "description.beyond_earth_giselle_addon.space_fire_proof_unit": "不要在“超越地球”维度中放火烧玩家",
+  "module.beyond_earth_giselle_addon.venus_acid_proof_unit": "维纳斯酸防化装置",
+  "description.beyond_earth_giselle_addon.venus_acid_proof_unit": "不要在地球之外的维度中受到酸雨的破坏",
+  "module.beyond_earth_giselle_addon.gravity_normalizing_unit": "重力发生单元",
+  "description.beyond_earth_giselle_addon.gravity_normalizing_unit": "在“超越地球”维度中像主世界一样规范化重力",
+  "description.beyond_earth_giselle_addon.instead_gravity_normalizing_unit": "可以使用代替重力发生单元",
+  
+  "item.beyond_earth_giselle_addon.oxygen_can": "氧气罐",
+  "item.beyond_earth_giselle_addon.press_compressing_die": "压缩模",
+  "item.beyond_earth_giselle_addon.mold_compressing": "金属冲压模具制造： 压缩",
+  "item.jaopca.beyond_earth_compresseds": "压缩 %s",
+  
+  "description.beyond_earth_giselle_addon.charge_mode": "充电模式",
+  
+  "enchantment.beyond_earth_giselle_addon.space_breathing": "太空呼吸",
+  "enchantment.beyond_earth_giselle_addon.space_breathing.desc": "可以在地球之外的维度中呼吸\n装订物品需要有能量存储\n需要在库存中启用“氧气罐”",
+  "enchantment.beyond_earth_giselle_addon.gravity_normalizing": "重力发生",
+  "enchantment.beyond_earth_giselle_addon.gravity_normalizing.desc": "在“超越地球”维度中像主世界一样对重力进行归一化\n附着物品需要有能量存储",
+  "enchantment.beyond_earth_giselle_addon.space_fire_proof": "太空防火",
+  "enchantment.beyond_earth_giselle_addon.space_fire_proof.desc": "不要放火烧超地球维度的玩家\n附魔物品需要有能量储存",
+  "enchantment.beyond_earth_giselle_addon.venus_acid_proof": "维纳斯酸防护",
+  "enchantment.beyond_earth_giselle_addon.venus_acid_proof.desc": "不要在“地球之外”维度中受到酸雨的伤害\n装魔物品需要有能量存储",
+  
+  "container.beyond_earth_giselle_addon.fuel_loader": "燃油装载机",
+  "container.beyond_earth_giselle_addon.electric_blast_furnace": "电动高炉",
+  "container.beyond_earth_giselle_addon.advanced_compressor": "先进压缩机",
+  "container.beyond_earth_giselle_addon.gravity_normalizer": "重力发生器",
+  
+  "gui.beyond_earth_giselle_addon.auto_pull": "自动拉动",
+  "gui.beyond_earth_giselle_addon.auto_eject": "自动弹出",
+  "gui.beyond_earth_giselle_addon.workingarea.text": "工作区域： %1$sx%2$sx%3$s",
+  "gui.beyond_earth_giselle_addon.workingarea.show": "显示",
+  "gui.beyond_earth_giselle_addon.workingarea.hide": "隐藏",
+  
+  "gui.beyond_earth_giselle_addon.flag_edit.title": "编辑标志",
+  "gui.beyond_earth_giselle_addon.flag_edit.verify": "验证",
+  "gui.beyond_earth_giselle_addon.flag_edit.verifying": "验证中",
+  "gui.beyond_earth_giselle_addon.flag_edit.save": "保存",
+  
+  "compressormode.beyond_earth.compressing": "压缩",
+  "compressormode.beyond_earth_giselle_addon.rolling": "轧制",
+  "compressormode.beyond_earth_giselle_addon.extruding": "挤压",
+  
+  "chargemode.beyond_earth_giselle_addon.none": "禁用",
+  "chargemode.beyond_earth_giselle_addon.armors": "启用：所有护甲",
+  "chargemode.beyond_earth_giselle_addon.all": "已启用：所有库存",
+  
+  
+  "jei.category.beyond_earth_giselle_addon.rolling": "压缩机 - 轧制",
+  "jei.category.beyond_earth_giselle_addon.extruding": "压缩机 - 挤出",
+  "jei.tooltip.beyond_earth_giselle_addon.incompatible_mode1": "不兼容模式",
+  "jei.tooltip.beyond_earth_giselle_addon.incompatible_mode2": "需要更改为 '%s' 模式",
+  "jei.category.beyond_earth_giselle_addon.fuel_loader": "燃油装载机",
+  "jei.info.beyond_earth_giselle_addon.fuel_loader": "内部流体罐可以接收 '%2$s' \n将燃料提供给 'Rover' 或者 'Rockets' 在 %1$s 方块.",
+  "jei.info.beyond_earth_giselle_addon.gravity_normalizer": "规范化实体的重力，就像在范围内的主世界一样",
+  
+  "jei.category.beyond_earth_giselle_addon.alien_trading": "外来交易",
+  "jer.text.beyond_earth_giselle_addon.alien_trading.notneeded": "不需要",
+  "jer.dim.beyond_earth:moon": "Beyond Earth: 月球",
+  "jer.dim.beyond_earth:mars": "Beyond Earth: 火星",
+  "jer.dim.beyond_earth:mercury": "Beyond Earth: 水星",
+  "jer.dim.beyond_earth:venus": "Beyond Earth: 金星",
+  "jer.dim.beyond_earth:glacio": "Beyond Earth: 格拉西奥",
+  
+  "_eof": "eof"
+}
