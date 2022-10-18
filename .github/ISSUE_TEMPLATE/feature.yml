@@ -1,0 +1,9 @@
+name: Feature
+description: 'Request feature'
+assignees: gisellevonbingen
+labels: enhancement
+body:
+  - type: textarea
+    attributes:
+      label: The details
+      

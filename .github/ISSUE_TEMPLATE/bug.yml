@@ -1,0 +1,41 @@
+name: Bug
+description: 'Report bug'
+assignees: gisellevonbingen
+labels: bug
+body:
+  - type: input
+    attributes:
+      label: Minecraft Version
+      description: 'your minecraft version'
+      placeholder: e.g. 1.16.5, 1.18.1
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: Forge Version
+      description: 'your forge version'
+      placeholder: e.g. 36.2.5, 39.0.5
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: Space-BossTools or Beyond Earth Version
+      description: 'parent mod version'
+      placeholder: e.g. 1.16.5-5.5d, 1.18.1-5.7
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: Addon Mod Version (This Mod)
+      description: 'addon mod version'
+      placeholder: e.g. 1.16.5-1.5, 1.18.1-1.0
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: The details
+      description: Reproduce Steps, Crash Report (full copy or url from [gist](https://gist.github.com/) or [pastebin](https://pastebin.com/)), etc.
+      placeholder: |
+        1. Reproduce Steps
+        2. Crash Report
+        3. ETC.
