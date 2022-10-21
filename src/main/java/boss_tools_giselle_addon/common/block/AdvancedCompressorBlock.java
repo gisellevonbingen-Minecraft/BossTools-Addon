@@ -28,5 +28,5 @@ public class AdvancedCompressorBlock extends ItemStackToItemStackBlock<AdvancedC
 	{
 		return new AdvancedCompressorTileEntity();
 	}
-	
+
 }

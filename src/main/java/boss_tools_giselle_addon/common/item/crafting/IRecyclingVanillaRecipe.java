@@ -18,6 +18,7 @@ public interface IRecyclingVanillaRecipe<P extends IRecipe<C>, C extends IInvent
 		return this.getOutput().getItemStack().copy();
 	}
 
+	@Override
 	public default ItemStack getToastSymbol()
 	{
 		return this.getParent().getToastSymbol();

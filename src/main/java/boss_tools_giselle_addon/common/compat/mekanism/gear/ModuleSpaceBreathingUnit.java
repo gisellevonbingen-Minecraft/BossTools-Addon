@@ -55,7 +55,7 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entity
 	 * @return provided oxygen to entity
 	 */

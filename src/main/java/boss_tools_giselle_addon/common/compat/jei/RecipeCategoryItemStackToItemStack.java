@@ -48,6 +48,7 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 		return guiHelper.createDrawable(BACKGROUND_LOCATION, 0, 0, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
 	}
 
+	@Override
 	public void draw(R recipe, MatrixStack stack, double mouseX, double mouseY)
 	{
 		super.draw(recipe, stack, mouseX, mouseY);

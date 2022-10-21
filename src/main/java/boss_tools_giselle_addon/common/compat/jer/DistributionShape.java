@@ -21,7 +21,7 @@ public abstract class DistributionShape
 		{
 
 		}
-		
+
 		@Override
 		public DistributionBase build(OreGenBuilder builder)
 		{

@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 public class AdvancedCompressorMessageMode extends TileEntityMessage<AdvancedCompressorTileEntity>
 {
 	private ResourceLocation modeKey;
-	
+
 	public AdvancedCompressorMessageMode()
 	{
 

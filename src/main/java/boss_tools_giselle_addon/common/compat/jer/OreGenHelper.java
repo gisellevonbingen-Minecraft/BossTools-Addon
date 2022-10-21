@@ -21,7 +21,7 @@ public class OreGenHelper
 
 	public static <T> T decode(Codec<T> codec, INBT tag)
 	{
-		return codec.decode(new Dynamic<INBT>(Ops, tag)).result().get().getFirst();
+		return codec.decode(new Dynamic<>(Ops, tag)).result().get().getFirst();
 	}
 
 	public static FeatureSpread getFeatureSpread(FeatureSpreadConfig config)

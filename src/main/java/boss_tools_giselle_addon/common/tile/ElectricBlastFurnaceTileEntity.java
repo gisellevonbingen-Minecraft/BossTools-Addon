@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import boss_tools_giselle_addon.common.block.ElectricBlastFurnaceBlock;
+import boss_tools_giselle_addon.common.block.AbstractMachineBlock;
 import boss_tools_giselle_addon.common.entity.ExperienceOrbEntityHelper;
 import boss_tools_giselle_addon.common.inventory.container.ElectricBlastFurnaceContainer;
 import boss_tools_giselle_addon.common.item.crafting.ItemStackToItemStackRecipeWrapper;
@@ -84,17 +84,20 @@ public class ElectricBlastFurnaceTileEntity extends ItemStackToItemStackTileEnti
 		return compound;
 	}
 
+	@Override
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)
 	{
 		super.createEnergyStorages(registry);
 		registry.put(this.createEnergyStorageCommon());
 	}
 
+	@Override
 	protected void createPowerSystems(PowerSystemRegistry map)
 	{
 		super.createPowerSystems(map);
 		map.put(new PowerSystemEnergyCommon(this)
 		{
+			@Override
 			public int getBasePowerForOperation()
 			{
 				return ElectricBlastFurnaceTileEntity.this.getBasePowerForOperation();
@@ -114,9 +117,10 @@ public class ElectricBlastFurnaceTileEntity extends ItemStackToItemStackTileEnti
 		return 1;
 	}
 
+	@Override
 	protected BooleanProperty getBlockActivatedProperty()
 	{
-		return ElectricBlastFurnaceBlock.LIT;
+		return AbstractMachineBlock.LIT;
 	}
 
 	@Override

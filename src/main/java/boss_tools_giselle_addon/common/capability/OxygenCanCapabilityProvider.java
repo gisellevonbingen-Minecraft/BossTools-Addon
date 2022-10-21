@@ -74,6 +74,7 @@ public class OxygenCanCapabilityProvider implements ICapabilityProvider, IOxygen
 		return compound;
 	}
 
+	@Override
 	public <T> LazyOptional<T> getCapability(Capability<T> capability, Direction direction)
 	{
 		if (capability == null)

@@ -43,7 +43,7 @@ public abstract class TileEntityMessage<T extends TileEntity> extends BlockPosMe
 
 		if (tileEntity != null)
 		{
-			this.onHandle((T) tileEntity, sender);
+			this.onHandle(tileEntity, sender);
 		}
 
 	}

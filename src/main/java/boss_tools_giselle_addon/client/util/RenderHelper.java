@@ -60,9 +60,9 @@ public class RenderHelper
 
 	public static void drawShapeOutline(IVertexBuilder builder, Matrix4f matrix, Matrix3f normal, float x1, float y1, float z1, float x2, float y2, float z2, int r, int g, int b)
 	{
-		float nX = (float) (x2 - x1);
-		float nY = (float) (y2 - y1);
-		float nZ = (float) (z2 - z1);
+		float nX = x2 - x1;
+		float nY = y2 - y1;
+		float nZ = z2 - z1;
 		float sqrt = (float) Math.sqrt(nX * nX + nY * nY + nZ * nZ);
 		nX = nX / sqrt;
 		nY = nY / sqrt;

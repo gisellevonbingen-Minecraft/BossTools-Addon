@@ -48,7 +48,7 @@ public abstract class PlanetSelectionGuiWindowMixin
 
 		if (GuiHelper.isHover(screen.getBounds(left, top, width, height), mouseX, mouseY) == true)
 		{
-			List<ITextComponent> list = new ArrayList<ITextComponent>();
+			List<ITextComponent> list = new ArrayList<>();
 			list.add(ITextComponent.nullToEmpty("\u00A79Item Requirement:"));
 
 			Minecraft minecraft = screen.getMinecraft();
@@ -58,7 +58,7 @@ public abstract class PlanetSelectionGuiWindowMixin
 			if (recipe != null)
 			{
 				boolean playingMode = LivingEntityHelper.isPlayingMode(player);
-				
+
 				for (IngredientStack ingredientStack : recipe.getIngredientStacks())
 				{
 					int count = this.getItemCount(player, ingredientStack.getIngredient());

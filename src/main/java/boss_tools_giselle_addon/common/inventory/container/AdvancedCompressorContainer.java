@@ -10,7 +10,7 @@ public class AdvancedCompressorContainer extends ItemStackToItemStackContainer<A
 	{
 		super(AddonContainerTypes.ADVANCED_COMPRESSOR.get(), windowId, inv, tileEntity);
 	}
-	
+
 	@Override
 	public int getInventoryTop()
 	{

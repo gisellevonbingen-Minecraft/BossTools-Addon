@@ -24,11 +24,11 @@ public class AlienTradingRecipeDyedItem extends AlienTradingRecipeItemStack
 {
 	private float chance1 = 0.7F;
 	private float chance2 = 0.8F;
-	
+
 	public AlienTradingRecipeDyedItem(ResourceLocation id, JsonObject json)
 	{
 		super(id, json);
-		
+
 		this.chance1 = JSONUtils.getAsFloat(json, "chance1", this.chance1);
 		this.chance2 = JSONUtils.getAsFloat(json, "chance2", this.chance2);
 	}
@@ -36,7 +36,7 @@ public class AlienTradingRecipeDyedItem extends AlienTradingRecipeItemStack
 	public AlienTradingRecipeDyedItem(ResourceLocation id, PacketBuffer buffer)
 	{
 		super(id, buffer);
-		
+
 		this.chance1 = buffer.readFloat();
 		this.chance2 = buffer.readFloat();
 	}
@@ -45,7 +45,7 @@ public class AlienTradingRecipeDyedItem extends AlienTradingRecipeItemStack
 	public void write(PacketBuffer buffer)
 	{
 		super.write(buffer);
-		
+
 		buffer.writeFloat(this.chance1);
 		buffer.writeFloat(this.chance2);
 	}
@@ -83,12 +83,12 @@ public class AlienTradingRecipeDyedItem extends AlienTradingRecipeItemStack
 	{
 		return DyeItem.byColor(DyeColor.byId(random.nextInt(16)));
 	}
-	
+
 	public float getChance1()
 	{
 		return this.chance1;
 	}
-	
+
 	public float getChance2()
 	{
 		return this.chance2;

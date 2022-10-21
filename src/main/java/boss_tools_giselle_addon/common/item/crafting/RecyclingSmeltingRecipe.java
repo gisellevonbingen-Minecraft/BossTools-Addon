@@ -36,6 +36,7 @@ public class RecyclingSmeltingRecipe extends FurnaceRecipe implements IRecycling
 		return this.output;
 	}
 
+	@Override
 	public FurnaceRecipe getParent()
 	{
 		return this.parent;

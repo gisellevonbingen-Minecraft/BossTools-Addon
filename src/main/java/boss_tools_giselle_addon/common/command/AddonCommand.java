@@ -148,7 +148,7 @@ public class AddonCommand
 				{
 					energyStorage.receiveEnergy(energyStorage.getMaxEnergyStored(), false);
 				}
-				
+
 			}
 
 			return OxygenUtil.makeFull(stack);

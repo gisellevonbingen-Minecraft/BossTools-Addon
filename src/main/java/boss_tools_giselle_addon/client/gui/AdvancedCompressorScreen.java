@@ -66,6 +66,7 @@ public class AdvancedCompressorScreen extends ItemStackToItemStackScreen<Advance
 		button.setMessage(mode.getText());
 	}
 
+	@Override
 	public void onChangeModeButtonClick(Button button)
 	{
 		AdvancedCompressorTileEntity tileEntity = this.getMenu().getTileEntity();

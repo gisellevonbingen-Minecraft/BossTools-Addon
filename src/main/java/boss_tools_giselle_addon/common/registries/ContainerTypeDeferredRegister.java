@@ -19,7 +19,7 @@ public class ContainerTypeDeferredRegister extends DeferredRegisterWrapper<Conta
 
 	public <C extends Container> RegistryObject<ContainerType<C>> register(String name, IContainerFactory<C> factory)
 	{
-		return this.register(name, () -> new ContainerType<C>(factory));
+		return this.register(name, () -> new ContainerType<>(factory));
 	}
 
 	public <T extends TileEntity, C extends Container> RegistryObject<ContainerType<C>> register(String name, TriFunction<Integer, PlayerInventory, T, C> function)

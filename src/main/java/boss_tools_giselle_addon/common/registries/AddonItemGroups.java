@@ -12,6 +12,7 @@ public class AddonItemGroups
 {
 	public static final ItemGroup tab_main = new ItemGroup(BossToolsAddon.MODID + "_tab_main")
 	{
+		@Override
 		public void fillItemList(NonNullList<ItemStack> list)
 		{
 			super.fillItemList(list);

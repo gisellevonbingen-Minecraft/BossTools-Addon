@@ -19,7 +19,7 @@ public class FuelAdapterBossToolsRover extends FuelAdapter<Entity>
 		int fuelAmount = BossToolsRoverHelper.getFuelAmount(target);
 		int fuelCapacity = BossToolsRoverHelper.getFuelCapacity(target);
 		int fuelRemain = fuelCapacity - fuelAmount;
-		
+
 		int fuelFilling = MathHelper.clamp(amount, 0, fuelRemain);
 
 		if (action.execute() == true)

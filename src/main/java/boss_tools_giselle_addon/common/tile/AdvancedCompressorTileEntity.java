@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 
-import boss_tools_giselle_addon.common.block.ElectricBlastFurnaceBlock;
+import boss_tools_giselle_addon.common.block.AbstractMachineBlock;
 import boss_tools_giselle_addon.common.inventory.container.AdvancedCompressorContainer;
 import boss_tools_giselle_addon.common.registries.AddonRecipes;
 import boss_tools_giselle_addon.common.registries.AddonTileEntityTypes;
@@ -39,17 +39,20 @@ public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntity
 		super(AddonTileEntityTypes.ADVANCED_COMPRESSOR.get());
 	}
 
+	@Override
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)
 	{
 		super.createEnergyStorages(registry);
 		registry.put(this.createEnergyStorageCommon());
 	}
 
+	@Override
 	protected void createPowerSystems(PowerSystemRegistry map)
 	{
 		super.createPowerSystems(map);
 		map.put(new PowerSystemEnergyCommon(this)
 		{
+			@Override
 			public int getBasePowerForOperation()
 			{
 				return AdvancedCompressorTileEntity.this.getBasePowerForOperation();
@@ -69,9 +72,10 @@ public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntity
 		return 1;
 	}
 
+	@Override
 	protected BooleanProperty getBlockActivatedProperty()
 	{
-		return ElectricBlastFurnaceBlock.LIT;
+		return AbstractMachineBlock.LIT;
 	}
 
 	@Override
@@ -174,6 +178,7 @@ public class AdvancedCompressorTileEntity extends ItemStackToItemStackTileEntity
 			this.iconSupplier = iconSupplier;
 		}
 
+		@Override
 		public ItemStackToItemStackRecipeType<?> getRecipeType()
 		{
 			return this.recipeType;

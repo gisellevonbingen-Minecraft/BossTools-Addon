@@ -143,6 +143,7 @@ public abstract class AbstractMachineBlock<T extends AbstractMachineTileEntity> 
 		return false;
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public void onRemove(BlockState state, World level, BlockPos pos, BlockState newState, boolean isMoving)
 	{
@@ -161,6 +162,7 @@ public abstract class AbstractMachineBlock<T extends AbstractMachineTileEntity> 
 		super.onRemove(state, level, pos, newState, isMoving);
 	}
 
+	@Override
 	public ActionResultType use(BlockState state, World level, BlockPos pos, PlayerEntity entity, Hand hand, BlockRayTraceResult raytrace)
 	{
 		if (entity instanceof ServerPlayerEntity)

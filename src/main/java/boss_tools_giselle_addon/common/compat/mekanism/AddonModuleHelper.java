@@ -35,7 +35,7 @@ public class AddonModuleHelper
 	}
 
 	/**
-	 * 
+	 *
 	 * @param <T>
 	 *            T extends mekanism.common.content.gear.Module
 	 * @param e

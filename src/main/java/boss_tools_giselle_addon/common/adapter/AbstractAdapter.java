@@ -8,10 +8,10 @@ public class AbstractAdapter<T>
 	{
 		this.target = target;
 	}
-	
+
 	public final T getTarget()
 	{
 		return this.target;
 	}
-	
+
 }

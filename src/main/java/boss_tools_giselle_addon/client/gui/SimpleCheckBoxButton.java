@@ -53,6 +53,7 @@ public class SimpleCheckBoxButton extends AbstractButton
 		this.textColor = 0x404040;
 	}
 
+	@Override
 	public void onPress()
 	{
 		if (this.isAutoToggle() == true)
@@ -75,6 +76,7 @@ public class SimpleCheckBoxButton extends AbstractButton
 
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public void renderButton(MatrixStack stack, int mouseX, int mouseY, float p_230431_4_)
 	{

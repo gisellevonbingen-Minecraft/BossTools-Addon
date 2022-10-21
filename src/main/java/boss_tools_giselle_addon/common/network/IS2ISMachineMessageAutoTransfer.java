@@ -18,20 +18,20 @@ public abstract class IS2ISMachineMessageAutoTransfer extends TileEntityMessage<
 
 		this.value = value;
 	}
-	
+
 	@Override
 	public void encode(PacketBuffer buffer)
 	{
 		super.encode(buffer);
-		
+
 		buffer.writeBoolean(this.value);
 	}
-	
+
 	@Override
 	public void decode(PacketBuffer buffer)
 	{
 		super.decode(buffer);
-		
+
 		this.value = buffer.readBoolean();
 	}
 
