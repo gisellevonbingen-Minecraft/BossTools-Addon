@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "boss_tools:mars_stone"
+    },
+    "title": {
+      "translate": "advancements.boss_tools_giselle_addon.mars.title"
+    },
+    "description": {
+      "translate": "advancements.boss_tools_giselle_addon.mars.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "moon_advancement": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "boss_tools:mars"
+      }
+    }
+  },
+  "rewards": {
+    "experience": 7
+  },
+  "parent": "boss_tools:rocket_tier_2_advancement"
+}

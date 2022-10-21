@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "boss_tools:mercury_stone"
+    },
+    "title": {
+      "translate": "advancements.boss_tools_giselle_addon.mercury.title"
+    },
+    "description": {
+      "translate": "advancements.boss_tools_giselle_addon.mercury.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "moon_advancement": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "boss_tools:mercury"
+      }
+    }
+  },
+  "rewards": {
+    "experience": 7
+  },
+  "parent": "boss_tools:rocket_tier_3_advancement"
+}

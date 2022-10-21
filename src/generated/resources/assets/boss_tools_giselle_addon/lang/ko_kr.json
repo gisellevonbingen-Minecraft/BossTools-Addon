@@ -86,5 +86,26 @@
   "biome.boss_tools.mercury_magma": "수성 마그마",
   "biome.boss_tools.mars_ice_spike": "화성 역고드름",
   
+  "advancements.boss_tools_giselle_addon.space_suit.title": "우주 비행사",
+  "advancements.boss_tools_giselle_addon.space_suit.descr": "우주복 세트를 갖추세요",
+  "advancements.boss_tools_giselle_addon.netherite_space_suit.title": "네더라이트 우주 비행사",
+  "advancements.boss_tools_giselle_addon.netherite_space_suit.descr": "네더라이트 우주복 세트를 갖추세요",
+  "advancements.boss_tools_giselle_addon.mars.title": "화성",
+  "advancements.boss_tools_giselle_addon.mars.descr": "§b화성에 진입하세요",
+  "advancements.boss_tools_giselle_addon.mercury.title": "수성",
+  "advancements.boss_tools_giselle_addon.mercury.descr": "§b수성에 진입하세요",
+  "advancements.boss_tools_giselle_addon.venus.title": "금성",
+  "advancements.boss_tools_giselle_addon.venus.descr": "§b금성에 진입하세요",
+  "advancements.boss_tools_giselle_addon.space_station.title": "우주 저편의 별장",
+  "advancements.boss_tools_giselle_addon.space_station.descr": "우주 정거장을 생성하세요",
+  "advancements.boss_tools_giselle_addon.space_debris.title": "우주 쓰레기",
+  "advancements.boss_tools_giselle_addon.space_debris.descr": "궤도 바깥으로 아이템을 던지세요",
+  "advancements.boss_tools_giselle_addon.flag_in_moon.title": "내가 달에 왔었다는 증거",
+  "advancements.boss_tools_giselle_addon.flag_in_moon.descr": "달에 깃발을 세우세요",
+  "advancements.boss_tools_giselle_addon.potato_in_mars.title": "내가 이 행성 최고의 식물학자야",
+  "advancements.boss_tools_giselle_addon.potato_in_mars.descr": "화성에 감자를 심으세요",
+  "advancements.boss_tools_giselle_addon.alien_trade.title": "범우주적 거래",
+  "advancements.boss_tools_giselle_addon.alien_trade.descr": "외계인과 거래하세요",
+  
   "_eof": "eof"
 }

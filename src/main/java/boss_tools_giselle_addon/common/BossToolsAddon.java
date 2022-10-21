@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import boss_tools_giselle_addon.client.AddonClientProxy;
+import boss_tools_giselle_addon.common.advancements.AddonCriteriaTriggers;
+import boss_tools_giselle_addon.common.advancements.EventListenerAdvancement;
 import boss_tools_giselle_addon.common.capability.CapabilityChargeModeHandler;
 import boss_tools_giselle_addon.common.capability.CapabilityOxygenCharger;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
@@ -81,6 +83,7 @@ public class BossToolsAddon
 		forge_bus.register(EventListenerGravityNormalizing.class);
 		forge_bus.register(EventListenerFlagEdit.class);
 		forge_bus.register(EventListenerReload.class);
+		forge_bus.register(EventListenerAdvancement.class);
 
 		ProofAbstractUtils.register(forge_bus);
 		TagPreference.register(forge_bus);
@@ -92,6 +95,7 @@ public class BossToolsAddon
 		{
 			CapabilityChargeModeHandler.register();
 			CapabilityOxygenCharger.register();
+			AddonCriteriaTriggers.visit();
 		});
 	}
 

@@ -8,6 +8,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.item.crafting.IngredientStack;
 import boss_tools_giselle_addon.common.item.crafting.SpaceStationRecipe;
+import boss_tools_giselle_addon.common.registries.AddonItems;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
@@ -50,7 +51,7 @@ public class RecipeCategorySpaceStation extends RecipeCategoryRecipeType<BossToo
 	{
 		super.createGui(guiHelper);
 		this.background = this.createBackground(guiHelper);
-		this.icon = guiHelper.createDrawableIngredient(new ItemStack(ModInnet.BLUE_IRON_PLATING_BLOCK_ITEM.get()));
+		this.icon = guiHelper.createDrawableIngredient(new ItemStack(AddonItems.SPACE_STATION_ICON.get()));
 		this.slot = guiHelper.getSlotDrawable();
 
 		String tl = BossToolsAddon.tl(AddonJeiPlugin.JEI_INFO, this.getKey());

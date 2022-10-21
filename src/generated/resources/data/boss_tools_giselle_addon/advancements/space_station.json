@@ -1,0 +1,33 @@
+{
+	"parent": "boss_tools:rocket_advancement",
+	"display": {
+		"icon": {
+			"item": "boss_tools_giselle_addon:space_station_icon"
+		},
+		"title": {
+			"translate": "advancements.boss_tools_giselle_addon.space_station.title"
+		},
+		"description": {
+			"translate": "advancements.boss_tools_giselle_addon.space_station.descr"
+		},
+		"frame": "goal",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"player_create_space_station": {
+			"trigger": "boss_tools_giselle_addon:player_create_space_station",
+			"conditions": {
+			}
+		}
+	},
+	"requirements": [
+		[
+			"player_create_space_station"
+		]
+	],
+	"rewards": {
+		"experience": 7
+	}
+}
