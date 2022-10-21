@@ -27,6 +27,7 @@ public class IS2ISRecipeTransferInfo<C extends ItemStackToItemStackContainerMenu
 		return this.containerClass;
 	}
 
+	@Override
 	public RecipeType<R> getRecipeType()
 	{
 		return this.recipeType;

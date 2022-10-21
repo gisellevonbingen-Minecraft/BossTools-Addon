@@ -14,9 +14,8 @@ public class LivingEntityHelper
 {
 	public static boolean isPlayingMode(LivingEntity entity)
 	{
-		if (entity instanceof Player)
+		if (entity instanceof Player player)
 		{
-			Player player = (Player) entity;
 			return player.isCreative() == false && player.isSpectator() == false;
 		}
 		else
@@ -30,9 +29,9 @@ public class LivingEntityHelper
 	{
 		List<ItemStack> list = new ArrayList<>();
 
-		if (entity instanceof Player)
+		if (entity instanceof Player player)
 		{
-			Inventory inventory = ((Player) entity).getInventory();
+			Inventory inventory = player.getInventory();
 			int size = inventory.getContainerSize();
 
 			for (int i = 0; i < size; i++)

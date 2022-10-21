@@ -29,7 +29,7 @@ public class OreGenHelper
 
 	public static <T> T decode(Codec<T> codec, Tag tag)
 	{
-		return codec.decode(new Dynamic<Tag>(Ops, tag)).result().get().getFirst();
+		return codec.decode(new Dynamic<>(Ops, tag)).result().get().getFirst();
 	}
 
 	public static IntProvider getCountPlacementCount(CountPlacement placement)
@@ -52,9 +52,9 @@ public class OreGenHelper
 	{
 		HeightProvider heightProvider = decode(HeightProvider.CODEC, tag);
 
-		if (heightProvider instanceof TrapezoidHeight)
+		if (heightProvider instanceof TrapezoidHeight trapezoidHeight)
 		{
-			return getTrapezoidHeightShape((TrapezoidHeight) heightProvider);
+			return getTrapezoidHeightShape(trapezoidHeight);
 		}
 
 		return null;

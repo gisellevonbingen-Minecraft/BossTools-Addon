@@ -35,9 +35,8 @@ public class EventListenerFlagEdit
 		BlockState blockState = e.getWorld().getBlockState(pos);
 		EnumProperty<DoubleBlockHalf> property = FlagBlock.HALF;
 
-		if (blockEntity instanceof FlagTileEntity && blockState.hasProperty(property) == true && blockState.getValue(property) == DoubleBlockHalf.UPPER)
+		if (blockEntity instanceof FlagTileEntity flag && blockState.hasProperty(property) == true && blockState.getValue(property) == DoubleBlockHalf.UPPER)
 		{
-			FlagTileEntity flag = (FlagTileEntity) blockEntity;
 			ItemStack itemStack = e.getItemStack();
 
 			if (e.getHand() != InteractionHand.MAIN_HAND)
@@ -53,9 +52,8 @@ public class EventListenerFlagEdit
 				}
 				else
 				{
-					if (player instanceof ServerPlayer)
+					if (player instanceof ServerPlayer serverPlayer)
 					{
-						ServerPlayer serverPlayer = (ServerPlayer) player;
 						AddonNetwork.sendToPlayer(serverPlayer, new FlagEditMessageOpen(pos));
 					}
 

@@ -19,7 +19,7 @@ public class MenuTypeDeferredRegister extends DeferredRegisterWrapper<MenuType<?
 
 	public <C extends AbstractContainerMenu> RegistryObject<MenuType<C>> register(String name, IContainerFactory<C> factory)
 	{
-		return this.register(name, () -> new MenuType<C>(factory));
+		return this.register(name, () -> new MenuType<>(factory));
 	}
 
 	public <T extends BlockEntity, C extends AbstractContainerMenu> RegistryObject<MenuType<C>> register(String name, TriFunction<Integer, Inventory, T, C> function)

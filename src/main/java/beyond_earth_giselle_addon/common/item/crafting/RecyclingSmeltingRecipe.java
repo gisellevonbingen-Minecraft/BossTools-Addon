@@ -36,6 +36,7 @@ public class RecyclingSmeltingRecipe extends SmeltingRecipe implements IRecyclin
 		return this.output;
 	}
 
+	@Override
 	public SmeltingRecipe getParent()
 	{
 		return this.parent;

@@ -80,17 +80,20 @@ public class ElectricBlastFurnaceBlockEntity extends ItemStackToItemStackBlockEn
 		compound.putFloat(KEY_EXPEREICNET, this.experience);
 	}
 
+	@Override
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)
 	{
 		super.createEnergyStorages(registry);
 		registry.put(this.createEnergyStorageCommon());
 	}
 
+	@Override
 	protected void createPowerSystems(PowerSystemRegistry map)
 	{
 		super.createPowerSystems(map);
 		map.put(new PowerSystemEnergyCommon(this)
 		{
+			@Override
 			public int getBasePowerForOperation()
 			{
 				return ElectricBlastFurnaceBlockEntity.this.getBasePowerForOperation();

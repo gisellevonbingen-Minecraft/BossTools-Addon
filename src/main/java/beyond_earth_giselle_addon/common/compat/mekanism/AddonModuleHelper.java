@@ -35,7 +35,7 @@ public class AddonModuleHelper
 	}
 
 	/**
-	 * 
+	 *
 	 * @param <T>
 	 *            T extends mekanism.common.content.gear.Module
 	 * @param e
@@ -48,17 +48,10 @@ public class AddonModuleHelper
 	 */
 	public static <T extends ICustomModule<T>> boolean tryCancel(EntityEvent e, IModuleDataProvider<T> type, @Nullable Function<T, FloatingLong> getEnergyUsing)
 	{
-		if (e.isCancelable() == false || e.isCanceled() == true)
+		if (e.isCancelable() == false || e.isCanceled() == true || !(e.getEntity() instanceof LivingEntity entity))
 		{
 			return false;
 		}
-
-		if (!(e.getEntity() instanceof LivingEntity))
-		{
-			return false;
-		}
-
-		LivingEntity entity = (LivingEntity) e.getEntity();
 
 		Module<T> module = AddonModuleHelper.findArmorEnabledModule(entity, type);
 
@@ -66,7 +59,7 @@ public class AddonModuleHelper
 		{
 			boolean cancel = false;
 
-			if (entity instanceof Player && MekanismUtils.isPlayingMode((Player) entity) == false)
+			if (entity instanceof Player player && MekanismUtils.isPlayingMode(player) == false)
 			{
 				cancel = true;
 			}
