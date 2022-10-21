@@ -39,16 +39,19 @@ public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 		return false;
 	}
 
+	@Override
 	public int getMinCost(int level)
 	{
 		return 1;
 	}
 
+	@Override
 	public int getMaxCost(int level)
 	{
 		return this.getMinCost(level);
 	}
 
+	@Override
 	public int getMaxLevel()
 	{
 		return 1;

@@ -10,9 +10,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.inventory.AbstractMachineContainerMenu;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -165,13 +165,13 @@ public class AbstractMachineScreen<M extends AbstractMachineContainerMenu<?, ?>>
 		int workignAreaTop = -workingAreaHeight;
 		int workingAreaOffsetX = workingAreaLeft;
 		RenderSystem.setShaderTexture(0, WORKINGAREA_SIDE_TEXTURE);
-		Screen.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
+		GuiComponent.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
 		RenderSystem.setShaderTexture(0, WORKINGAREA_MIDDLE_TEXTURE);
-		Screen.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, workingAreaWidth, workingAreaHeight, workingAreaWidth, workingAreaHeight);
+		GuiComponent.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, workingAreaWidth, workingAreaHeight, workingAreaWidth, workingAreaHeight);
 		workingAreaOffsetX += workingAreaWidth;
 		RenderSystem.setShaderTexture(0, WORKINGAREA_SIDE_TEXTURE);
-		Screen.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
+		GuiComponent.blit(stack, workingAreaOffsetX, workignAreaTop, 0, 0, sideWidth, workingAreaHeight, sideWidth, workingAreaHeight);
 		workingAreaOffsetX += sideWidth;
 
 		this.font.draw(stack, workingAreaText, workingAreaLeft + sideWidth + sidePadding, workignAreaTop + 2, 0x303030);

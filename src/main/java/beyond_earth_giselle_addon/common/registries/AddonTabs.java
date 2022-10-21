@@ -13,6 +13,7 @@ public class AddonTabs
 {
 	public static final CreativeModeTab tab_main = new CreativeModeTab(BeyondEarthAddon.MODID + "_tab_main")
 	{
+		@Override
 		public void fillItemList(NonNullList<ItemStack> list)
 		{
 			super.fillItemList(list);

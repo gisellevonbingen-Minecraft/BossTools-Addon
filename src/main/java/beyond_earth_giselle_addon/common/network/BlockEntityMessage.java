@@ -43,7 +43,7 @@ public abstract class BlockEntityMessage<T extends BlockEntity> extends BlockPos
 
 		if (blockEntity != null)
 		{
-			this.onHandle((T) blockEntity, sender);
+			this.onHandle(blockEntity, sender);
 		}
 
 	}

@@ -21,10 +21,11 @@ public class IS2ISRegistration<S extends ItemStackToItemStackScreen<? extends C>
 	{
 		this.screenClass = screenClass;
 		this.containerClass = containerClass;
-		this.itemstacks = new ArrayList<ItemStack>();
-		this.recipeTypes = new ArrayList<RecipeType<?>>();
+		this.itemstacks = new ArrayList<>();
+		this.recipeTypes = new ArrayList<>();
 	}
 
+	@Override
 	public IGuiContainerHandler<S> createContainerHandler()
 	{
 		return new IS2ISGuiContainerHandler<>(this);
@@ -35,21 +36,25 @@ public class IS2ISRegistration<S extends ItemStackToItemStackScreen<? extends C>
 		return this.getRecipeTypes();
 	}
 
+	@Override
 	public Class<S> getScreenClass()
 	{
 		return this.screenClass;
 	}
 
+	@Override
 	public Class<C> getContainerClass()
 	{
 		return this.containerClass;
 	}
 
+	@Override
 	public List<ItemStack> getItemstacks()
 	{
 		return this.itemstacks;
 	}
 
+	@Override
 	public List<RecipeType<?>> getRecipeTypes()
 	{
 		return this.recipeTypes;

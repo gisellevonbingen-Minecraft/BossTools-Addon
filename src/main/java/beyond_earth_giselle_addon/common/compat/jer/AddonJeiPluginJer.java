@@ -65,7 +65,7 @@ public class AddonJeiPluginJer implements IModPlugin
 
 				if (values.values().stream().mapToInt(r -> r.length).sum() > 0)
 				{
-					AlienEntity alienEntity = (AlienEntity) EntitiesRegistry.ALIEN.get().create(CompatBase.getLevel());
+					AlienEntity alienEntity = EntitiesRegistry.ALIEN.get().create(CompatBase.getLevel());
 					alienEntity.setVillagerData(alienEntity.getVillagerData().setProfession(villagerProfession));
 					AlienEntry alienEntry = new AlienEntry(villagerProfession, values, alienEntity);
 

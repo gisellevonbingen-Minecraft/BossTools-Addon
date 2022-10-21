@@ -35,7 +35,7 @@ public class AddonModuleHelper
 	}
 
 	/**
-	 * 
+	 *
 	 * @param <T>
 	 *            T extends mekanism.common.content.gear.Module
 	 * @param e
@@ -48,12 +48,7 @@ public class AddonModuleHelper
 	 */
 	public static <T extends ICustomModule<T>> boolean tryCancel(EntityEvent e, IModuleDataProvider<T> type, @Nullable Function<T, FloatingLong> getEnergyUsing)
 	{
-		if (e.isCancelable() == false || e.isCanceled() == true)
-		{
-			return false;
-		}
-
-		if (!(e.getEntity() instanceof LivingEntity))
+		if (e.isCancelable() == false || e.isCanceled() == true || !(e.getEntity() instanceof LivingEntity))
 		{
 			return false;
 		}
