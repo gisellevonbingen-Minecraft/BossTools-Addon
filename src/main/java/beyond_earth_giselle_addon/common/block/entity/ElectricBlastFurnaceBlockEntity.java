@@ -55,7 +55,7 @@ public class ElectricBlastFurnaceBlockEntity extends ItemStackToItemStackBlockEn
 
 		if (this.getTimer() >= this.getMaxTimer())
 		{
-			if (this.getCachedRecipe()instanceof ItemStackToItemStackRecipeWrapper recipe)
+			if (this.getCachedRecipe() instanceof ItemStackToItemStackRecipeWrapper recipe)
 			{
 				this.setExperience(this.getExperience() + recipe.getExperience());
 			}

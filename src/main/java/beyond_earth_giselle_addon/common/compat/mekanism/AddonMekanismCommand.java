@@ -29,7 +29,7 @@ public class AddonMekanismCommand
 		player.setItemSlot(EquipmentSlot.CHEST, makeFull(MekanismItems.MEKASUIT_BODYARMOR.get(), AddonMekanismModules.SPACE_FIRE_PROOF_UNIT, AddonMekanismModules.VENUS_ACID_PROOF_UNIT));
 		player.setItemSlot(EquipmentSlot.LEGS, makeFull(MekanismItems.MEKASUIT_PANTS.get()));
 		player.setItemSlot(EquipmentSlot.FEET, makeFull(MekanismItems.MEKASUIT_BOOTS.get(), AddonMekanismModules.GRAVITY_NORMALIZING_UNIT));
-		
+
 		return AddonCommand.sendEquipedMessage(source);
 	}
 

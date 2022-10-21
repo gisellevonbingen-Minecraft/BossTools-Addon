@@ -52,15 +52,17 @@ public class FuelLoaderGuiContainerHandler implements IGuiContainerHandler<FuelL
 
 				ResourceLocation registryName = blockEntity.getFluidTank().getFluid().getFluid().getRegistryName();
 
-				if (registryName != null) {
+				if (registryName != null)
+				{
 					ModContainer container = ModList.get().getModContainerById(registryName.getNamespace()).orElse(null);
 
-					if (container != null) {
+					if (container != null)
+					{
 						list.add(new TextComponent(container.getModInfo().getDisplayName()).withStyle(ChatFormatting.BLUE, ChatFormatting.ITALIC));
 					}
 
 				}
-				
+
 				list.add(new TranslatableComponent("jei.tooltip.show.recipes"));
 				return list;
 			}

@@ -15,7 +15,7 @@ public class DoubleDeferredRegister<P extends IForgeRegistryEntry<P>, S extends 
 	private final String modid;
 	protected final DeferredRegisterWrapper<P> primaryRegister;
 	protected final DeferredRegisterWrapper<S> secondaryRegister;
-	
+
 	public DoubleDeferredRegister(String modid, IForgeRegistry<P> primaryRegistry, IForgeRegistry<S> secondaryRegistry)
 	{
 		this.modid = modid;

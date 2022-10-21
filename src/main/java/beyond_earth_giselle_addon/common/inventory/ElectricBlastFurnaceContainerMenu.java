@@ -19,7 +19,7 @@ public class ElectricBlastFurnaceContainerMenu extends ItemStackToItemStackConta
 	{
 		super.onOutputSlotTake(player, stack);
 
-		if (player.getLevel()instanceof ServerLevel level)
+		if (player.getLevel() instanceof ServerLevel level)
 		{
 			this.getBlockEntity().awardExp(level, player.position());
 		}

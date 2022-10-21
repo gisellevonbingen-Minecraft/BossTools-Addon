@@ -62,7 +62,7 @@ public abstract class ProofAbstractUtils
 		{
 			return false;
 		}
-		else if (e.getEntity()instanceof LivingEntity living)
+		else if (e.getEntity() instanceof LivingEntity living)
 		{
 			return this.tryProvideProof(living);
 		}
