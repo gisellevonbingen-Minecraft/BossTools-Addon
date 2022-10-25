@@ -4,6 +4,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
+import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.compat.mekanism.AddonMekanismCommand;
 import boss_tools_giselle_addon.common.compat.redstonearsenal.AddonRSACommand;
@@ -11,6 +12,7 @@ import boss_tools_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
@@ -60,17 +62,22 @@ public class AddonCommand
 	{
 		public static LiteralArgumentBuilder<CommandSource> builder()
 		{
-			return Commands.literal("planetselection").requires(AddonCommand::isPlayerHasPermission2).executes(PlanetSelection::execute);
+			return Commands.literal("planetselection").requires(AddonCommand::isPlayerHasPermission2) //
+					.executes(ctx -> PlanetSelection.execute(ctx, ModInnet.TIER_3_ROCKET.get())) //
+					.then(Commands.literal("1").executes(ctx -> PlanetSelection.execute(ctx, ModInnet.TIER_1_ROCKET.get()))) //
+					.then(Commands.literal("2").executes(ctx -> PlanetSelection.execute(ctx, ModInnet.TIER_2_ROCKET.get()))) //
+					.then(Commands.literal("3").executes(ctx -> PlanetSelection.execute(ctx, ModInnet.TIER_3_ROCKET.get()))) //
+			;
 		}
 
-		public static int execute(CommandContext<CommandSource> context) throws CommandSyntaxException
+		public static int execute(CommandContext<CommandSource> context, EntityType<?> entityType) throws CommandSyntaxException
 		{
 			CommandSource source = context.getSource();
 			ServerPlayerEntity player = source.getPlayerOrException();
 			CompoundNBT persistentData = player.getPersistentData();
-			persistentData.putBoolean("boss_tools:planet_selection_gui_open", true);
-			persistentData.putString("boss_tools:rocket_type", ModInnet.TIER_3_ROCKET.get().getDescriptionId());
-			persistentData.putString("boss_tools:slot0", Items.AIR.getRegistryName().toString());
+			persistentData.putBoolean(BossToolsAddon.prl("planet_selection_gui_open").toString(), true);
+			persistentData.putString(BossToolsAddon.prl("rocket_type").toString(), entityType.toString());
+			persistentData.putString(BossToolsAddon.prl("slot0").toString(), Items.AIR.getRegistryName().toString());
 
 			return 0;
 		}
