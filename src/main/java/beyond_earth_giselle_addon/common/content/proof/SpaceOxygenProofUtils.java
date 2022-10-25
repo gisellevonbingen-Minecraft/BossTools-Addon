@@ -5,7 +5,7 @@ import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.beyond_earth.registries.DamageSourcesRegistry;
+import net.mrscauthd.beyond_earth.common.registries.DamageSourceRegistry;
 
 public class SpaceOxygenProofUtils extends ProofAbstractUtils
 {
@@ -32,7 +32,7 @@ public class SpaceOxygenProofUtils extends ProofAbstractUtils
 	@SubscribeEvent
 	public void onProofEnchantment(LivingSpaceOxygenProofEvent e)
 	{
-		LivingEntity entity = e.getEntityLiving();
+		LivingEntity entity = e.getEntity();
 		ProofSession session = new SpaceOxygenProofEnchantmentSession(entity, AddonEnchantments.SPACE_BREATHING.get());
 		e.setProofDuration(session.provide());
 	}
@@ -40,7 +40,7 @@ public class SpaceOxygenProofUtils extends ProofAbstractUtils
 	@SubscribeEvent
 	public void onLivingAttack(LivingAttackEvent e)
 	{
-		if (e.getSource() != DamageSourcesRegistry.DAMAGE_SOURCE_OXYGEN)
+		if (e.getSource() != DamageSourceRegistry.DAMAGE_SOURCE_OXYGEN)
 		{
 			return;
 		}

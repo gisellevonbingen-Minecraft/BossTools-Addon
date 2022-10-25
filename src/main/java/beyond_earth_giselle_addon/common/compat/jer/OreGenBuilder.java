@@ -96,9 +96,8 @@ public class OreGenBuilder
 
 	public OreGenBuilder featureConfig(FeatureConfiguration config)
 	{
-		if (config instanceof OreConfiguration)
+		if (config instanceof OreConfiguration oreConfig)
 		{
-			OreConfiguration oreConfig = (OreConfiguration) config;
 			this.block = oreConfig.targetStates.get(0).state.getBlock();
 			this.veinSize = oreConfig.size;
 		}
@@ -108,14 +107,14 @@ public class OreGenBuilder
 
 	public OreGenBuilder placementModifier(PlacementModifier placementModifier)
 	{
-		if (placementModifier instanceof CountPlacement)
+		if (placementModifier instanceof CountPlacement countPlacement)
 		{
-			IntProvider intProvider = OreGenHelper.getCountPlacementCount((CountPlacement) placementModifier);
+			IntProvider intProvider = OreGenHelper.getCountPlacementCount(countPlacement);
 			this.veinCountPerChunk = intProvider.getMinValue();
 		}
-		else if (placementModifier instanceof HeightRangePlacement)
+		else if (placementModifier instanceof HeightRangePlacement heightRangePlacement)
 		{
-			DistributionShape shape = OreGenHelper.getHeightRangePlacementShape((HeightRangePlacement) placementModifier);
+			DistributionShape shape = OreGenHelper.getHeightRangePlacementShape(heightRangePlacement);
 			this.distributionShapes.add(shape);
 		}
 

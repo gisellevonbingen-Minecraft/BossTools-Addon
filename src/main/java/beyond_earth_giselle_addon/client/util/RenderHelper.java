@@ -75,7 +75,7 @@ public class RenderHelper
 	{
 		VertexConsumer builder;
 		Minecraft minecraft = Minecraft.getInstance();
-		GraphicsStatus graphicsFanciness = minecraft.options.graphicsMode;
+		GraphicsStatus graphicsFanciness = minecraft.options.graphicsMode().get();
 
 		if (graphicsFanciness == GraphicsStatus.FABULOUS)
 		{

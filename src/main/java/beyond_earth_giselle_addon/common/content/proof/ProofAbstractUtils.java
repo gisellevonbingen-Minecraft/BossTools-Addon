@@ -5,7 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -16,7 +16,6 @@ public abstract class ProofAbstractUtils
 	public static void register(IEventBus bus)
 	{
 		bus.register(SpaceOxygenProofUtils.INSTANCE);
-		bus.register(SpaceGravityProofUtils.INSTANCE);
 		bus.register(SpaceFireProofUtils.INSTANCE);
 		bus.register(VenusAcidProofUtils.INSTANCE);
 	}
@@ -27,9 +26,9 @@ public abstract class ProofAbstractUtils
 	}
 
 	@SubscribeEvent
-	public void onLivingUpdate(LivingUpdateEvent e)
+	public void onLivingUpdate(LivingTickEvent e)
 	{
-		LivingEntity entity = e.getEntityLiving();
+		LivingEntity entity = e.getEntity();
 		this.reduceProofDuration(entity);
 	}
 
@@ -81,7 +80,7 @@ public abstract class ProofAbstractUtils
 		}
 		else
 		{
-			return this.tryProvideProof(e.getEntityLiving());
+			return this.tryProvideProof(e.getEntity());
 		}
 
 	}

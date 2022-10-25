@@ -8,11 +8,10 @@ import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.content.flag.EventListenerFlagEdit;
 import beyond_earth_giselle_addon.common.content.fuel.EventListenerFuelAdapter;
-import beyond_earth_giselle_addon.common.content.fuel.EventListenerFuelGauge;
-import beyond_earth_giselle_addon.common.content.gravity.EventListenerGravityNormalizing;
 import beyond_earth_giselle_addon.common.content.proof.ProofAbstractUtils;
 import beyond_earth_giselle_addon.common.item.crafting.IS2ISRecipeCache;
 import beyond_earth_giselle_addon.common.item.crafting.TagPreference;
+import beyond_earth_giselle_addon.common.item.crafting.conditions.RecyclingEnabledCondition;
 import beyond_earth_giselle_addon.common.network.AddonNetwork;
 import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
 import beyond_earth_giselle_addon.common.registries.AddonBlocks;
@@ -21,22 +20,21 @@ import beyond_earth_giselle_addon.common.registries.AddonItems;
 import beyond_earth_giselle_addon.common.registries.AddonMenuTypes;
 import beyond_earth_giselle_addon.common.registries.AddonRecipes;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.mrscauthd.beyond_earth.BeyondEarthMod;
+import net.mrscauthd.beyond_earth.BeyondEarth;
 
 @Mod(BeyondEarthAddon.MODID)
 public class BeyondEarthAddon
 {
-	public static final String PMODID = BeyondEarthMod.MODID;
+	public static final String PMODID = BeyondEarth.MODID;
 	public static final String MODID = "beyond_earth_giselle_addon";
 	public static final Logger LOGGER = LogManager.getLogger();
 
@@ -57,13 +55,13 @@ public class BeyondEarthAddon
 		AddonBlocks.BLOCKS.register(fml_bus);
 		AddonItems.ITEMS.register(fml_bus);
 		AddonEnchantments.ENCHANTMENTS.register(fml_bus);
+		AddonRecipes.RECIPE_TYPES.register(fml_bus);
 		AddonRecipes.RECIPE_SERIALIZERS.register(fml_bus);
 		AddonBlockEntityTypes.BLOCK_ENTITY_TYPES.register(fml_bus);
 		AddonMenuTypes.MENU_TYPES.register(fml_bus);
 
-		fml_bus.addGenericListener(RecipeSerializer.class, BeyondEarthAddon::onRegisterRecipeSerializer);
-
 		AddonNetwork.registerAll();
+		CraftingHelper.register(RecyclingEnabledCondition.Serializer.INSTANCE);
 	}
 
 	public static void registerForge()
@@ -71,18 +69,11 @@ public class BeyondEarthAddon
 		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
 		forge_bus.register(EventListenerCommand.class);
 		forge_bus.register(EventListenerFuelAdapter.class);
-		forge_bus.register(EventListenerFuelGauge.class);
-		forge_bus.register(EventListenerGravityNormalizing.class);
 		forge_bus.register(EventListenerFlagEdit.class);
 		forge_bus.register(EventListenerReload.class);
 
 		ProofAbstractUtils.register(forge_bus);
 		TagPreference.register(forge_bus);
-	}
-
-	public static void onRegisterRecipeSerializer(RegistryEvent.Register<RecipeSerializer<?>> event)
-	{
-		AddonRecipes.register();
 	}
 
 	public static void resetRecipeCaches()

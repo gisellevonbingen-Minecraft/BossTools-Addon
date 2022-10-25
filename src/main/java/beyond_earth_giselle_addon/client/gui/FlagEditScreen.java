@@ -18,10 +18,8 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.mrscauthd.beyond_earth.flag.FlagTileEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.FlagBlockEntity;
 
 public class FlagEditScreen extends Screen
 {
@@ -36,12 +34,12 @@ public class FlagEditScreen extends Screen
 		return BeyondEarthAddon.rl("textures/gui/flag_edit_" + name + ".png");
 	}
 
-	public static TranslatableComponent language(String key, Object... objects)
+	public static Component language(String key, Object... objects)
 	{
-		return new TranslatableComponent(BeyondEarthAddon.tl("gui", "flag_edit." + key), objects);
+		return Component.translatable(BeyondEarthAddon.tl("gui", "flag_edit." + key), objects);
 	}
 
-	private final FlagTileEntity blockEntity;
+	private final FlagBlockEntity blockEntity;
 
 	protected int imageWidth;
 	protected int imageHeight;
@@ -60,12 +58,12 @@ public class FlagEditScreen extends Screen
 
 	private boolean willClose;
 
-	public FlagEditScreen(FlagTileEntity blockEntity)
+	public FlagEditScreen(FlagBlockEntity blockEntity)
 	{
 		this(blockEntity, language("title"));
 	}
 
-	public FlagEditScreen(FlagTileEntity blockEntity, Component text)
+	public FlagEditScreen(FlagBlockEntity blockEntity, Component text)
 	{
 		super(text);
 		this.blockEntity = blockEntity;
@@ -98,7 +96,7 @@ public class FlagEditScreen extends Screen
 
 		EditBox prevValueTestFie = this.getValueTextField();
 		int valueTextLeft = this.leftPos + 10;
-		this.valueTextField = this.addRenderableWidget(new EditBox(this.font, valueTextLeft, this.topPos + 25, this.verityButton.x - 5 - valueTextLeft, 20, new TextComponent("")));
+		this.valueTextField = this.addRenderableWidget(new EditBox(this.font, valueTextLeft, this.topPos + 25, this.verityButton.x - 5 - valueTextLeft, 20, Component.empty()));
 		this.valueTextField.setMaxLength(65535);
 
 		if (prevValueTestFie != null)
@@ -250,7 +248,7 @@ public class FlagEditScreen extends Screen
 
 		if (gameProfile == null && this.requestThread != null)
 		{
-			Component text = new TextComponent("").append(VERIFYING).append(StringUtils.repeat('.', this.verifyCounter + 1));
+			Component text = Component.literal("").append(VERIFYING).append(StringUtils.repeat('.', this.verifyCounter + 1));
 			this.font.draw(stack, text, x, y, 0xFF404040);
 			return;
 		}
@@ -274,7 +272,7 @@ public class FlagEditScreen extends Screen
 
 	}
 
-	public FlagTileEntity getBlockEntity()
+	public FlagBlockEntity getBlockEntity()
 	{
 		return this.blockEntity;
 	}

@@ -11,6 +11,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 
 public interface IIS2ISRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ?>>
@@ -24,6 +25,8 @@ public interface IIS2ISRegistration<S extends ItemStackToItemStackScreen<? exten
 	public Class<S> getScreenClass();
 
 	public Class<C> getContainerClass();
+
+	public MenuType<C> getMenuType();
 
 	public default void registerGuiHandlers(IGuiHandlerRegistration registration)
 	{
@@ -46,17 +49,18 @@ public interface IIS2ISRegistration<S extends ItemStackToItemStackScreen<? exten
 	public default void addRecipeTransferHandler(IRecipeTransferRegistration registration)
 	{
 		Class<C> containerClass = this.getContainerClass();
+		MenuType<C> menuType = this.getMenuType();
 
 		for (RecipeType<?> recipeType : this.getRecipeTypes())
 		{
-			this.addRecipeTransferHandler(registration, containerClass, recipeType);
+			this.addRecipeTransferHandler(registration, containerClass, menuType, recipeType);
 		}
 
 	}
 
-	public default <R> void addRecipeTransferHandler(IRecipeTransferRegistration registration, Class<C> containerClass, RecipeType<R> recipeType)
+	public default <R> void addRecipeTransferHandler(IRecipeTransferRegistration registration, Class<C> containerClass, MenuType<C> menuType, RecipeType<R> recipeType)
 	{
-		IS2ISRecipeTransferInfo<C, R> info = this.ceateRecipeTransferInfo(registration, containerClass, recipeType);
+		IS2ISRecipeTransferInfo<C, R> info = this.ceateRecipeTransferInfo(registration, containerClass, menuType, recipeType);
 
 		if (info != null)
 		{
@@ -66,9 +70,9 @@ public interface IIS2ISRegistration<S extends ItemStackToItemStackScreen<? exten
 	}
 
 	@Nullable
-	public default <R> IS2ISRecipeTransferInfo<C, R> ceateRecipeTransferInfo(IRecipeTransferRegistration registration, Class<C> containerClass, RecipeType<R> recipeType)
+	public default <R> IS2ISRecipeTransferInfo<C, R> ceateRecipeTransferInfo(IRecipeTransferRegistration registration, Class<C> containerClass, MenuType<C> menuType, RecipeType<R> recipeType)
 	{
-		return new IS2ISRecipeTransferInfo<>(containerClass, recipeType);
+		return new IS2ISRecipeTransferInfo<>(containerClass, menuType, recipeType);
 	}
 
 }

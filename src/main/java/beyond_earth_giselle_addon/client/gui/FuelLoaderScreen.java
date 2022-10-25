@@ -16,8 +16,8 @@ import net.minecraft.world.phys.AABB;
 public class FuelLoaderScreen extends AbstractMachineScreen<FuelLoaderContainerMenu>
 {
 	public static final ResourceLocation TEXTURE = BeyondEarthAddon.rl("textures/gui/container/fuel_loader.png");
-	public static final int TANK_LEFT = 71;
-	public static final int TANK_TOP = 27;
+	public static final int TANK_LEFT = 68;
+	public static final int TANK_TOP = 28;
 
 	public FuelLoaderScreen(FuelLoaderContainerMenu menu, Inventory inventory, Component text)
 	{

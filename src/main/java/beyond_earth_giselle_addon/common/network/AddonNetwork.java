@@ -26,8 +26,6 @@ public class AddonNetwork
 		registerMessage(IS2ISMachineMessageAutoEject.class, IS2ISMachineMessageAutoEject::new);
 
 		registerMessage(FuelLoaderMessageWorkingAreaVisible.class, FuelLoaderMessageWorkingAreaVisible::new);
-		registerMessage(GravityNormalizerMessageWorkingAreaVisible.class, GravityNormalizerMessageWorkingAreaVisible::new);
-		registerMessage(GravityNormalizerMessageRange.class, GravityNormalizerMessageRange::new);
 		registerMessage(AdvancedCompressorMessageMode.class, AdvancedCompressorMessageMode::new);
 
 		registerMessage(FlagEditMessageOpen.class, FlagEditMessageOpen::new);
@@ -44,7 +42,7 @@ public class AddonNetwork
 		}, (msg, s) ->
 		{
 			NetworkEvent.Context context = s.get();
-			msg.onHandle(context);
+			context.enqueueWork(() -> msg.onHandle(context));
 			context.setPacketHandled(true);
 		});
 	}

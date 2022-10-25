@@ -1,10 +1,9 @@
 package beyond_earth_giselle_addon.common.registries;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryObject;
 
-public class DoubleRegistryObject<P extends IForgeRegistryEntry<? super P>, S extends IForgeRegistryEntry<? super S>>
+public class DoubleRegistryObject<P, S>
 {
 	private final ResourceLocation id;
 	private final RegistryObject<? extends P> primary;

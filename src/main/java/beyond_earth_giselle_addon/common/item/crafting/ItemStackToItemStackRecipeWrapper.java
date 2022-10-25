@@ -6,7 +6,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
+import net.mrscauthd.beyond_earth.common.data.recipes.ItemStackToItemStackRecipe;
 
 public class ItemStackToItemStackRecipeWrapper extends ItemStackToItemStackRecipe
 {

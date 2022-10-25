@@ -1,8 +1,14 @@
 package beyond_earth_giselle_addon.common.compat.jei;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 import beyond_earth_giselle_addon.client.gui.AdvancedCompressorScreen;
 import beyond_earth_giselle_addon.client.gui.ElectricBlastFurnaceScreen;
@@ -14,11 +20,13 @@ import beyond_earth_giselle_addon.common.inventory.ElectricBlastFurnaceContainer
 import beyond_earth_giselle_addon.common.item.crafting.ExtrudingRecipe;
 import beyond_earth_giselle_addon.common.item.crafting.RollingRecipe;
 import beyond_earth_giselle_addon.common.registries.AddonBlocks;
+import beyond_earth_giselle_addon.common.registries.AddonMenuTypes;
 import beyond_earth_giselle_addon.common.registries.AddonRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
@@ -26,16 +34,20 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
+import mezz.jei.common.Constants;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
-import net.mrscauthd.beyond_earth.crafting.CompressingRecipe;
-import net.mrscauthd.beyond_earth.guis.helper.GuiHelper;
-import net.mrscauthd.beyond_earth.jei.JeiPlugin.CompressorJeiCategory;
-import net.mrscauthd.beyond_earth.registries.TagsRegistry;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.mrscauthd.beyond_earth.client.util.GuiHelper;
+import net.mrscauthd.beyond_earth.common.data.recipes.CompressingRecipe;
+import net.mrscauthd.beyond_earth.common.jei.Jei;
+import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
 
 @mezz.jei.api.JeiPlugin
 public class AddonJeiPlugin implements IModPlugin
@@ -51,14 +63,43 @@ public class AddonJeiPlugin implements IModPlugin
 		return instance;
 	}
 
-	public static final ResourceLocation createUid(ResourceLocation key)
+	public static ResourceLocation createUid(ResourceLocation key)
 	{
 		return new ResourceLocation(key.getNamespace(), JEI_CATEGORY + "." + key.getPath());
 	}
 
-	public static final Component getCategoryTitle(ResourceLocation key)
+	public static Component getCategoryTitle(ResourceLocation key)
 	{
-		return new TranslatableComponent(JEI_CATEGORY + "." + key.getNamespace() + "." + key.getPath());
+		return Component.translatable(JEI_CATEGORY + "." + key.getNamespace() + "." + key.getPath());
+	}
+
+	public static LoadingCache<Integer, IDrawableAnimated> createArrows(IGuiHelper guiHelper)
+	{
+		return CacheBuilder.newBuilder().build(new CacheLoader<>()
+		{
+			@Override
+			public IDrawableAnimated load(Integer cookTime)
+			{
+				return guiHelper.drawableBuilder(Constants.RECIPE_GUI_VANILLA, 82, 128, 24, 17).buildAnimated(cookTime, IDrawableAnimated.StartDirection.LEFT, false);
+			}
+		});
+	}
+
+	public static void drawText(PoseStack stack, IDrawable background, String text)
+	{
+		Minecraft mc = Minecraft.getInstance();
+		Font font = mc.font;
+		int stringWidth = font.width(text);
+		font.draw(stack, text, background.getWidth() - 5 - stringWidth, background.getHeight() - font.lineHeight - 5, 0x808080);
+	}
+
+	public static void drawTextTime(PoseStack stack, IDrawable background, int ticks)
+	{
+		NumberFormat numberInstance = NumberFormat.getNumberInstance();
+		numberInstance.setMaximumFractionDigits(2);
+		String text = numberInstance.format(ticks / 20.0F) + "s";
+
+		drawText(stack, background, text);
 	}
 
 	private final List<IIS2ISRegistration<?, ?>> is2isRegistrations;
@@ -93,21 +134,28 @@ public class AddonJeiPlugin implements IModPlugin
 		this.categories.clear();
 		this.is2isRegistrations.clear();
 
-		this.categories.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(RollingRecipe.class, AddonRecipes.ROLLING));
-		this.categories.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(ExtrudingRecipe.class, AddonRecipes.EXTRUDING));
+		this.categories.add(this.rollingCategory = new RecipeCategoryItemStackToItemStack<>(RollingRecipe.class, AddonRecipes.ROLLING.get()));
+		this.categories.add(this.extrudingCategory = new RecipeCategoryItemStackToItemStack<>(ExtrudingRecipe.class, AddonRecipes.EXTRUDING.get()));
 		this.categories.add(this.fuelLoaderCategory = new RecipeCategoryFuelLoader(Fluid.class));
 
 		AddonJeiCompressorModeHelper compressorModeHelper = AddonJeiCompressorModeHelper.INSTANCE;
-		compressorModeHelper.register(CompressorMode.COMPRESSING, CompressorJeiCategory.Uid);
+		compressorModeHelper.register(CompressorMode.COMPRESSING, Jei.COMPRESS_TYPE.getUid());
 		compressorModeHelper.register(CompressorMode.ROLLING, this.getRollingCategory().getRecipeType().getUid());
 		compressorModeHelper.register(CompressorMode.EXTRUDING, this.getExtrudingCategory().getRecipeType().getUid());
 
-		this.is2isRegistrations.add(this.electricBlastFurnace = new IS2ISRegistration<>(ElectricBlastFurnaceScreen.class, ElectricBlastFurnaceContainerMenu.class));
+		this.is2isRegistrations.add(this.electricBlastFurnace = new IS2ISRegistration<>(ElectricBlastFurnaceScreen.class, ElectricBlastFurnaceContainerMenu.class, AddonMenuTypes.ELECTRIC_BLAST_FURNACE.get()));
 		this.electricBlastFurnace.getRecipeTypes().add(RecipeTypes.BLASTING);
 		this.electricBlastFurnace.getItemstacks().add(new ItemStack(AddonBlocks.ELECTRIC_BLAST_FURNACE.get()));
 
-		this.is2isRegistrations.add(this.advancedCompressor = new AdvancedCompressorRegistration(AdvancedCompressorScreen.class, AdvancedCompressorContainerMenu.class));
-		this.advancedCompressor.getRecipeTypes().add(new RecipeType<>(CompressorJeiCategory.Uid, CompressingRecipe.class));
+		this.is2isRegistrations.add(this.advancedCompressor = new IS2ISRegistration<>(AdvancedCompressorScreen.class, AdvancedCompressorContainerMenu.class, AddonMenuTypes.ADVANCED_COMPRESSOR.get())
+		{
+			@Override
+			public <R> IS2ISRecipeTransferInfo<AdvancedCompressorContainerMenu, R> ceateRecipeTransferInfo(IRecipeTransferRegistration registration, Class<AdvancedCompressorContainerMenu> containerClass, MenuType<AdvancedCompressorContainerMenu> menuType, RecipeType<R> recipeType)
+			{
+				return new AdvancedCompressorTransferInfo<>(containerClass, menuType, recipeType);
+			}
+		});
+		this.advancedCompressor.getRecipeTypes().add(new RecipeType<>(Jei.COMPRESS_TYPE.getUid(), CompressingRecipe.class));
 		this.advancedCompressor.getRecipeTypes().add(this.getRollingCategory().getRecipeType());
 		this.advancedCompressor.getRecipeTypes().add(this.getExtrudingCategory().getRecipeType());
 		this.advancedCompressor.getItemstacks().add(new ItemStack(AddonBlocks.ADVANCED_COMPRESSOR.get()));
@@ -175,13 +223,12 @@ public class AddonJeiPlugin implements IModPlugin
 			recipeCategory.registerRecipes(registration);
 		}
 
-		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get(), AddonConfigs.Common.machines.fuelLoader_range.get(), TagsRegistry.FLUID_VEHICLE_FUEL_TAG.location());
-		this.addIngredientInfo(registration, AddonBlocks.GRAVITY_NORMALIZER.get());
+		this.addIngredientInfo(registration, AddonBlocks.FUEL_LOADER.get(), AddonConfigs.Common.machines.fuelLoader_range.get(), TagRegistry.FLUID_VEHICLE_FUEL_TAG.location());
 	}
 
 	public void addIngredientInfo(IRecipeRegistration registration, ItemLike itemLike, Object... objects)
 	{
-		registration.addIngredientInfo(new ItemStack(itemLike), VanillaTypes.ITEM_STACK, new TranslatableComponent(BeyondEarthAddon.tl(JEI_INFO, itemLike.asItem().getRegistryName()), objects));
+		registration.addIngredientInfo(new ItemStack(itemLike), VanillaTypes.ITEM_STACK, Component.translatable(BeyondEarthAddon.tl(JEI_INFO, ForgeRegistries.ITEMS.getKey(itemLike.asItem())), objects));
 	}
 
 	public List<IIS2ISRegistration<?, ?>> getItemStackToItemStackRegistrations()

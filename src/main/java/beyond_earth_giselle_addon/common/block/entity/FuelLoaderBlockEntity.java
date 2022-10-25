@@ -26,11 +26,10 @@ import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.RangedWrapper;
-import net.mrscauthd.beyond_earth.events.Methods;
-import net.mrscauthd.beyond_earth.fluids.FluidUtil2;
-import net.mrscauthd.beyond_earth.machines.tile.AbstractMachineBlockEntity;
-import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
-import net.mrscauthd.beyond_earth.registries.TagsRegistry;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.AbstractMachineBlockEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.power.NamedComponentRegistry;
+import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
+import net.mrscauthd.beyond_earth.common.util.FluidUtil2;
 
 public class FuelLoaderBlockEntity extends AbstractMachineBlockEntity
 {
@@ -194,14 +193,14 @@ public class FuelLoaderBlockEntity extends AbstractMachineBlockEntity
 
 	public boolean isWorkingAreaVisible()
 	{
-		return this.getTileData().getBoolean(DATA_WORKINGAREA_VISIBLE_KEY);
+		return this.getPersistentData().getBoolean(DATA_WORKINGAREA_VISIBLE_KEY);
 	}
 
 	public void setWorkingAreaVisible(boolean visible)
 	{
 		if (this.isWorkingAreaVisible() != visible)
 		{
-			this.getTileData().putBoolean(DATA_WORKINGAREA_VISIBLE_KEY, visible);
+			this.getPersistentData().putBoolean(DATA_WORKINGAREA_VISIBLE_KEY, visible);
 			this.setChanged();
 		}
 
@@ -261,9 +260,10 @@ public class FuelLoaderBlockEntity extends AbstractMachineBlockEntity
 		return this.testFluid(fluidStack.getFluid());
 	}
 
+	@SuppressWarnings("deprecation")
 	public boolean testFluid(Fluid fluid)
 	{
-		return Methods.tagCheck(fluid, TagsRegistry.FLUID_VEHICLE_FUEL_TAG);
+		return fluid.is(TagRegistry.FLUID_VEHICLE_FUEL_TAG);
 	}
 
 	public FluidTank getFluidTank()

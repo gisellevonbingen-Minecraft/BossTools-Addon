@@ -14,14 +14,13 @@ import mezz.jei.api.runtime.IRecipesGui;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
-import net.mrscauthd.beyond_earth.gauge.GaugeTextHelper;
-import net.mrscauthd.beyond_earth.gauge.GaugeValueHelper;
-import net.mrscauthd.beyond_earth.guis.helper.GuiHelper;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.mrscauthd.beyond_earth.client.util.GuiHelper;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeTextHelper;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeValueHelper;
 
 public class FuelLoaderGuiContainerHandler implements IGuiContainerHandler<FuelLoaderScreen>
 {
@@ -50,7 +49,7 @@ public class FuelLoaderGuiContainerHandler implements IGuiContainerHandler<FuelL
 				List<Component> list = new ArrayList<>();
 				list.add(GaugeTextHelper.getStorageText(GaugeValueHelper.getFluid(blockEntity.getFluidTank())).build());
 
-				ResourceLocation registryName = blockEntity.getFluidTank().getFluid().getFluid().getRegistryName();
+				ResourceLocation registryName = ForgeRegistries.FLUIDS.getKey(blockEntity.getFluidTank().getFluid().getFluid());
 
 				if (registryName != null)
 				{
@@ -58,12 +57,12 @@ public class FuelLoaderGuiContainerHandler implements IGuiContainerHandler<FuelL
 
 					if (container != null)
 					{
-						list.add(new TextComponent(container.getModInfo().getDisplayName()).withStyle(ChatFormatting.BLUE, ChatFormatting.ITALIC));
+						list.add(Component.literal(container.getModInfo().getDisplayName()).withStyle(ChatFormatting.BLUE, ChatFormatting.ITALIC));
 					}
 
 				}
 
-				list.add(new TranslatableComponent("jei.tooltip.show.recipes"));
+				list.add(Component.translatable("jei.tooltip.show.recipes"));
 				return list;
 			}
 		});

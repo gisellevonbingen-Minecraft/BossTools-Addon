@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeSerializer;
+import net.mrscauthd.beyond_earth.common.data.recipes.BeyondEarthRecipeSerializer;
 
 public class ExtrudingRecipeSerializer extends BeyondEarthRecipeSerializer<ExtrudingRecipe>
 {

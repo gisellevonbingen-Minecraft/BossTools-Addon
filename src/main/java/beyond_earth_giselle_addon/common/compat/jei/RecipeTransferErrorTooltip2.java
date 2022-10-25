@@ -7,10 +7,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.recipe.transfer.IRecipeTransferError;
-import mezz.jei.gui.TooltipRenderer;
+import mezz.jei.common.gui.TooltipRenderer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 
 public class RecipeTransferErrorTooltip2 implements IRecipeTransferError
 {
@@ -18,7 +17,7 @@ public class RecipeTransferErrorTooltip2 implements IRecipeTransferError
 
 	public RecipeTransferErrorTooltip2(List<Component> message)
 	{
-		this.message.add(new TranslatableComponent("jei.tooltip.transfer"));
+		this.message.add(Component.translatable("jei.tooltip.transfer"));
 
 		for (Component line : message)
 		{

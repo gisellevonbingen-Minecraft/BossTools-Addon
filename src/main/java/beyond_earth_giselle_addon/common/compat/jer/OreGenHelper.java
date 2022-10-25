@@ -52,9 +52,9 @@ public class OreGenHelper
 	{
 		HeightProvider heightProvider = decode(HeightProvider.CODEC, tag);
 
-		if (heightProvider instanceof TrapezoidHeight)
+		if (heightProvider instanceof TrapezoidHeight trapezoidHeight)
 		{
-			return getTrapezoidHeightShape((TrapezoidHeight) heightProvider);
+			return getTrapezoidHeightShape(trapezoidHeight);
 		}
 
 		return null;

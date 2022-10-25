@@ -12,9 +12,8 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import net.minecraft.resources.ResourceLocation;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipeType;
-import net.mrscauthd.beyond_earth.jei.JeiPlugin;
+import net.mrscauthd.beyond_earth.common.data.recipes.ItemStackToItemStackRecipe;
+import net.mrscauthd.beyond_earth.common.data.recipes.ItemStackToItemStackRecipeType;
 
 public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRecipeType<R>, R extends ItemStackToItemStackRecipe> extends RecipeCategoryRecipeType<T, R>
 {
@@ -40,7 +39,7 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 	public void createGui(IGuiHelper guiHelper)
 	{
 		super.createGui(guiHelper);
-		this.cachedArrows = JeiPlugin.createArrows(guiHelper);
+		this.cachedArrows = AddonJeiPlugin.createArrows(guiHelper);
 		this.background = createBackground(guiHelper);
 	}
 
@@ -69,7 +68,7 @@ public class RecipeCategoryItemStackToItemStack<T extends ItemStackToItemStackRe
 	public void drawText(R recipe, PoseStack stack)
 	{
 		int cookTime = recipe.getCookTime();
-		JeiPlugin.drawTextTime(stack, this.getBackground(), cookTime);
+		AddonJeiPlugin.drawTextTime(stack, this.getBackground(), cookTime);
 	}
 
 	@Override

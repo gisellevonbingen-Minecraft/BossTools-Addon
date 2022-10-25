@@ -8,12 +8,13 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.transfer.IRecipeTransferError;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.MenuType;
 
 public class AdvancedCompressorTransferInfo<R> extends IS2ISRecipeTransferInfo<AdvancedCompressorContainerMenu, R>
 {
-	public AdvancedCompressorTransferInfo(Class<AdvancedCompressorContainerMenu> containerClass, RecipeType<R> recipeType)
+	public AdvancedCompressorTransferInfo(Class<AdvancedCompressorContainerMenu> containerClass, MenuType<AdvancedCompressorContainerMenu> menuType, RecipeType<R> recipeType)
 	{
-		super(containerClass, recipeType);
+		super(containerClass, menuType, recipeType);
 	}
 
 	@Override

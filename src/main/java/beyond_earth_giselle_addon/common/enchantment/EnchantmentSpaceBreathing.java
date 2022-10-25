@@ -4,7 +4,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
+import net.mrscauthd.beyond_earth.common.registries.ItemsRegistry;
 
 public class EnchantmentSpaceBreathing extends EnchantmentEnergyStorageOrDamageable
 {
@@ -18,7 +18,7 @@ public class EnchantmentSpaceBreathing extends EnchantmentEnergyStorageOrDamagea
 	{
 		Item item = stack.getItem();
 
-		if (item == ItemsRegistry.OXYGEN_MASK.get() || item == ItemsRegistry.NETHERITE_OXYGEN_MASK.get())
+		if (item == ItemsRegistry.SPACE_HELMET.get() || item == ItemsRegistry.NETHERITE_SPACE_HELMET.get())
 		{
 			return false;
 		}

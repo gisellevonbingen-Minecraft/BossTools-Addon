@@ -11,7 +11,7 @@ import beyond_earth_giselle_addon.common.config.EnchantmentsConfig;
 import beyond_earth_giselle_addon.common.enchantment.EnchantmentHelper2;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -86,11 +86,9 @@ public class EventListenerEnchantmentTooltip
 			{
 				for (Component line : lines)
 				{
-					if (line instanceof TranslatableComponent)
+					if (line.getContents() instanceof TranslatableContents contents)
 					{
-						TranslatableComponent tline = (TranslatableComponent) line;
-
-						if (tline.getKey().equals(enchantment.getDescriptionId()) == true)
+						if (contents.getKey().equals(enchantment.getDescriptionId()) == true)
 						{
 							lines.add(lines.indexOf(line) + 1, EnchantmentHelper2.getDescriptionText(enchantment));
 							break;

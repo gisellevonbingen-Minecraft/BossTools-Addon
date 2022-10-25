@@ -15,17 +15,16 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.mrscauthd.beyond_earth.gauge.GaugeTextHelper;
-import net.mrscauthd.beyond_earth.gauge.GaugeValueHelper;
-import net.mrscauthd.beyond_earth.guis.helper.GuiHelper;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.mrscauthd.beyond_earth.client.util.GuiHelper;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeTextHelper;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeValueHelper;
 
 public class AbstractMachineScreen<M extends AbstractMachineContainerMenu<?, ?>> extends AbstractContainerScreen<M>
 {
@@ -54,7 +53,7 @@ public class AbstractMachineScreen<M extends AbstractMachineContainerMenu<?, ?>>
 
 		if (this.hasWorkingArea() == true)
 		{
-			this.workingAreaVisibleButton = this.addRenderableWidget(new Button(this.leftPos, this.topPos - 20, 20, 20, new TextComponent(""), this::onChangeModeButtonClick));
+			this.workingAreaVisibleButton = this.addRenderableWidget(new Button(this.leftPos, this.topPos - 20, 20, 20, Component.empty(), this::onChangeModeButtonClick));
 
 			this.resizeWorkingAreaVisibleButton();
 			this.refreshWorkingAreaVisibleButtonMessage();
@@ -226,19 +225,19 @@ public class AbstractMachineScreen<M extends AbstractMachineContainerMenu<?, ?>>
 	{
 		NumberFormat numberInstance = NumberFormat.getNumberInstance();
 		numberInstance.setMaximumFractionDigits(2);
-		TranslatableComponent workingAreaText = new TranslatableComponent(WORKINGAREA_TEXT_KEY, numberInstance.format(workingArea.getXsize()), numberInstance.format(workingArea.getYsize()), numberInstance.format(workingArea.getZsize()));
+		Component workingAreaText = Component.translatable(WORKINGAREA_TEXT_KEY, numberInstance.format(workingArea.getXsize()), numberInstance.format(workingArea.getYsize()), numberInstance.format(workingArea.getZsize()));
 		return workingAreaText;
 	}
 
 	protected Component getWorkingAreaVisibleText(boolean visible)
 	{
 		String method = visible ? "hide" : "show";
-		return new TranslatableComponent(WORKINGAREA_TEXT_PREFIX + method);
+		return Component.translatable(WORKINGAREA_TEXT_PREFIX + method);
 	}
 
 	protected String rtl(String path)
 	{
-		ResourceLocation registryName = this.getMenu().getBlockEntity().getType().getRegistryName();
+		ResourceLocation registryName = ForgeRegistries.BLOCK_ENTITY_TYPES.getKey(this.getMenu().getBlockEntity().getType());
 		return BeyondEarthAddon.tl("gui", registryName, path);
 	}
 

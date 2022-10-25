@@ -7,13 +7,12 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 
+import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.inventory.AdvancedCompressorContainerMenu;
 import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
 import beyond_earth_giselle_addon.common.registries.AddonRecipes;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -23,12 +22,15 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeTypes;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipeType;
-import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
-import net.mrscauthd.beyond_earth.machines.tile.PowerSystemEnergyCommon;
-import net.mrscauthd.beyond_earth.machines.tile.PowerSystemRegistry;
-import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.power.NamedComponentRegistry;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.power.PowerSystemEnergyCommon;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.power.PowerSystemRegistry;
+import net.mrscauthd.beyond_earth.common.capabilities.energy.EnergyStorageBasic;
+import net.mrscauthd.beyond_earth.common.data.recipes.ItemStackToItemStackRecipeType;
+import net.mrscauthd.beyond_earth.common.registries.ItemsRegistry;
+import net.mrscauthd.beyond_earth.common.registries.RecipeTypeRegistry;
 
 public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEntityMultiRecipe
 {
@@ -43,7 +45,9 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)
 	{
 		super.createEnergyStorages(registry);
-		registry.put(this.createEnergyStorageCommon());
+		int capacity = AddonConfigs.Common.machines.advancedCompressor_energyCapcity.get();
+		int transfer = AddonConfigs.Common.machines.advancedCompressor_energyTransfer.get();
+		registry.put(new EnergyStorageBasic(this, capacity, transfer, capacity));
 	}
 
 	@Override
@@ -87,7 +91,7 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 
 	public ICompressorMode findMode(ResourceLocation key)
 	{
-		RecipeType<?> recipeType = Registry.RECIPE_TYPE.get(key);
+		RecipeType<?> recipeType = ForgeRegistries.RECIPE_TYPES.getValue(key);
 
 		List<ICompressorMode> availableModes = this.getAvailableModes();
 		ICompressorMode mode = availableModes.stream().filter(m -> m.getRecipeType() == recipeType).findFirst().orElse(null);
@@ -96,7 +100,7 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 
 	public ICompressorMode getMode()
 	{
-		String key = this.getTileData().getString(KEY_MODE);
+		String key = this.getPersistentData().getString(KEY_MODE);
 		return this.findMode(new ResourceLocation(key));
 	}
 
@@ -109,7 +113,7 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 
 		ResourceLocation key = mode.getRecipeTypeKey();
 
-		this.getTileData().putString(KEY_MODE, key.toString());
+		this.getPersistentData().putString(KEY_MODE, key.toString());
 		this.resetTimer();
 		this.clearRecipeCache();
 		this.setChanged();
@@ -144,29 +148,29 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 		public default Component getText()
 		{
 			ResourceLocation key = this.getRecipeTypeKey();
-			return new TranslatableComponent("compressormode." + key.getNamespace() + "." + key.getPath());
+			return Component.translatable("compressormode." + key.getNamespace() + "." + key.getPath());
 		}
 
 		public default ResourceLocation getRecipeTypeKey()
 		{
-			return Registry.RECIPE_TYPE.getKey(this.getRecipeType());
+			return ForgeRegistries.RECIPE_TYPES.getKey(this.getRecipeType());
 		}
 
 	}
 
 	public enum CompressorMode implements ICompressorMode
 	{
-		COMPRESSING(BeyondEarthRecipeTypes.COMPRESSING, () -> new ItemStack(ItemsRegistry.COMPRESSED_STEEL.get())),
+		COMPRESSING(RecipeTypeRegistry.COMPRESSING, () -> new ItemStack(ItemsRegistry.COMPRESSED_STEEL.get())),
 		ROLLING(AddonRecipes.ROLLING, () -> new ItemStack(ItemsRegistry.IRON_PLATE.get())),
-		EXTRUDING(AddonRecipes.EXTRUDING, () -> new ItemStack(ItemsRegistry.IRON_STICK.get())),
+		EXTRUDING(AddonRecipes.EXTRUDING, () -> new ItemStack(ItemsRegistry.IRON_ROD.get())),
 		// EOL
 		;
 
-		private final ItemStackToItemStackRecipeType<?> recipeType;
+		private final RegistryObject<? extends ItemStackToItemStackRecipeType<?>> recipeType;
 		private final Supplier<ItemStack> iconSupplier;
 		private ItemStack icon;
 
-		private CompressorMode(ItemStackToItemStackRecipeType<?> recipeType, Supplier<ItemStack> iconSupplier)
+		private CompressorMode(RegistryObject<? extends ItemStackToItemStackRecipeType<?>> recipeType, Supplier<ItemStack> iconSupplier)
 		{
 			this.recipeType = recipeType;
 			this.iconSupplier = iconSupplier;
@@ -175,7 +179,7 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 		@Override
 		public ItemStackToItemStackRecipeType<?> getRecipeType()
 		{
-			return this.recipeType;
+			return this.recipeType.get();
 		}
 
 		protected ItemStack createIcon()

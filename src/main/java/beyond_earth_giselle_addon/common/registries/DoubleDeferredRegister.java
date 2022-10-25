@@ -7,10 +7,9 @@ import java.util.function.Supplier;
 
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryObject;
 
-public class DoubleDeferredRegister<P extends IForgeRegistryEntry<P>, S extends IForgeRegistryEntry<S>>
+public class DoubleDeferredRegister<P, S>
 {
 	private final String modid;
 	protected final DeferredRegisterWrapper<P> primaryRegister;

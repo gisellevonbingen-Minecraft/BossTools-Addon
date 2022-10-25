@@ -16,15 +16,9 @@ public abstract class LivingProofEvent extends LivingEvent
 
 	public static void dispatch(IEventListener listener, Event event)
 	{
-		if (event instanceof LivingProofEvent)
+		if (event instanceof LivingProofEvent event2 && event2.getProofDuration() > 0)
 		{
-			LivingProofEvent event2 = (LivingProofEvent) event;
-
-			if (event2.getProofDuration() > 0)
-			{
-				return;
-			}
-
+			return;
 		}
 
 		listener.invoke(event);

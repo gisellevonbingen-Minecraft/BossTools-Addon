@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import beyond_earth_giselle_addon.common.config.AddonConfigs;
 import beyond_earth_giselle_addon.common.inventory.ElectricBlastFurnaceContainerMenu;
 import beyond_earth_giselle_addon.common.item.crafting.ItemStackToItemStackRecipeWrapper;
 import beyond_earth_giselle_addon.common.registries.AddonBlockEntityTypes;
@@ -20,9 +21,10 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
-import net.mrscauthd.beyond_earth.machines.tile.PowerSystemEnergyCommon;
-import net.mrscauthd.beyond_earth.machines.tile.PowerSystemRegistry;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.power.NamedComponentRegistry;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.power.PowerSystemEnergyCommon;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.power.PowerSystemRegistry;
+import net.mrscauthd.beyond_earth.common.capabilities.energy.EnergyStorageBasic;
 
 public class ElectricBlastFurnaceBlockEntity extends ItemStackToItemStackBlockEntityMultiRecipe
 {
@@ -84,7 +86,9 @@ public class ElectricBlastFurnaceBlockEntity extends ItemStackToItemStackBlockEn
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)
 	{
 		super.createEnergyStorages(registry);
-		registry.put(this.createEnergyStorageCommon());
+		int capacity = AddonConfigs.Common.machines.electricBlastFurnace_energyCapcity.get();
+		int transfer = AddonConfigs.Common.machines.electricBlastFurnace_energyTransfer.get();
+		registry.put(new EnergyStorageBasic(this, capacity, transfer, capacity));
 	}
 
 	@Override

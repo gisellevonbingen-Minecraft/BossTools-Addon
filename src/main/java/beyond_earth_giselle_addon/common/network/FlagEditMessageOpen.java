@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import beyond_earth_giselle_addon.client.util.FlagEditClientUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
-import net.mrscauthd.beyond_earth.flag.FlagTileEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.FlagBlockEntity;
 
 public class FlagEditMessageOpen extends BlockPosMessage
 {
@@ -24,8 +24,8 @@ public class FlagEditMessageOpen extends BlockPosMessage
 	{
 		super.onHandle(blockPos, sender);
 
-		FlagTileEntity tileEntity = FlagEditClientUtils.getFlagTileEntity(blockPos);
-		FlagEditClientUtils.showScreen(tileEntity);
+		FlagBlockEntity blockEntity = FlagEditClientUtils.getFlagBlockEntity(blockPos);
+		FlagEditClientUtils.showScreen(blockEntity);
 	}
 
 }

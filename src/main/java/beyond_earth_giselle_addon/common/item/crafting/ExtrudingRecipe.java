@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
+import net.mrscauthd.beyond_earth.common.data.recipes.ItemStackToItemStackRecipe;
 
 public class ExtrudingRecipe extends ItemStackToItemStackRecipe
 {
@@ -37,7 +37,7 @@ public class ExtrudingRecipe extends ItemStackToItemStackRecipe
 	@Override
 	public RecipeType<?> getType()
 	{
-		return AddonRecipes.EXTRUDING;
+		return AddonRecipes.EXTRUDING.get();
 	}
 
 }

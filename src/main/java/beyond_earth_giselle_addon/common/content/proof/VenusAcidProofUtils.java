@@ -4,7 +4,7 @@ import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.beyond_earth.events.forge.LivingSetVenusRainEvent;
+import net.mrscauthd.beyond_earth.common.events.forge.LivingSetVenusRainEvent;
 
 public class VenusAcidProofUtils extends ProofAbstractUtils
 {
@@ -31,7 +31,7 @@ public class VenusAcidProofUtils extends ProofAbstractUtils
 	@SubscribeEvent
 	public void onProofEnchantment(LivingVenusAcidProofEvent e)
 	{
-		LivingEntity entity = e.getEntityLiving();
+		LivingEntity entity = e.getEntity();
 		ProofSession session = new VenusAcidProofEnchantmentSession(entity, AddonEnchantments.VENUS_ACID_PROOF.get());
 		e.setProofDuration(session.provide());
 	}

@@ -18,7 +18,6 @@ import mekanism.api.gear.config.ModuleConfigItemCreator;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.registries.MekanismGases;
-import mekanism.common.tags.MekanismTags;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.MekanismUtils.FluidInDetails;
 import mekanism.common.util.StorageUtils;
@@ -27,9 +26,10 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.AABB;
-import net.mrscauthd.beyond_earth.gauge.IGaugeValue;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.fluids.FluidType;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValue;
 
 public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreathingUnit>
 {
@@ -94,7 +94,7 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 		long productionRateFirst = productionRate;
 
 		ItemStack handStack = player.getItemBySlot(EquipmentSlot.MAINHAND);
-		IGasHandler handCapability = handStack.getCapability(Capabilities.GAS_HANDLER_CAPABILITY).orElse(null);
+		IGasHandler handCapability = handStack.getCapability(Capabilities.GAS_HANDLER).orElse(null);
 
 		if (handCapability != null)
 		{
@@ -118,13 +118,13 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 	public long getProduceRate(IModule<ModuleSpaceBreathingUnit> module, Player player)
 	{
 		float eyeHeight = player.getEyeHeight();
-		Map<Fluid, FluidInDetails> fluidsIn = MekanismUtils.getFluidsIn(player, bb ->
+		Map<FluidType, FluidInDetails> fluidsIn = MekanismUtils.getFluidsIn(player, bb ->
 		{
 			double centerX = (bb.minX + bb.maxX) / 2;
 			double centerZ = (bb.minZ + bb.maxZ) / 2;
 			return new AABB(centerX, Math.min(bb.minY + eyeHeight - 0.27, bb.maxY), centerZ, centerX, Math.min(bb.minY + eyeHeight - 0.14, bb.maxY), centerZ);
 		});
-		if (fluidsIn.entrySet().stream().anyMatch(entry -> MekanismTags.Fluids.WATER_LOOKUP.contains(entry.getKey()) && entry.getValue().getMaxHeight() >= 0.11))
+		if (fluidsIn.entrySet().stream().anyMatch(entry -> entry.getKey() == ForgeMod.WATER_TYPE.get() && entry.getValue().getMaxHeight() >= 0.11))
 		{
 			return this.getMaxProduceRate(module);
 		}

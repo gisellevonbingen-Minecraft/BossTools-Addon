@@ -17,14 +17,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipeType;
-import net.mrscauthd.beyond_earth.gauge.IGaugeValue;
-import net.mrscauthd.beyond_earth.inventory.StackCacher;
-import net.mrscauthd.beyond_earth.machines.tile.ItemStackToItemStackBlockEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.ItemStackToItemStackBlockEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValue;
+import net.mrscauthd.beyond_earth.common.data.recipes.ItemStackToItemStackRecipe;
+import net.mrscauthd.beyond_earth.common.data.recipes.ItemStackToItemStackRecipeType;
+import net.mrscauthd.beyond_earth.common.menus.nasaworkbench.StackCacher;
 
 public abstract class ItemStackToItemStackBlockEntityMultiRecipe extends ItemStackToItemStackBlockEntity
 {
@@ -49,9 +49,9 @@ public abstract class ItemStackToItemStackBlockEntityMultiRecipe extends ItemSta
 	}
 
 	@Override
-	public List<IGaugeValue> getGaugeValues()
+	public List<IGaugeValue> getDisplayGaugeValues()
 	{
-		List<IGaugeValue> list = super.getGaugeValues();
+		List<IGaugeValue> list = super.getDisplayGaugeValues();
 
 		if (this.getCachedRecipe() != null)
 		{
@@ -133,7 +133,7 @@ public abstract class ItemStackToItemStackBlockEntityMultiRecipe extends ItemSta
 
 		if (blockEntity != null)
 		{
-			return blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, direction.getOpposite());
+			return blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER, direction.getOpposite());
 		}
 		else
 		{
@@ -149,7 +149,7 @@ public abstract class ItemStackToItemStackBlockEntityMultiRecipe extends ItemSta
 
 		if (fromItemHandler != null)
 		{
-			IItemHandler toItemHandler = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, direction).orElse(null);
+			IItemHandler toItemHandler = this.getCapability(ForgeCapabilities.ITEM_HANDLER, direction).orElse(null);
 
 			if (fromItemHandler != null)
 			{
@@ -167,7 +167,7 @@ public abstract class ItemStackToItemStackBlockEntityMultiRecipe extends ItemSta
 
 		if (toItemHandler != null)
 		{
-			IItemHandler fromItemHandler = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, direction).orElse(null);
+			IItemHandler fromItemHandler = this.getCapability(ForgeCapabilities.ITEM_HANDLER, direction).orElse(null);
 
 			if (fromItemHandler != null)
 			{
@@ -218,14 +218,14 @@ public abstract class ItemStackToItemStackBlockEntityMultiRecipe extends ItemSta
 
 	public boolean isAutoPull()
 	{
-		return this.getTileData().getBoolean(KEY_AUTO_PULL);
+		return this.getPersistentData().getBoolean(KEY_AUTO_PULL);
 	}
 
 	public void setAutoPull(boolean autoPull)
 	{
 		if (this.isAutoPull() != autoPull)
 		{
-			this.getTileData().putBoolean(KEY_AUTO_PULL, autoPull);
+			this.getPersistentData().putBoolean(KEY_AUTO_PULL, autoPull);
 			this.setChanged();
 		}
 
@@ -233,14 +233,14 @@ public abstract class ItemStackToItemStackBlockEntityMultiRecipe extends ItemSta
 
 	public boolean isAutoEject()
 	{
-		return this.getTileData().getBoolean(KEY_AUTO_EJECT);
+		return this.getPersistentData().getBoolean(KEY_AUTO_EJECT);
 	}
 
 	public void setAutoEject(boolean autoEject)
 	{
 		if (this.isAutoEject() != autoEject)
 		{
-			this.getTileData().putBoolean(KEY_AUTO_EJECT, autoEject);
+			this.getPersistentData().putBoolean(KEY_AUTO_EJECT, autoEject);
 			this.setChanged();
 		}
 
@@ -248,7 +248,7 @@ public abstract class ItemStackToItemStackBlockEntityMultiRecipe extends ItemSta
 
 	public int getAutoTimer()
 	{
-		return this.getTileData().getInt(KEY_AUTO_TIMER);
+		return this.getPersistentData().getInt(KEY_AUTO_TIMER);
 	}
 
 	public void setAutoTimer(int autoTimer)
@@ -257,7 +257,7 @@ public abstract class ItemStackToItemStackBlockEntityMultiRecipe extends ItemSta
 
 		if (this.getAutoTimer() != autoTimer)
 		{
-			this.getTileData().putInt(KEY_AUTO_TIMER, autoTimer);
+			this.getPersistentData().putInt(KEY_AUTO_TIMER, autoTimer);
 			this.setChanged();
 		}
 

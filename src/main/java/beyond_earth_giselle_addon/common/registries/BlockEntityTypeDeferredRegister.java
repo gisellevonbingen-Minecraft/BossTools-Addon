@@ -9,7 +9,7 @@ public class BlockEntityTypeDeferredRegister extends DeferredRegisterWrapper<Blo
 {
 	public BlockEntityTypeDeferredRegister(String modid)
 	{
-		super(modid, ForgeRegistries.BLOCK_ENTITIES);
+		super(modid, ForgeRegistries.BLOCK_ENTITY_TYPES);
 	}
 
 	public <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockRegistryObject<?, ?> block, BlockEntityType.BlockEntitySupplier<T> blockEntitySupplier)

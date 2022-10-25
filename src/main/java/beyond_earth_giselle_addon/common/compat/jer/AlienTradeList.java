@@ -3,17 +3,18 @@ package beyond_earth_giselle_addon.common.compat.jer;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import mezz.jei.api.recipe.IFocus;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
 
 public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 {
@@ -50,7 +51,7 @@ public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 	public static ItemStack getNotNeededItem()
 	{
 		ItemStack itemStack = new ItemStack(Items.BARRIER);
-		itemStack.setHoverName(new TranslatableComponent(BeyondEarthAddon.tl(AddonJerCompat.LANGPREFIX + ".text", AlienCategory.KEY, "notneeded")));
+		itemStack.setHoverName(Component.translatable(BeyondEarthAddon.tl(AddonJerCompat.LANGPREFIX + ".text", AlienCategory.KEY, "notneeded")));
 		return itemStack;
 	}
 
@@ -89,7 +90,7 @@ public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 		}
 	}
 
-	private void addMerchantRecipe(MerchantOffers merchantOffers, ItemListing trade, Random rand)
+	private void addMerchantRecipe(MerchantOffers merchantOffers, ItemListing trade, RandomSource rand)
 	{
 		MerchantOffer offer = trade.getOffer(villagerEntry.getAlienEntity(), rand);
 		if (offer != null)
@@ -103,7 +104,7 @@ public class AlienTradeList extends LinkedList<AlienTradeList.Trade>
 		for (ItemListing trade : tradeList)
 		{
 			MerchantOffers tempList = new MerchantOffers();
-			Random rand = new Random();
+			RandomSource rand = new LegacyRandomSource(System.currentTimeMillis());
 			for (int itr = 0; itr < 100; itr++)
 				addMerchantRecipe(tempList, trade, rand);
 			if (tempList.size() == 0)

@@ -15,15 +15,15 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.beyond_earth.flag.FlagBlock;
-import net.mrscauthd.beyond_earth.flag.FlagTileEntity;
+import net.mrscauthd.beyond_earth.common.blocks.FlagBlock;
+import net.mrscauthd.beyond_earth.common.blocks.entities.FlagBlockEntity;
 
 public class EventListenerFlagEdit
 {
 	@SubscribeEvent
 	public static void onFlagShiftRightClick(RightClickBlock e)
 	{
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 
 		if (e.isCanceled() == true)
 		{
@@ -31,13 +31,12 @@ public class EventListenerFlagEdit
 		}
 
 		BlockPos pos = e.getPos();
-		BlockEntity blockEntity = e.getWorld().getBlockEntity(pos);
-		BlockState blockState = e.getWorld().getBlockState(pos);
+		BlockEntity blockEntity = e.getLevel().getBlockEntity(pos);
+		BlockState blockState = e.getLevel().getBlockState(pos);
 		EnumProperty<DoubleBlockHalf> property = FlagBlock.HALF;
 
-		if (blockEntity instanceof FlagTileEntity && blockState.hasProperty(property) == true && blockState.getValue(property) == DoubleBlockHalf.UPPER)
+		if (blockEntity instanceof FlagBlockEntity flag && blockState.hasProperty(property) == true && blockState.getValue(property) == DoubleBlockHalf.UPPER)
 		{
-			FlagTileEntity flag = (FlagTileEntity) blockEntity;
 			ItemStack itemStack = e.getItemStack();
 
 			if (e.getHand() != InteractionHand.MAIN_HAND)
@@ -53,9 +52,8 @@ public class EventListenerFlagEdit
 				}
 				else
 				{
-					if (player instanceof ServerPlayer)
+					if (player instanceof ServerPlayer serverPlayer)
 					{
-						ServerPlayer serverPlayer = (ServerPlayer) player;
 						AddonNetwork.sendToPlayer(serverPlayer, new FlagEditMessageOpen(pos));
 					}
 

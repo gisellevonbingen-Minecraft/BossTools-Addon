@@ -7,11 +7,12 @@ import java.util.stream.Collectors;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import jeresources.util.VillagersHelper;
 import mezz.jei.api.recipe.IFocus;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
 import net.minecraft.world.item.ItemStack;
-import net.mrscauthd.beyond_earth.entities.alien.AlienEntity;
+import net.mrscauthd.beyond_earth.common.entities.alien.AlienEntity;
 
 public class AlienEntry
 {
@@ -115,12 +116,12 @@ public class AlienEntry
 
 	public List<ItemStack> getPois()
 	{
-		return this.profession.getJobPoiType().getBlockStates().stream().map(blockstate -> new ItemStack(blockstate.getBlock())).collect(Collectors.toList());
+		return VillagersHelper.getPoiBlocks(this.profession.heldJobSite()).stream().map(blockstate -> new ItemStack(blockstate.getBlock())).collect(Collectors.toList());
 	}
 
 	public boolean hasPois()
 	{
-		return !this.profession.getJobPoiType().getBlockStates().isEmpty();
+		return !VillagersHelper.getPoiBlocks(this.profession.heldJobSite()).isEmpty();
 	}
 
 }

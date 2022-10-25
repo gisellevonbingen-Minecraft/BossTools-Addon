@@ -9,10 +9,9 @@ import java.util.function.Supplier;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryObject;
 
-public class DeferredRegisterWrapper<T extends IForgeRegistryEntry<T>>
+public class DeferredRegisterWrapper<T>
 {
 	private final String modid;
 	private final DeferredRegister<T> impl;
@@ -32,7 +31,7 @@ public class DeferredRegisterWrapper<T extends IForgeRegistryEntry<T>>
 		this(modid, DeferredRegister.create(reg, modid));
 	}
 
-	public static <T extends IForgeRegistryEntry<T>> DeferredRegisterWrapper<T> create(String modid, IForgeRegistry<T> reg)
+	public static <T> DeferredRegisterWrapper<T> create(String modid, IForgeRegistry<T> reg)
 	{
 		return new DeferredRegisterWrapper<>(modid, reg);
 	}

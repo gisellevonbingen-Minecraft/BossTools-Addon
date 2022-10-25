@@ -1,29 +1,30 @@
 package beyond_earth_giselle_addon.common.command;
 
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
+import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.compat.mekanism.AddonMekanismCommand;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.mrscauthd.beyond_earth.capabilities.oxygen.OxygenUtil;
-import net.mrscauthd.beyond_earth.registries.EntitiesRegistry;
-import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
+import net.mrscauthd.beyond_earth.common.capabilities.oxygen.OxygenUtil;
+import net.mrscauthd.beyond_earth.common.registries.ItemsRegistry;
 
 public class AddonCommand
 {
@@ -52,7 +53,7 @@ public class AddonCommand
 
 	public static int sendEquipedMessage(CommandSourceStack source)
 	{
-		source.sendSuccess(new TextComponent("Equipped"), false);
+		source.sendSuccess(Component.literal("Equipped"), false);
 		return 0;
 	}
 
@@ -60,18 +61,20 @@ public class AddonCommand
 	{
 		public static LiteralArgumentBuilder<CommandSourceStack> builder()
 		{
-			return Commands.literal("planetselection").requires(AddonCommand::isPlayerHasPermission2).executes(PlanetSelection::execute);
+			return Commands.literal("planetselection").requires(AddonCommand::isPlayerHasPermission2) //
+					.executes(ctx -> PlanetSelection.execute(ctx, 4)) //
+					.then(Commands.argument("tier", IntegerArgumentType.integer(1, 9999)) //
+							.executes(ctx -> PlanetSelection.execute(ctx, IntegerArgumentType.getInteger(ctx, "tier"))));
 		}
 
-		public static int execute(CommandContext<CommandSourceStack> context) throws CommandSyntaxException
+		private static int execute(CommandContext<CommandSourceStack> context, int tier) throws CommandSyntaxException
 		{
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 			CompoundTag persistentData = player.getPersistentData();
-			persistentData.putBoolean("beyond_earth:planet_selection_gui_open", true);
-			persistentData.putString("beyond_earth:rocket_type", EntitiesRegistry.TIER_4_ROCKET.get().toString());
-			persistentData.putString("beyond_earth:slot0", Items.AIR.getRegistryName().toString());
-
+			persistentData.putBoolean(BeyondEarthAddon.prl("planet_selection_menu_open").toString(), true);
+			persistentData.putInt(BeyondEarthAddon.prl("rocket_tier").toString(), tier);
+			persistentData.put(BeyondEarthAddon.prl("rocket_item_list").toString(), new ListTag());
 			return 0;
 		}
 
@@ -99,10 +102,10 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.OXYGEN_MASK.get(), AddonEnchantments.SPACE_BREATHING.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.SPACE_HELMET.get(), AddonEnchantments.SPACE_BREATHING.get()));
 			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
 			player.setItemSlot(EquipmentSlot.LEGS, makeFull(ItemsRegistry.SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.SPACE_BOOTS.get(), AddonEnchantments.GRAVITY_NORMALIZING.get()));
+			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.SPACE_BOOTS.get()));
 
 			return sendEquipedMessage(source);
 		}
@@ -112,10 +115,10 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.NETHERITE_OXYGEN_MASK.get(), AddonEnchantments.SPACE_BREATHING.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.NETHERITE_SPACE_HELMET.get(), AddonEnchantments.SPACE_BREATHING.get()));
 			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.NETHERITE_SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
 			player.setItemSlot(EquipmentSlot.LEGS, makeFull(ItemsRegistry.NETHERITE_SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.NETHERITE_SPACE_BOOTS.get(), AddonEnchantments.GRAVITY_NORMALIZING.get()));
+			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.NETHERITE_SPACE_BOOTS.get()));
 
 			return sendEquipedMessage(source);
 		}
@@ -135,7 +138,7 @@ public class AddonCommand
 				stack.enchant(enchantment, 1);
 			}
 
-			IEnergyStorage energyStorage = stack.getCapability(CapabilityEnergy.ENERGY).orElse(null);
+			IEnergyStorage energyStorage = stack.getCapability(ForgeCapabilities.ENERGY).orElse(null);
 
 			if (energyStorage != null)
 			{

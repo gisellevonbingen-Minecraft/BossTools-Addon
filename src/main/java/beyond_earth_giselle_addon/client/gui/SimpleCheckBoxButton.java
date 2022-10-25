@@ -11,8 +11,6 @@ import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
@@ -38,7 +36,7 @@ public class SimpleCheckBoxButton extends AbstractButton
 
 	public SimpleCheckBoxButton(int x, int y, boolean checked)
 	{
-		this(x, y, checked, TextComponent.EMPTY, false);
+		this(x, y, checked, Component.empty(), false);
 	}
 
 	public SimpleCheckBoxButton(int x, int y, boolean checked, Component message)
@@ -171,11 +169,11 @@ public class SimpleCheckBoxButton extends AbstractButton
 		{
 			if (this.isFocused() == true)
 			{
-				output.add(NarratedElementType.USAGE, new TranslatableComponent("narration.checkbox.usage.focused"));
+				output.add(NarratedElementType.USAGE, Component.translatable("narration.checkbox.usage.focused"));
 			}
 			else
 			{
-				output.add(NarratedElementType.USAGE, new TranslatableComponent("narration.checkbox.usage.hovered"));
+				output.add(NarratedElementType.USAGE, Component.translatable("narration.checkbox.usage.hovered"));
 			}
 
 		}

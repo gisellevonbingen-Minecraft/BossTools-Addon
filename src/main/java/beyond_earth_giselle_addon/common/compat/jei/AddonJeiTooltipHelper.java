@@ -7,12 +7,11 @@ import java.util.Map;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 
 public class AddonJeiTooltipHelper
 {
 	public static final String INCOMPATIABLE1_KEY = BeyondEarthAddon.tl(AddonJeiPlugin.JEI_TOOLTIP, "incompatible_mode1");
-	public static final Component INCOMPATIABLE1_TEXT = new TranslatableComponent(INCOMPATIABLE1_KEY);
+	public static final Component INCOMPATIABLE1_TEXT = Component.translatable(INCOMPATIABLE1_KEY);
 
 	public static final String INCOMPATIABLE2_KEY = BeyondEarthAddon.tl(AddonJeiPlugin.JEI_TOOLTIP, "incompatible_mode2");
 	private static final Map<Object, Component> INCOMPATIABLE2_MAP = new HashMap<>();
@@ -32,7 +31,7 @@ public class AddonJeiTooltipHelper
 
 	public static Component createIncompatibleModeText2(Object require)
 	{
-		return new TranslatableComponent(INCOMPATIABLE2_KEY, require);
+		return Component.translatable(INCOMPATIABLE2_KEY, require);
 	}
 
 	private AddonJeiTooltipHelper()

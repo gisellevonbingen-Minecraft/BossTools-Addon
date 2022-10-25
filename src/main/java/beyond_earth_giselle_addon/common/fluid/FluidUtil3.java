@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.mrscauthd.beyond_earth.fluids.FluidUtil2;
+import net.mrscauthd.beyond_earth.common.util.FluidUtil2;
 
 public class FluidUtil3
 {

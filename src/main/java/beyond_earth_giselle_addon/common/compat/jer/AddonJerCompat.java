@@ -9,7 +9,7 @@ import jeresources.api.IWorldGenRegistry;
 import jeresources.api.drop.LootDrop;
 import jeresources.api.restrictions.DimensionRestriction;
 import jeresources.api.restrictions.Restriction;
-import jeresources.compatibility.JERAPI;
+import jeresources.compatibility.api.JERAPI;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -23,7 +23,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
+import net.mrscauthd.beyond_earth.common.registries.ItemsRegistry;
 
 public class AddonJerCompat extends AddonCompatibleMod
 {

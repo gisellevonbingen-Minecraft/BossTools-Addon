@@ -1,7 +1,7 @@
 package beyond_earth_giselle_addon.common.util;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
 
 public enum ItemUsableResource
@@ -25,13 +25,13 @@ public enum ItemUsableResource
 			@Override
 			public boolean test(ItemStack stack)
 			{
-				return stack.getCapability(CapabilityEnergy.ENERGY).isPresent();
+				return stack.getCapability(ForgeCapabilities.ENERGY).isPresent();
 			}
 
 			@Override
 			public int extract(ItemStack stack, int amount, boolean simulate)
 			{
-				IEnergyStorage energyStorage = stack.getCapability(CapabilityEnergy.ENERGY).orElse(null);
+				IEnergyStorage energyStorage = stack.getCapability(ForgeCapabilities.ENERGY).orElse(null);
 				return energyStorage != null ? energyStorage.extractEnergy(amount, simulate) : 0;
 			}
 		},

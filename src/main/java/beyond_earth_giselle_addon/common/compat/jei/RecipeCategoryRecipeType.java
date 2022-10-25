@@ -6,10 +6,10 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.core.Registry;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public abstract class RecipeCategoryRecipeType<T extends net.minecraft.world.item.crafting.RecipeType<R>, R extends Recipe<Container>> extends RecipeCategory<R>
 {
@@ -17,7 +17,7 @@ public abstract class RecipeCategoryRecipeType<T extends net.minecraft.world.ite
 
 	public RecipeCategoryRecipeType(Class<? extends R> recipeClass, T recipeType)
 	{
-		super(new RecipeType<>(Registry.RECIPE_TYPE.getKey(recipeType), recipeClass));
+		super(new RecipeType<>(ForgeRegistries.RECIPE_TYPES.getKey(recipeType), recipeClass));
 		this.mcRecipeType = recipeType;
 	}
 

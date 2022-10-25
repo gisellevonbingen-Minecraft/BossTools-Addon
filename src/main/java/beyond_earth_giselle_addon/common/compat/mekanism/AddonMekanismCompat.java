@@ -1,12 +1,9 @@
 package beyond_earth_giselle_addon.common.compat.mekanism;
 
-import beyond_earth_giselle_addon.client.compat.mekanism.AddonMekanismCompatClient;
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleMod;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class AddonMekanismCompat extends AddonCompatibleMod
@@ -34,8 +31,6 @@ public class AddonMekanismCompat extends AddonCompatibleMod
 
 		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
 		forge_bus.register(AddonMekanismCommonEventListener.class);
-
-		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonMekanismCompatClient::new);
 	}
 
 }

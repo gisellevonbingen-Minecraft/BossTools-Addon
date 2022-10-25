@@ -9,7 +9,6 @@ import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
@@ -70,7 +69,7 @@ public interface IChargeMode
 
 	public static Component createDisplayName(ResourceLocation name)
 	{
-		return new TranslatableComponent(BeyondEarthAddon.tl(LANGUGE_CATEGORY_CHARGEMODE, name));
+		return Component.translatable(BeyondEarthAddon.tl(LANGUGE_CATEGORY_CHARGEMODE, name));
 	}
 
 	public ResourceLocation getName();

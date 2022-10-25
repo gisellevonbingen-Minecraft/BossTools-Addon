@@ -6,7 +6,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
+import net.mrscauthd.beyond_earth.common.data.recipes.ItemStackToItemStackRecipe;
 
 public abstract class IS2ISRecipeType<T extends RecipeType<? extends R>, R extends Recipe<Container>>
 {

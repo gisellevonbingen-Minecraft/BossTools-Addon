@@ -1,7 +1,7 @@
 package beyond_earth_giselle_addon.common.capability;
 
 import net.minecraft.nbt.CompoundTag;
-import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
+import net.mrscauthd.beyond_earth.common.capabilities.oxygen.IOxygenStorage;
 
 public class OxygenStorageEmpty implements IOxygenStorage
 {
@@ -17,13 +17,13 @@ public class OxygenStorageEmpty implements IOxygenStorage
 	}
 
 	@Override
-	public int getMaxOxygenStored()
+	public int getMaxCapacity()
 	{
 		return 0;
 	}
 
 	@Override
-	public int getOxygenStored()
+	public int getOxygen()
 	{
 		return 0;
 	}
@@ -35,7 +35,7 @@ public class OxygenStorageEmpty implements IOxygenStorage
 	}
 
 	@Override
-	public void setOxygenStored(int amount)
+	public void setOxygen(int amount)
 	{
 
 	}

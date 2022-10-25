@@ -14,9 +14,8 @@ import mezz.jei.api.recipe.IFocusFactory;
 import mezz.jei.api.runtime.IRecipesGui;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.mrscauthd.beyond_earth.gauge.GaugeTextHelper;
-import net.mrscauthd.beyond_earth.guis.helper.GuiHelper;
+import net.mrscauthd.beyond_earth.client.util.GuiHelper;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeTextHelper;
 
 public class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ? extends T>, T extends ItemStackToItemStackBlockEntityMultiRecipe> implements IGuiContainerHandler<S>
 {
@@ -51,7 +50,7 @@ public class IS2ISGuiContainerHandler<S extends ItemStackToItemStackScreen<? ext
 			{
 				List<Component> list = new ArrayList<>();
 				list.add(GaugeTextHelper.getStorageText(blockEntity.getCookTimeGaugeValue()).build());
-				list.add(new TranslatableComponent("jei.tooltip.show.recipes"));
+				list.add(Component.translatable("jei.tooltip.show.recipes"));
 				return list;
 			}
 		});

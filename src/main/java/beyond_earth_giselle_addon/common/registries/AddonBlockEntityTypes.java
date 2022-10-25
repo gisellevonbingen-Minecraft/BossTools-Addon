@@ -4,7 +4,6 @@ import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.block.entity.AdvancedCompressorBlockEntity;
 import beyond_earth_giselle_addon.common.block.entity.ElectricBlastFurnaceBlockEntity;
 import beyond_earth_giselle_addon.common.block.entity.FuelLoaderBlockEntity;
-import beyond_earth_giselle_addon.common.block.entity.GravityNormalizerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -14,7 +13,6 @@ public class AddonBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<FuelLoaderBlockEntity>> FUEL_LOADER = BLOCK_ENTITY_TYPES.register("fuel_loader", AddonBlocks.FUEL_LOADER, FuelLoaderBlockEntity::new);
 	public static final RegistryObject<BlockEntityType<ElectricBlastFurnaceBlockEntity>> ELECTRIC_BLAST_FURNACE = BLOCK_ENTITY_TYPES.register("electric_blast_furnace", AddonBlocks.ELECTRIC_BLAST_FURNACE, ElectricBlastFurnaceBlockEntity::new);
 	public static final RegistryObject<BlockEntityType<AdvancedCompressorBlockEntity>> ADVANCED_COMPRESSOR = BLOCK_ENTITY_TYPES.register("advanced_compressor", AddonBlocks.ADVANCED_COMPRESSOR, AdvancedCompressorBlockEntity::new);
-	public static final RegistryObject<BlockEntityType<GravityNormalizerBlockEntity>> GRAVITY_NORMALIZER = BLOCK_ENTITY_TYPES.register("gravity_normalizer", AddonBlocks.GRAVITY_NORMALIZER, GravityNormalizerBlockEntity::new);
 
 	private AddonBlockEntityTypes()
 	{

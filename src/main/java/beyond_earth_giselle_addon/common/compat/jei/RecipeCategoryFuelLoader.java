@@ -20,17 +20,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.mrscauthd.beyond_earth.events.Methods;
-import net.mrscauthd.beyond_earth.guis.helper.GuiHelper;
-import net.mrscauthd.beyond_earth.registries.TagsRegistry;
+import net.mrscauthd.beyond_earth.client.util.GuiHelper;
+import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
 
 public class RecipeCategoryFuelLoader extends RecipeCategory<Fluid>
 {
 	public static final ResourceLocation BACKGROUND_LOCATION = BeyondEarthAddon.rl("textures/jei/fuel_loader.png");
 	public static final int BACKGROUND_WIDTH = 144;
 	public static final int BACKGROUND_HEIGHT = 84;
-	public static final int TANK_LEFT = 55;
-	public static final int TANK_TOP = 18;
+	public static final int TANK_LEFT = 53;
+	public static final int TANK_TOP = 20;
 
 	public static IDrawable createBackground(IGuiHelper guiHelper)
 	{
@@ -70,9 +69,10 @@ public class RecipeCategoryFuelLoader extends RecipeCategory<Fluid>
 				.setOverlay(AddonJeiPlugin.instance().getFluidOverlay(), 0, 0);
 	}
 
+	@SuppressWarnings("deprecation")
 	public boolean testFluid(Fluid fluid)
 	{
-		return Methods.tagCheck(fluid, TagsRegistry.FLUID_VEHICLE_FUEL_TAG) && fluid.isSource(fluid.defaultFluidState());
+		return fluid.is(TagRegistry.FLUID_VEHICLE_FUEL_TAG) && fluid.isSource(fluid.defaultFluidState());
 	}
 
 	@Override

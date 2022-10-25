@@ -9,9 +9,8 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class RecyclingVanillaRecipeSerializer<P extends AbstractCookingRecipe, R extends AbstractCookingRecipe & IRecyclingVanillaRecipe<P, Container>> extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<R>
+public class RecyclingVanillaRecipeSerializer<P extends AbstractCookingRecipe, R extends AbstractCookingRecipe & IRecyclingVanillaRecipe<P, Container>> implements RecipeSerializer<R>
 {
 	private final SimpleCookingSerializer<P> parent;
 	private final CookieBaker<P, R> factory;

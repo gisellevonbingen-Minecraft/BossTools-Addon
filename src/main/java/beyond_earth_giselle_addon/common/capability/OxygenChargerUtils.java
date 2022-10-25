@@ -10,9 +10,10 @@ import beyond_earth_giselle_addon.common.registries.AddonItems;
 import beyond_earth_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
-import net.mrscauthd.beyond_earth.gauge.GaugeValueSimple;
-import net.mrscauthd.beyond_earth.gauge.IGaugeValue;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeValueSimple;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValue;
+import net.mrscauthd.beyond_earth.common.capabilities.oxygen.IOxygenStorage;
 
 public class OxygenChargerUtils
 {
@@ -35,14 +36,14 @@ public class OxygenChargerUtils
 			if (oxygenCharger != null && oxygenCharger.getChargeMode() != ChargeMode.NONE)
 			{
 				IOxygenStorage oxygenStorage = oxygenCharger.getOxygenStorage();
-				stored = Math.min(stored + oxygenStorage.getOxygenStored(), Integer.MAX_VALUE);
-				capacity = Math.min(capacity + oxygenStorage.getMaxOxygenStored(), Integer.MAX_VALUE);
+				stored = Math.min(stored + oxygenStorage.getOxygen(), Integer.MAX_VALUE);
+				capacity = Math.min(capacity + oxygenStorage.getMaxCapacity(), Integer.MAX_VALUE);
 			}
 
 		}
 
 		OxygenCanItem item = AddonItems.OXYGEN_CAN.get();
-		return new GaugeValueSimple(item.getRegistryName(), (int) stored, (int) capacity, item.getName(item.getDefaultInstance()));
+		return new GaugeValueSimple(ForgeRegistries.ITEMS.getKey(item), (int) stored, (int) capacity, item.getName(item.getDefaultInstance()));
 	}
 
 	public static IOxygenCharger firstExtractableOxygenCharger(LivingEntity entity, int extracting, ItemStack beContains)

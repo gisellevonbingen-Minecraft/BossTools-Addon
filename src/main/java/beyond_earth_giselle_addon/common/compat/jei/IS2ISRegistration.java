@@ -8,19 +8,22 @@ import beyond_earth_giselle_addon.common.block.entity.ItemStackToItemStackBlockE
 import beyond_earth_giselle_addon.common.inventory.ItemStackToItemStackContainerMenu;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import mezz.jei.api.recipe.RecipeType;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 
 public class IS2ISRegistration<S extends ItemStackToItemStackScreen<? extends C>, C extends ItemStackToItemStackContainerMenu<C, ? extends T>, T extends ItemStackToItemStackBlockEntityMultiRecipe> implements IIS2ISRegistration<S, C>
 {
 	private Class<S> screenClass;
 	private Class<C> containerClass;
+	private MenuType<C> menuType;
 	private final List<ItemStack> itemstacks;
 	private final List<RecipeType<?>> recipeTypes;
 
-	public IS2ISRegistration(Class<S> screenClass, Class<C> containerClass)
+	public IS2ISRegistration(Class<S> screenClass, Class<C> containerClass, MenuType<C> menuType)
 	{
 		this.screenClass = screenClass;
 		this.containerClass = containerClass;
+		this.menuType = menuType;
 		this.itemstacks = new ArrayList<>();
 		this.recipeTypes = new ArrayList<>();
 	}
@@ -46,6 +49,12 @@ public class IS2ISRegistration<S extends ItemStackToItemStackScreen<? extends C>
 	public Class<C> getContainerClass()
 	{
 		return this.containerClass;
+	}
+
+	@Override
+	public MenuType<C> getMenuType()
+	{
+		return this.menuType;
 	}
 
 	@Override

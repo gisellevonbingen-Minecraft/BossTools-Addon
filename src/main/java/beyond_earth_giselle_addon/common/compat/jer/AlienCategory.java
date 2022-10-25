@@ -43,11 +43,10 @@ public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 		return TYPE;
 	}
 
-	@Nonnull
 	@Override
-	public ResourceLocation getUid()
+	public RecipeType<AlienWrapper> getRecipeType()
 	{
-		return UID;
+		return TYPE;
 	}
 
 	@Nonnull
@@ -62,12 +61,6 @@ public class AlienCategory extends BlankJEIRecipeCategory<AlienWrapper>
 	public IDrawable getBackground()
 	{
 		return Resources.Gui.Jei.VILLAGER;
-	}
-
-	@Override
-	public Class<? extends AlienWrapper> getRecipeClass()
-	{
-		return AlienWrapper.class;
 	}
 
 	@Override

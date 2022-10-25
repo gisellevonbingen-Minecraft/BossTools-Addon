@@ -4,7 +4,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 {
@@ -28,7 +28,7 @@ public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 		}
 		else
 		{
-			return stack.getCapability(CapabilityEnergy.ENERGY).isPresent();
+			return stack.getCapability(ForgeCapabilities.ENERGY).isPresent();
 		}
 
 	}

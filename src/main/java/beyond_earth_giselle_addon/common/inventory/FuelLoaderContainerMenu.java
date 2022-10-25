@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
-import net.mrscauthd.beyond_earth.guis.helper.ContainerHelper;
+import net.mrscauthd.beyond_earth.common.menus.helper.MenuHelper;
 
 public class FuelLoaderContainerMenu extends AbstractMachineContainerMenu<FuelLoaderContainerMenu, FuelLoaderBlockEntity>
 {
@@ -19,16 +19,16 @@ public class FuelLoaderContainerMenu extends AbstractMachineContainerMenu<FuelLo
 
 		for (int i = blockEntity.getSlotFluidStart(); i < blockEntity.getSlotFluidEnd(); i++)
 		{
-			this.addSlot(new SlotItemHandler(itemHandler, i, 88, 28 + 30 * i));
+			this.addSlot(new SlotItemHandler(itemHandler, i, 95, 28 + 30 * i));
 		}
 
-		ContainerHelper.addInventorySlots(this, inv, 8, 100, this::addSlot);
+		MenuHelper.createInventorySlots(inv, this::addSlot, 8, 100);
 	}
 
 	@Override
 	public ItemStack quickMoveStack(Player player, int slotNumber)
 	{
-		return ContainerHelper2.quickMoveStack(this, player, slotNumber, 0, this.getBlockEntity(), this::moveItemStackTo);
+		return MenuHelper.transferStackInSlot(this, player, slotNumber, 0, this.getBlockEntity(), this::moveItemStackTo);
 	}
 
 }

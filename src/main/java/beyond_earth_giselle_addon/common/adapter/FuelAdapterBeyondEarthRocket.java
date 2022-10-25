@@ -4,7 +4,6 @@ import beyond_earth_giselle_addon.common.entity.BeyondEarthRocketHelper;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
-import net.mrscauthd.beyond_earth.fluids.FluidUtil2;
 
 public class FuelAdapterBeyondEarthRocket extends FuelAdapter<Entity>
 {
@@ -16,22 +15,19 @@ public class FuelAdapterBeyondEarthRocket extends FuelAdapter<Entity>
 	@Override
 	public int fill(int amount, FluidAction action)
 	{
-		int bucketSize = FluidUtil2.BUCKET_SIZE;
-
 		Entity target = this.getTarget();
-		int bucketsAmount = BeyondEarthRocketHelper.getBucketsAmount(target);
-		int bucketsCapacity = BeyondEarthRocketHelper.getBucketsCapacity(target);
-		int bucketsRemain = bucketsCapacity - bucketsAmount;
+		int fuelAmount = BeyondEarthRocketHelper.getFuelAmount(target);
+		int fuelCapacity = BeyondEarthRocketHelper.getFuelCapacity(target);
+		int fuelRemain = fuelCapacity - fuelAmount;
 
-		int bucketsFilling = Mth.clamp(amount / bucketSize, 0, bucketsRemain);
-		int fuelFiling = bucketsFilling * bucketSize;
+		int fuelFilling = Mth.clamp(amount, 0, fuelRemain);
 
 		if (action.execute() == true)
 		{
-			BeyondEarthRocketHelper.setBucketsAmount(target, bucketsAmount + bucketsFilling);
+			BeyondEarthRocketHelper.setCurrentFuel(target, fuelAmount + fuelFilling);
 		}
 
-		return fuelFiling;
+		return fuelFilling;
 	}
 
 }

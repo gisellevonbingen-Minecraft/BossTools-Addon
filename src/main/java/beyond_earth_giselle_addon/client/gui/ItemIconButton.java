@@ -7,7 +7,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 
@@ -22,13 +21,13 @@ public class ItemIconButton extends Button
 
 	public ItemIconButton(int x, int y, ItemStack icon, OnPress pressListener, OnTooltip tooltipListener)
 	{
-		super(x, y, CHECKER_WIDTH, CHECKER_HEIGHT, TextComponent.EMPTY, pressListener, tooltipListener);
+		super(x, y, CHECKER_WIDTH, CHECKER_HEIGHT, Component.empty(), pressListener, tooltipListener);
 		this.setItemStack(icon);
 	}
 
 	public ItemIconButton(int x, int y, ItemStack icon, OnPress pressListener)
 	{
-		super(x, y, CHECKER_WIDTH, CHECKER_HEIGHT, TextComponent.EMPTY, pressListener);
+		super(x, y, CHECKER_WIDTH, CHECKER_HEIGHT, Component.empty(), pressListener);
 		this.setItemStack(icon);
 	}
 
@@ -72,7 +71,7 @@ public class ItemIconButton extends Button
 	{
 		if (this.isRenderButton == true)
 		{
-			return TextComponent.EMPTY;
+			return Component.empty();
 		}
 		else
 		{

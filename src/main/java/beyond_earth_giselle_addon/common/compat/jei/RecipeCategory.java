@@ -3,8 +3,10 @@ package beyond_earth_giselle_addon.common.compat.jei;
 import java.util.ArrayList;
 import java.util.List;
 
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
@@ -12,7 +14,6 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 public abstract class RecipeCategory<R> implements IRecipeCategory<R>
@@ -34,21 +35,9 @@ public abstract class RecipeCategory<R> implements IRecipeCategory<R>
 	}
 
 	@Override
-	public Class<? extends R> getRecipeClass()
-	{
-		return this.getRecipeType().getRecipeClass();
-	}
-
-	@Override
-	public ResourceLocation getUid()
-	{
-		return this.getRecipeType().getUid();
-	}
-
-	@Override
 	public Component getTitle()
 	{
-		return AddonJeiPlugin.getCategoryTitle(this.getUid());
+		return AddonJeiPlugin.getCategoryTitle(this.getRecipeType().getUid());
 	}
 
 	@Override
@@ -58,6 +47,12 @@ public abstract class RecipeCategory<R> implements IRecipeCategory<R>
 	}
 
 	public void createGui(IGuiHelper guiHelper)
+	{
+
+	}
+
+	@Override
+	public void setRecipe(IRecipeLayoutBuilder builder, R recipe, IFocusGroup focuses)
 	{
 
 	}

@@ -4,7 +4,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.mrscauthd.beyond_earth.registries.ItemsRegistry;
+import net.mrscauthd.beyond_earth.common.registries.ItemsRegistry;
 
 public class EnchantmentSpaceFireProof extends EnchantmentEnergyStorageOrDamageable
 {

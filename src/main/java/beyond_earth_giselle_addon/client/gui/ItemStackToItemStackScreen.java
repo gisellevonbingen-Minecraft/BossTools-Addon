@@ -11,24 +11,23 @@ import beyond_earth_giselle_addon.common.network.IS2ISMachineMessageAutoEject;
 import beyond_earth_giselle_addon.common.network.IS2ISMachineMessageAutoPull;
 import beyond_earth_giselle_addon.common.network.IS2ISMachineMessageAutoTransfer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.mrscauthd.beyond_earth.guis.helper.GuiHelper;
+import net.mrscauthd.beyond_earth.client.util.GuiHelper;
 
 public class ItemStackToItemStackScreen<C extends ItemStackToItemStackContainerMenu<C, ?>> extends AbstractMachineScreen<C>
 {
 	public static final ResourceLocation TEXTURE = BeyondEarthAddon.rl("textures/gui/container/itemstack_to_itemstack.png");
-	public static final int ENERGY_LEFT = 144;
-	public static final int ENERGY_TOP = 21;
+	public static final int ENERGY_LEFT = 149;
+	public static final int ENERGY_TOP = 22;
 	public static final int ARROW_LEFT = 62;
 	public static final int ARROW_TOP = 21;
 	public static final int AUTO_PULL_LEFT = 43;
 	public static final int AUTO_PULL_TOP = 42;
-	public static final Component AUTO_PULL_TEXT = new TranslatableComponent(ctl("auto_pull"));
+	public static final Component AUTO_PULL_TEXT = Component.translatable(ctl("auto_pull"));
 	public static final int AUTO_EJECT_LEFT = 43;
 	public static final int AUTO_EJECT_TOP = 55;
-	public static final Component AUTO_EJECT_TEXT = new TranslatableComponent(ctl("auto_eject"));
+	public static final Component AUTO_EJECT_TEXT = Component.translatable(ctl("auto_eject"));
 
 	private SimpleCheckBoxButton autoPullButton;
 	private SimpleCheckBoxButton autoEjectButton;

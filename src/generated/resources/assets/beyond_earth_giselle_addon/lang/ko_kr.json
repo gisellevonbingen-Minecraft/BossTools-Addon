@@ -5,7 +5,6 @@
   "block.beyond_earth_giselle_addon.fuel_loader": "연료 적재기",
   "block.beyond_earth_giselle_addon.electric_blast_furnace": "전기 용광로",
   "block.beyond_earth_giselle_addon.advanced_compressor": "고급 압축기",
-  "block.beyond_earth_giselle_addon.gravity_normalizer": "중력 정규화 장치",
   
   "module.beyond_earth_giselle_addon.space_breathing_unit": "우주 호흡 기구",
   "description.beyond_earth_giselle_addon.space_breathing_unit": "Beyond Earth 차원에서 호흡할 수 있습니다\n비, 물속에서 들고있는 아이템에 산소를 충전합니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
@@ -13,9 +12,6 @@
   "description.beyond_earth_giselle_addon.space_fire_proof_unit": "Beyond Earth 차원에서 불이 붙지 않습니다",
   "module.beyond_earth_giselle_addon.venus_acid_proof_unit": "우주 내산성 기구",
   "description.beyond_earth_giselle_addon.venus_acid_proof_unit": "Beyond Earth 차원에서 산성비 피해를 입지 않습니다",
-  "module.beyond_earth_giselle_addon.gravity_normalizing_unit": "중력 정규화 기구",
-  "description.beyond_earth_giselle_addon.gravity_normalizing_unit": "Beyond Earth 차원에서 중력을 오버월드 처럼 정규화합니다",
-  "description.beyond_earth_giselle_addon.instead_gravity_normalizing_unit": "중력 정규화 기구를 대신할 수 있습니다",
   
   "item.beyond_earth_giselle_addon.oxygen_can": "산소 캔",
   "item.beyond_earth_giselle_addon.press_compressing_die": "압축 틀",
@@ -26,8 +22,6 @@
   
   "enchantment.beyond_earth_giselle_addon.space_breathing": "우주 호흡성",
   "enchantment.beyond_earth_giselle_addon.space_breathing.desc": "Beyond Earth 차원에서 호흡할 수 있습니다\n갑옷의 에너지 혹은 내구도를 소모합니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
-  "enchantment.beyond_earth_giselle_addon.gravity_normalizing": "중력 정규화",
-  "enchantment.beyond_earth_giselle_addon.gravity_normalizing.desc": "Beyond Earth 차원에서 중력을 오버월드 처럼 정규화합니다\n갑옷의 에너지 혹은 내구도를 소모합니다",
   "enchantment.beyond_earth_giselle_addon.space_fire_proof": "우주 내화성",
   "enchantment.beyond_earth_giselle_addon.space_fire_proof.desc": "Beyond Earth 차원에서 불이 붙지 않습니다\n갑옷의 에너지 혹은 내구도를 소모합니다",
   "enchantment.beyond_earth_giselle_addon.venus_acid_proof": "우주 내산성",
@@ -36,7 +30,6 @@
   "container.beyond_earth_giselle_addon.fuel_loader": "연료 적재기",
   "container.beyond_earth_giselle_addon.electric_blast_furnace": "전기 용광로",
   "container.beyond_earth_giselle_addon.advanced_compressor": "고급 압축기",
-  "container.beyond_earth_giselle_addon.gravity_normalizer": "중력 정규화 장치",
   
   "gui.beyond_earth_giselle_addon.auto_pull": "자동 투입",
   "gui.beyond_earth_giselle_addon.auto_eject": "자동 배출",
@@ -64,7 +57,6 @@
   "jei.tooltip.beyond_earth_giselle_addon.incompatible_mode2": "'%s' 모드로 변경 필요",
   "jei.category.beyond_earth_giselle_addon.fuel_loader": "연료 적재기",
   "jei.info.beyond_earth_giselle_addon.fuel_loader": "%2$s 태그가 지정된 유체를 받을 수 있습니다\n%1$s 블럭 이내에 존재하는 '로버' 혹은 '로켓'에게 연료를 채웁니다",
-  "jei.info.beyond_earth_giselle_addon.gravity_normalizer": "범위 내 중력을 오버월드처럼 정규화합니다",
   
   "jei.category.beyond_earth_giselle_addon.alien_trading": "외계인 거래",
   "jer.text.beyond_earth_giselle_addon.alien_trading.notneeded": "필요하지 않음",

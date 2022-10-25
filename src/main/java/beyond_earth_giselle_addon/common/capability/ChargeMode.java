@@ -10,13 +10,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 public enum ChargeMode implements IChargeMode
 {
 	NONE(BeyondEarthAddon.rl("none"), e -> Collections.emptyList()),
 	ARMORS(BeyondEarthAddon.rl("armors"), Entity::getArmorSlots),
-	ALL(BeyondEarthAddon.rl("all"), e -> e.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).lazyMap(ItemHandlerHelper3::getStacks).orElse(NonNullList.withSize(0, ItemStack.EMPTY))),
+	ALL(BeyondEarthAddon.rl("all"), e -> e.getCapability(ForgeCapabilities.ITEM_HANDLER).lazyMap(ItemHandlerHelper3::getStacks).orElse(NonNullList.withSize(0, ItemStack.EMPTY))),
 	//
 	;
 

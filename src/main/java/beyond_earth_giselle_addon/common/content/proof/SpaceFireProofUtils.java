@@ -4,7 +4,7 @@ import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.beyond_earth.events.forge.LivingSetFireInHotPlanetEvent;
+import net.mrscauthd.beyond_earth.common.events.forge.LivingSetFireInHotPlanetEvent;
 
 public class SpaceFireProofUtils extends ProofAbstractUtils
 {
@@ -31,7 +31,7 @@ public class SpaceFireProofUtils extends ProofAbstractUtils
 	@SubscribeEvent
 	public void onProofEnchantment(LivingSpaceFireProofEvent e)
 	{
-		LivingEntity entity = e.getEntityLiving();
+		LivingEntity entity = e.getEntity();
 		ProofSession session = new SpaceFireProofEnchantmentSession(entity, AddonEnchantments.SPACE_FIRE_PROOF.get());
 		e.setProofDuration(session.provide());
 	}

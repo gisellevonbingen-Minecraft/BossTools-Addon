@@ -15,11 +15,6 @@ public class EnchantmentsConfig
 	public final ConfigValue<Integer> space_breathing_durability_duration;
 	public final ConfigValue<Integer> space_breathing_durability_oxygen;
 
-	public final ConfigValue<Integer> gravity_normalizing_energy_using;
-	public final ConfigValue<Integer> gravity_normalizing_energy_duration;
-	public final ConfigValue<Integer> gravity_normalizing_durability_using;
-	public final ConfigValue<Integer> gravity_normalizing_durability_duration;
-
 	public final ConfigValue<Integer> space_fire_proof_energy_using;
 	public final ConfigValue<Integer> space_fire_proof_energy_duration;
 	public final ConfigValue<Integer> space_fire_proof_durability_using;
@@ -53,13 +48,6 @@ public class EnchantmentsConfig
 		this.space_breathing_durabiltiy_using = builder.comment("Durability usage for space breathing").define("durabilityUsing", 1);
 		this.space_breathing_durability_duration = builder.comment("Space breathing duration using durability").define("oxygenDurationUsingDurability", 60);
 		this.space_breathing_durability_oxygen = builder.comment("Oxygen usage using durability").define("durabilityOxygen", 15);
-		builder.pop();
-
-		builder.push("gravity_normalizing");
-		this.gravity_normalizing_energy_using = builder.comment("Energy usage for gravity normalizing").define("energyUsing", 10);
-		this.gravity_normalizing_energy_duration = builder.comment("Gravity Normalizing duration using energy").define("energyDuration", 1);
-		this.gravity_normalizing_durability_using = builder.comment("Durability usage for gravity normalizing").define("durabilityUsing", 1);
-		this.gravity_normalizing_durability_duration = builder.comment("Gravity Normalizing duration using durability").define("durabilityDuration", 60);
 		builder.pop();
 
 		builder.push("space_fire_proof");

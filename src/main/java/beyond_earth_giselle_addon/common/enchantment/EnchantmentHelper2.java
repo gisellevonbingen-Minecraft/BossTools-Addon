@@ -13,7 +13,6 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -61,7 +60,7 @@ public class EnchantmentHelper2
 	{
 		return DESCRIPTION_TEXTS.computeIfAbsent(enchantment, e ->
 		{
-			return new TranslatableComponent(getDescriptionKey(enchantment)).withStyle(ChatFormatting.GOLD);
+			return Component.translatable(getDescriptionKey(enchantment)).withStyle(ChatFormatting.GOLD);
 		});
 	}
 
@@ -76,7 +75,7 @@ public class EnchantmentHelper2
 		{
 			for (ItemStack itemstack : iterable)
 			{
-				int i = EnchantmentHelper.getItemEnchantmentLevel(enchantment, itemstack);
+				int i = EnchantmentHelper.getTagEnchantmentLevel(enchantment, itemstack);
 
 				if (i > level)
 				{

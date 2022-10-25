@@ -6,7 +6,7 @@ import beyond_earth_giselle_addon.common.adapter.FuelAdapterCreateEntityEvent;
 import beyond_earth_giselle_addon.common.entity.BeyondEarthRocketHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.mrscauthd.beyond_earth.entities.RoverEntity;
+import net.mrscauthd.beyond_earth.common.entities.RoverEntity;
 
 public class EventListenerFuelAdapter
 {

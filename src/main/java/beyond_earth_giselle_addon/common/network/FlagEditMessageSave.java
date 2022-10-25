@@ -6,9 +6,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.mrscauthd.beyond_earth.flag.FlagTileEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.FlagBlockEntity;
 
-public class FlagEditMessageSave extends BlockEntityMessage<FlagTileEntity>
+public class FlagEditMessageSave extends BlockEntityMessage<FlagBlockEntity>
 {
 	private GameProfile gameProfile;
 
@@ -18,7 +18,7 @@ public class FlagEditMessageSave extends BlockEntityMessage<FlagTileEntity>
 		this.setGameProfile(null);
 	}
 
-	public FlagEditMessageSave(FlagTileEntity blockEntity, GameProfile gameProfile)
+	public FlagEditMessageSave(FlagBlockEntity blockEntity, GameProfile gameProfile)
 	{
 		super(blockEntity);
 		this.setGameProfile(gameProfile);
@@ -42,7 +42,7 @@ public class FlagEditMessageSave extends BlockEntityMessage<FlagTileEntity>
 	}
 
 	@Override
-	public void onHandle(FlagTileEntity blockEntity, ServerPlayer sender)
+	public void onHandle(FlagBlockEntity blockEntity, ServerPlayer sender)
 	{
 		blockEntity.setOwner(this.getGameProfile());
 		sender.getLevel().getChunkSource().blockChanged(blockEntity.getBlockPos());

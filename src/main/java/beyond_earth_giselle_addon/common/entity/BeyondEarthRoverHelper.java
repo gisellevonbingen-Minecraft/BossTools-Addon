@@ -3,8 +3,8 @@ package beyond_earth_giselle_addon.common.entity;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.mrscauthd.beyond_earth.entities.RoverEntity;
-import net.mrscauthd.beyond_earth.fluids.FluidUtil2;
+import net.mrscauthd.beyond_earth.common.entities.RoverEntity;
+import net.mrscauthd.beyond_earth.common.util.FluidUtil2;
 
 public class BeyondEarthRoverHelper
 {
@@ -34,7 +34,7 @@ public class BeyondEarthRoverHelper
 
 	public static int getFuelCapacity(Entity entity)
 	{
-		return RoverEntity.FUEL_BUCKETS * FluidUtil2.BUCKET_SIZE;
+		return 3 * FluidUtil2.BUCKET_SIZE;
 	}
 
 	private BeyondEarthRoverHelper()

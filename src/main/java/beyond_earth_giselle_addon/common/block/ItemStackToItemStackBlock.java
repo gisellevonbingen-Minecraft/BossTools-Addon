@@ -6,8 +6,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.mrscauthd.beyond_earth.machines.AbstractMachineBlock;
-import net.mrscauthd.beyond_earth.machines.tile.ItemStackToItemStackBlockEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.ItemStackToItemStackBlockEntity;
+import net.mrscauthd.beyond_earth.common.blocks.machines.AbstractMachineBlock;
 
 public abstract class ItemStackToItemStackBlock<T extends ItemStackToItemStackBlockEntity> extends AbstractMachineBlock<T>
 {

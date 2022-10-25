@@ -6,36 +6,27 @@ import beyond_earth_giselle_addon.client.gui.FlagEditScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.mrscauthd.beyond_earth.flag.FlagTileEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.FlagBlockEntity;
 
 public class FlagEditClientUtils
 {
 	@Nullable
-	public static FlagTileEntity getFlagTileEntity(BlockPos blockPos)
+	public static FlagBlockEntity getFlagBlockEntity(BlockPos blockPos)
 	{
 		Minecraft minecraft = Minecraft.getInstance();
 		BlockEntity blockEntity = minecraft.level.getBlockEntity(blockPos);
-
-		if (blockEntity instanceof FlagTileEntity)
-		{
-			return (FlagTileEntity) blockEntity;
-		}
-		else
-		{
-			return null;
-		}
-
+		return blockEntity instanceof FlagBlockEntity flag ? flag : null;
 	}
 
-	public static void showScreen(FlagTileEntity tileEntity)
+	public static void showScreen(FlagBlockEntity blockEntity)
 	{
-		if (tileEntity == null)
+		if (blockEntity == null)
 		{
 			return;
 		}
 
 		Minecraft minecraft = Minecraft.getInstance();
-		minecraft.setScreen(new FlagEditScreen(tileEntity));
+		minecraft.setScreen(new FlagEditScreen(blockEntity));
 	}
 
 }

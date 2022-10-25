@@ -14,7 +14,7 @@ public class MenuTypeDeferredRegister extends DeferredRegisterWrapper<MenuType<?
 {
 	public MenuTypeDeferredRegister(String modid)
 	{
-		super(modid, ForgeRegistries.CONTAINERS);
+		super(modid, ForgeRegistries.MENU_TYPES);
 	}
 
 	public <C extends AbstractContainerMenu> RegistryObject<MenuType<C>> register(String name, IContainerFactory<C> factory)

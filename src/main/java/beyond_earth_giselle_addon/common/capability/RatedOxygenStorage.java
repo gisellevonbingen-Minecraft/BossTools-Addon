@@ -1,7 +1,7 @@
 package beyond_earth_giselle_addon.common.capability;
 
-import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorageHolder;
-import net.mrscauthd.beyond_earth.capabilities.oxygen.OxygenStorage;
+import net.mrscauthd.beyond_earth.common.capabilities.oxygen.IOxygenStorageHolder;
+import net.mrscauthd.beyond_earth.common.capabilities.oxygen.OxygenStorage;
 
 public class RatedOxygenStorage extends OxygenStorage
 {
@@ -19,7 +19,9 @@ public class RatedOxygenStorage extends OxygenStorage
 
 	public RatedOxygenStorage(IOxygenStorageHolder holder, int capacity, int oxygen, int transfer)
 	{
-		super(holder, capacity, oxygen);
+		super(holder);
+		this.setMaxCapacity(capacity);
+		this.setOxygen(oxygen);
 		this.transfer = transfer;
 	}
 

@@ -5,7 +5,8 @@ import com.google.gson.JsonObject;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.mrscauthd.beyond_earth.crafting.ItemStackToItemStackRecipe;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.mrscauthd.beyond_earth.common.data.recipes.ItemStackToItemStackRecipe;
 import thelm.jaopca.api.recipes.IRecipeSerializer;
 
 public class ItemStackToItemStackRecipeSerializer implements IRecipeSerializer
@@ -23,14 +24,14 @@ public class ItemStackToItemStackRecipeSerializer implements IRecipeSerializer
 		ItemStackToItemStackRecipe recipe = this.getRecipe();
 
 		JsonObject json = new JsonObject();
-		json.addProperty("type", recipe.getSerializer().getRegistryName().toString());
+		json.addProperty("type", ForgeRegistries.RECIPE_SERIALIZERS.getKey(recipe.getSerializer()).toString());
 
 		Ingredient input = recipe.getInput();
 		json.add("input", input.toJson());
 
 		ItemStack output = recipe.getOutput();
 		JsonObject outputJson = new JsonObject();
-		outputJson.addProperty("item", output.getItem().getRegistryName().toString());
+		outputJson.addProperty("item", ForgeRegistries.ITEMS.getKey(output.getItem()).toString());
 		outputJson.addProperty("count", output.getCount());
 		json.add("output", outputJson);
 

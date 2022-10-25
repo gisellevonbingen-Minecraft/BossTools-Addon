@@ -8,8 +8,6 @@ import beyond_earth_giselle_addon.common.capability.IChargeMode;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 
 public class TranslationUtils
 {
@@ -19,15 +17,15 @@ public class TranslationUtils
 
 	public static Component description(String key, Component component)
 	{
-		MutableComponent value = new TextComponent("").withStyle(ChatFormatting.WHITE).append(component);
-		return new TranslatableComponent(key).withStyle(ChatFormatting.BLUE).append(": ").append(value);
+		MutableComponent value = Component.literal("").withStyle(ChatFormatting.WHITE).append(component);
+		return Component.translatable(key).withStyle(ChatFormatting.BLUE).append(": ").append(value);
 	}
 
 	public static Component descriptionChargeMode(IChargeMode mode)
 	{
 		if (mode == null)
 		{
-			return TextComponent.EMPTY;
+			return Component.empty();
 		}
 
 		return CHANGE_MODES.computeIfAbsent(mode, k -> description(CHARGE_MODE, k.getDisplayName()));

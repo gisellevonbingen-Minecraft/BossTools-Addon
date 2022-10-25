@@ -7,7 +7,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.SlotItemHandler;
-import net.mrscauthd.beyond_earth.guis.helper.ContainerHelper;
+import net.mrscauthd.beyond_earth.common.menus.helper.MenuHelper;
 
 public class ItemStackToItemStackContainerMenu<O extends ItemStackToItemStackContainerMenu<O, T>, T extends ItemStackToItemStackBlockEntityMultiRecipe> extends AbstractMachineContainerMenu<ItemStackToItemStackContainerMenu<O, T>, T>
 {
@@ -24,7 +24,7 @@ public class ItemStackToItemStackContainerMenu<O extends ItemStackToItemStackCon
 
 		this.handlerEndIndex = this.slots.size();
 		int inventoryTop = this.getInventoryTop();
-		ContainerHelper.addInventorySlots(this, inv, 8, inventoryTop, inventoryTop + 58, this::addSlot);
+		MenuHelper.createInventorySlots(inv, this::addSlot, 8, inventoryTop);
 	}
 
 	protected Slot createInputSlot(T tileEntity)
@@ -75,7 +75,7 @@ public class ItemStackToItemStackContainerMenu<O extends ItemStackToItemStackCon
 	@Override
 	public ItemStack quickMoveStack(Player player, int slotNumber)
 	{
-		return ContainerHelper2.quickMoveStack(this, player, slotNumber, 0, this.getHandlerEndIndex(), this::moveItemStackTo);
+		return MenuHelper.transferStackInSlot(this, player, slotNumber, 0, this.getHandlerEndIndex(), this::moveItemStackTo);
 	}
 
 	public int getHandlerEndIndex()
