@@ -4,6 +4,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
+import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.compat.mekanism.AddonMekanismCommand;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
@@ -13,6 +14,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -60,17 +62,23 @@ public class AddonCommand
 	{
 		public static LiteralArgumentBuilder<CommandSourceStack> builder()
 		{
-			return Commands.literal("planetselection").requires(AddonCommand::isPlayerHasPermission2).executes(PlanetSelection::execute);
+			return Commands.literal("planetselection").requires(AddonCommand::isPlayerHasPermission2) //
+					.executes(ctx -> PlanetSelection.execute(ctx, EntitiesRegistry.TIER_4_ROCKET.get())) //
+					.then(Commands.literal("1").executes(ctx -> PlanetSelection.execute(ctx, EntitiesRegistry.TIER_1_ROCKET.get()))) //
+					.then(Commands.literal("2").executes(ctx -> PlanetSelection.execute(ctx, EntitiesRegistry.TIER_2_ROCKET.get()))) //
+					.then(Commands.literal("3").executes(ctx -> PlanetSelection.execute(ctx, EntitiesRegistry.TIER_3_ROCKET.get()))) //
+					.then(Commands.literal("4").executes(ctx -> PlanetSelection.execute(ctx, EntitiesRegistry.TIER_4_ROCKET.get()))) //
+			;
 		}
 
-		public static int execute(CommandContext<CommandSourceStack> context) throws CommandSyntaxException
+		public static int execute(CommandContext<CommandSourceStack> context, EntityType<?> entityType) throws CommandSyntaxException
 		{
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 			CompoundTag persistentData = player.getPersistentData();
-			persistentData.putBoolean("beyond_earth:planet_selection_gui_open", true);
-			persistentData.putString("beyond_earth:rocket_type", EntitiesRegistry.TIER_4_ROCKET.get().toString());
-			persistentData.putString("beyond_earth:slot0", Items.AIR.getRegistryName().toString());
+			persistentData.putBoolean(BeyondEarthAddon.prl("planet_selection_gui_open").toString(), true);
+			persistentData.putString(BeyondEarthAddon.prl("rocket_type").toString(), entityType.toString());
+			persistentData.putString(BeyondEarthAddon.prl("slot0").toString(), Items.AIR.getRegistryName().toString());
 
 			return 0;
 		}
