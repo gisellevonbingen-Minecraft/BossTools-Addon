@@ -92,6 +92,7 @@ public class AddonCommand
 			LiteralArgumentBuilder<CommandSourceStack> builder = Commands.literal("equip").requires(AddonCommand::isPlayerHasPermission2) //
 					.then(Commands.literal("spacesuit1").executes(Equip::spacesuit1)) //
 					.then(Commands.literal("spacesuit2").executes(Equip::spacesuit2)) //
+					.then(Commands.literal("diamond").executes(Equip::diamond)) //
 			;
 
 			if (AddonCompatibleManager.MEKANISM.isLoaded() == true)
@@ -107,10 +108,10 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.OXYGEN_MASK.get(), AddonEnchantments.SPACE_BREATHING.get()));
-			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.OXYGEN_MASK.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.SPACE_SUIT.get()));
 			player.setItemSlot(EquipmentSlot.LEGS, makeFull(ItemsRegistry.SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.SPACE_BOOTS.get(), AddonEnchantments.GRAVITY_NORMALIZING.get()));
+			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.SPACE_BOOTS.get()));
 
 			return sendEquipedMessage(source);
 		}
@@ -120,10 +121,23 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.NETHERITE_OXYGEN_MASK.get(), AddonEnchantments.SPACE_BREATHING.get()));
-			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.NETHERITE_SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.NETHERITE_OXYGEN_MASK.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.NETHERITE_SPACE_SUIT.get()));
 			player.setItemSlot(EquipmentSlot.LEGS, makeFull(ItemsRegistry.NETHERITE_SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.NETHERITE_SPACE_BOOTS.get(), AddonEnchantments.GRAVITY_NORMALIZING.get()));
+			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.NETHERITE_SPACE_BOOTS.get()));
+
+			return sendEquipedMessage(source);
+		}
+
+		public static int diamond(CommandContext<CommandSourceStack> context) throws CommandSyntaxException
+		{
+			CommandSourceStack source = context.getSource();
+			ServerPlayer player = source.getPlayerOrException();
+
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(Items.DIAMOND_HELMET, AddonEnchantments.SPACE_BREATHING.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, makeFull(Items.DIAMOND_CHESTPLATE, AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlot.LEGS, makeFull(Items.DIAMOND_LEGGINGS));
+			player.setItemSlot(EquipmentSlot.FEET, makeFull(Items.DIAMOND_BOOTS, AddonEnchantments.GRAVITY_NORMALIZING.get()));
 
 			return sendEquipedMessage(source);
 		}
