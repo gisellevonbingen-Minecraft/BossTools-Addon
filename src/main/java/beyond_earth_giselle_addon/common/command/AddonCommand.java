@@ -19,6 +19,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -67,7 +68,7 @@ public class AddonCommand
 							.executes(ctx -> PlanetSelection.execute(ctx, IntegerArgumentType.getInteger(ctx, "tier"))));
 		}
 
-		private static int execute(CommandContext<CommandSourceStack> context, int tier) throws CommandSyntaxException
+		public static int execute(CommandContext<CommandSourceStack> context, int tier) throws CommandSyntaxException
 		{
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
@@ -87,6 +88,7 @@ public class AddonCommand
 			LiteralArgumentBuilder<CommandSourceStack> builder = Commands.literal("equip").requires(AddonCommand::isPlayerHasPermission2) //
 					.then(Commands.literal("spacesuit1").executes(Equip::spacesuit1)) //
 					.then(Commands.literal("spacesuit2").executes(Equip::spacesuit2)) //
+					.then(Commands.literal("diamond").executes(Equip::diamond)) //
 			;
 
 			if (AddonCompatibleManager.MEKANISM.isLoaded() == true)
@@ -102,8 +104,8 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.SPACE_HELMET.get(), AddonEnchantments.SPACE_BREATHING.get()));
-			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.SPACE_HELMET.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.SPACE_SUIT.get()));
 			player.setItemSlot(EquipmentSlot.LEGS, makeFull(ItemsRegistry.SPACE_PANTS.get()));
 			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.SPACE_BOOTS.get()));
 
@@ -115,10 +117,23 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.NETHERITE_SPACE_HELMET.get(), AddonEnchantments.SPACE_BREATHING.get()));
-			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.NETHERITE_SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.NETHERITE_SPACE_HELMET.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.NETHERITE_SPACE_SUIT.get()));
 			player.setItemSlot(EquipmentSlot.LEGS, makeFull(ItemsRegistry.NETHERITE_SPACE_PANTS.get()));
 			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.NETHERITE_SPACE_BOOTS.get()));
+
+			return sendEquipedMessage(source);
+		}
+
+		public static int diamond(CommandContext<CommandSourceStack> context) throws CommandSyntaxException
+		{
+			CommandSourceStack source = context.getSource();
+			ServerPlayer player = source.getPlayerOrException();
+
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(Items.DIAMOND_HELMET, AddonEnchantments.SPACE_BREATHING.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, makeFull(Items.DIAMOND_CHESTPLATE, AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlot.LEGS, makeFull(Items.DIAMOND_LEGGINGS));
+			player.setItemSlot(EquipmentSlot.FEET, makeFull(Items.DIAMOND_BOOTS));
 
 			return sendEquipedMessage(source);
 		}
