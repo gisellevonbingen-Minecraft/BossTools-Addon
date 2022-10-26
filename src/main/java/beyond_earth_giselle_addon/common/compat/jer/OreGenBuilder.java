@@ -2,39 +2,50 @@ package beyond_earth_giselle_addon.common.compat.jer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import jeresources.api.IWorldGenRegistry;
 import jeresources.api.distributions.DistributionBase;
-import jeresources.api.distributions.DistributionCustom;
 import jeresources.api.drop.LootDrop;
+import jeresources.api.restrictions.BiomeRestriction;
+import jeresources.api.restrictions.DimensionRestriction;
 import jeresources.api.restrictions.Restriction;
+import jeresources.entry.WorldGenEntry;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class OreGenBuilder
 {
-	public Block block;
-	public int veinSize;
+	public OreConfiguration ore;
 	public int veinCountPerChunk;
 	public final List<DistributionShape> distributionShapes;
+	public final List<Biome> biomes;
 
-	public Restriction restriction;
+	public DimensionRestriction dimensionRestriction;
 	public boolean silkTouch;
 	public final List<LootDrop> drops;
+
+	public final List<FeatureConfiguration> unsupporedFeatures;
+	public final List<PlacementModifier> unsupporedPlacements;
 
 	public OreGenBuilder()
 	{
 		this.distributionShapes = new ArrayList<>();
+		this.biomes = new ArrayList<>();
 		this.drops = new ArrayList<>();
+
+		this.unsupporedFeatures = new ArrayList<>();
+		this.unsupporedPlacements = new ArrayList<>();
 	}
 
 	public OreGenBuilder defaultDrops()
@@ -46,44 +57,56 @@ public class OreGenBuilder
 	{
 		this.silkTouch = silkTouch;
 		this.drops.clear();
-		this.drops.add(new LootDrop(this.getItemStack()));
+		this.getItemStacks().stream().map(LootDrop::new).forEach(this.drops::add);
 
 		return this;
 	}
 
-	public void register(IWorldGenRegistry registry)
+	public Stream<WorldGenEntry> build()
 	{
-		List<DistributionShape> distributionShapes = this.distributionShapes;
+		List<ItemStack> itemStacks = this.getItemStacks();
+		LootDrop[] drops = this.drops.toArray(new LootDrop[0]);
+		Restriction restriction = new Restriction(this.getBiomeRestriction(), this.dimensionRestriction);
 
-		if (distributionShapes.size() == 0)
+		return this.distributionShapes.stream().flatMap(shape ->
 		{
-			registry.register(this.getItemStack(), new DistributionCustom(new float[0]), this.restriction, this.silkTouch, this.drops.toArray(new LootDrop[0]));
+			DistributionBase distribution = shape.build(this);
+			return itemStacks.stream().map(is -> new WorldGenEntry(is, distribution, restriction, this.silkTouch, drops));
+		});
+	}
+
+	public BiomeRestriction getBiomeRestriction()
+	{
+		int size = this.biomes.size();
+
+		if (size == 0)
+		{
+			return BiomeRestriction.NO_RESTRICTION;
 		}
 		else
 		{
-			for (DistributionShape shape : distributionShapes)
-			{
-				DistributionBase distribution = shape.build(this);
-				registry.register(this.getItemStack(), distribution, this.restriction, this.silkTouch, this.drops.toArray(new LootDrop[0]));
-			}
-
+			Biome[] array = this.biomes.toArray(Biome[]::new);
+			Biome primary = array[0];
+			Biome[] mores = new Biome[size - 1];
+			System.arraycopy(array, 1, mores, 0, mores.length);
+			return new BiomeRestriction(primary, mores);
 		}
 
 	}
 
-	private ItemStack getItemStack()
+	public List<ItemStack> getItemStacks()
 	{
-		return new ItemStack(this.block);
+		return this.ore.targetStates.stream().map(s -> new ItemStack(s.state.getBlock())).toList();
 	}
 
 	public OreGenBuilder placedFeature(PlacedFeature placedFeature)
 	{
 		List<PlacementModifier> placements = placedFeature.placement();
-		List<ConfiguredFeature<?, ?>> children = placedFeature.getFeatures().collect(Collectors.toList());
+		List<ConfiguredFeature<?, ?>> children = placedFeature.getFeatures().toList();
 
 		for (PlacementModifier placementModifier : placements)
 		{
-			this.placementModifier(placementModifier);
+			this.placementModifier(placedFeature, placementModifier);
 		}
 
 		for (ConfiguredFeature<?, ?> child : children)
@@ -98,16 +121,23 @@ public class OreGenBuilder
 	{
 		if (config instanceof OreConfiguration oreConfig)
 		{
-			this.block = oreConfig.targetStates.get(0).state.getBlock();
-			this.veinSize = oreConfig.size;
+			this.ore = oreConfig;
+		}
+		else
+		{
+			this.unsupporedFeatures.add(config);
 		}
 
 		return this;
 	}
 
-	public OreGenBuilder placementModifier(PlacementModifier placementModifier)
+	public OreGenBuilder placementModifier(PlacedFeature placedFeature, PlacementModifier placementModifier)
 	{
-		if (placementModifier instanceof CountPlacement countPlacement)
+		if (placementModifier instanceof InSquarePlacement inSquarePlacement)
+		{
+
+		}
+		else if (placementModifier instanceof CountPlacement countPlacement)
 		{
 			IntProvider intProvider = OreGenHelper.getCountPlacementCount(countPlacement);
 			this.veinCountPerChunk = intProvider.getMinValue();
@@ -116,6 +146,14 @@ public class OreGenBuilder
 		{
 			DistributionShape shape = OreGenHelper.getHeightRangePlacementShape(heightRangePlacement);
 			this.distributionShapes.add(shape);
+		}
+		else if (placementModifier instanceof BiomeFilter biomeFilter)
+		{
+			ForgeRegistries.BIOMES.getValues().stream().filter(p -> p.getGenerationSettings().hasFeature(placedFeature)).forEach(this.biomes::add);
+		}
+		else
+		{
+			this.unsupporedPlacements.add(placementModifier);
 		}
 
 		return this;
