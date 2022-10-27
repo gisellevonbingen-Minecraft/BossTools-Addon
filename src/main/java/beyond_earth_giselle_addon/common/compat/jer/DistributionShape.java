@@ -26,7 +26,7 @@ public abstract class DistributionShape
 		@Override
 		public DistributionBase build(OreGenBuilder builder)
 		{
-			return new DistributionSquare(builder.veinCountPerChunk, builder.veinSize, this.minY, this.maxY);
+			return new DistributionSquare(builder.veinCountPerChunk, builder.ore.size, this.minY, this.maxY);
 		}
 
 	}
@@ -46,7 +46,7 @@ public abstract class DistributionShape
 		{
 			int midY = (this.maxY + this.minY) / 2;
 			int range = (this.maxY - this.minY) / 2;
-			return new DistributionTriangular(builder.veinCountPerChunk, builder.veinSize, midY, range);
+			return new DistributionTriangular(builder.veinCountPerChunk, builder.ore.size, midY, range);
 		}
 
 	}
