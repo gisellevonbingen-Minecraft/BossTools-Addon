@@ -3,13 +3,13 @@ package boss_tools_giselle_addon.common.compat.jer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import boss_tools_giselle_addon.common.compat.jer.DistributionShape.DistributionShapeSqaure;
-import jeresources.api.IWorldGenRegistry;
 import jeresources.api.distributions.DistributionBase;
 import jeresources.api.drop.LootDrop;
 import jeresources.api.restrictions.Restriction;
-import net.minecraft.block.Block;
+import jeresources.entry.WorldGenEntry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DecoratedFeatureConfig;
@@ -18,23 +18,29 @@ import net.minecraft.world.gen.feature.FeatureSpreadConfig;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.gen.placement.NoPlacementConfig;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 
 public class OreGenBuilder
 {
-	public Block block;
-	public int veinSize;
+	public OreFeatureConfig ore;
 	public int veinCountPerChunk;
 	public final List<DistributionShape> distributionShapes;
 
 	public Restriction restriction;
 	public boolean silkTouch;
 	public final List<LootDrop> drops;
+	
+	public final List<IFeatureConfig> unsupporedFeatures;
+	public final List<IPlacementConfig> unsupporedPlacements;
 
 	public OreGenBuilder()
 	{
 		this.distributionShapes = new ArrayList<>();
 		this.drops = new ArrayList<>();
+		
+		this.unsupporedFeatures = new ArrayList<>();
+		this.unsupporedPlacements = new ArrayList<>();
 	}
 
 	public OreGenBuilder defaultDrops()
@@ -51,48 +57,52 @@ public class OreGenBuilder
 		return this;
 	}
 
-	public void register(IWorldGenRegistry registry)
+	public Stream<WorldGenEntry> build()
 	{
-		for (DistributionShape shape : this.distributionShapes)
+		ItemStack itemStack = this.getItemStack();
+		LootDrop[] drops = this.drops.toArray(new LootDrop[0]);
+
+		return this.distributionShapes.stream().map(shape ->
 		{
 			DistributionBase distribution = shape.build(this);
-			registry.register(this.getItemStack(), distribution, this.restriction, this.silkTouch, this.drops.toArray(new LootDrop[0]));
-		}
-
+			return new WorldGenEntry(itemStack, distribution, this.restriction, this.silkTouch, drops);
+		});
 	}
 
-	private ItemStack getItemStack()
+	public ItemStack getItemStack()
 	{
-		return new ItemStack(this.block);
-	}
-
-	public OreGenBuilder featureConfig(ConfiguredFeature<?, ?> configuredFeature)
-	{
-		return this.featureConfig(configuredFeature.config());
+		return new ItemStack(this.ore.state.getBlock());
 	}
 
 	public OreGenBuilder featureConfig(IFeatureConfig config)
 	{
+		List<ConfiguredFeature<?, ?>> usedFeatures = new ArrayList<>();
+
 		if (config instanceof OreFeatureConfig)
 		{
-			OreFeatureConfig oreFeatureConfig = (OreFeatureConfig) config;
-			this.block = oreFeatureConfig.state.getBlock();
-			this.veinSize = oreFeatureConfig.size;
+			this.ore = (OreFeatureConfig) config;
 		}
 		else if (config instanceof DecoratedFeatureConfig)
 		{
-			this.decoratedFeatureConfig(((DecoratedFeatureConfig) config).decorator.config());
+			DecoratedFeatureConfig decoratedFeatureConfig = (DecoratedFeatureConfig) config;
+			this.decoratedFeatureConfig(decoratedFeatureConfig.decorator.config());
+			usedFeatures.add(decoratedFeatureConfig.feature.get());
 		}
 		else if (config instanceof FeatureSpreadConfig)
 		{
 			this.decoratedFeatureConfig((FeatureSpreadConfig) config);
 		}
+		else
+		{
+			this.unsupporedFeatures.add(config);
+		}
 
 		List<ConfiguredFeature<?, ?>> children = config.getFeatures().collect(Collectors.toList());
+		children.removeAll(usedFeatures);
 
 		for (ConfiguredFeature<?, ?> child : children)
 		{
-			this.featureConfig(child);
+			this.featureConfig(child.config);
 		}
 
 		return this;
@@ -115,6 +125,14 @@ public class OreGenBuilder
 			shape.minY = minY;
 			shape.maxY = maxY;
 			this.distributionShapes.add(shape);
+		}
+		else if (config instanceof NoPlacementConfig)
+		{
+
+		}
+		else
+		{
+			this.unsupporedPlacements.add(config);
 		}
 
 		return this;
