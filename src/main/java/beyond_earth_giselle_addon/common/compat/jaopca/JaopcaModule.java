@@ -138,8 +138,10 @@ public class JaopcaModule implements IModule
 		ResourceLocation ingotsTag = miscHelper.getTagLocation("ingots", material.getName());
 		IItemInfo ingredientInfo = api.itemFormType().getMaterialFormInfo(form, material);
 
-		ResourceLocation id = AddonJaopcaCompat.rl(BeyondEarthAddon.PMODID + ".recycling." + material.getName() + "_ingot_from_" + recipeSuffix);
-		api.registerSmeltingRecipe(id, ingredientInfo, ingotsTag, 1, 0.0F, 200);
+		ResourceLocation smelting_id = AddonJaopcaCompat.rl(BeyondEarthAddon.PMODID + ".smelting.recycling." + material.getName() + "_ingot_from_" + recipeSuffix);
+		api.registerSmeltingRecipe(smelting_id, ingredientInfo, ingotsTag, 1, 0.0F, 200);
+		ResourceLocation blasting_id = AddonJaopcaCompat.rl(BeyondEarthAddon.PMODID + ".blasting.recycling." + material.getName() + "_ingot_from_" + recipeSuffix);
+		api.registerBlastingRecipe(blasting_id, ingredientInfo, ingotsTag, 1, 0.0F, 100);
 	}
 
 	public void registerIngotRollingRecipe(IMaterial material)
