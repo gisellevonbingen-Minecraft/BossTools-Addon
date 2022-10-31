@@ -158,6 +158,12 @@ dependencies {
     implementation fg.deobf("curse.maven:cofh-core-69162:${cofh_core_file}")
     implementation fg.deobf("curse.maven:thermal-foundation-222880:${thermal_foundation_file}")
     implementation fg.deobf("curse.maven:thermal-expansion-69163:${thermal_expansion_file}")
+    
+    // Patchouli
+    implementation fg.deobf("curse.maven:patchouli-306770:${patchouli_file}")
+    
+    // PneumaticCraft: Repressurized
+    implementation fg.deobf("curse.maven:pneumaticcraft-repressurized-281849:${pneumaticcraft_repressurized_file}")
 
 }
 

@@ -13,6 +13,7 @@ public class CommonConfig
 	public final RecipesConfig recipes;
 
 	public final MekanismConfig mekanism;
+	public final PneumaticCraftConfig pneumaticcraft;
 
 	public CommonConfig(ForgeConfigSpec.Builder builder)
 	{
@@ -36,6 +37,10 @@ public class CommonConfig
 
 		builder.push("mekanism");
 		this.mekanism = new MekanismConfig(builder);
+		builder.pop();
+
+		builder.push("pneumaticcraft");
+		this.pneumaticcraft = new PneumaticCraftConfig(builder);
 		builder.pop();
 
 		builder.pop();
