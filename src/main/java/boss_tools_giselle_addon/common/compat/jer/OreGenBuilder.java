@@ -30,7 +30,7 @@ public class OreGenBuilder
 	public Restriction restriction;
 	public boolean silkTouch;
 	public final List<LootDrop> drops;
-	
+
 	public final List<IFeatureConfig> unsupporedFeatures;
 	public final List<IPlacementConfig> unsupporedPlacements;
 
@@ -38,7 +38,7 @@ public class OreGenBuilder
 	{
 		this.distributionShapes = new ArrayList<>();
 		this.drops = new ArrayList<>();
-		
+
 		this.unsupporedFeatures = new ArrayList<>();
 		this.unsupporedPlacements = new ArrayList<>();
 	}
