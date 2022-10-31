@@ -66,5 +66,17 @@
   "jer.dim.beyond_earth:venus": "Beyond Earth: 금성",
   "jer.dim.beyond_earth:glacio": "Beyond Earth: 글라시오",
   
+  "item.beyond_earth_giselle_addon.pneumatic_space_breathing_upgrade": "우주 호흡 업그레이드",
+  "item.beyond_earth_giselle_addon.pneumatic_space_fire_proof_upgrade": "우주 내화성 업그레이드",
+  "item.beyond_earth_giselle_addon.pneumatic_venus_acid_proof_upgrade": "우주 내산성 업그레이드",
+
+  "pneumaticcraft.armor.upgrade.beyond_earth_giselle_addon.space_breathing" : "우주 호흡",
+  "pneumaticcraft.armor.upgrade.beyond_earth_giselle_addon.space_fire_proof" : "우주 내화성",
+  "pneumaticcraft.armor.upgrade.beyond_earth_giselle_addon.venus_acid_proof" : "우주 내산성",
+
+  "pneumaticcraft.gui.tab.info.item.armor.generic.beyond_earth_giselle_addon.space_breathingUpgrade": "Beyond Earth 차원에서 호흡할 수 있습니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
+  "pneumaticcraft.gui.tab.info.item.armor.generic.beyond_earth_giselle_addon.space_fire_proofUpgrade": "Beyond Earth 차원에서 불이 붙지 않습니다",
+  "pneumaticcraft.gui.tab.info.item.armor.generic.beyond_earth_giselle_addon.venus_acid_proofUpgrade": "Beyond Earth 차원에서 산성비 피해를 입지 않습니다",
+  
   "_eof": "eof"
 }
