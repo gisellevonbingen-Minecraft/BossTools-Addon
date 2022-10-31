@@ -8,6 +8,7 @@ import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.compat.mekanism.AddonMekanismCommand;
 import beyond_earth_giselle_addon.common.compat.pneumaticcraft.AddonPneumaticCraftCommand;
+import beyond_earth_giselle_addon.common.compat.redstonearsenal.AddonRSACommand;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -99,6 +100,11 @@ public class AddonCommand
 			if (AddonCompatibleManager.MEKANISM.isLoaded() == true)
 			{
 				builder.then(Commands.literal("mekasuit").executes(AddonMekanismCommand::mekasuit));
+			}
+
+			if (AddonCompatibleManager.REDSTONE_ARSENAL.isLoaded() == true)
+			{
+				builder.then(Commands.literal("flux_armor").executes(AddonRSACommand::fluxarmor));
 			}
 
 			if (AddonCompatibleManager.PNEUMATICCRAFT.isLoaded() == true)
