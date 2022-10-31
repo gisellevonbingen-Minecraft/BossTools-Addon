@@ -8,6 +8,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.compat.mekanism.AddonMekanismCommand;
+import beyond_earth_giselle_addon.common.compat.pneumaticcraft.AddonPneumaticCraftCommand;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -94,6 +95,11 @@ public class AddonCommand
 			if (AddonCompatibleManager.MEKANISM.isLoaded() == true)
 			{
 				builder.then(Commands.literal("mekasuit").executes(AddonMekanismCommand::mekasuit));
+			}
+
+			if (AddonCompatibleManager.PNEUMATICCRAFT.isLoaded() == true)
+			{
+				builder.then(Commands.literal("pneumatic_armor").executes(AddonPneumaticCraftCommand::pneumatic_armor));
 			}
 
 			return builder;

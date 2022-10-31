@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
 
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -31,7 +33,17 @@ public class DeferredRegisterWrapper<T>
 		this(modid, DeferredRegister.create(reg, modid));
 	}
 
+	protected DeferredRegisterWrapper(String modid, ResourceKey<? extends Registry<T>> reg)
+	{
+		this(modid, DeferredRegister.create(reg, modid));
+	}
+
 	public static <T> DeferredRegisterWrapper<T> create(String modid, IForgeRegistry<T> reg)
+	{
+		return new DeferredRegisterWrapper<>(modid, reg);
+	}
+
+	public static <T> DeferredRegisterWrapper<T> create(String modid, ResourceKey<? extends Registry<T>> reg)
 	{
 		return new DeferredRegisterWrapper<>(modid, reg);
 	}

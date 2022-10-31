@@ -34,7 +34,7 @@ minecraft {
             property "forge.logging.markers", "REGISTRIES"
             property "forge.logging.console.level", "debug"
             property "forge.enabledGameTestNamespaces", "beyond_earth_giselle_addon"
-            // arg "-mixin.config=beyond_earth_giselle_addon.mixin.json"
+            arg "-mixin.config=beyond_earth_giselle_addon.mixin.json"
 
             mods {
                 beyond_earth_giselle_addon {
@@ -148,6 +148,12 @@ dependencies {
     implementation fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}")
     runtimeOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}:generators")
 
+    // Patchouli
+    implementation fg.deobf("curse.maven:patchouli-306770:${patchouli_file}")
+
+    // PneumaticCraft: Repressurized
+    implementation fg.deobf("curse.maven:pneumaticcraft-repressurized-281849:${pneumaticcraft_repressurized_file}")
+
 }
 
 jar {
@@ -159,7 +165,8 @@ jar {
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "gisellevonbingen",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs"            : "beyond_earth_giselle_addon.mixin.json"
         ])
     }
 }
