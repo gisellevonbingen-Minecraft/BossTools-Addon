@@ -65,7 +65,7 @@ public class SpaceBreathingClientHandler<T extends IArmorUpgradeHandler<?>> exte
 		{
 			Player player = armorHandler.getPlayer();
 			IGaugeValue oxygenGauge = OxygenChargerUtils.getInventoryOxygenChargerStorage(player);
-			this.oxygenComponent =GaugeTextHelper .getPercentText(oxygenGauge).build();
+			this.oxygenComponent = GaugeTextHelper.getPercentText(oxygenGauge).build();
 			this.oxygenEmpty = oxygenGauge.getAmount() == 0;
 		}
 		else

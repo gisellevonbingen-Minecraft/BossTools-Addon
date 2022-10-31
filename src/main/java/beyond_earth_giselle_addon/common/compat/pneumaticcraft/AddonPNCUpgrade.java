@@ -1,16 +1,14 @@
 package beyond_earth_giselle_addon.common.compat.pneumaticcraft;
 
 import me.desht.pneumaticcraft.api.item.PNCUpgrade;
+import me.desht.pneumaticcraft.common.core.ModUpgrades;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistry;
-import net.minecraftforge.registries.RegistryManager;
 
 public class AddonPNCUpgrade extends PNCUpgrade
 {
 	public static ResourceLocation getItemName(AddonPNCUpgrade upgrade, int tier)
 	{
-		ForgeRegistry<PNCUpgrade> registry = RegistryManager.ACTIVE.getRegistry(AddonPneumaticCraftUpgradeDeferredRegister.REGISTRY_KEY);
-		ResourceLocation name = registry.getKey(upgrade);
+		ResourceLocation name = ModUpgrades.UPGRADES.get().getKey(upgrade);
 		return new ResourceLocation(name.getNamespace(), getItemName(name.getPath(), upgrade.getMaxTier(), tier));
 	}
 
@@ -39,5 +37,4 @@ public class AddonPNCUpgrade extends PNCUpgrade
 		super(maxTier, depModIds);
 	}
 
-	
 }

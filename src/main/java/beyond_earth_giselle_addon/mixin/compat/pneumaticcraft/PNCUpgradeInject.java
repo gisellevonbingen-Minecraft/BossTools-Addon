@@ -21,7 +21,7 @@ public abstract class PNCUpgradeInject
 		if (self instanceof AddonPNCUpgrade upgrade)
 		{
 			Item item = ForgeRegistries.ITEMS.getValue(AddonPNCUpgrade.getItemName(upgrade, tier));
-			callbackInfo.setReturnValue(item);;
+			callbackInfo.setReturnValue(item);
 		}
 
 	}

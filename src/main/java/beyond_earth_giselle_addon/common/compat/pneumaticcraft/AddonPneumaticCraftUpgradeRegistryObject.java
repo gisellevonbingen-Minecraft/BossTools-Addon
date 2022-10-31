@@ -24,6 +24,7 @@ public class AddonPneumaticCraftUpgradeRegistryObject<U extends PNCUpgrade, I ex
 		return this.upgrade.getId();
 	}
 
+	@Override
 	public U get()
 	{
 		return this.upgrade.get();

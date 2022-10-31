@@ -17,7 +17,7 @@ public class SpaceBreathingOption<T extends IArmorUpgradeClientHandler<?>> exten
 	{
 		super.populateGui(gui);
 
-        gui.addWidget(ClientArmorRegistry.getInstance().makeStatMoveButton(30, 128, this.getClientUpgradeHandler()));
+		gui.addWidget(ClientArmorRegistry.getInstance().makeStatMoveButton(30, 128, this.getClientUpgradeHandler()));
 	}
-	
+
 }
