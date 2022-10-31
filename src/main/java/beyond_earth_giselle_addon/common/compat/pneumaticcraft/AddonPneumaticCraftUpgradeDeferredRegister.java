@@ -11,6 +11,7 @@ import java.util.function.Supplier;
 
 import beyond_earth_giselle_addon.common.registries.DeferredRegisterWrapper;
 import me.desht.pneumaticcraft.api.item.PNCUpgrade;
+import me.desht.pneumaticcraft.common.core.ModUpgrades;
 import me.desht.pneumaticcraft.common.item.UpgradeItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -20,7 +21,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class AddonPneumaticCraftUpgradeDeferredRegister
 {
-	public static final ResourceLocation REGISTRY_NAME = AddonPneumaticCraftCompat.rl("upgrades");
+	public static final ResourceLocation REGISTRY_NAME = ModUpgrades.UPGRADES_DEFERRED.getRegistryName();
 
 	private final String modid;
 	private final Set<AddonPneumaticCraftUpgradeRegistryObject<?, ?>> objects;
