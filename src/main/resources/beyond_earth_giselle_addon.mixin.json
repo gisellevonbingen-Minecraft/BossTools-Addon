@@ -3,7 +3,7 @@
   "package": "beyond_earth_giselle_addon.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "compat.pneumaticcraft.PNCUpgradeInject"
+    "compat.pneumaticcraft.ApplicableUpgradesDBInject"
   ],
   "injectors": {
     "defaultRequire": 1
