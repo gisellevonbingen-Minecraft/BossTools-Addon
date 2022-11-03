@@ -20,7 +20,7 @@ public class LazyReference<T> implements Supplier<T>
 		}
 		else
 		{
-			throw new IllegalCallerException();
+			throw new RuntimeException("Invalid Access");
 		}
 
 	}
