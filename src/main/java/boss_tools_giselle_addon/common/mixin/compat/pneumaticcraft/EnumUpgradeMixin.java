@@ -7,7 +7,6 @@ import java.util.List;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,7 +26,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 @Unique
 public abstract class EnumUpgradeMixin
 {
-	@Shadow
 	@Final
 	@Mutable
 	private static EnumUpgrade[] $VALUES;
@@ -60,7 +58,7 @@ public abstract class EnumUpgradeMixin
 		List<EnumUpgrade> variants = new ArrayList<>(Arrays.asList($VALUES));
 		EnumUpgrade upgrade = factory.make(variants.get(variants.size() - 1).ordinal() + 1);
 		variants.add(upgrade);
-		$VALUES = variants.toArray(EnumUpgrade[]::new);
+		$VALUES = variants.toArray(new EnumUpgrade[0]);
 		return upgrade;
 	}
 

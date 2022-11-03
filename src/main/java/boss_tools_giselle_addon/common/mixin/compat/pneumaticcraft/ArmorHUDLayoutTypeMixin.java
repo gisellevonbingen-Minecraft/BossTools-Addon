@@ -8,7 +8,6 @@ import java.util.function.BiConsumer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,7 +24,6 @@ import me.desht.pneumaticcraft.common.config.subconfig.BossToolsAddonArmorHUDLay
 @Unique
 public abstract class ArmorHUDLayoutTypeMixin
 {
-	@Shadow
 	@Final
 	@Mutable
 	private static LayoutType[] $VALUES;
@@ -52,7 +50,7 @@ public abstract class ArmorHUDLayoutTypeMixin
 		List<LayoutType> variants = new ArrayList<>(Arrays.asList($VALUES));
 		LayoutType layoutType = factory.make(variants.get(variants.size() - 1).ordinal() + 1);
 		variants.add(layoutType);
-		$VALUES = variants.toArray(LayoutType[]::new);
+		$VALUES = variants.toArray(new LayoutType[0]);
 		return layoutType;
 	}
 
