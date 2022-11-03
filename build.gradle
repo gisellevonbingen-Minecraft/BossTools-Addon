@@ -147,6 +147,13 @@ dependencies {
     // Craft Tweaker
     implementation fg.deobf("com.blamejared.crafttweaker:CraftTweaker-${mc_version}:${crafttweaker_version}")
     implementation fg.deobf("com.blamejared.jeitweaker:JEITweaker-${mc_version}:${jeitweaker_version}")
+
+    // Patchouli
+    implementation fg.deobf("curse.maven:patchouli-306770:${patchouli_file}")
+
+    // PneumaticCraft: Repressurized
+    implementation fg.deobf("curse.maven:pneumaticcraft-repressurized-281849:${pneumaticcraft_repressurized_file}")
+    
 }
 
 jar {

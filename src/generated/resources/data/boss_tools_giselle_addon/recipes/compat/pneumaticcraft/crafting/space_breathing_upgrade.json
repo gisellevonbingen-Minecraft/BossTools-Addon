@@ -1,0 +1,28 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "pneumaticcraft"
+		}
+	],
+	"pattern": [
+		"LXL",
+		"XCX",
+		"LXL"
+	],
+	"key": {
+		"L": {
+			"tag": "pneumaticcraft:upgrade_components"
+		},
+		"X": {
+			"item": "boss_tools:moon_stone"
+		},
+		"C": {
+			"item": "boss_tools:space_suit"
+		}
+	},
+	"result": {
+		"item": "boss_tools_giselle_addon:pneumatic_space_breathing_upgrade"
+	}
+}

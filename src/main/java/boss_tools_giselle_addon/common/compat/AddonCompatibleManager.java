@@ -11,6 +11,7 @@ import boss_tools_giselle_addon.common.compat.jaopca.AddonJaopcaCompat;
 import boss_tools_giselle_addon.common.compat.jei.AddonJeiCompat;
 import boss_tools_giselle_addon.common.compat.jer.AddonJerCompat;
 import boss_tools_giselle_addon.common.compat.mekanism.AddonMekanismCompat;
+import boss_tools_giselle_addon.common.compat.pneumaticcraft.AddonPneumaticCraftCompat;
 import boss_tools_giselle_addon.common.compat.redstonearsenal.AddonRedstoneArsenalCompat;
 import boss_tools_giselle_addon.common.compat.theoneprobe.AddonTOPCompat;
 import boss_tools_giselle_addon.common.compat.thermal.AddonThermalCompat;
@@ -26,6 +27,7 @@ public class AddonCompatibleManager
 	public static final AddonIECompat IMMERSIVE_ENGINEERING;
 	public static final AddonJaopcaCompat JAOPCA;
 	public static final AddonCuriosCompat CURIOS;
+	public static final AddonPneumaticCraftCompat PNEUMATICCRAFT;
 
 	public static final AddonHwylaCompat HWYLA;
 	public static final AddonTOPCompat TOP;
@@ -41,6 +43,8 @@ public class AddonCompatibleManager
 		mods.add(IMMERSIVE_ENGINEERING = new AddonIECompat());
 		mods.add(JAOPCA = new AddonJaopcaCompat());
 		mods.add(CURIOS = new AddonCuriosCompat());
+		mods.add(PNEUMATICCRAFT = new AddonPneumaticCraftCompat());
+
 		mods.add(HWYLA = new AddonHwylaCompat());
 		mods.add(TOP = new AddonTOPCompat());
 

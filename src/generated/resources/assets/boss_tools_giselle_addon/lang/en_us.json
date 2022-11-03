@@ -86,5 +86,20 @@
   "biome.boss_tools.mercury_magma": "Mercury Magma",
   "biome.boss_tools.mars_ice_spike": "Mars Ice",
   
+  "item.boss_tools_giselle_addon.pneumatic_space_breathing_upgrade": "Space Breathing Upgrade",
+  "item.boss_tools_giselle_addon.pneumatic_gravity_normalizing_upgrade": "Gravity Normalizing Upgrade",
+  "item.boss_tools_giselle_addon.pneumatic_space_fire_proof_upgrade": "Space Fire Proof Upgrade",
+  "item.boss_tools_giselle_addon.pneumatic_venus_acid_proof_upgrade": "Venus Acid Proof Upgrade",
+
+  "pneumaticcraft.armor.upgrade.boss_tools_giselle_addon.space_breathing" : "Space Breathing",
+  "pneumaticcraft.armor.upgrade.boss_tools_giselle_addon.gravity_normalizing" : "Gravity Normalizing",
+  "pneumaticcraft.armor.upgrade.boss_tools_giselle_addon.space_fire_proof" : "Space Fire Proof",
+  "pneumaticcraft.armor.upgrade.boss_tools_giselle_addon.venus_acid_proof" : "Venus Acid Proof",
+
+  "pneumaticcraft.gui.tab.info.item.armor.generic.boss_tools_giselle_addon.space_breathingUpgrade": "Can breath in Space-BossTools dimensions\nRequire enabled 'Oxygen Can' in inventory",
+  "pneumaticcraft.gui.tab.info.item.armor.generic.boss_tools_giselle_addon.gravity_normalizingUpgrade": "Normalize gravity like overworld in Space-BossTools dimensions",
+  "pneumaticcraft.gui.tab.info.item.armor.generic.boss_tools_giselle_addon.space_fire_proofUpgrade": "Don't set fire to player in Space-BossTools dimensions",
+  "pneumaticcraft.gui.tab.info.item.armor.generic.boss_tools_giselle_addon.venus_acid_proofUpgrade": "Don't damage from acid rain in Space-BossTools dimensions",
+  
   "_eof": "eof"
 }
