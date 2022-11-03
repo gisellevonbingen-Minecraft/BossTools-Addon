@@ -96,10 +96,10 @@
   "pneumaticcraft.armor.upgrade.boss_tools_giselle_addon.space_fire_proof" : "Space Fire Proof",
   "pneumaticcraft.armor.upgrade.boss_tools_giselle_addon.venus_acid_proof" : "Venus Acid Proof",
 
-  "pneumaticcraft.gui.tab.info.item.armor.generic.boss_tools_giselle_addon.space_breathingUpgrade": "Can breath in Space-BossTools dimensions\nRequire enabled 'Oxygen Can' in inventory",
-  "pneumaticcraft.gui.tab.info.item.armor.generic.boss_tools_giselle_addon.gravity_normalizingUpgrade": "Normalize gravity like overworld in Space-BossTools dimensions",
-  "pneumaticcraft.gui.tab.info.item.armor.generic.boss_tools_giselle_addon.space_fire_proofUpgrade": "Don't set fire to player in Space-BossTools dimensions",
-  "pneumaticcraft.gui.tab.info.item.armor.generic.boss_tools_giselle_addon.venus_acid_proofUpgrade": "Don't damage from acid rain in Space-BossTools dimensions",
+  "pneumaticcraft.gui.tab.info.item.armor.generic.space_breathingUpgrade": "Can breath in Space-BossTools dimensions\nRequire enabled 'Oxygen Can' in inventory",
+  "pneumaticcraft.gui.tab.info.item.armor.generic.gravity_normalizingUpgrade": "Normalize gravity like overworld in Space-BossTools dimensions",
+  "pneumaticcraft.gui.tab.info.item.armor.generic.space_fire_proofUpgrade": "Don't set fire to player in Space-BossTools dimensions",
+  "pneumaticcraft.gui.tab.info.item.armor.generic.venus_acid_proofUpgrade": "Don't damage from acid rain in Space-BossTools dimensions",
   
   "_eof": "eof"
 }

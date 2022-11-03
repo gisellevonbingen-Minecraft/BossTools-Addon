@@ -10,9 +10,6 @@ import boss_tools_giselle_addon.common.compat.pneumaticcraft.item.ItemMachineAdd
 import boss_tools_giselle_addon.common.registries.DeferredRegisterWrapper;
 import boss_tools_giselle_addon.common.registries.ItemDeferredRegister;
 import me.desht.pneumaticcraft.api.item.EnumUpgrade;
-import me.desht.pneumaticcraft.common.core.ModItems;
-import me.desht.pneumaticcraft.common.util.upgrade.ApplicableUpgradesDB;
-import me.desht.pneumaticcraft.common.util.upgrade.BossToolsAddonUpgradesDBSetup;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -43,15 +40,6 @@ public class AddonPneumaticCraftItems
 		}
 
 		return Collections.unmodifiableList(items);
-	}
-
-	public static void setupDB()
-	{
-		ApplicableUpgradesDB db = ApplicableUpgradesDB.getInstance();
-		db.addApplicableUpgrades(ModItems.PNEUMATIC_HELMET.get(), BossToolsAddonUpgradesDBSetup.AddonBuilder.of(AddonEnumUpgrade.SPACE_BREATHING.get(), 1));
-		db.addApplicableUpgrades(ModItems.PNEUMATIC_BOOTS.get(), BossToolsAddonUpgradesDBSetup.AddonBuilder.of(AddonEnumUpgrade.GRAVITY_NORMALIZING.get(), 1));
-		db.addApplicableUpgrades(ModItems.PNEUMATIC_CHESTPLATE.get(), BossToolsAddonUpgradesDBSetup.AddonBuilder.of(AddonEnumUpgrade.SPACE_FIRE_PROOF.get(), 1));
-		db.addApplicableUpgrades(ModItems.PNEUMATIC_CHESTPLATE.get(), BossToolsAddonUpgradesDBSetup.AddonBuilder.of(AddonEnumUpgrade.VENUS_ACID_PROOF.get(), 1));
 	}
 
 }
