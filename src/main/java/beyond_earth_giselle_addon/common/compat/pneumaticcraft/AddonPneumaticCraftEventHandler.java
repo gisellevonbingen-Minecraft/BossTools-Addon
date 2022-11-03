@@ -45,18 +45,18 @@ public class AddonPneumaticCraftEventHandler
 
 		if (airHandler != null && useAir(airHandler, airUsing, true) == true)
 		{
-			int oyxgenUsing = AddonConfigs.Common.pneumaticcraft.upgrade_space_breating_oxygenDuration.get();
-			IOxygenCharger oxygenCharnger = OxygenChargerUtils.firstExtractableOxygenCharger(entity, oyxgenUsing, stack);
+			int oxygenUsing = 1;
+			IOxygenCharger oxygenCharnger = OxygenChargerUtils.firstExtractableOxygenCharger(entity, oxygenUsing, stack);
 
 			if (oxygenCharnger != null)
 			{
 				if (entity.level.isClientSide() == false)
 				{
-					oxygenCharnger.getOxygenStorage().extractOxygen(oyxgenUsing, false);
+					oxygenCharnger.getOxygenStorage().extractOxygen(oxygenUsing, false);
 					useAir(airHandler, airUsing, false);
 				}
 
-				e.setProofDuration(4);
+				e.setProofDuration(AddonConfigs.Common.pneumaticcraft.upgrade_space_breating_oxygenDuration.get());
 			}
 
 		}
