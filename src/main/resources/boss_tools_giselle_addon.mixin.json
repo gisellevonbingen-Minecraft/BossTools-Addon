@@ -5,7 +5,11 @@
 	"mixins": [
 		"PlanetSelectionGuiMixin",
 		"WorkbenchingRecipeMixin",
-		"WorkbenchTileEntityMixin"
+		"WorkbenchTileEntityMixin",
+		"compat.pneumaticcraft.ArmorHUDLayoutMixin",
+		"compat.pneumaticcraft.ArmorHUDLayoutTypeMixin",
+		"compat.pneumaticcraft.EnumUpgradeMixin",
+		"compat.pneumaticcraft.ModItemsMixin"
 	],
 	"client": [
 		"PlanetSelectionGuiWindowMixin"

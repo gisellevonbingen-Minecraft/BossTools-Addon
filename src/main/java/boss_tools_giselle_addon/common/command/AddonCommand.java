@@ -7,6 +7,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.compat.AddonCompatibleManager;
 import boss_tools_giselle_addon.common.compat.mekanism.AddonMekanismCommand;
+import boss_tools_giselle_addon.common.compat.pneumaticcraft.AddonPneumaticCraftCommand;
 import boss_tools_giselle_addon.common.compat.redstonearsenal.AddonRSACommand;
 import boss_tools_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.command.CommandSource;
@@ -97,6 +98,11 @@ public class AddonCommand
 			if (AddonCompatibleManager.MEKANISM.isLoaded() == true)
 			{
 				builder.then(Commands.literal("mekasuit").executes(AddonMekanismCommand::mekasuit));
+			}
+
+			if (AddonCompatibleManager.PNEUMATICCRAFT.isLoaded() == true)
+			{
+				builder.then(Commands.literal("pneumatic_armor").executes(AddonPneumaticCraftCommand::pneumatic_armor));
 			}
 
 			if (AddonCompatibleManager.REDSTONE_ARSENAL.isLoaded() == true)
