@@ -9,7 +9,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class AddonPneumaticCraftCompat extends AddonCompatibleMod
@@ -36,21 +35,11 @@ public class AddonPneumaticCraftCompat extends AddonCompatibleMod
 		IEventBus fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		AddonPneumaticCraftItems.ITEMS.register(fml_bus);
 		AddonCommonUpgradeHandlers.register();
-		fml_bus.addListener(this::commonSetup);
 
 		IEventBus forge_bus = MinecraftForge.EVENT_BUS;
 		forge_bus.register(AddonPneumaticCraftEventHandler.class);
 
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> AddonPneumaticCraftCompatClient::new);
-	}
-
-	private void commonSetup(FMLCommonSetupEvent event)
-	{
-		event.enqueueWork(() ->
-		{
-			AddonPneumaticCraftItems.setupDB();
-		});
-
 	}
 
 }
