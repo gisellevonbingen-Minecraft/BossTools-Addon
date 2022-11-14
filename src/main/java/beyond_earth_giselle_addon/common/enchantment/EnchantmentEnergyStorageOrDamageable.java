@@ -1,10 +1,10 @@
 package beyond_earth_giselle_addon.common.enchantment;
 
+import beyond_earth_giselle_addon.common.util.ItemStackUtils;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.energy.CapabilityEnergy;
 
 public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 {
@@ -28,7 +28,7 @@ public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 		}
 		else
 		{
-			return stack.getCapability(CapabilityEnergy.ENERGY).isPresent();
+			return ItemStackUtils.hasUseableResources(stack);
 		}
 
 	}
@@ -39,16 +39,19 @@ public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 		return false;
 	}
 
+	@Override
 	public int getMinCost(int level)
 	{
 		return 1;
 	}
 
+	@Override
 	public int getMaxCost(int level)
 	{
 		return this.getMinCost(level);
 	}
 
+	@Override
 	public int getMaxLevel()
 	{
 		return 1;

@@ -86,10 +86,8 @@ public class EventListenerEnchantmentTooltip
 			{
 				for (Component line : lines)
 				{
-					if (line instanceof TranslatableComponent)
+					if (line instanceof TranslatableComponent tline)
 					{
-						TranslatableComponent tline = (TranslatableComponent) line;
-
 						if (tline.getKey().equals(enchantment.getDescriptionId()) == true)
 						{
 							lines.add(lines.indexOf(line) + 1, EnchantmentHelper2.getDescriptionText(enchantment));

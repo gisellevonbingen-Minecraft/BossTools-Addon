@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beyond_earth_giselle_addon.common.BeyondEarthAddon;
-import beyond_earth_giselle_addon.common.item.crafting.RecyclingBlastingRecipe;
 import beyond_earth_giselle_addon.common.item.crafting.ExtrudingRecipe;
 import beyond_earth_giselle_addon.common.item.crafting.ExtrudingRecipeSerializer;
-import beyond_earth_giselle_addon.common.item.crafting.RollingRecipe;
-import beyond_earth_giselle_addon.common.item.crafting.RollingRecipeSerializer;
+import beyond_earth_giselle_addon.common.item.crafting.RecyclingBlastingRecipe;
 import beyond_earth_giselle_addon.common.item.crafting.RecyclingSmeltingRecipe;
 import beyond_earth_giselle_addon.common.item.crafting.RecyclingVanillaRecipeSerializer;
+import beyond_earth_giselle_addon.common.item.crafting.RollingRecipe;
+import beyond_earth_giselle_addon.common.item.crafting.RollingRecipeSerializer;
 import beyond_earth_giselle_addon.common.item.crafting.conditions.RecyclingEnabledCondition;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.RecipeSerializer;

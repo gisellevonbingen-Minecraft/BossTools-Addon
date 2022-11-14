@@ -1,0 +1,28 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "pneumaticcraft"
+		}
+	],
+	"pattern": [
+		"LXL",
+		"XCX",
+		"LXL"
+	],
+	"key": {
+		"L": {
+			"tag": "pneumaticcraft:upgrade_components"
+		},
+		"X": {
+			"item": "beyond_earth:mars_stone"
+		},
+		"C": {
+			"item": "beyond_earth:space_boots"
+		}
+	},
+	"result": {
+		"item": "beyond_earth_giselle_addon:pneumatic_gravity_normalizing_upgrade"
+	}
+}

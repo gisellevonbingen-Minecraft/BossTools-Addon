@@ -200,6 +200,7 @@ public class OxygenCanItem extends Item
 		return (int) (ratio * 13);
 	}
 
+	@Override
 	public int getBarColor(ItemStack stack)
 	{
 		IOxygenCharger oxygenCharger = OxygenChargerUtils.getOxygenCharger(stack);

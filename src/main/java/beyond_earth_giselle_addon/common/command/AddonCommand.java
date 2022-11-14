@@ -4,8 +4,11 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
+import beyond_earth_giselle_addon.common.BeyondEarthAddon;
 import beyond_earth_giselle_addon.common.compat.AddonCompatibleManager;
 import beyond_earth_giselle_addon.common.compat.mekanism.AddonMekanismCommand;
+import beyond_earth_giselle_addon.common.compat.pneumaticcraft.AddonPneumaticCraftCommand;
+import beyond_earth_giselle_addon.common.compat.redstonearsenal.AddonRSACommand;
 import beyond_earth_giselle_addon.common.registries.AddonEnchantments;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -13,6 +16,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -60,17 +64,23 @@ public class AddonCommand
 	{
 		public static LiteralArgumentBuilder<CommandSourceStack> builder()
 		{
-			return Commands.literal("planetselection").requires(AddonCommand::isPlayerHasPermission2).executes(PlanetSelection::execute);
+			return Commands.literal("planetselection").requires(AddonCommand::isPlayerHasPermission2) //
+					.executes(ctx -> PlanetSelection.execute(ctx, EntitiesRegistry.TIER_4_ROCKET.get())) //
+					.then(Commands.literal("1").executes(ctx -> PlanetSelection.execute(ctx, EntitiesRegistry.TIER_1_ROCKET.get()))) //
+					.then(Commands.literal("2").executes(ctx -> PlanetSelection.execute(ctx, EntitiesRegistry.TIER_2_ROCKET.get()))) //
+					.then(Commands.literal("3").executes(ctx -> PlanetSelection.execute(ctx, EntitiesRegistry.TIER_3_ROCKET.get()))) //
+					.then(Commands.literal("4").executes(ctx -> PlanetSelection.execute(ctx, EntitiesRegistry.TIER_4_ROCKET.get()))) //
+			;
 		}
 
-		public static int execute(CommandContext<CommandSourceStack> context) throws CommandSyntaxException
+		public static int execute(CommandContext<CommandSourceStack> context, EntityType<?> entityType) throws CommandSyntaxException
 		{
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 			CompoundTag persistentData = player.getPersistentData();
-			persistentData.putBoolean("beyond_earth:planet_selection_gui_open", true);
-			persistentData.putString("beyond_earth:rocket_type", EntitiesRegistry.TIER_4_ROCKET.get().toString());
-			persistentData.putString("beyond_earth:slot0", Items.AIR.getRegistryName().toString());
+			persistentData.putBoolean(BeyondEarthAddon.prl("planet_selection_gui_open").toString(), true);
+			persistentData.putString(BeyondEarthAddon.prl("rocket_type").toString(), entityType.toString());
+			persistentData.putString(BeyondEarthAddon.prl("slot0").toString(), Items.AIR.getRegistryName().toString());
 
 			return 0;
 		}
@@ -84,11 +94,22 @@ public class AddonCommand
 			LiteralArgumentBuilder<CommandSourceStack> builder = Commands.literal("equip").requires(AddonCommand::isPlayerHasPermission2) //
 					.then(Commands.literal("spacesuit1").executes(Equip::spacesuit1)) //
 					.then(Commands.literal("spacesuit2").executes(Equip::spacesuit2)) //
+					.then(Commands.literal("diamond").executes(Equip::diamond)) //
 			;
 
 			if (AddonCompatibleManager.MEKANISM.isLoaded() == true)
 			{
 				builder.then(Commands.literal("mekasuit").executes(AddonMekanismCommand::mekasuit));
+			}
+
+			if (AddonCompatibleManager.REDSTONE_ARSENAL.isLoaded() == true)
+			{
+				builder.then(Commands.literal("flux_armor").executes(AddonRSACommand::fluxarmor));
+			}
+
+			if (AddonCompatibleManager.PNEUMATICCRAFT.isLoaded() == true)
+			{
+				builder.then(Commands.literal("pneumatic_armor").executes(AddonPneumaticCraftCommand::pneumatic_armor));
 			}
 
 			return builder;
@@ -99,10 +120,10 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.OXYGEN_MASK.get(), AddonEnchantments.SPACE_BREATHING.get()));
-			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.OXYGEN_MASK.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.SPACE_SUIT.get()));
 			player.setItemSlot(EquipmentSlot.LEGS, makeFull(ItemsRegistry.SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.SPACE_BOOTS.get(), AddonEnchantments.GRAVITY_NORMALIZING.get()));
+			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.SPACE_BOOTS.get()));
 
 			return sendEquipedMessage(source);
 		}
@@ -112,10 +133,23 @@ public class AddonCommand
 			CommandSourceStack source = context.getSource();
 			ServerPlayer player = source.getPlayerOrException();
 
-			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.NETHERITE_OXYGEN_MASK.get(), AddonEnchantments.SPACE_BREATHING.get()));
-			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.NETHERITE_SPACE_SUIT.get(), AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(ItemsRegistry.NETHERITE_OXYGEN_MASK.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, makeFull(ItemsRegistry.NETHERITE_SPACE_SUIT.get()));
 			player.setItemSlot(EquipmentSlot.LEGS, makeFull(ItemsRegistry.NETHERITE_SPACE_PANTS.get()));
-			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.NETHERITE_SPACE_BOOTS.get(), AddonEnchantments.GRAVITY_NORMALIZING.get()));
+			player.setItemSlot(EquipmentSlot.FEET, makeFull(ItemsRegistry.NETHERITE_SPACE_BOOTS.get()));
+
+			return sendEquipedMessage(source);
+		}
+
+		public static int diamond(CommandContext<CommandSourceStack> context) throws CommandSyntaxException
+		{
+			CommandSourceStack source = context.getSource();
+			ServerPlayer player = source.getPlayerOrException();
+
+			player.setItemSlot(EquipmentSlot.HEAD, makeFull(Items.DIAMOND_HELMET, AddonEnchantments.SPACE_BREATHING.get()));
+			player.setItemSlot(EquipmentSlot.CHEST, makeFull(Items.DIAMOND_CHESTPLATE, AddonEnchantments.SPACE_FIRE_PROOF.get(), AddonEnchantments.VENUS_ACID_PROOF.get()));
+			player.setItemSlot(EquipmentSlot.LEGS, makeFull(Items.DIAMOND_LEGGINGS));
+			player.setItemSlot(EquipmentSlot.FEET, makeFull(Items.DIAMOND_BOOTS, AddonEnchantments.GRAVITY_NORMALIZING.get()));
 
 			return sendEquipedMessage(source);
 		}

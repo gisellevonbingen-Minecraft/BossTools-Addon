@@ -41,6 +41,7 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 		super(AddonBlockEntityTypes.ADVANCED_COMPRESSOR.get(), pos, state);
 	}
 
+	@Override
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)
 	{
 		super.createEnergyStorages(registry);
@@ -49,11 +50,13 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 		registry.put(new EnergyStorageBasic(this, capacity, transfer, capacity));
 	}
 
+	@Override
 	protected void createPowerSystems(PowerSystemRegistry map)
 	{
 		super.createPowerSystems(map);
 		map.put(new PowerSystemEnergyCommon(this)
 		{
+			@Override
 			public int getBasePowerForOperation()
 			{
 				return AdvancedCompressorBlockEntity.this.getBasePowerForOperation();
@@ -173,6 +176,7 @@ public class AdvancedCompressorBlockEntity extends ItemStackToItemStackBlockEnti
 			this.iconSupplier = iconSupplier;
 		}
 
+		@Override
 		public ItemStackToItemStackRecipeType<?> getRecipeType()
 		{
 			return this.recipeType;

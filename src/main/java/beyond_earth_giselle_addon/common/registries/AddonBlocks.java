@@ -27,7 +27,7 @@ public class AddonBlocks
 	{
 		return new BlockItem(block, AddonItems.getMainItemProperties());
 	}
-	
+
 	private AddonBlocks()
 	{
 

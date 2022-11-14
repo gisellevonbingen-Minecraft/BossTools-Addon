@@ -12,15 +12,15 @@ public class RecipeType<T>
 		this.uid = uid;
 		this.recipeClass = recipeClass;
 	}
-	
+
 	public ResourceLocation getUid()
 	{
 		return this.uid;
 	}
-	
+
 	public Class<? extends T> getRecipeClass()
 	{
 		return this.recipeClass;
 	}
-	
+
 }

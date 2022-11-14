@@ -15,15 +15,7 @@ public class FlagEditClientUtils
 	{
 		Minecraft minecraft = Minecraft.getInstance();
 		BlockEntity blockEntity = minecraft.level.getBlockEntity(blockPos);
-
-		if (blockEntity instanceof FlagTileEntity)
-		{
-			return (FlagTileEntity) blockEntity;
-		}
-		else
-		{
-			return null;
-		}
+		return blockEntity instanceof FlagTileEntity flagBlockEntity ? flagBlockEntity : null;
 
 	}
 

@@ -32,6 +32,7 @@ public class ElectricBlastFurnaceBlock extends ItemStackToItemStackBlock<Electri
 		return new ElectricBlastFurnaceBlockEntity(pos, state);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving)
 	{

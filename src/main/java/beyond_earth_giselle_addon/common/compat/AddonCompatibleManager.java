@@ -11,6 +11,8 @@ import beyond_earth_giselle_addon.common.compat.jaopca.AddonJaopcaCompat;
 import beyond_earth_giselle_addon.common.compat.jei.AddonJeiCompat;
 import beyond_earth_giselle_addon.common.compat.jer.AddonJerCompat;
 import beyond_earth_giselle_addon.common.compat.mekanism.AddonMekanismCompat;
+import beyond_earth_giselle_addon.common.compat.pneumaticcraft.AddonPneumaticCraftCompat;
+import beyond_earth_giselle_addon.common.compat.redstonearsenal.AddonRedstoneArsenalCompat;
 import beyond_earth_giselle_addon.common.compat.thermal.AddonThermalCompat;
 
 public class AddonCompatibleManager
@@ -20,10 +22,12 @@ public class AddonCompatibleManager
 	public static final AddonJerCompat JER;
 	public static final AddonMekanismCompat MEKANISM;
 	public static final AddonThermalCompat THERMAL;
+	public static final AddonRedstoneArsenalCompat REDSTONE_ARSENAL;
 	public static final AddonIECompat IMMERSIVE_ENGINEERING;
 	public static final AddonJaopcaCompat JAOPCA;
 	public static final AddonCuriosCompat CURIOS;
 	public static final AddonCraftTweakerCompat CRAFTTWEAKER;
+	public static final AddonPneumaticCraftCompat PNEUMATICCRAFT;
 
 	static
 	{
@@ -32,10 +36,12 @@ public class AddonCompatibleManager
 		mods.add(JER = new AddonJerCompat());
 		mods.add(MEKANISM = new AddonMekanismCompat());
 		mods.add(THERMAL = new AddonThermalCompat());
+		mods.add(REDSTONE_ARSENAL = new AddonRedstoneArsenalCompat());
 		mods.add(IMMERSIVE_ENGINEERING = new AddonIECompat());
 		mods.add(JAOPCA = new AddonJaopcaCompat());
 		mods.add(CURIOS = new AddonCuriosCompat());
 		mods.add(CRAFTTWEAKER = new AddonCraftTweakerCompat());
+		mods.add(PNEUMATICCRAFT = new AddonPneumaticCraftCompat());
 
 		for (AddonCompatibleMod mod : mods)
 		{

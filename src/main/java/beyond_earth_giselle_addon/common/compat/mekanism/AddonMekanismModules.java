@@ -11,8 +11,8 @@ import net.minecraft.world.item.Rarity;
 
 public class AddonMekanismModules
 {
-    public static final ModuleDeferredRegister MODULES = new ModuleDeferredRegister(BeyondEarthAddon.MODID);
-    
+	public static final ModuleDeferredRegister MODULES = new ModuleDeferredRegister(BeyondEarthAddon.MODID);
+
 	public static final ModuleRegistryObject<ModuleSpaceBreathingUnit> SPACE_BREATHING_UNIT = MODULES.register("space_breathing_unit", ModuleSpaceBreathingUnit::new, () -> AddonMekanismItems.SPACE_BREATHING_UNIT.get(), m -> m.rarity(Rarity.UNCOMMON).maxStackSize(4).rendersHUD());
 	public static final ModuleRegistryObject<ModuleGravityNormalizingUnit> GRAVITY_NORMALIZING_UNIT = MODULES.register("gravity_normalizing_unit", ModuleGravityNormalizingUnit::new, () -> AddonMekanismItems.GRAVITY_NORMALIZING_UNIT.get(), m -> m.rarity(Rarity.UNCOMMON));
 	public static final ModuleRegistryObject<ModuleSpaceFireProofUnit> SPACE_FIRE_PROOF_UNIT = MODULES.register("space_fire_proof_unit", ModuleSpaceFireProofUnit::new, () -> AddonMekanismItems.SPACE_FIRE_PROOF_UNIT.get(), m -> m.rarity(Rarity.RARE));

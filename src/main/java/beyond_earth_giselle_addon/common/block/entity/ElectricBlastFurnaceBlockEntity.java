@@ -57,7 +57,7 @@ public class ElectricBlastFurnaceBlockEntity extends ItemStackToItemStackBlockEn
 
 		if (this.getTimer() >= this.getMaxTimer())
 		{
-			if (this.getCachedRecipe()instanceof ItemStackToItemStackRecipeWrapper recipe)
+			if (this.getCachedRecipe() instanceof ItemStackToItemStackRecipeWrapper recipe)
 			{
 				this.setExperience(this.getExperience() + recipe.getExperience());
 			}
@@ -82,6 +82,7 @@ public class ElectricBlastFurnaceBlockEntity extends ItemStackToItemStackBlockEn
 		compound.putFloat(KEY_EXPEREICNET, this.experience);
 	}
 
+	@Override
 	protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry)
 	{
 		super.createEnergyStorages(registry);
@@ -90,11 +91,13 @@ public class ElectricBlastFurnaceBlockEntity extends ItemStackToItemStackBlockEn
 		registry.put(new EnergyStorageBasic(this, capacity, transfer, capacity));
 	}
 
+	@Override
 	protected void createPowerSystems(PowerSystemRegistry map)
 	{
 		super.createPowerSystems(map);
 		map.put(new PowerSystemEnergyCommon(this)
 		{
+			@Override
 			public int getBasePowerForOperation()
 			{
 				return ElectricBlastFurnaceBlockEntity.this.getBasePowerForOperation();

@@ -101,7 +101,7 @@ public class ChunkGeneratorDummy extends ChunkGenerator
 	@Override
 	public void addDebugScreenInfo(List<String> p_208054_, BlockPos p_208055_)
 	{
-		
+
 	}
 
 }

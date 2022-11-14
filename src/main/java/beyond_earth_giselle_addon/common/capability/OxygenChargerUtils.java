@@ -11,6 +11,7 @@ import beyond_earth_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
+import net.mrscauthd.beyond_earth.gauge.GaugeValueHelper;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueSimple;
 import net.mrscauthd.beyond_earth.gauge.IGaugeValue;
 
@@ -42,7 +43,7 @@ public class OxygenChargerUtils
 		}
 
 		OxygenCanItem item = AddonItems.OXYGEN_CAN.get();
-		return new GaugeValueSimple(item.getRegistryName(), (int) stored, (int) capacity, item.getName(item.getDefaultInstance()));
+		return new GaugeValueSimple(item.getRegistryName(), (int) stored, (int) capacity, item.getName(item.getDefaultInstance()), GaugeValueHelper.OXYGEN_UNIT);
 	}
 
 	public static IOxygenCharger firstExtractableOxygenCharger(LivingEntity entity, int extracting, ItemStack beContains)

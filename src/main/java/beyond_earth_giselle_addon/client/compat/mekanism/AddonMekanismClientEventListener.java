@@ -46,10 +46,8 @@ public class AddonMekanismClientEventListener
 				{
 					Component line = toolTip.get(i);
 
-					if (line instanceof TranslatableComponent)
+					if (line instanceof TranslatableComponent tline)
 					{
-						TranslatableComponent tline = (TranslatableComponent) line;
-
 						if (tline.getKey().equals(descriptionKey) == true)
 						{
 							toolTip.add(i + 1, getGravitationalModulatingModuleDescriptionText());

@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Dynamic;
 
+import beyond_earth_giselle_addon.common.compat.jer.DistributionShape.DistributionShapeSqaure;
 import beyond_earth_giselle_addon.common.compat.jer.DistributionShape.DistributionShapeTriangle;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.WorldGenerationContext;
 import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.heightproviders.TrapezoidHeight;
+import net.minecraft.world.level.levelgen.heightproviders.UniformHeight;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 
@@ -29,7 +31,7 @@ public class OreGenHelper
 
 	public static <T> T decode(Codec<T> codec, Tag tag)
 	{
-		return codec.decode(new Dynamic<Tag>(Ops, tag)).result().get().getFirst();
+		return codec.decode(new Dynamic<>(Ops, tag)).result().get().getFirst();
 	}
 
 	public static IntProvider getCountPlacementCount(CountPlacement placement)
@@ -52,9 +54,13 @@ public class OreGenHelper
 	{
 		HeightProvider heightProvider = decode(HeightProvider.CODEC, tag);
 
-		if (heightProvider instanceof TrapezoidHeight)
+		if (heightProvider instanceof TrapezoidHeight trapezoidHeight)
 		{
-			return getTrapezoidHeightShape((TrapezoidHeight) heightProvider);
+			return getTrapezoidHeightShape(trapezoidHeight);
+		}
+		else if (heightProvider instanceof UniformHeight uniformHeight)
+		{
+			return getUniformHeightShape(uniformHeight);
 		}
 
 		return null;
@@ -67,6 +73,18 @@ public class OreGenHelper
 		VerticalAnchor max_inclusive = getVerticalAnchor(compound.get("max_inclusive"));
 
 		DistributionShapeTriangle shape = new DistributionShapeTriangle();
+		shape.minY = min_inclusive.resolveY(DUMMY_CONTEXT);
+		shape.maxY = max_inclusive.resolveY(DUMMY_CONTEXT);
+		return shape;
+	}
+
+	public static DistributionShapeSqaure getUniformHeightShape(UniformHeight uniformHeight)
+	{
+		CompoundTag compound = (CompoundTag) encode(UniformHeight.CODEC, uniformHeight);
+		VerticalAnchor min_inclusive = getVerticalAnchor(compound.get("min_inclusive"));
+		VerticalAnchor max_inclusive = getVerticalAnchor(compound.get("max_inclusive"));
+
+		DistributionShapeSqaure shape = new DistributionShapeSqaure();
 		shape.minY = min_inclusive.resolveY(DUMMY_CONTEXT);
 		shape.maxY = max_inclusive.resolveY(DUMMY_CONTEXT);
 		return shape;

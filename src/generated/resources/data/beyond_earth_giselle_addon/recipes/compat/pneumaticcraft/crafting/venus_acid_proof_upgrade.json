@@ -1,0 +1,28 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "pneumaticcraft"
+		}
+	],
+	"pattern": [
+		"LXL",
+		"XCX",
+		"LXL"
+	],
+	"key": {
+		"L": {
+			"tag": "pneumaticcraft:upgrade_components"
+		},
+		"X": {
+			"item": "beyond_earth:venus_stone"
+		},
+		"C": {
+			"tag": "beyond_earth:compresseds/calorite"
+		}
+	},
+	"result": {
+		"item": "beyond_earth_giselle_addon:pneumatic_venus_acid_proof_upgrade"
+	}
+}
