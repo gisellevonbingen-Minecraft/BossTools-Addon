@@ -34,7 +34,7 @@ minecraft {
             property "forge.logging.markers", "REGISTRIES"
             property "forge.logging.console.level", "debug"
             property "forge.enabledGameTestNamespaces", "beyond_earth_giselle_addon"
-            arg "-mixin.config=beyond_earth_giselle_addon.mixin.json"
+            args "-mixin.config=beyond_earth_giselle_addon.mixin.common.json", "-mixin.config=beyond_earth_giselle_addon.mixin.client.json"
 
             mods {
                 beyond_earth_giselle_addon {
@@ -49,7 +49,7 @@ minecraft {
             property "forge.logging.markers", "REGISTRIES"
             property "forge.logging.console.level", "debug"
             property "forge.enabledGameTestNamespaces", "beyond_earth_giselle_addon"
-            // arg "-mixin.config=beyond_earth_giselle_addon.mixin.json"
+            args "-mixin.config=beyond_earth_giselle_addon.mixin.common.json", "-mixin.config=beyond_earth_giselle_addon.mixin.client.json"
 
             mods {
                 beyond_earth_giselle_addon {
@@ -166,7 +166,7 @@ jar {
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "gisellevonbingen",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs"            : "beyond_earth_giselle_addon.mixin.json"
+                "MixinConfigs"            : "beyond_earth_giselle_addon.mixin.common.json, beyond_earth_giselle_addon.mixin.client.json"
         ])
     }
 }
