@@ -2,7 +2,6 @@
 	"required": true,
 	"package": "boss_tools_giselle_addon.client.mixin",
 	"compatibilityLevel": "JAVA_8",
-	"mixins": [],
 	"client": [
 		"boss_tools.PlanetSelectionGuiWindowMixin"
 	],

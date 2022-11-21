@@ -11,8 +11,6 @@
 		"pneumaticcraft.EnumUpgradeMixin",
 		"pneumaticcraft.ModItemsMixin"
 	],
-	"client": [
-	],
 	"injectors": {
 		"defaultRequire": 1
 	}
