@@ -1,0 +1,17 @@
+{
+	"required": true,
+	"package": "boss_tools_giselle_addon.common.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"boss_tools.PlanetSelectionGuiMixin",
+		"boss_tools.WorkbenchingRecipeMixin",
+		"boss_tools.WorkbenchTileEntityMixin",
+		"pneumaticcraft.ArmorHUDLayoutMixin",
+		"pneumaticcraft.ArmorHUDLayoutTypeMixin",
+		"pneumaticcraft.EnumUpgradeMixin",
+		"pneumaticcraft.ModItemsMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

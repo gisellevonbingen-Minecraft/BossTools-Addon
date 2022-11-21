@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.common.mixin;
+package boss_tools_giselle_addon.common.mixin.boss_tools;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
