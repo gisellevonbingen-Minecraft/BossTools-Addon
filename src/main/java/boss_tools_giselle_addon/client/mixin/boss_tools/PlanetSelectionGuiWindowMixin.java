@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.common.mixin;
+package boss_tools_giselle_addon.client.mixin.boss_tools;
 
 import java.util.ArrayList;
 import java.util.Arrays;

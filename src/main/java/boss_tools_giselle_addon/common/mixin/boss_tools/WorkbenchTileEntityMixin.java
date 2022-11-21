@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.common.mixin;
+package boss_tools_giselle_addon.common.mixin.boss_tools;
 
 import java.util.List;
 import java.util.Map.Entry;

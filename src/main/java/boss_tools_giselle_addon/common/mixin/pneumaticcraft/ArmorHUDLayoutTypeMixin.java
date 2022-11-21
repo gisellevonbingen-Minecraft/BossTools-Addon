@@ -1,4 +1,4 @@
-package boss_tools_giselle_addon.common.mixin.compat.pneumaticcraft;
+package boss_tools_giselle_addon.common.mixin.pneumaticcraft;
 
 import java.util.ArrayList;
 import java.util.Arrays;
