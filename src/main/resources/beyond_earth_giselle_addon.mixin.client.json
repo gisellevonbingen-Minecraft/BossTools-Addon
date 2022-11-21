@@ -1,0 +1,9 @@
+{
+	"required": true,
+	"package": "beyond_earth_giselle_addon.common.client",
+	"compatibilityLevel": "JAVA_8",
+	"client": [],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"required": true,
+	"package": "beyond_earth_giselle_addon.common.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
