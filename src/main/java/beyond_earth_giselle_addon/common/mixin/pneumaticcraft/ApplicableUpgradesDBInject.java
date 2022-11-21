@@ -1,4 +1,4 @@
-package beyond_earth_giselle_addon.mixin.compat.pneumaticcraft;
+package beyond_earth_giselle_addon.common.mixin.pneumaticcraft;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
