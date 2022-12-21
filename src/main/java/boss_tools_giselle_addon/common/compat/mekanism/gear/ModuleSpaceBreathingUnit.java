@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import boss_tools_giselle_addon.common.BossToolsAddon;
 import boss_tools_giselle_addon.common.capability.IOxygenCharger;
 import boss_tools_giselle_addon.common.capability.OxygenChargerUtils;
+import boss_tools_giselle_addon.common.compat.mekanism.AddonModuleHelper;
 import boss_tools_giselle_addon.common.config.AddonConfigs;
 import mekanism.api.Action;
 import mekanism.api.MekanismAPI;
@@ -138,6 +139,15 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 
 	public boolean useResources(IModule<ModuleSpaceBreathingUnit> module, LivingEntity entity)
 	{
+		if (entity instanceof PlayerEntity && MekanismUtils.isPlayingMode((PlayerEntity) entity) == false)
+		{
+			return true;
+		}
+		else if (!AddonModuleHelper.testFullParts(entity))
+		{
+			return false;
+		}
+
 		int oyxgenUsing = 1;
 		IOxygenCharger oxygenCharnger = OxygenChargerUtils.firstExtractableOxygenCharger(entity, oyxgenUsing, module.getContainer());
 
