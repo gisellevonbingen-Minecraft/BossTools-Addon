@@ -7,6 +7,8 @@ public class EnchantmentsConfig
 {
 	public final ConfigValue<Boolean> tooltip_Enabled;
 	public final ConfigValue<Boolean> tooltip_Ignore;
+	public final ConfigValue<Boolean> enchant_least_iron;
+	public final ConfigValue<Boolean> work_full_parts_least_iron;
 
 	public final ConfigValue<Boolean> enchant_least_iron;
 	public final ConfigValue<Boolean> work_full_parts_least_iron;
@@ -44,6 +46,10 @@ public class EnchantmentsConfig
 		builder.comment("Tooltip will don't show when 'Enchantment Descriptions' or 'CoFH Core' installed", //
 				"But, if this set 'true' show tooltip with ignore that mods");
 		this.tooltip_Ignore = builder.define("ignore", false);
+		builder.comment("The item to enchant should be have defence points equals or greater than Iron Armors");
+		this.enchant_least_iron = builder.define("enchant_least_iron", false);
+		builder.comment("The enchantment to work, Player should be need equip all parts of armor that defence points least Iron Armors");
+		this.work_full_parts_least_iron = builder.define("work_full_parts_least_iron", false);
 
 		builder.pop();
 
