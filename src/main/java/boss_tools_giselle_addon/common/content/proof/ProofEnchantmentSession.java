@@ -47,22 +47,29 @@ public abstract class ProofEnchantmentSession extends ProofSession
 			return false;
 		}
 
-		if (LivingEntityHelper.isPlayingMode(this.getEntity()) == true)
-		{
-			if (ItemStackUtils.hasUseableResources(enchantedItem) == true)
-			{
-				int energyUsing = this.getResourceUsingAmount(ItemUsableResource.Energy);
-				int durabilityUsing = this.getResourceUsingAmount(ItemUsableResource.Durability);
-				ItemUsableResourceResult result = ItemStackUtils.useResources(enchantedItem, energyUsing, durabilityUsing, true);
-				this.testedUsableResource = result.getResource();
+		LivingEntity living = this.getEntity();
 
-				if (result.getResult() == false)
+		if (LivingEntityHelper.isPlayingMode(living) == true)
+		{
+			if (EnchantmentEnergyStorageOrDamageable.testWorkLeastIron(living) == true)
+			{
+				if (ItemStackUtils.hasUseableResources(enchantedItem) == true)
 				{
-					return false;
+					int energyUsing = this.getResourceUsingAmount(ItemUsableResource.Energy);
+					int durabilityUsing = this.getResourceUsingAmount(ItemUsableResource.Durability);
+					ItemUsableResourceResult result = ItemStackUtils.useResources(enchantedItem, energyUsing, durabilityUsing, true);
+					this.testedUsableResource = result.getResource();
+
+					if (result.getResult() == true)
+					{
+						return true;
+					}
+
 				}
 
 			}
 
+			return false;
 		}
 		else
 		{
