@@ -5,6 +5,8 @@ import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 public class PneumaticCraftConfig
 {
+	public final ConfigValue<Boolean> upgradesWorkFullParts;
+
 	public final ConfigValue<Integer> upgrade_space_breating_oxygenDuration;
 	public final ConfigValue<Integer> upgrade_space_breating_airUsing;
 
@@ -14,6 +16,9 @@ public class PneumaticCraftConfig
 
 	public PneumaticCraftConfig(ForgeConfigSpec.Builder builder)
 	{
+		builder.comment("Upgrades to work, Player should be need equip all parts of Pneumatic-Armor");
+		this.upgradesWorkFullParts = builder.define("upgrades_work_full_parts", false);
+
 		builder.push("space_breating_upgrade");
 		builder.comment("Duration of provided oxygen (oxygen provide interval)");
 		this.upgrade_space_breating_oxygenDuration = builder.define("oxygenDuration", 4);

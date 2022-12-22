@@ -1,13 +1,26 @@
 package beyond_earth_giselle_addon.common.enchantment;
 
+import beyond_earth_giselle_addon.common.config.AddonConfigs;
+import beyond_earth_giselle_addon.common.util.ArmorUtils;
 import beyond_earth_giselle_addon.common.util.ItemStackUtils;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 {
+	public static boolean testEnchantLeastIron(ItemStack stack)
+	{
+		return !AddonConfigs.Common.enchantments.enchant_least_iron.get() || ArmorUtils.isLeastIron(stack);
+	}
+
+	public static boolean testWorkLeastIron(LivingEntity living)
+	{
+		return !AddonConfigs.Common.enchantments.work_full_parts_least_iron.get() || ArmorUtils.allEquipLeastIron(living);
+	}
+
 	public EnchantmentEnergyStorageOrDamageable(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots)
 	{
 		super(rarity, category, slots);
@@ -28,7 +41,7 @@ public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 		}
 		else
 		{
-			return ItemStackUtils.hasUseableResources(stack);
+			return ItemStackUtils.hasUseableResources(stack) && testEnchantLeastIron(stack);
 		}
 
 	}
