@@ -45,13 +45,13 @@ public class AddonMekanismCommonEventListener
 	@SubscribeEvent
 	public static void onLivingSetFireInHotPlanet(LivingSetFireInHotPlanetEvent e)
 	{
-		AddonModuleHelper.tryCancel(e, AddonMekanismModules.SPACE_FIRE_PROOF_UNIT, ModuleSpaceFireProofUnit::getEnergyUsing);
+		AddonModuleHelper.tryCancel(e, AddonMekanismModules.SPACE_FIRE_PROOF_UNIT, ModuleSpaceFireProofUnit::getEnergyUsing, true);
 	}
 
 	@SubscribeEvent
 	public static void onLivingSetVenusRain(LivingSetVenusRainEvent e)
 	{
-		AddonModuleHelper.tryCancel(e, AddonMekanismModules.VENUS_ACID_PROOF_UNIT, ModuleVenusAcidProofUnit::getEnergyUsing);
+		AddonModuleHelper.tryCancel(e, AddonMekanismModules.VENUS_ACID_PROOF_UNIT, ModuleVenusAcidProofUnit::getEnergyUsing, true);
 	}
 
 	private AddonMekanismCommonEventListener()
