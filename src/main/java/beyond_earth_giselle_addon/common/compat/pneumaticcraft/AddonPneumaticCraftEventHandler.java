@@ -12,6 +12,7 @@ import me.desht.pneumaticcraft.api.tileentity.IAirHandler;
 import me.desht.pneumaticcraft.api.tileentity.IAirHandlerItem;
 import me.desht.pneumaticcraft.common.item.PneumaticArmorItem;
 import me.desht.pneumaticcraft.common.pneumatic_armor.CommonArmorHandler;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -23,6 +24,31 @@ import net.mrscauthd.beyond_earth.events.forge.LivingSetVenusRainEvent;
 
 public class AddonPneumaticCraftEventHandler
 {
+	public static boolean testFullParts(LivingEntity living)
+	{
+		if (!AddonConfigs.Common.pneumaticcraft.upgradesWorkFullParts.get())
+		{
+			return true;
+		}
+
+		for (EquipmentSlot slot : EquipmentSlot.values())
+		{
+			if (slot.getType() == EquipmentSlot.Type.ARMOR)
+			{
+				ItemStack stack = living.getItemBySlot(slot);
+
+				if (!(stack.getItem() instanceof PneumaticArmorItem))
+				{
+					return false;
+				}
+
+			}
+
+		}
+
+		return true;
+	}
+
 	@SubscribeEvent
 	public static void onLivingSpaceOxygenProofEvent(LivingSpaceOxygenProofEvent e)
 	{
@@ -35,7 +61,7 @@ public class AddonPneumaticCraftEventHandler
 
 		ItemStack stack = getUpgradeUsablePneumaticArmorItem(player, AddonCommonUpgradeHandlers.SPACE_BREATHING);
 
-		if (stack.isEmpty() == true)
+		if (stack.isEmpty() == true || !testFullParts(player))
 		{
 			return;
 		}
@@ -72,16 +98,21 @@ public class AddonPneumaticCraftEventHandler
 	@SubscribeEvent
 	public static void onLivingSetFireInHotPlanet(LivingSetFireInHotPlanetEvent e)
 	{
-		tryCancel(e, AddonCommonUpgradeHandlers.SPACE_FIRE_PROOF, AddonConfigs.Common.pneumaticcraft.upgrade_space_fire_proof_airUsing.get());
+		tryCancel(e, AddonCommonUpgradeHandlers.SPACE_FIRE_PROOF, AddonConfigs.Common.pneumaticcraft.upgrade_space_fire_proof_airUsing.get(), true);
 	}
 
 	@SubscribeEvent
 	public static void onLivingSetVenusRain(LivingSetVenusRainEvent e)
 	{
-		tryCancel(e, AddonCommonUpgradeHandlers.VENUS_ACID_PROOF, AddonConfigs.Common.pneumaticcraft.upgrade_venus_acid_proof_airUsing.get());
+		tryCancel(e, AddonCommonUpgradeHandlers.VENUS_ACID_PROOF, AddonConfigs.Common.pneumaticcraft.upgrade_venus_acid_proof_airUsing.get(), true);
 	}
 
 	public static boolean tryCancel(EntityEvent e, IArmorUpgradeHandler<?> upgradeHandler, int airUsing)
+	{
+		return tryCancel(e, upgradeHandler, airUsing, false);
+	}
+
+	public static boolean tryCancel(EntityEvent e, IArmorUpgradeHandler<?> upgradeHandler, int airUsing, boolean testFullParts)
 	{
 		if (e.isCancelable() == false || e.isCanceled() == true || !(e.getEntity() instanceof Player player))
 		{
@@ -90,7 +121,7 @@ public class AddonPneumaticCraftEventHandler
 
 		ItemStack stack = getUpgradeUsablePneumaticArmorItem(player, upgradeHandler);
 
-		if (stack.isEmpty() == true)
+		if (stack.isEmpty() == true || (testFullParts && !testFullParts(player)))
 		{
 			return false;
 		}
