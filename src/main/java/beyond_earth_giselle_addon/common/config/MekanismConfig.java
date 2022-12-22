@@ -5,6 +5,8 @@ import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 public class MekanismConfig
 {
+	public final ConfigValue<Boolean> modulesWorkFullParts;
+
 	public final ConfigValue<Integer> moduleSpaceBreathing_oxygenDuration;
 	public final ConfigValue<Integer> moduleSpaceBreathing_energyUsingProvide;
 	public final ConfigValue<Integer> moduleSpaceBreathing_energyUsingProduce;
@@ -18,6 +20,9 @@ public class MekanismConfig
 
 	public MekanismConfig(ForgeConfigSpec.Builder builder)
 	{
+		builder.comment("Modules to work, Player should be need equip all parts of Meka-Suit");
+		this.modulesWorkFullParts = builder.define("modules_work_full_parts", false);
+
 		builder.push("module_space_breathing_unit");
 		builder.comment("Duration of provided oxygen (oxygen provide interval)");
 		this.moduleSpaceBreathing_oxygenDuration = builder.define("oxygenDuration", 4);
