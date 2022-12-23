@@ -42,7 +42,7 @@ public abstract class ProofEnchantmentSession extends ProofSession
 		ItemStack enchantedItem = this.getEnchantedItem();
 		int enchantLevel = this.getEnchantLevel();
 
-		if (enchantedItem.isEmpty() == true || enchantLevel == 0)
+		if (enchantedItem.isEmpty() == true || enchantLevel == 0 || !EnchantmentEnergyStorageOrDamageable.testWorkLeastIron(enchantedItem))
 		{
 			return false;
 		}
@@ -51,7 +51,7 @@ public abstract class ProofEnchantmentSession extends ProofSession
 
 		if (LivingEntityHelper.isPlayingMode(living) == true)
 		{
-			if (EnchantmentEnergyStorageOrDamageable.testWorkLeastIron(living) == true)
+			if (EnchantmentEnergyStorageOrDamageable.testWorkFullParts(living) == true)
 			{
 				if (ItemStackUtils.hasUseableResources(enchantedItem) == true)
 				{
