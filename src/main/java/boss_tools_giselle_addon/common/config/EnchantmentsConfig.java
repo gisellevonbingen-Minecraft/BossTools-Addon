@@ -8,8 +8,8 @@ public class EnchantmentsConfig
 	public final ConfigValue<Boolean> tooltip_Enabled;
 	public final ConfigValue<Boolean> tooltip_Ignore;
 
-	public final ConfigValue<Boolean> enchant_least_iron;
-	public final ConfigValue<Boolean> work_full_parts_least_iron;
+	public final ConfigValue<Boolean> work_least_iron;
+	public final ConfigValue<Boolean> work_full_parts;
 
 	public final ConfigValue<Integer> space_breathing_energy_using;
 	public final ConfigValue<Integer> space_breathing_energy_duration;
@@ -48,10 +48,10 @@ public class EnchantmentsConfig
 
 		builder.pop();
 
-		builder.comment("The item to enchant should be have defence points equals or greater than Iron Armors");
-		this.enchant_least_iron = builder.define("enchant_least_iron", false);
-		builder.comment("The enchantment to work, Player should be need equip all parts of armor that defence points least Iron Armors");
-		this.work_full_parts_least_iron = builder.define("work_full_parts_least_iron", false);
+		builder.comment("To enchantment applying and working, Item should be have defence points equals or greater than Iron Armors");
+		this.work_least_iron = builder.define("work_least_iron", false);
+		builder.comment("To enchantment working, Player should be need equip all parts of armors", "If 'work_least_iron' is enabled, that armors should be least iron armors");
+		this.work_full_parts = builder.define("work_full_parts", false);
 
 		builder.pop();
 
