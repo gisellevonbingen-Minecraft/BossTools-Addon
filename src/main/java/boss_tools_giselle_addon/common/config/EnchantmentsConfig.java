@@ -50,7 +50,7 @@ public class EnchantmentsConfig
 
 		builder.comment("To enchantment applying and working, Item should be have defence points equals or greater than Iron Armors");
 		this.work_least_iron = builder.define("work_least_iron", false);
-		builder.comment("The enchantment to work, Player should be need equip all parts of armors", "If 'work_least_iron' is enabled, that armors should be least iron armors");
+		builder.comment("To enchantment working, Player should be need equip all parts of armors", "If 'work_least_iron' is enabled, that armors should be least iron armors");
 		this.work_full_parts = builder.define("work_full_parts", false);
 
 		builder.pop();
