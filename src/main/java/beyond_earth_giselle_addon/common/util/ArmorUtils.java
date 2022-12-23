@@ -9,6 +9,25 @@ import net.minecraft.world.item.ItemStack;
 
 public class ArmorUtils
 {
+	public static boolean allEquip(LivingEntity living)
+	{
+		for (EquipmentSlot slot : EquipmentSlot.values())
+		{
+			if (slot.getType() == EquipmentSlot.Type.ARMOR)
+			{
+				ItemStack stack = living.getItemBySlot(slot);
+
+				if (stack.isEmpty())
+				{
+					return false;
+				}
+
+			}
+
+		}
+
+		return true;
+	}
 
 	public static boolean allEquipLeastIron(LivingEntity living)
 	{
