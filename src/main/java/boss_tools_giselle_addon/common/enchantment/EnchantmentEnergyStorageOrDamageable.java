@@ -11,14 +11,26 @@ import net.minecraft.item.ItemStack;
 
 public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 {
-	public static boolean testEnchantLeastIron(ItemStack stack)
+	public static boolean testWorkLeastIron(ItemStack stack)
 	{
-		return !AddonConfigs.Common.enchantments.enchant_least_iron.get() || ArmorUtils.isLeastIron(stack);
+		return !AddonConfigs.Common.enchantments.work_least_iron.get() || ArmorUtils.isLeastIron(stack);
 	}
 
-	public static boolean testWorkLeastIron(LivingEntity living)
+	public static boolean testWorkFullParts(LivingEntity living)
 	{
-		return !AddonConfigs.Common.enchantments.work_full_parts_least_iron.get() || ArmorUtils.allEquipLeastIron(living);
+		if (!AddonConfigs.Common.enchantments.work_full_parts.get())
+		{
+			return true;
+		}
+		else if (AddonConfigs.Common.enchantments.work_least_iron.get())
+		{
+			return ArmorUtils.allEquipLeastIron(living);
+		}
+		else
+		{
+			return ArmorUtils.allEquip(living);
+		}
+
 	}
 
 	public EnchantmentEnergyStorageOrDamageable(Rarity rarity, EnchantmentType type, EquipmentSlotType... slots)
@@ -41,7 +53,7 @@ public class EnchantmentEnergyStorageOrDamageable extends Enchantment
 		}
 		else
 		{
-			return ItemStackUtils.hasUseableResources(stack) && testEnchantLeastIron(stack);
+			return ItemStackUtils.hasUseableResources(stack) && testWorkLeastIron(stack);
 		}
 
 	}
