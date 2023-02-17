@@ -7,7 +7,7 @@
   "block.beyond_earth_giselle_addon.advanced_compressor": "Advanced Compressor",
   
   "module.beyond_earth_giselle_addon.space_breathing_unit": "Space Breathing Unit",
-  "description.beyond_earth_giselle_addon.space_breathing_unit": "Can breath in Beyond Earth dimensions\nWill also fill held item with oxygen when in rain, water\nRequire enabled 'Oxygen Can' in inventory",
+  "description.beyond_earth_giselle_addon.space_breathing_unit": "Can breath in Beyond Earth dimensions\nWill also fill held item with oxygen when in rain, water\nRequire 'Oxygen Can' in inventory",
   "module.beyond_earth_giselle_addon.space_fire_proof_unit": "Space Fire Proof Unit",
   "description.beyond_earth_giselle_addon.space_fire_proof_unit": "Don't set fire to player in Beyond Earth dimensions",
   "module.beyond_earth_giselle_addon.venus_acid_proof_unit": "Venus Acid Proof Unit",
@@ -21,7 +21,7 @@
   "description.beyond_earth_giselle_addon.charge_mode": "Charge Mode",
   
   "enchantment.beyond_earth_giselle_addon.space_breathing": "Space Breathing",
-  "enchantment.beyond_earth_giselle_addon.space_breathing.desc": "Can breath in Beyond Earth dimensions\nUse energy or durability\nRequire enabled 'Oxygen Can' in inventory",
+  "enchantment.beyond_earth_giselle_addon.space_breathing.desc": "Can breath in Beyond Earth dimensions\nUse energy or durability\nRequire 'Oxygen Can' in inventory",
   "enchantment.beyond_earth_giselle_addon.space_fire_proof": "Space Fire Proof",
   "enchantment.beyond_earth_giselle_addon.space_fire_proof.desc": "Don't set fire to player in Beyond Earth dimensions\nUse energy or durability",
   "enchantment.beyond_earth_giselle_addon.venus_acid_proof": "Venus Acid Proof",
@@ -74,7 +74,7 @@
   "pneumaticcraft.armor.upgrade.beyond_earth_giselle_addon.space_fire_proof" : "Space Fire Proof",
   "pneumaticcraft.armor.upgrade.beyond_earth_giselle_addon.venus_acid_proof" : "Venus Acid Proof",
 
-  "pneumaticcraft.gui.tab.info.item.armor.generic.beyond_earth_giselle_addon.space_breathingUpgrade": "Can breath in Beyond Earth dimensions\nRequire enabled 'Oxygen Can' in inventory",
+  "pneumaticcraft.gui.tab.info.item.armor.generic.beyond_earth_giselle_addon.space_breathingUpgrade": "Can breath in Beyond Earth dimensions\nRequire 'Oxygen Can' in inventory",
   "pneumaticcraft.gui.tab.info.item.armor.generic.beyond_earth_giselle_addon.space_fire_proofUpgrade": "Don't set fire to player in Beyond Earth dimensions",
   "pneumaticcraft.gui.tab.info.item.armor.generic.beyond_earth_giselle_addon.venus_acid_proofUpgrade": "Don't damage from acid rain in Beyond Earth dimensions",
   

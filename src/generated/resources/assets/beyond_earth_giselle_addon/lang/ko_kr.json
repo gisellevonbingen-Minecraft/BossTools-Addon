@@ -7,7 +7,7 @@
   "block.beyond_earth_giselle_addon.advanced_compressor": "고급 압축기",
   
   "module.beyond_earth_giselle_addon.space_breathing_unit": "우주 호흡 기구",
-  "description.beyond_earth_giselle_addon.space_breathing_unit": "Beyond Earth 차원에서 호흡할 수 있습니다\n비, 물속에서 들고있는 아이템에 산소를 충전합니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
+  "description.beyond_earth_giselle_addon.space_breathing_unit": "Beyond Earth 차원에서 호흡할 수 있습니다\n비, 물속에서 들고있는 아이템에 산소를 충전합니다\n인벤토리에 '산소 캔'이 필요합니다",
   "module.beyond_earth_giselle_addon.space_fire_proof_unit": "우주 내화성 기구",
   "description.beyond_earth_giselle_addon.space_fire_proof_unit": "Beyond Earth 차원에서 불이 붙지 않습니다",
   "module.beyond_earth_giselle_addon.venus_acid_proof_unit": "우주 내산성 기구",
@@ -21,7 +21,7 @@
   "description.beyond_earth_giselle_addon.charge_mode": "충전 모드",
   
   "enchantment.beyond_earth_giselle_addon.space_breathing": "우주 호흡성",
-  "enchantment.beyond_earth_giselle_addon.space_breathing.desc": "Beyond Earth 차원에서 호흡할 수 있습니다\n갑옷의 에너지 혹은 내구도를 소모합니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
+  "enchantment.beyond_earth_giselle_addon.space_breathing.desc": "Beyond Earth 차원에서 호흡할 수 있습니다\n갑옷의 에너지 혹은 내구도를 소모합니다\n인벤토리에 '산소 캔'이 필요합니다",
   "enchantment.beyond_earth_giselle_addon.space_fire_proof": "우주 내화성",
   "enchantment.beyond_earth_giselle_addon.space_fire_proof.desc": "Beyond Earth 차원에서 불이 붙지 않습니다\n갑옷의 에너지 혹은 내구도를 소모합니다",
   "enchantment.beyond_earth_giselle_addon.venus_acid_proof": "우주 내산성",
@@ -74,7 +74,7 @@
   "pneumaticcraft.armor.upgrade.beyond_earth_giselle_addon.space_fire_proof" : "우주 내화성",
   "pneumaticcraft.armor.upgrade.beyond_earth_giselle_addon.venus_acid_proof" : "우주 내산성",
 
-  "pneumaticcraft.gui.tab.info.item.armor.generic.beyond_earth_giselle_addon.space_breathingUpgrade": "Beyond Earth 차원에서 호흡할 수 있습니다\n인벤토리에 활성화된 '산소 캔'이 필요합니다",
+  "pneumaticcraft.gui.tab.info.item.armor.generic.beyond_earth_giselle_addon.space_breathingUpgrade": "Beyond Earth 차원에서 호흡할 수 있습니다\n인벤토리에 '산소 캔'이 필요합니다",
   "pneumaticcraft.gui.tab.info.item.armor.generic.beyond_earth_giselle_addon.space_fire_proofUpgrade": "Beyond Earth 차원에서 불이 붙지 않습니다",
   "pneumaticcraft.gui.tab.info.item.armor.generic.beyond_earth_giselle_addon.venus_acid_proofUpgrade": "Beyond Earth 차원에서 산성비 피해를 입지 않습니다",
   

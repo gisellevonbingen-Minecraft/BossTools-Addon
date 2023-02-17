@@ -139,7 +139,7 @@ public class ModuleSpaceBreathingUnit implements ICustomModule<ModuleSpaceBreath
 	public boolean useResources(IModule<ModuleSpaceBreathingUnit> module, LivingEntity entity)
 	{
 		int oyxgenUsing = 1;
-		IOxygenCharger oxygenCharnger = OxygenChargerUtils.firstExtractableOxygenCharger(entity, oyxgenUsing, module.getContainer());
+		IOxygenCharger oxygenCharnger = OxygenChargerUtils.firstExtractableOxygenCharger(entity, oyxgenUsing);
 
 		if (oxygenCharnger != null)
 		{

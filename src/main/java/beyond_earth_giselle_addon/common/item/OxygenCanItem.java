@@ -47,8 +47,6 @@ public class OxygenCanItem extends Item
 
 			if (oxygenCharger != null)
 			{
-				oxygenCharger.setChargeMode(ChargeMode.ALL);
-
 				IOxygenStorage oxygenStorage = oxygenCharger.getOxygenStorage();
 				oxygenStorage.setOxygen(oxygenStorage.getMaxCapacity());
 				list.add(full);

@@ -3,8 +3,6 @@ package beyond_earth_giselle_addon.common.capability;
 import java.util.List;
 import java.util.stream.Stream;
 
-import com.google.common.collect.Iterables;
-
 import beyond_earth_giselle_addon.common.item.OxygenCanItem;
 import beyond_earth_giselle_addon.common.registries.AddonItems;
 import beyond_earth_giselle_addon.common.util.LivingEntityHelper;
@@ -47,28 +45,28 @@ public class OxygenChargerUtils
 		return new GaugeValueSimple(ForgeRegistries.ITEMS.getKey(item), (int) stored, (int) capacity, item.getName(item.getDefaultInstance()), GaugeValueHelper.OXYGEN_UNIT);
 	}
 
-	public static IOxygenCharger firstExtractableOxygenCharger(LivingEntity entity, int extracting, ItemStack beContains)
+	public static IOxygenCharger firstExtractableOxygenCharger(LivingEntity entity, int extracting)
 	{
-		return streamExtractableOxygenCharger(entity, extracting, beContains).findFirst().orElse(null);
+		return streamExtractableOxygenCharger(entity, extracting).findFirst().orElse(null);
 	}
 
-	public static Stream<IOxygenCharger> streamExtractableOxygenCharger(LivingEntity entity, int extracting, ItemStack beContains)
+	public static Stream<IOxygenCharger> streamExtractableOxygenCharger(LivingEntity entity, int extracting)
 	{
-		return streamExtractableItems(entity, extracting, beContains).map(OxygenChargerUtils::getOxygenCharger);
+		return streamExtractableItems(entity, extracting).map(OxygenChargerUtils::getOxygenCharger);
 	}
 
-	public static ItemStack firstExtractableItem(LivingEntity entity, int extracting, ItemStack beContains)
+	public static ItemStack firstExtractableItem(LivingEntity entity, int extracting)
 	{
-		return streamExtractableItems(entity, extracting, beContains).findFirst().orElse(ItemStack.EMPTY);
+		return streamExtractableItems(entity, extracting).findFirst().orElse(ItemStack.EMPTY);
 	}
 
-	public static Stream<ItemStack> streamExtractableItems(LivingEntity entity, int extracting, ItemStack beContains)
+	public static Stream<ItemStack> streamExtractableItems(LivingEntity entity, int extracting)
 	{
 		return LivingEntityHelper.getInventoryStacks(entity).stream().filter(is ->
 		{
 			IOxygenCharger oxygenCharger = getOxygenCharger(is);
 
-			if (oxygenCharger != null && Iterables.contains(oxygenCharger.getChargeMode().getItemStacks(entity), beContains) == true)
+			if (oxygenCharger != null)
 			{
 				IOxygenStorage oxygenStorage = oxygenCharger.getOxygenStorage();
 				return oxygenStorage.extractOxygen(extracting, true) == extracting;

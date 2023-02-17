@@ -7,7 +7,6 @@ import beyond_earth_giselle_addon.common.enchantment.EnchantmentEnergyStorageOrD
 import beyond_earth_giselle_addon.common.util.ItemUsableResource;
 import beyond_earth_giselle_addon.common.util.LivingEntityHelper;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 import net.mrscauthd.beyond_earth.common.capabilities.oxygen.IOxygenStorage;
 
 public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
@@ -21,8 +20,7 @@ public class SpaceOxygenProofEnchantmentSession extends ProofEnchantmentSession
 		if (LivingEntityHelper.isPlayingMode(entity) == true)
 		{
 			int oxygenUsing = this.getOxygenUsing();
-			ItemStack enchantedItem = this.getEnchantedItem();
-			IOxygenCharger oxygenCharger = OxygenChargerUtils.firstExtractableOxygenCharger(entity, oxygenUsing, enchantedItem);
+			IOxygenCharger oxygenCharger = OxygenChargerUtils.firstExtractableOxygenCharger(entity, oxygenUsing);
 			this.oxygenStorage = oxygenCharger != null ? oxygenCharger.getOxygenStorage() : null;
 		}
 		else

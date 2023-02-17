@@ -45,7 +45,7 @@ public class AddonPneumaticCraftEventHandler
 		if (airHandler != null && useAir(airHandler, airUsing, true) == true)
 		{
 			int oxygenusing = 1;
-			IOxygenCharger oxygenCharnger = OxygenChargerUtils.firstExtractableOxygenCharger(entity, oxygenusing, stack);
+			IOxygenCharger oxygenCharnger = OxygenChargerUtils.firstExtractableOxygenCharger(entity, oxygenusing);
 
 			if (oxygenCharnger != null)
 			{
