@@ -7,7 +7,7 @@
 		}
 	],
 	"ingredient": {
-		"item": "beyond_earth:sky_stone"
+		"item": "beyond_earth:meteorite"
 	},
 	"result": {
 		"item": "ae2:smooth_sky_stone_block"

@@ -9,7 +9,7 @@
 	"mode": "inscribe",
 	"ingredients": {
 		"middle": {
-			"item": "beyond_earth:sky_stone"
+			"item": "beyond_earth:meteorite"
 		}
 	},
 	"result": {
