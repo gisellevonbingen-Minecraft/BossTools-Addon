@@ -4,7 +4,7 @@
 		"tag": "forge:ingots/iron"
 	},
 	"output": {
-		"item": "beyond_earth:iron_stick",
+		"item": "beyond_earth:iron_rod",
 		"count": 2
 	},
 	"cookTime": 50
