@@ -2,28 +2,40 @@ buildscript {
     repositories {
         maven { url = "https://maven.minecraftforge.net" }
         maven { url = "https://repo.spongepowered.org/maven" }
-        mavenCentral()
     }
     dependencies {
         classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "5.1.+", changing: true
-        classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
+        classpath "org.spongepowered:mixingradle:0.7.+"
     }
 }
 
-apply plugin: "net.minecraftforge.gradle"
-apply plugin: "eclipse"
+plugins {
+    id "net.minecraftforge.gradle" version "5.1.+"
+    id "org.parchmentmc.librarian.forgegradle" version "1.+"
+}
+
+apply plugin: "java"
 apply plugin: "maven-publish"
 apply plugin: "org.spongepowered.mixin"
 
 version = "${mc_version}-${mod_version}"
-group = "gisellevonbingen.beyond_earth_giselle_addon"
-archivesBaseName = "Beyond-Earth-Giselle-Addon"
+archivesBaseName = rootProject.archives_base_name
+group = rootProject.maven_group
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println "Java: ${System.getProperty "java.version"}, JVM: ${System.getProperty "java.vm.version"} (${System.getProperty "java.vendor"}), Arch: ${System.getProperty "os.arch"}"
 
+sourceSets {
+    main {
+        resources {
+            srcDirs += "src/generated/resources"
+            exclude ".cache"
+        }
+    }
+}
+
 minecraft {
-    mappings channel: "official", version: "${mc_version}"
+    mappings channel: "parchment", version: "${parchment_version}-${mc_version}"
 
     // accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
 
@@ -88,8 +100,6 @@ minecraft {
     }
 }
 
-sourceSets.main.resources { srcDir "src/generated/resources" }
-
 repositories {
     maven {
         name "JEI"
@@ -110,50 +120,66 @@ repositories {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+    // Mod
+    minecraft "net.minecraftforge:forge:${mc_version}-${forge_api_version}"
+    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 
-    // Mixin
-    if (System.getProperty("idea.sync.active") != "true") {
-        annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
-    }
-
-    // JEI
+    // Required
+    implementation fg.deobf("curse.maven:curios-377448:${beyond_earth_file}")
+    
+    // Optional
     implementation fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-
-    // JER
     implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:${jer_file}")
 
-    // The One Probe
     implementation fg.deobf("curse.maven:the-one-probe-245211:${top_file}")
+    implementation fg.deobf("curse.maven:jade-324717:${jade_file}")
 
-    // Jade
-    //implementation fg.deobf("curse.maven:jade-324717:${jade_file}")
-
-    // Refined Storage
-    // compileOnly fg.deobf("curse.maven:refined-storage-243076:${refined_storage_file}")
-
-    // JAOPCA
-    implementation fg.deobf("curse.maven:jaopca-266936:${jaopca_file}")
-
-    // Curios
-    implementation fg.deobf("curse.maven:curios-309927:${curios_file}")
-
-    // Beyond Earth
-    implementation fg.deobf("net.mrscauthd:beyond_earth:${mc_version}-${beyond_earth_version}")
-    
-    // Immersive Engineering
-    implementation fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${immersive_engineering_version}")
-
-    // Mekanism
     implementation fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}")
     runtimeOnly fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}:generators")
-
-    // Patchouli
-    implementation fg.deobf("curse.maven:patchouli-306770:${patchouli_file}")
-
-    // PneumaticCraft: Repressurized
+    implementation fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${immersive_engineering_version}")
     implementation fg.deobf("curse.maven:pneumaticcraft-repressurized-281849:${pneumaticcraft_repressurized_file}")
+    
 
+    implementation fg.deobf("curse.maven:jaopca-266936:${jaopca_file}")
+    implementation fg.deobf("curse.maven:curios-309927:${curios_file}")
+    implementation fg.deobf("curse.maven:patchouli-306770:${patchouli_file}")
+    
+    // Runtime Only
+    runtimeOnly fg.deobf("curse.maven:refined-storage-243076:${refined_storage_file}")
+
+}
+
+def resourceTargets = ["META-INF/mods.toml"]
+def intoTargets = ["$rootDir/out/production/resources/", "$rootDir/out/production/${project.name}.main/", "$rootDir/bin/main/"]
+def replaceProperties = [mc_version: mc_version,
+    mod_version: mod_version, mod_name: mod_name, mod_description: mod_description, mod_license: mod_license, mod_homepage: mod_homepage, mod_source: mod_source, mod_issues: mod_issues,
+    forge_api_version: forge_api_version, forge_loader_version: forge_loader_version,
+    beyond_earth_version: beyond_earth_version
+]
+
+processResources {
+    inputs.properties replaceProperties
+    replaceProperties.put "project", project
+
+    filesMatching(resourceTargets) {
+        expand replaceProperties
+    }
+
+    intoTargets.each { target ->
+        if (file(target).exists()) {
+            copy {
+                from(sourceSets.main.resources) {
+                    include resourceTargets
+                    expand replaceProperties
+                }
+                into target
+            }
+        }
+    }
+}
+
+mixin {
+    add sourceSets.main, "beyond_earth_giselle_addon.mixin.refmap.json"
 }
 
 jar {
